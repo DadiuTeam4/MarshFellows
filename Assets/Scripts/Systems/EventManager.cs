@@ -15,7 +15,9 @@ namespace Events
 		ShakeEnd,
 		HoldBegin,
 		HoldEnd,
-		CameraMoving
+		CameraMoving,
+		SwipeEffectEnded,
+		SwipeEffectStarted
 	}
 
 	public class EventArgument

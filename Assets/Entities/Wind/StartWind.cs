@@ -4,26 +4,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 public class StartWind : Swipeable {
 
-public GameObject windZoneLeft; //the prefab you want to spawn
-public GameObject windZoneRight; //the prefab you want to spawn
+	public GameObject windZoneLeft; //the prefab you want to spawn
+	public GameObject windZoneRight; //the prefab you want to spawn
 
 
-public GameObject leftParticleSystem;
-public GameObject rightParticleSystem;
-public float timer = waitTime; 
-private ParticleSystem[] leftFog;
-private ParticleSystem[] rightFog;
-private static float waitTime = 3;
-private float defaultEmissionRate = 10;
-private float changedEmissionRate = 1;
+	public GameObject leftParticleSystem;
+	public GameObject rightParticleSystem;
+	public float timer = waitTime; 
+	private ParticleSystem[] leftFog;
+	private ParticleSystem[] rightFog;
+	private static float waitTime = 3;
+	private float defaultEmissionRate = 10;
+	private float changedEmissionRate = 1;
 
-private bool leftSwipeHasHappened = false;
-private bool rightSwipeHasHappened = false;
-private Vector3 windDirection;
-private GameObject newWind;
+	private bool leftSwipeHasHappened = false;
+	private bool rightSwipeHasHappened = false;
+	private Vector3 windDirection;
+	private GameObject newWind;
+	private EventManager eventManager;
+	private EventArgument argument;
+
 
 	void Start()
 	{
@@ -42,7 +46,11 @@ private GameObject newWind;
         {
 			childPS.transform.parent = gameObject.transform.parent;
 		}
-		
+
+		eventManager = EventManager.GetInstance();
+
+		argument = new EventArgument();
+
 	}
 
 
@@ -66,6 +74,10 @@ private GameObject newWind;
 		{
 			StopEverything();
 			
+			argument.stringComponent = "Right";
+
+			eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument);	
+
  			foreach( ParticleSystem childPS in leftFog )
             {
 				var externalForce = childPS.externalForces;
@@ -75,7 +87,10 @@ private GameObject newWind;
 
   	       	newWind = Instantiate(windZoneRight) as GameObject;
 
-			newWind.transform.parent = gameObject.transform.parent;
+			//newWind.transform.parent = gameObject.transform.parent;
+			newWind.transform.LookAt(gameObject.transform.parent);
+			
+			//newWind.transform.rotation = gameObject.transform.rotation;
 
 			timer = waitTime;
 		}
@@ -83,7 +98,11 @@ private GameObject newWind;
 		if (Input.GetKeyDown("e") || leftSwipeHasHappened)//left wind
 		{
 			StopEverything();
+
+			argument.stringComponent = "Left";
 			
+			eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument);	
+
  			foreach( ParticleSystem childPS in rightFog )
             {
 				var externalForce = childPS.externalForces;
@@ -93,13 +112,17 @@ private GameObject newWind;
 
   	       	newWind = Instantiate(windZoneLeft) as GameObject;
 
- 			newWind.transform.parent = gameObject.transform.parent;
+ 			//newWind.transform.parent = gameObject.transform.parent;
+			newWind.transform.LookAt(gameObject.transform.parent);
+			//newWind.transform.rotation = gameObject.transform.rotation;
 
 			timer = waitTime;
 		}
 
 		if(timer < 0)
 		{
+			eventManager.CallEvent(CustomEvent.SwipeEffectEnded,argument);	
+
 			StopEverything();
 		}
 
