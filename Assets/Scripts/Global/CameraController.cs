@@ -12,6 +12,8 @@ public class CameraController : Shakeable
     public bool isCameraFollwingPlayer;
     private Vector3 relativePos;
 
+    public Vector3 CameraAdjustableOffset;
+
     //Variables For Shaking
     public float shakeDuration = 2f;
     private float shakeIntensity = 0.4f;
@@ -30,9 +32,8 @@ public class CameraController : Shakeable
     void Start()
     {
         relativePos = playerTransform.InverseTransformPoint(transform.position);
-        //If is shaking, should not follow the player
-        //isCameraFollwingPlayer = false;
         isShaking = false;
+        CameraAdjustableOffset = Vector3.zero;
     }
 
     public override void OnShakeBegin(float magnitude)
@@ -64,8 +65,10 @@ public class CameraController : Shakeable
         if (isCameraFollwingPlayer)
         {
             //Rotate the camera
-            transform.LookAt(playerTransform);
-            Vector3 targetPos = playerTransform.TransformPoint(relativePos);
+            //transform.LookAt(playerTransform);
+            Quaternion playerRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y, 0);
+            transform.rotation = playerRotation;
+            Vector3 targetPos = playerTransform.TransformPoint(relativePos) + CameraAdjustableOffset;
             //Kepp the relative position
             transform.position = Vector3.MoveTowards(transform.position, targetPos, CameraSpeed);
         }
