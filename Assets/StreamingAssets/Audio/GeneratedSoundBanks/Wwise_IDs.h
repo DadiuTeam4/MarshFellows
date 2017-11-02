@@ -11,12 +11,6 @@
 
 namespace AK
 {
-    namespace EVENTS
-    {
-        static const AkUniqueID TEST = 3157003241U;
-        static const AkUniqueID TEST1 = 576110586U;
-    } // namespace EVENTS
-
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID SS_AIR_FEAR = 1351367891U;
@@ -29,13 +23,12 @@ namespace AK
         static const AkUniqueID SS_AIR_STORM = 3715662592U;
         static const AkUniqueID SS_AIR_TIMEOFDAY = 3203397129U;
         static const AkUniqueID SS_AIR_TURBULENCE = 4160247818U;
-        static const AkUniqueID TESTPARAMETER = 2010788230U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID SOUNDBANKA = 1647770673U;
+        static const AkUniqueID SOUNDBANK1 = 1647770721U;
     } // namespace BANKS
 
     namespace BUSSES
