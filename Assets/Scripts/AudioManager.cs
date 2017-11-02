@@ -106,5 +106,4 @@ public class AudioManager : MonoBehaviour {
 		stopEventName = string.Concat ("", stopEventName, ""); 
 		AkSoundEngine.PostEvent (stopEventName, gameObject); 
 	}
-
 }
