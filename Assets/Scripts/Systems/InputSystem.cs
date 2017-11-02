@@ -237,7 +237,7 @@ public class InputSystem : Singleton<InputSystem>
 			Holdable holdable = GetHoldable(raycastHits[touch.fingerId].Value);
 			if (holdable)
 			{
-				EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin, new EventArgument());
+				EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin);
 
 				holdable.OnTouchBegin(raycastHits[touch.fingerId].Value);
 				heldThisFrame[touch.fingerId] = holdable;
@@ -268,15 +268,12 @@ public class InputSystem : Singleton<InputSystem>
 					heldThisFrame[touch.fingerId].OnTouchBegin(raycastHits[touch.fingerId].Value);
 				}
 			}
-
-			
 			CheckSwipe(touch);
-			
 		}
 		if (heldLastFrame[touch.fingerId] && heldLastFrame[touch.fingerId] != heldThisFrame[touch.fingerId])
 		{
 			heldLastFrame[touch.fingerId].OnTouchReleased();
-			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd, new EventArgument());
+			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
 	}
 
@@ -285,7 +282,7 @@ public class InputSystem : Singleton<InputSystem>
 		if (heldLastFrame[touch.fingerId])
 		{
 			heldLastFrame[touch.fingerId].OnTouchReleased();
-			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd, new EventArgument());
+			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
@@ -296,7 +293,7 @@ public class InputSystem : Singleton<InputSystem>
 		if (heldLastFrame[touch.fingerId])
 		{
 			heldLastFrame[touch.fingerId].OnTouchReleased();
-			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd, new EventArgument());
+			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
@@ -337,7 +334,7 @@ public class InputSystem : Singleton<InputSystem>
 			touchPositions[touch.fingerId].Clear();
 			touchPositions[touch.fingerId].Add(touch.position);
 
-			EventManager.GetInstance().CallEvent(CustomEvent.Swipe, new EventArgument());
+			EventManager.GetInstance().CallEvent(CustomEvent.Swipe);
 		}
 	}
 
@@ -412,7 +409,7 @@ public class InputSystem : Singleton<InputSystem>
 				if (Input.GetMouseButtonDown(0))
 				{
 					holdable.OnTouchBegin(raycastHits[0].Value);
-					EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin, new EventArgument());
+					EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin);
 				}
 
 				foreach (Holdable lastFrameHoldable in heldLastFrame)
@@ -420,7 +417,7 @@ public class InputSystem : Singleton<InputSystem>
 					if (lastFrameHoldable && !lastFrameHoldable.Equals(holdable))
 					{
 						lastFrameHoldable.OnTouchReleased();
-						EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd, new EventArgument());
+						EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 					}
 				}
 			}
@@ -432,7 +429,7 @@ public class InputSystem : Singleton<InputSystem>
 				if (lastFrameHoldable)
 				{
 					lastFrameHoldable.OnTouchReleased();
-					EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd, new EventArgument());
+					EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 				}
 			}
 		}
@@ -448,7 +445,7 @@ public class InputSystem : Singleton<InputSystem>
 			if (holdable)
 			{
 				holdable.OnTouchReleased();
-				EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd, new EventArgument());
+				EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 			}
 		}
 	}
