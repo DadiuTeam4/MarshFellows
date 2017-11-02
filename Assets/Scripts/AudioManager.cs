@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour {
 
 	public string eventName; 
 	public EventManager eventManager;
+	public bool soundIsBeingPlayed; 
 
 	void Awake()
 	{
@@ -34,6 +35,18 @@ public class AudioManager : MonoBehaviour {
 
 	void PostEvent(EventArgument argument)
 	{
-		AkSoundEngine.PostEvent (eventName, gameObject); 
+		if (!soundIsBeingPlayed)
+		{
+			AkSoundEngine.PostEvent (eventName, gameObject); 
+			AkSoundEngine.PostEvent ("Play_MGP2_SD_Kettle", gameObject, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, 1); 
+		}
+	}
+
+	void EventHasStopped(object in_cookie, AkCallbackType in_type, object in_info)
+	{
+		if (in_type == AkCallbackType.AK_EndOfEvent)
+		{
+			soundIsBeingPlayed = false; 
+		}
 	}
 }
