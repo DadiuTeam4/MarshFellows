@@ -32,6 +32,16 @@ private GameObject newWind;
 
 		leftFog = leftParticleSystem.GetComponentsInChildren<ParticleSystem>();
 		rightFog = rightParticleSystem.GetComponentsInChildren<ParticleSystem>();
+
+		foreach( ParticleSystem childPS in leftFog )
+        {
+			childPS.transform.parent = gameObject.transform.parent;
+		}
+
+		foreach( ParticleSystem childPS in rightFog )
+        {
+			childPS.transform.parent = gameObject.transform.parent;
+		}
 		
 	}
 
@@ -41,7 +51,6 @@ private GameObject newWind;
 		if(InputSystem.swipeDirections.Count > 0)
 		{
 			windDirection = InputSystem.swipeDirections[0];
-			print(windDirection);
 			if(windDirection.x < 0.0)
 			{
 				leftSwipeHasHappened = true;
@@ -65,6 +74,9 @@ private GameObject newWind;
 
 
   	       	newWind = Instantiate(windZoneRight) as GameObject;
+
+			newWind.transform.parent = gameObject.transform.parent;
+
 			timer = waitTime;
 		}
 
@@ -80,6 +92,9 @@ private GameObject newWind;
 
 
   	       	newWind = Instantiate(windZoneLeft) as GameObject;
+
+ 			newWind.transform.parent = gameObject.transform.parent;
+
 			timer = waitTime;
 		}
 
