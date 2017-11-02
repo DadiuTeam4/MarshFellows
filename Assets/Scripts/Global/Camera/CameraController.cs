@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Events;
 public class CameraController : Shakeable
 {
 
@@ -14,6 +15,9 @@ public class CameraController : Shakeable
     public Vector3 cameraAdjustableOffset;
     public Vector3 cameraAdjustableRotation;
     private Vector3 cameraCurrentRotation;
+
+    public Vector3 CameraOffsetOnTrigger;
+    public Vector3 CameraRotationOnTrigger;
 
     //Variables For Shaking
     public float shakeDuration = 2f;
@@ -27,16 +31,22 @@ public class CameraController : Shakeable
     void Awake()
     {
         cameraTransform = GetComponent<Transform>();
-
     }
 
     void Start()
     {
         isShaking = false;
-        cameraAdjustableOffset = Vector3.zero;
-        cameraAdjustableRotation = Vector3.zero;
-        cameraCurrentRotation = Vector3.zero;
         offset = transform.position - playerTransform.position;
+
+        EventDelegate eventDelegate = OnCameraSpecialEvent;
+        EventManager.GetInstance().AddListener(CustomEvent.CameraMoving, eventDelegate);
+
+    }
+
+    public void OnCameraSpecialEvent(EventArgument argument)
+    {
+        cameraAdjustableOffset = CameraOffsetOnTrigger;
+        cameraAdjustableRotation = CameraRotationOnTrigger; 
     }
 
     public override void OnShakeBegin(float magnitude)
@@ -68,18 +78,19 @@ public class CameraController : Shakeable
         if (isCameraFollwingPlayer)
         {
             //Ajust Camera rotation onchange
-            Quaternion playerRotation;
+            //Use euler to rotate certain degress in certain axies
+            Quaternion newRotation;
             if (cameraCurrentRotation != cameraAdjustableRotation)
             {
                 Vector3 changedRotation = cameraAdjustableRotation - cameraCurrentRotation;
                 cameraCurrentRotation = cameraAdjustableRotation;
-                transform.rotation *= Quaternion.Euler(changedRotation.x, changedRotation.y, changedRotation.z);
+                transform.rotation *= Quaternion.Euler(changedRotation.x, 0f, 0f);
             }
-            playerRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y, 1f);
-            transform.rotation = playerRotation;
+            newRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y + cameraCurrentRotation.y, cameraCurrentRotation.z);
+            transform.rotation = newRotation;
 
-            //Kepp the relative position
-            Vector3 targetPos = playerTransform.position - (playerRotation * Vector3.forward * offset.magnitude) + cameraAdjustableOffset;
+            //Update the new position according to the player position
+            Vector3 targetPos = playerTransform.position - (newRotation * Vector3.forward * offset.magnitude) + cameraAdjustableOffset;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, CameraSpeed);
         }
     }
