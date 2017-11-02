@@ -9,18 +9,23 @@ public class EventTrigger : MonoBehaviour
 {
 	private EventManager eventManager;
 
-	void Start()
+	void Update()
 	{
-		eventManager = EventManager.GetInstance();
+		if (Input.GetKeyDown("j"))
+		{
+			eventManager.CallEvent(CustomEvent.None, new EventArgument());
+		}
 	}
 
 	void OnEnable()
 	{
-		
+		EventDelegate eventDelegate = EventCallback;
+		eventManager = EventManager.GetInstance();
+		eventManager.AddListener(CustomEvent.None, eventDelegate);		
 	}
 
-	void Update () 
+	void EventCallback(EventArgument eventArgument) 
 	{
-		
+		print("Event triggered: " + eventArgument.eventComponent);
 	}
 }
