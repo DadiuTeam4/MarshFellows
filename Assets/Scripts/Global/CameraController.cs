@@ -31,7 +31,7 @@ public class CameraController : Shakeable
     {
         relativePos = playerTransform.InverseTransformPoint(transform.position);
         //If is shaking, should not follow the player
-        isCameraFollwingPlayer = false;
+        //isCameraFollwingPlayer = false;
         isShaking = false;
     }
 
