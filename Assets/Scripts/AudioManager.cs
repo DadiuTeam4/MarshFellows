@@ -50,29 +50,19 @@ public class AudioManager : MonoBehaviour {
 	{
 		if (argument.eventComponent == CustomEvent.Swipe) 
 		{
-			if (!soundIsBeingPlayed)
-			{
 				PostSoundEventWCallback ("Play_GG_SD_Swipe_1"); 
-			}	
 		}
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
 		{
-			if (!soundIsBeingPlayed)
-			{
 				PostSoundEventWCallback ("Play_GG_SD_Sink_1"); 
-			}	
 		}
 		if (argument.eventComponent == CustomEvent.ShakeBegin) 
 		{
-			if (!soundIsBeingPlayed)
-			{
 				PostSoundEventWCallback ("Play_GG_SD_Shake_1"); 
-			}	
 		}
-		if (argument.eventComponent == CustomEvent.AppleFall) {
-			if (!soundIsBeingPlayed) {
+		if (argument.eventComponent == CustomEvent.AppleFall) 
+		{
 				PostSoundEventWCallback ("Play_GG_SD_AppleDrop"); 
-			}	
 		}
 	}
 
@@ -113,7 +103,10 @@ public class AudioManager : MonoBehaviour {
 
 	void StopSoundEvent(string stopEventName)
 	{
-		stopEventName = string.Concat ("", stopEventName, ""); 
-		AkSoundEngine.PostEvent (stopEventName, gameObject); 
+		if (!soundIsBeingPlayed) 
+		{
+			stopEventName = string.Concat ("", stopEventName, ""); 
+			AkSoundEngine.PostEvent (stopEventName, gameObject); 
+		}
 	}
 }
