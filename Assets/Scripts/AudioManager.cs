@@ -1,4 +1,5 @@
-﻿//author : Kristian Riis 
+﻿// Author: Kristian Riis 
+// Contributors: 
 
 using System.Collections;
 using System.Collections.Generic;
@@ -29,11 +30,15 @@ public class AudioManager : MonoBehaviour {
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper; 
 
+		//Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		eventManager.AddListener (CustomEvent.ShakeBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.ShakeEnd, stopEvent);
+
+		//Events
+		eventManager.AddListener (CustomEvent.AppleFall, postEvent);
 	}
 
 	void Update () 
@@ -62,6 +67,11 @@ public class AudioManager : MonoBehaviour {
 			if (!soundIsBeingPlayed)
 			{
 				PostSoundEventWCallback ("Play_GG_SD_Shake_1"); 
+			}	
+		}
+		if (argument.eventComponent == CustomEvent.AppleFall) {
+			if (!soundIsBeingPlayed) {
+				PostSoundEventWCallback ("Play_GG_SD_AppleDrop"); 
 			}	
 		}
 	}
