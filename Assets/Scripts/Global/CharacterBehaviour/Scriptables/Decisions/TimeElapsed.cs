@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class TimeElapsed : Decision 
 {
 	public float time;
-	[Range(0.0f, 1.0f)] public float chanceOfReacting;
+	[Range(0.0f, 1.0f)] public float chanceOfReacting = 1.0f;
 
 	public override bool Decide(StateController controller)
 	{
