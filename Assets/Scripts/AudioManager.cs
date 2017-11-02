@@ -11,7 +11,6 @@ public class AudioManager : MonoBehaviour {
 	public EventManager eventManager;
 	public bool soundIsBeingPlayed = false; 
 	public uint eventID; 
-	public string eventName;
 
 	void Awake()
 	{
@@ -20,7 +19,7 @@ public class AudioManager : MonoBehaviour {
 
 	void Start()
 	{
-		//if Scene is this...
+		//If Scene is this...
 		AkSoundEngine.PostEvent("Play_GG_Ambience_Open_1", gameObject); 
 	}
 		
@@ -30,39 +29,35 @@ public class AudioManager : MonoBehaviour {
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper; 
 
-		//Mechanics
+		// Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		eventManager.AddListener (CustomEvent.ShakeBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.ShakeEnd, stopEvent);
 
-		//Events
+		//Ritual events
 		eventManager.AddListener (CustomEvent.AppleFall, postEvent);
 	}
 
-	void Update () 
-	{
-	}
-
-	//Posts event when events has been called 
+	//Event poster 
 	void Poster(EventArgument argument)
 	{
 		if (argument.eventComponent == CustomEvent.Swipe) 
 		{
-				PostSoundEventWCallback ("Play_GG_SD_Swipe_1"); 
+			PlaySoundWC ("Play_GG_SD_Swipe_1"); 
 		}
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
 		{
-				PostSoundEventWCallback ("Play_GG_SD_Sink_1"); 
+			PlaySoundWC ("Play_GG_SD_Sink_1"); 
 		}
 		if (argument.eventComponent == CustomEvent.ShakeBegin) 
 		{
-				PostSoundEventWCallback ("Play_GG_SD_Shake_1"); 
+			PlaySoundWC ("Play_GG_SD_Shake_1"); 
 		}
 		if (argument.eventComponent == CustomEvent.AppleFall) 
 		{
-				PostSoundEventWCallback ("Play_GG_SD_AppleDrop"); 
+			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
 		}
 	}
 
@@ -71,12 +66,37 @@ public class AudioManager : MonoBehaviour {
 	{
 		if (argument.eventComponent == CustomEvent.HoldEnd) 
 		{
-			//AkSoundEngine.StopPlayingID (eventID);
-			StopSoundEvent("Stop_GG_SD_Sink_1"); 
+			StopSound("Stop_GG_SD_Sink_1"); 
 		}
 		if (argument.eventComponent == CustomEvent.ShakeEnd) 
 		{
-			StopSoundEvent("Stop_GG_SD_Shake_1"); 
+			StopSound("Stop_GG_SD_Shake_1"); 
+		}
+	}
+
+	//Play-function with stop-callback 
+	void PlaySoundWC(string soundEventName)
+	{
+		soundEventName = string.Concat ("", soundEventName, ""); 
+		eventID = AkSoundEngine.PostEvent (soundEventName, gameObject, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, 1); 
+		soundIsBeingPlayed = true; 
+	}
+
+	//Play-function without stop-callback 
+	void PlaySound(string soundName)
+	{
+		soundName = string.Concat ("", soundName, ""); 
+		eventID = AkSoundEngine.PostEvent (soundName, gameObject); 
+		soundIsBeingPlayed = true; 
+	}
+
+	//Stop function
+	void StopSound(string stopEventName)
+	{
+		if (!soundIsBeingPlayed) 
+		{
+			stopEventName = string.Concat ("", stopEventName, ""); 
+			AkSoundEngine.PostEvent (stopEventName, gameObject); 
 		}
 	}
 
@@ -86,27 +106,6 @@ public class AudioManager : MonoBehaviour {
 		if (in_type == AkCallbackType.AK_EndOfEvent)
 		{
 			soundIsBeingPlayed = false; 
-		}
-	}
-		
-	void PostSoundEventWCallback(string soundEventName)
-	{
-		soundEventName = string.Concat ("", soundEventName, ""); 
-		eventID = AkSoundEngine.PostEvent (soundEventName, gameObject, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, 1); 
-	}
-
-	void PostSoundEvent(string soundName)
-	{
-		soundName = string.Concat ("", soundName, ""); 
-		AkSoundEngine.PostEvent (soundName, gameObject); 
-	}
-
-	void StopSoundEvent(string stopEventName)
-	{
-		if (!soundIsBeingPlayed) 
-		{
-			stopEventName = string.Concat ("", stopEventName, ""); 
-			AkSoundEngine.PostEvent (stopEventName, gameObject); 
 		}
 	}
 }
