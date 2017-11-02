@@ -68,18 +68,19 @@ public class CameraController : Shakeable
         if (isCameraFollwingPlayer)
         {
             //Ajust Camera rotation onchange
-            Quaternion playerRotation;
+            //Use euler to rotate certain degress in certain axies
+            Quaternion newRotation;
             if (cameraCurrentRotation != cameraAdjustableRotation)
             {
                 Vector3 changedRotation = cameraAdjustableRotation - cameraCurrentRotation;
                 cameraCurrentRotation = cameraAdjustableRotation;
-                transform.rotation *= Quaternion.Euler(changedRotation.x, changedRotation.y, changedRotation.z);
+                transform.rotation *= Quaternion.Euler(changedRotation.x, 0f, 0f);
             }
-            playerRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y, 1f);
-            transform.rotation = playerRotation;
+            newRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y + cameraCurrentRotation.y, cameraCurrentRotation.z);
+            transform.rotation = newRotation;
 
-            //Kepp the relative position
-            Vector3 targetPos = playerTransform.position - (playerRotation * Vector3.forward * offset.magnitude) + cameraAdjustableOffset;
+            //Update the new position according to the player position
+            Vector3 targetPos = playerTransform.position - (newRotation * Vector3.forward * offset.magnitude) + cameraAdjustableOffset;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, CameraSpeed);
         }
     }
