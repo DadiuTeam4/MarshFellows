@@ -9,7 +9,7 @@ namespace Events
 {
 	public enum CustomEvent
 	{
-		test
+		None
 	}
 
 	public class EventArgument
@@ -17,6 +17,8 @@ namespace Events
 		public string stringComponent = "";
 		public float floatComponent = 0.0f;
 		public int intComponent = 0;
+		public Vector3 vectorComponent = new Vector3();
+		public CustomEvent eventComponent = CustomEvent.None;
 	}
 	
 	public delegate void EventDelegate(EventArgument argument);
@@ -53,6 +55,7 @@ namespace Events
 		{
 			if (listeners.ContainsKey(eventName))
 			{
+				argument.eventComponent = eventName;
 				EventDelegate eventDelegate;
 				listeners.TryGetValue(eventName, out eventDelegate);
 			
