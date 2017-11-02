@@ -14,16 +14,16 @@ public class TestEventManager : MonoBehaviour
 		EventDelegate delegate2 = TestFunction2;
 		EventDelegate delegate3 = TestFunction3;	
 
-		EventManager.GetInstance().AddListener(CustomEvent.test, delegate1);
-		EventManager.GetInstance().AddListener(CustomEvent.test, delegate2);
-		EventManager.GetInstance().AddListener(CustomEvent.test, delegate3);
+		// EventManager.GetInstance().AddListener(CustomEvent.test, delegate1);
+		// EventManager.GetInstance().AddListener(CustomEvent.test, delegate2);
+		// EventManager.GetInstance().AddListener(CustomEvent.test, delegate3);
 
-		EventManager.GetInstance().RemoveListener(CustomEvent.test, delegate2);
+		// EventManager.GetInstance().RemoveListener(CustomEvent.test, delegate2);
 
 		EventArgument argument = new EventArgument();
 		argument.stringComponent = "YOOO";
 
-		EventManager.GetInstance().CallEvent(CustomEvent.test, argument);
+		// EventManager.GetInstance().CallEvent(CustomEvent.test, argument);
 	}
 
 	public void TestFunction(EventArgument argument)

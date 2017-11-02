@@ -1,9 +1,11 @@
 ﻿// Author: Itai Yavin
 // Contributors:
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SinkableGround : Holdable 
 {
@@ -31,6 +33,7 @@ public class SinkableGround : Holdable
 	private MeshFilter meshFilter;
 	private Mesh mesh;
 	private Vector3[] originalVerticePositions;
+	private Obstacle[] verticeObstacles;
 	private Vector3[] currentVertices;
 	private float[] verticeTimes;
 	private bool verticesWaiting = false;
@@ -45,6 +48,7 @@ public class SinkableGround : Holdable
 		mesh = meshFilter.mesh;
 		meshCollider.sharedMesh = mesh;
 		originalVerticePositions = mesh.vertices;
+		verticeObstacles = new Obstacle[originalVerticePositions.Length];
 		currentVertices = mesh.vertices;
 
 		verticeTimes = new float[originalVerticePositions.Length];
@@ -54,39 +58,7 @@ public class SinkableGround : Holdable
 	{
 		if(verticesWaiting && Time.frameCount % updateRate == 0)
 		{
-			verticesWaiting = false;
-			for (int i = 0; i < verticeTimes.Length; i++)
-			{
-				if (verticeTimes[i] != 0.0f)
-				{
-					verticesWaiting = true;
-
-					if (Time.time > verticeTimes[i])
-					{
-						if (currentVertices[i].y + sinkSpeed < originalVerticePositions[i].y)
-						{
-							currentVertices[i].y += sinkSpeed;
-						}
-						else
-						{
-							currentVertices[i] = originalVerticePositions[i];
-							verticeTimes[i] = 0.0f;
-						}
-
-						madeChange = true;
-					}
-				}
-			}
-
-			if (madeChange)
-			{
-				mesh.vertices = currentVertices;
-				mesh.RecalculateNormals();
-
-				meshCollider.sharedMesh = mesh;
-
-				madeChange = false;
-			}
+			RiseGround();
 		}
 	}
 
@@ -113,6 +85,9 @@ public class SinkableGround : Holdable
 		}
 
 		OrderPairList(ref nearestPoints);
+		Vector3 obstaclePosition = transform.TransformPoint(originalVerticePositions[nearestPoints[0].GetFirst()]);
+		verticeObstacles[nearestPoints[0].GetFirst()] = new Obstacle(obstaclePosition, radius);
+		verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform.GetChild(0));
 	}
 	
 	public override void OnTouchHold(RaycastHit hit) 
@@ -142,6 +117,44 @@ public class SinkableGround : Holdable
 	public override void OnTouchReleased() 
 	{
 
+	}
+
+	private class Obstacle
+	{
+		public Obstacle(Vector3 position, float radius)
+		{
+			obstacle = new GameObject();
+			obstacle.transform.position = position;
+			navMeshObstacleComponent = obstacle.AddComponent<NavMeshObstacle>();
+			navMeshObstacleComponent.carving = true;
+			navMeshObstacleComponent.shape = NavMeshObstacleShape.Capsule;
+
+			navMeshObstacleComponent.radius = radius;
+
+			enabled = true;
+		}
+
+		public GameObject obstacle;
+		public NavMeshObstacle navMeshObstacleComponent;
+
+		public bool enabled;
+
+		public void Disable()
+		{
+			navMeshObstacleComponent.enabled = false;
+			enabled = false;
+		}
+
+		public void Enable()
+		{
+			navMeshObstacleComponent.enabled = true;
+			enabled = true;
+		}
+
+		public void Remove()
+		{
+			Destroy(obstacle);
+		}
 	}
 
 	private void OrderPairList(ref List<Pair<int, float>> pairList)
@@ -195,6 +208,49 @@ public class SinkableGround : Holdable
 		public void Print()
 		{
 			Debug.Log("First: " + value1 + " - Second: " + value2);
+		}
+	}
+
+	private void RiseGround()
+	{
+		verticesWaiting = false;
+		for (int i = 0; i < verticeTimes.Length; i++)
+		{
+			if (verticeTimes[i] != 0.0f)
+			{
+				verticesWaiting = true;
+
+				if (Time.time > verticeTimes[i])
+				{
+					if (currentVertices[i].y + riseSpeed < originalVerticePositions[i].y)
+					{
+						currentVertices[i].y += riseSpeed;
+					}
+					else
+					{
+						currentVertices[i] = originalVerticePositions[i];
+						verticeTimes[i] = 0.0f;
+
+						if (verticeObstacles[i] != null)
+						{
+							verticeObstacles[i].Remove();
+							verticeObstacles[i] = null;
+						}
+					}
+
+					madeChange = true;
+				}
+			}
+		}
+
+		if (madeChange)
+		{
+			mesh.vertices = currentVertices;
+			mesh.RecalculateNormals();
+
+			meshCollider.sharedMesh = mesh;
+
+			madeChange = false;
 		}
 	}
 }
