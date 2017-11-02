@@ -199,7 +199,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4951872834933330}
-  - component: {fileID: 65344647396722330}
   - component: {fileID: 54036627667333838}
   - component: {fileID: 114246764904318602}
   - component: {fileID: 114001317796091376}
@@ -1049,7 +1048,7 @@ GameObject:
   - component: {fileID: 4545793850362288}
   - component: {fileID: 137293232262268440}
   m_Layer: 0
-  m_Name: placeholder_mesh
+  m_Name: PMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2119,7 +2118,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1225806898146870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: 0, z: -7.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4329837275676524}
@@ -2248,18 +2247,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65344647396722330
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1225806898146870}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95711767761679002
 Animator:
   serializedVersion: 3
@@ -2302,10 +2289,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab348307aae4aac4d890b64460c905b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  events: 
+  events: 00000000
   currentState: {fileID: 11400000, guid: e008e31368147904f815bf8f48f44781, type: 2}
   active: 1
   navigator: {fileID: 0}
+  animator: {fileID: 0}
   aiDebugging: 0
   debugInfo: 
 --- !u!137 &137293232262268440

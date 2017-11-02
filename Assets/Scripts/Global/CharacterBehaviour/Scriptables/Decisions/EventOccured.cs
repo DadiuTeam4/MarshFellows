@@ -23,16 +23,18 @@ public class EventOccured : Decision
 
 		if (chanceOfReacting == 1.0f)
 		{
+			controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 			return true;
 		}
 
 		float chance = 1 - chanceOfReacting;
 		float reactionRoll = Random.Range(0f, 1f);
-		if (reactionRoll > chance) 
+		if (reactionRoll > chance)
 		{
+			controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 			return true;
 		}
-		else 
+		else
 		{
 			eventOccured = false;
 			return false;
