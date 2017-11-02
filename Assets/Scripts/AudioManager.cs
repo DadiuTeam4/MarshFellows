@@ -1,4 +1,5 @@
-﻿//author : Kristian Riis 
+﻿// Author: Kristian Riis 
+// Contributors: 
 
 using System.Collections;
 using System.Collections.Generic;
@@ -29,11 +30,15 @@ public class AudioManager : MonoBehaviour {
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper; 
 
+		//Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		eventManager.AddListener (CustomEvent.ShakeBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.ShakeEnd, stopEvent);
+
+		//Events
+
 	}
 
 	void Update () 
