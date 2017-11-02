@@ -27,7 +27,7 @@ public class SceneNavigation : EditorWindow
         toggle.margin                   = new RectOffset(0, 0, 5, 0);
         toggle.fixedHeight              = 20;
         
-        GUIStyle button                 = new GUIStyle();
+        GUIStyle button                 = new GUIStyle("button");
         button.margin                   = new RectOffset(3, 0, 0, 0);
         button.stretchWidth             = true;
         button.richText                 = true;
@@ -49,7 +49,7 @@ public class SceneNavigation : EditorWindow
             
             if (SceneManager.GetActiveScene().path == EditorBuildSettings.scenes[i].path)
             {
-                colorable = "<color=blue>";
+                colorable = "<color=white>";
                 GUI.color = Color.green;
             }
             else
@@ -61,8 +61,8 @@ public class SceneNavigation : EditorWindow
             GUILayout.BeginHorizontal(background);
             
             GUILayout.Toggle(EditorBuildSettings.scenes[i].enabled, "", toggle, GUILayout.Width(15));
-            
-            if (GUILayout.Button(colorable + EditorBuildSettings.scenes[i].path + "</color>", button))
+            string[] pathPieces = EditorBuildSettings.scenes[i].path.Split('/');
+            if (GUILayout.Button(colorable + pathPieces[pathPieces.Length - 1] + "</color>", button))
             {
                 if (Application.isPlaying)
                 {

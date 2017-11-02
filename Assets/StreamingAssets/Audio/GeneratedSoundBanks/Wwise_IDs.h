@@ -14,6 +14,13 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
+        static const AkUniqueID PLAY_GG_SD_APPLEDROP = 1577744568U;
+        static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
+        static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
+        static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
+        static const AkUniqueID PLAY_GG_SD_SWIPE_1 = 3603427629U;
+        static const AkUniqueID STOP_GG_SD_SHAKE_1 = 3879389907U;
+        static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS
