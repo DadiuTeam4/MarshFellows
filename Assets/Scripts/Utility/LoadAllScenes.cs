@@ -21,7 +21,10 @@ public class LoadAllScenes : Singleton<LoadAllScenes>
             {
                 if (Application.isPlaying)
                 {
-                    SceneManager.LoadScene(i, LoadSceneMode.Additive);
+                    if (i != 1)
+                    {
+                        SceneManager.LoadScene(i, LoadSceneMode.Additive);
+                    }
                 }
                 else
                 {
