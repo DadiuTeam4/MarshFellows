@@ -8,15 +8,15 @@ public class CameraController : Shakeable
 {
 
     //Variable For following the player
-    public GameObject player;
+    public Transform playerTransform;
     public bool isCameraFollwingPlayer;
-    Vector3 offset;
+    private Vector3 relativePos;
 
     //Variables For Shaking
     public float shakeDuration = 2f;
     private float shakeIntensity = 0.4f;
 
-    private const float COEFFICIENT_FROM_MAGNITUDE_TO_INTENSITY = 0.00005f; 
+    private const float COEFFICIENT_FROM_MAGNITUDE_TO_INTENSITY = 0.00005f;
     public bool isShaking = false;
     private Transform cameraTransform;
     public float CameraSpeed = 0.1f;
@@ -29,27 +29,28 @@ public class CameraController : Shakeable
 
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        relativePos = playerTransform.InverseTransformPoint(transform.position);
         //If is shaking, should not follow the player
         isCameraFollwingPlayer = false;
         isShaking = false;
     }
 
-     public override void OnShakeBegin(float magnitude) 
-     {
-         shakeIntensity = magnitude * COEFFICIENT_FROM_MAGNITUDE_TO_INTENSITY;
-         isShaking = true;
-     }
+    public override void OnShakeBegin(float magnitude)
+    {
+        shakeIntensity = magnitude * COEFFICIENT_FROM_MAGNITUDE_TO_INTENSITY;
+        isShaking = true;
+    }
 
-    public override void OnShake(float magnitude) 
-     {
-         shakeDuration = 2f;
-         float newShakeIntensity = magnitude * COEFFICIENT_FROM_MAGNITUDE_TO_INTENSITY;
-         if(newShakeIntensity > shakeIntensity)
-         {
-             shakeIntensity = newShakeIntensity;
-         } 
-     }
+    //Shake duration decides when shaking effects stop after shaking.
+    public override void OnShake(float magnitude)
+    {
+        shakeDuration = 1f;
+        float newShakeIntensity = magnitude * COEFFICIENT_FROM_MAGNITUDE_TO_INTENSITY;
+        if (newShakeIntensity > shakeIntensity)
+        {
+            shakeIntensity = newShakeIntensity;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -62,7 +63,11 @@ public class CameraController : Shakeable
     {
         if (isCameraFollwingPlayer)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position + offset, CameraSpeed);
+            //Rotate the camera
+            transform.LookAt(playerTransform);
+            Vector3 targetPos = playerTransform.TransformPoint(relativePos);
+            //Kepp the relative position
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, CameraSpeed);
         }
     }
 
