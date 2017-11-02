@@ -21,7 +21,10 @@ public class LoadAllScenes : Singleton<LoadAllScenes>
             {
                 if (Application.isPlaying)
                 {
-                    SceneManager.LoadScene(i, LoadSceneMode.Additive);
+                    if (i != 1) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
+                    {
+                        SceneManager.LoadScene(i, LoadSceneMode.Additive);
+                    }
                 }
                 else
                 {
