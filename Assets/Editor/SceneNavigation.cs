@@ -4,12 +4,12 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
-public class Navigation : EditorWindow
+public class SceneNavigation : EditorWindow
 {
     [MenuItem("Window/Scene Navigation")]
     static void Setup ()
     {
-        Navigation window   = (Navigation)EditorWindow.GetWindow(typeof(Navigation), false, "Navigation");
+        SceneNavigation window   = (SceneNavigation)EditorWindow.GetWindow(typeof(SceneNavigation), false, "Scene Navigation");
         
         window.minSize      = new Vector2(10, 10);
         
