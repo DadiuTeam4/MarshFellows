@@ -29,6 +29,7 @@ public class StartWind : Swipeable {
 	private EventArgument argument;
 
 
+
 	void Start()
 	{
 		leftParticleSystem = Instantiate(leftParticleSystem) as GameObject;
@@ -54,6 +55,7 @@ public class StartWind : Swipeable {
 	}
 
 
+
 	void LateUpdate()
 	{
 		if(InputSystem.swipeDirections.Count > 0)
@@ -73,6 +75,9 @@ public class StartWind : Swipeable {
 		if (Input.GetKeyDown("q") || rightSwipeHasHappened)//right wind
 		{
 			StopEverything();
+			argument.stringComponent = "Right"; 
+       
+      	eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument);
 			
 			argument.stringComponent = "Right";
 
@@ -99,10 +104,11 @@ public class StartWind : Swipeable {
 		{
 			StopEverything();
 
-			argument.stringComponent = "Left";
-			
-			eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument);	
+			argument.stringComponent = "Left"; 
+ 
+     	 	eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument); 
 
+			
  			foreach( ParticleSystem childPS in rightFog )
             {
 				var externalForce = childPS.externalForces;
