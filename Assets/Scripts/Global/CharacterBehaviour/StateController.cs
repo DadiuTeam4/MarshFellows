@@ -14,14 +14,16 @@ public class StateController : MonoBehaviour
 	public bool active = true;
 
 	[HideInInspector] public Navigator navigator;
-	[HideInInspector] public static Animator animator;
+	[HideInInspector] public Animator animator;
 	[HideInInspector] public Dictionary<CustomEvent, bool> triggeredEvents;
+	[HideInInspector] public Dictionary<CustomEvent, EventArgument> eventArguments;
+	[HideInInspector] public EventArgument latestEventArgument;
 
-	private Dictionary<int, CustomEvent> eventIndexes;
 	private State previousState;
 	private float stateTimeElapsed;
 	private int eventNumber;
-	private EventDelegate[] eventOccurredCallbacks;
+	private EventDelegate eventOccurredCallbacks;
+	
 
 	#region DEBUG
 	#if UNITY_EDITOR
@@ -39,15 +41,13 @@ public class StateController : MonoBehaviour
 	private void Start()
 	{
 		triggeredEvents = new Dictionary<CustomEvent, bool>();
-		eventIndexes = new Dictionary<int, CustomEvent>();
-		eventOccurredCallbacks = new EventDelegate[events.Length];
+		eventArguments = new Dictionary<CustomEvent, EventArgument>();
 		for (int i = 0; i < events.Length; i++) 
 		{
 			triggeredEvents.Add(events[i], false);
-			eventIndexes.Add(i, events[i]);
 
 			EventDelegate action = EventCallback;
-			eventOccurredCallbacks[i] = action;
+			eventOccurredCallbacks += action;
 			EventManager.GetInstance().AddListener(events[i], action);
 		}
 	}
@@ -55,28 +55,21 @@ public class StateController : MonoBehaviour
 	public bool CheckEventOccured(CustomEvent eventName) 
 	{
 		bool eventOccured = triggeredEvents[eventName];
-		triggeredEvents[eventName] = false; 
+		triggeredEvents[eventName] = false;
 		return eventOccured;
 	}
 
 	private void EventCallback(EventArgument eventArgument)
 	{
-		CustomEvent triggeredEvent;
-		if (eventIndexes.TryGetValue(eventArgument.intComponent, out triggeredEvent))
+		bool eventValue;
+		if (triggeredEvents.TryGetValue(eventArgument.eventComponent, out eventValue)) 
 		{
-			bool eventValue;
-			if (triggeredEvents.TryGetValue(triggeredEvent, out eventValue)) 
-			{
-				triggeredEvents[eventIndexes[eventArgument.intComponent]] = true;
-			}
-			else 
-			{
-				print("Event " + triggeredEvent + " does not exist");
-			}
+			triggeredEvents[eventArgument.eventComponent] = true;
+			eventArguments[eventArgument.eventComponent] = eventArgument;
 		}
-		else 
+		else
 		{
-			print("Event number " + eventArgument + " does not exist");
+			print("Event " + eventArgument.eventComponent + " does not exist");
 		}
 	}
 
@@ -133,6 +126,21 @@ public class StateController : MonoBehaviour
 	public Transform GetDestination()
 	{
 		return navigator.GetDestination();
+	}
+
+	public void LookAt(Vector3 position)
+	{
+		// TODO: Get look direction and convert to animation coordinates
+	}
+
+	public void ResetLook()
+	{
+		// TODO: Reset animation to origin
+	}
+
+	public void SetLatestEventArguments(EventArgument eventArgument)
+	{
+		latestEventArgument = eventArgument;
 	}
 
 	#region DEBUG
