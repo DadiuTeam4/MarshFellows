@@ -15,16 +15,6 @@ public class DynamicWalkFields : Editor
 		walk.walkToWaypoint = GUILayout.Toggle(walk.walkToWaypoint, "Walk to waypoint");
 		walk.walkInDirection = GUILayout.Toggle(walk.walkInDirection, "Walk in direction");
 
-		// if (walk.walkToWaypoints)
-		// {
-		// 	EditorGUI.BeginChangeCheck();
-		// 	SerializedProperty waypoints = serializedObject.FindProperty("waypoints");
-		// 	EditorGUILayout.PropertyField(waypoints, true);
-		// 	if (EditorGUI.EndChangeCheck())
-		// 	{
-        //     	serializedObject.ApplyModifiedProperties();
-		// 	}
-		// }
 		if (walk.walkInDirection)
 		{
 			walk.direction = EditorGUILayout.Vector3Field("Direction in world space", walk.direction);
