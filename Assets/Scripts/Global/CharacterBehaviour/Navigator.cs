@@ -13,9 +13,16 @@ public class Navigator : MonoBehaviour
 
 	public Transform waypoint;
 	public bool autoRepath;
+	public bool drawPath;
 
 	private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
+
+	#region DEBUG
+	#if UNITY_EDITOR
+	private LineRenderer lineRenderer;
+	#endif
+	#endregion
 
 	private void Awake() 
 	{
@@ -24,6 +31,11 @@ public class Navigator : MonoBehaviour
 
 	private void Start()
 	{
+		#region DEBUG
+		#if UNITY_EDITOR
+		lineRenderer = GetComponent<LineRenderer>();
+		#endif
+		#endregion
 		navMeshAgent.autoRepath = autoRepath;
 	}
 
@@ -46,6 +58,14 @@ public class Navigator : MonoBehaviour
 	{
 		currentWaypoint = destination;
 		navMeshAgent.SetDestination(destination.position);
+		#region DEBUG
+		#if UNITY_EDITOR
+		if (drawPath)
+		{
+			StartCoroutine(GetPath());
+		}
+		#endif
+		#endregion
 	}
 
 	public Transform GetDestination()
@@ -72,4 +92,30 @@ public class Navigator : MonoBehaviour
 		}
 		return false;
 	}
+
+	#region DEBUG
+	#if UNITY_EDITOR
+	IEnumerator GetPath()
+	{
+		lineRenderer.SetPosition(0, transform.position);
+		yield return new WaitForEndOfFrame();
+		DrawPath(navMeshAgent.path);
+	}
+
+	void DrawPath(NavMeshPath path)
+	{
+		if (path.corners.Length < 2)
+		{
+			return;
+		}
+
+		lineRenderer.positionCount = path.corners.Length;
+
+		for (int i = 1; i < path.corners.Length; i++)
+		{
+			lineRenderer.SetPosition(i, path.corners[i]);
+		}
+	}
+	#endif
+	#endregion
 }
