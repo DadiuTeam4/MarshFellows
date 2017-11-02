@@ -10,9 +10,10 @@ public class CameraController : Shakeable
     //Variable For following the player
     public Transform playerTransform;
     public bool isCameraFollwingPlayer;
-    private Vector3 relativePos;
-
-    public Vector3 CameraAdjustableOffset;
+    private Vector3 offset;
+    public Vector3 cameraAdjustableOffset;
+    public Vector3 cameraAdjustableRotation;
+    private Vector3 cameraCurrentRotation;
 
     //Variables For Shaking
     public float shakeDuration = 2f;
@@ -31,9 +32,11 @@ public class CameraController : Shakeable
 
     void Start()
     {
-        relativePos = playerTransform.InverseTransformPoint(transform.position);
         isShaking = false;
-        CameraAdjustableOffset = Vector3.zero;
+        cameraAdjustableOffset = Vector3.zero;
+        cameraAdjustableRotation = Vector3.zero;
+        cameraCurrentRotation = Vector3.zero;
+        offset = transform.position - playerTransform.position;
     }
 
     public override void OnShakeBegin(float magnitude)
@@ -64,12 +67,19 @@ public class CameraController : Shakeable
     {
         if (isCameraFollwingPlayer)
         {
-            //Rotate the camera
-            //transform.LookAt(playerTransform);
-            Quaternion playerRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y, 0);
+            //Ajust Camera rotation onchange
+            Quaternion playerRotation;
+            if (cameraCurrentRotation != cameraAdjustableRotation)
+            {
+                Vector3 changedRotation = cameraAdjustableRotation - cameraCurrentRotation;
+                cameraCurrentRotation = cameraAdjustableRotation;
+                transform.rotation *= Quaternion.Euler(changedRotation.x, changedRotation.y, changedRotation.z);
+            }
+            playerRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y, 1f);
             transform.rotation = playerRotation;
-            Vector3 targetPos = playerTransform.TransformPoint(relativePos) + CameraAdjustableOffset;
+
             //Kepp the relative position
+            Vector3 targetPos = playerTransform.position - (playerRotation * Vector3.forward * offset.magnitude) + cameraAdjustableOffset;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, CameraSpeed);
         }
     }
