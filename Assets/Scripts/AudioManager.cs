@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour {
 		eventManager.AddListener (CustomEvent.ShakeEnd, stopEvent);
 
 		//Events
-
+		eventManager.AddListener (CustomEvent.AppleFall, postEvent);
 	}
 
 	void Update () 
@@ -67,6 +67,11 @@ public class AudioManager : MonoBehaviour {
 			if (!soundIsBeingPlayed)
 			{
 				PostSoundEventWCallback ("Play_GG_SD_Shake_1"); 
+			}	
+		}
+		if (argument.eventComponent == CustomEvent.AppleFall) {
+			if (!soundIsBeingPlayed) {
+				PostSoundEventWCallback ("Play_GG_SD_AppleDrop"); 
 			}	
 		}
 	}
