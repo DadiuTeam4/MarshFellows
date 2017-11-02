@@ -9,8 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
-  m_Name: Walking
+  m_Name: OWalking
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 7a327c45283a07b4abfd0759c1113d5f, type: 2}
-  transitions: []
+  - {fileID: 11400000, guid: f27838352a324364a8dce568b6d7bb33, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 391fe3aa443d338428dc647f7b89849b, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 8eaa878a11d804f47ab2248d1d953edc, type: 2}
+    falseState: {fileID: 11400000}

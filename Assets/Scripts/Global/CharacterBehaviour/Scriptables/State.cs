@@ -42,7 +42,7 @@ public class State : ScriptableObject
 				}
 				break;
 			}
-			else 
+			else if (transition.falseState != null)
 			{
 				controller.TransitionToState(transition.falseState);
 			}
