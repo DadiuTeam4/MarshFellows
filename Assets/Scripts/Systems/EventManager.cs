@@ -57,6 +57,11 @@ namespace Events
 			return false;
 		}
 
+		public bool CallEvent(CustomEvent eventName)
+		{
+			return CallEvent(eventName, new EventArgument());
+		}
+
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
 		{
 			if (listeners.ContainsKey(eventName))
