@@ -9,7 +9,7 @@ namespace Events
 {
 	public enum CustomEvent
 	{
-		test,
+		None,
 		Swipe,
 		ShakeBegin,
 		ShakeEnd,
