@@ -337,9 +337,7 @@ public class InputSystem : Singleton<InputSystem>
 			touchPositions[touch.fingerId].Clear();
 			touchPositions[touch.fingerId].Add(touch.position);
 
-			EventArgument argument = new EventArgument();
-			argument.floatComponent = direction.magnitude;
-			EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
+			EventManager.GetInstance().CallEvent(CustomEvent.Swipe, new EventArgument());
 		}
 	}
 

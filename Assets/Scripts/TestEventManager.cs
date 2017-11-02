@@ -10,35 +10,46 @@ public class TestEventManager : MonoBehaviour
 {	
 	void Start () 
 	{
-		EventDelegate delegate1 = TestFunction;
-		EventDelegate delegate2 = TestFunction2;
-		EventDelegate delegate3 = TestFunction3;	
-
-		EventManager.GetInstance().AddListener(CustomEvent.test, delegate1);
-		EventManager.GetInstance().AddListener(CustomEvent.test, delegate2);
-		EventManager.GetInstance().AddListener(CustomEvent.test, delegate3);
-
-		EventManager.GetInstance().RemoveListener(CustomEvent.test, delegate2);
+		EventManager eventManager = EventManager.GetInstance();
 
 		EventArgument argument = new EventArgument();
-		argument.stringComponent = "YOOO";
+		argument.stringComponent = "";
 
-		EventManager.GetInstance().CallEvent(CustomEvent.test, argument);
+		EventDelegate holdStarted = HoldStarted;
+		EventDelegate holdEnded = HoldEnded;
+		EventDelegate swipe = Swipe;
+		EventDelegate shakeStarted = ShakeStarted;
+		EventDelegate shakeEnded = ShakeEnded;
+
+		eventManager.AddListener(CustomEvent.HoldBegin, holdStarted);
+		eventManager.AddListener(CustomEvent.HoldEnd, holdEnded);
+		eventManager.AddListener(CustomEvent.Swipe, swipe);
+		eventManager.AddListener(CustomEvent.ShakeBegin, shakeStarted);
+		eventManager.AddListener(CustomEvent.ShakeEnd, shakeEnded);
 	}
 
-	public void TestFunction(EventArgument argument)
+	public void HoldStarted(EventArgument argument)
 	{
-		Debug.Log(argument.stringComponent);
+		Debug.Log("Hold Begun!");
 	}
 
-	public void TestFunction2(EventArgument argument)
+	public void HoldEnded(EventArgument argument)
 	{
-		Debug.Log("ALSO ME! " + argument.stringComponent);
+		Debug.Log("Hold Ended");
 	}
 
-	public void TestFunction3(EventArgument argument)
+	public void Swipe(EventArgument argument)
 	{
-		Debug.Log("DONT FORGET ME! " + argument.stringComponent);
+		Debug.Log("SWIIIPE!");
 	}
 
+	public void ShakeStarted(EventArgument argument)
+	{
+		Debug.Log("Shake Started");
+	}
+
+	public void ShakeEnded(EventArgument argument)
+	{
+		Debug.Log("Shake Ended");
+	}
 }
