@@ -1,10 +1,12 @@
 ﻿// Author: Mathias Dam Hedelund
-// Contributors:
+// Contributors: Itai Thomas Yavin
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+using Events;
 
 public class InputSystem : Singleton<InputSystem>
 {
@@ -114,19 +116,26 @@ public class InputSystem : Singleton<InputSystem>
 	{
 		if (shookThisFrame || shookLastFrame)
 		{
+			EventArgument eventArgument = new EventArgument();
+			eventArgument.floatComponent = cumulativeMagnitude;
+			
 			foreach (Shakeable shakeable in shakeables)
 			{
 				if (shookThisFrame)
 				{
 					if(!shookLastFrame)
 					{
-						shakeable.OnShakeBegin(cumulativeMagnitude);
+						shakeable.OnShakeBegin(cumulativeMagnitude);				
+						EventManager.GetInstance().CallEvent(CustomEvent.ShakeBegin, eventArgument);
 					}
+
 					shakeable.OnShake(cumulativeMagnitude);
+					EventManager.GetInstance().CallEvent(CustomEvent.Shake, eventArgument);
 				}
 				else
 				{
 					shakeable.OnShakeEnd();
+					EventManager.GetInstance().CallEvent(CustomEvent.ShakeEnd, eventArgument);
 				}
 			}
 		}

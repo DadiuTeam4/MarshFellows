@@ -9,7 +9,13 @@ namespace Events
 {
 	public enum CustomEvent
 	{
-		test
+		SwipeBegin,
+		Swipe,
+		SwipeEnd,
+		ShakeBegin,
+		Shake,
+		ShakeEnd,
+		Hold
 	}
 
 	public class EventArgument
