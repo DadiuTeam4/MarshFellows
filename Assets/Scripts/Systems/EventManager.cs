@@ -15,7 +15,8 @@ namespace Events
 		ShakeEnd,
 		HoldBegin,
 		HoldEnd,
-		CameraMoving
+		CameraMoving,
+		AppleFall
 	}
 
 	public class EventArgument
