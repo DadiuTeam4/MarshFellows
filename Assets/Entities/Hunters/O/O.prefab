@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 4883762730961972}
   - component: {fileID: 137479062496205260}
   m_Layer: 0
-  m_Name: placeholder_mesh
+  m_Name: OMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1172,7 +1172,7 @@ Transform:
   - {fileID: 4883762730961972}
   - {fileID: 4628559171187420}
   m_Father: {fileID: 4141022638560882}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4012753717775812
 Transform:
@@ -1295,11 +1295,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382409028041390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.21, y: 0, z: -9.94}
+  m_LocalPosition: {x: 5, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4480007071825008}
   - {fileID: 4000126321047246}
+  - {fileID: 4480007071825008}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1694,7 +1694,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4141022638560882}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4481860674866838
 Transform:
@@ -2318,10 +2318,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab348307aae4aac4d890b64460c905b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  events: 
+  events: 00000000
   currentState: {fileID: 11400000, guid: 58feafc9ca778144cba70b3c910ff517, type: 2}
   active: 1
   navigator: {fileID: 0}
+  animator: {fileID: 0}
   aiDebugging: 0
   debugInfo: 
 --- !u!137 &137479062496205260
