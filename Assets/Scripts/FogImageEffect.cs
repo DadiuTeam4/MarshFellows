@@ -12,8 +12,13 @@ public class FogImageEffect : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		camera.GetComponent<Camera>();
-		camera.depthTextureMode = DepthTextureMode.Depth;
+
+		/* This was generating errors all the time, so I commented it out.
+		Please put "//Author: <Your name> //Contributors: " in the top of your Unity 
+		script template so your scripts always have your name in the top.*/
+
+		// camera.GetComponent<Camera>();
+		// camera.depthTextureMode = DepthTextureMode.Depth;
 	}
 [ImageEffectOpaque]	
 	void OnRenderImage(RenderTexture src, RenderTexture dst)

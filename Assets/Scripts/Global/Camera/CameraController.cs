@@ -4,15 +4,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Events;
 public class CameraController : Shakeable
 {
 
     //Variable For following the player
     public Transform playerTransform;
     public bool isCameraFollwingPlayer;
-    private Vector3 relativePos;
+    private Vector3 offset;
+    public Vector3 cameraAdjustableOffset;
+    public Vector3 cameraAdjustableRotation;
+    private Vector3 cameraCurrentRotation;
 
-    public Vector3 CameraAdjustableOffset;
+    public Vector3 CameraOffsetOnTrigger;
+    public Vector3 CameraRotationOnTrigger;
 
     //Variables For Shaking
     public float shakeDuration = 2f;
@@ -26,14 +31,22 @@ public class CameraController : Shakeable
     void Awake()
     {
         cameraTransform = GetComponent<Transform>();
-
     }
 
     void Start()
     {
-        relativePos = playerTransform.InverseTransformPoint(transform.position);
         isShaking = false;
-        CameraAdjustableOffset = Vector3.zero;
+        offset = transform.position - playerTransform.position;
+
+        EventDelegate eventDelegate = OnCameraSpecialEvent;
+        EventManager.GetInstance().AddListener(CustomEvent.CameraMoving, eventDelegate);
+
+    }
+
+    public void OnCameraSpecialEvent(EventArgument argument)
+    {
+        cameraAdjustableOffset = CameraOffsetOnTrigger;
+        cameraAdjustableRotation = CameraRotationOnTrigger; 
     }
 
     public override void OnShakeBegin(float magnitude)
@@ -64,12 +77,20 @@ public class CameraController : Shakeable
     {
         if (isCameraFollwingPlayer)
         {
-            //Rotate the camera
-            //transform.LookAt(playerTransform);
-            Quaternion playerRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y, 0);
-            transform.rotation = playerRotation;
-            Vector3 targetPos = playerTransform.TransformPoint(relativePos) + CameraAdjustableOffset;
-            //Kepp the relative position
+            //Ajust Camera rotation onchange
+            //Use euler to rotate certain degress in certain axies
+            Quaternion newRotation;
+            if (cameraCurrentRotation != cameraAdjustableRotation)
+            {
+                Vector3 changedRotation = cameraAdjustableRotation - cameraCurrentRotation;
+                cameraCurrentRotation = cameraAdjustableRotation;
+                transform.rotation *= Quaternion.Euler(changedRotation.x, 0f, 0f);
+            }
+            newRotation = Quaternion.Euler(transform.eulerAngles.x, playerTransform.eulerAngles.y + cameraCurrentRotation.y, cameraCurrentRotation.z);
+            transform.rotation = newRotation;
+
+            //Update the new position according to the player position
+            Vector3 targetPos = playerTransform.position - (newRotation * Vector3.forward * offset.magnitude) + cameraAdjustableOffset;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, CameraSpeed);
         }
     }

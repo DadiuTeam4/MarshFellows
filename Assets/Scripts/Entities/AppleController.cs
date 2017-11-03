@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 public class AppleController : Shakeable
 {
@@ -10,7 +11,7 @@ public class AppleController : Shakeable
     private Rigidbody appleRd;
     private bool isGravityActived;
 
-	public float thresholdForAppleFallDown = 800f;
+    public float thresholdForAppleFallDown = 800f;
 
     void Awake()
     {
@@ -26,10 +27,7 @@ public class AppleController : Shakeable
     {
         if (!isGravityActived)
         {
-            if (magnitude > thresholdForAppleFallDown)
-            {
-                appleRd.useGravity = true;
-            }
+            CheckAppleFall(magnitude);
         }
     }
 
@@ -37,17 +35,23 @@ public class AppleController : Shakeable
     {
         if (!isGravityActived)
         {
-            if (magnitude > thresholdForAppleFallDown)
-            {
-                appleRd.useGravity = true;
-				isGravityActived = true;
-            }
+            CheckAppleFall(magnitude);
         }
         else
         {
             appleRd.AddForce(GetShakeForceOnShakebleObject(magnitude));
         }
 
+    }
+
+    private void CheckAppleFall(float magnitude)
+    {
+        if (magnitude > thresholdForAppleFallDown)
+        {
+            appleRd.useGravity = true;
+            isGravityActived = true;
+            EventManager.GetInstance().CallEvent(CustomEvent.AppleFall, new EventArgument());
+        }
     }
 
 }

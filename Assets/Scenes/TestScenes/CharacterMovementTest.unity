@@ -276,6 +276,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114246764904318602, guid: d75fbd8790ae53047a5eaa0024f4a241,
+        type: 2}
+      propertyPath: events.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4951872834933330, guid: d75fbd8790ae53047a5eaa0024f4a241, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -317,6 +322,11 @@ Prefab:
       propertyPath: m_Name
       value: PMesh
       objectReference: {fileID: 0}
+    - target: {fileID: 114246764904318602, guid: d75fbd8790ae53047a5eaa0024f4a241,
+        type: 2}
+      propertyPath: aiDebugging
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d75fbd8790ae53047a5eaa0024f4a241, type: 2}
   m_IsPrefabParent: 0
@@ -327,6 +337,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114917613892504564, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: events.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4141022638560882, guid: 6ccce21630800924ea55225d8dcbb909, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -383,6 +398,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000126321047246, guid: 6ccce21630800924ea55225d8dcbb909, type: 2}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114917613892504564, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: aiDebugging
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -517,6 +537,46 @@ Transform:
   m_PrefabParentObject: {fileID: 4652342611430258, guid: 81e4f0d90e7892344ae06999558af445,
     type: 2}
   m_PrefabInternal: {fileID: 727848312}
+--- !u!1 &728597192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 728597194}
+  - component: {fileID: 728597193}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &728597193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 728597192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd8c6c3f7c650f8469505d5cca58b45e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &728597194
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 728597192}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7267227, y: 0.59198236, z: -0.5383916}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &757830029
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +892,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1285808824}
+  - component: {fileID: 1285808825}
   m_Layer: 0
   m_Name: EventFirer
   m_TagString: Untagged
@@ -846,12 +907,23 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1285808823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.67137945, y: 11.79506, z: 0.8530438}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1285808825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1285808823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb36f8e83b572924a87eaa7206b5fdc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1587340027
 GameObject:
   m_ObjectHideFlags: 0

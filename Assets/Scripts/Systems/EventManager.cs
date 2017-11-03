@@ -9,7 +9,16 @@ namespace Events
 {
 	public enum CustomEvent
 	{
-		None
+		None,
+		Swipe,
+		ShakeBegin,
+		ShakeEnd,
+		HoldBegin,
+		HoldEnd,
+		CameraMoving,
+		AppleFall,
+		SwipeEffectEnded, 
+    	SwipeEffectStarted
 	}
 
 	public class EventArgument
@@ -49,6 +58,11 @@ namespace Events
 			}
 
 			return false;
+		}
+
+		public bool CallEvent(CustomEvent eventName)
+		{
+			return CallEvent(eventName, new EventArgument());
 		}
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
