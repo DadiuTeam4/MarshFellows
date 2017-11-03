@@ -11,30 +11,35 @@ public class SwipeListener : MonoBehaviour
 
 	private EventManager eventManager;
 	private EventDelegate eventDelegate;
-	private int openPath;
+	private int openPath = 1;
 
 	void OnEnable()
 	{
 		eventManager = EventManager.GetInstance();
-	}
+        eventDelegate += EventCallback;
+        eventManager.AddListener(CustomEvent.SwipeEffectStarted, eventDelegate);
+        eventManager.AddListener(CustomEvent.SwipeEffectEnded, eventDelegate);
+    }
 
-	void Update()
+
+    void Update()
 	{
 		for (int i = 0; i < blockers.Length; i++)
 		{
-			blockers[i].SetActive(i == openPath);
+			blockers[i].SetActive(i != openPath);
 		}
 	}
 
 	void EventCallback(EventArgument eventArgument)
 	{
+        print(eventArgument.stringComponent);
 		if (eventArgument.eventComponent == CustomEvent.SwipeEffectStarted)
 		{
-			if (eventArgument.stringComponent == "left")
+			if (eventArgument.stringComponent == "Left")
 			{
 				openPath = 0;
 			}
-			if (eventArgument.stringComponent == "right")
+			if (eventArgument.stringComponent == "Right")
 			{
 				openPath = 2;
 			}

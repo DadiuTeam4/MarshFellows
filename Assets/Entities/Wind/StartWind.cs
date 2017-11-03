@@ -64,7 +64,7 @@ private EventArgument argument;
 			StopEverything();
 			argument.stringComponent = "Right"; 
        
-      	eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument);
+        	eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument);
 			
  			foreach( ParticleSystem childPS in leftFog )
             {
