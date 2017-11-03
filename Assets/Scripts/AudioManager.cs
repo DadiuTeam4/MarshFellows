@@ -19,8 +19,6 @@ public class AudioManager : MonoBehaviour {
 
 	void Start()
 	{
-		
-
 		//If Scene is this...
 		AkSoundEngine.PostEvent("Play_GG_Ambience_Open_1", gameObject); 
 	}
@@ -102,10 +100,8 @@ public class AudioManager : MonoBehaviour {
 			AkSoundEngine.GetIDFromString ("Stop_GG_SD_Shake_1");
 		}
 	}
-
-
-
-
+		
+		
 	//Checks if the events has stopped 
 	void EventHasStopped(object in_cookie, AkCallbackType in_type, object in_info)
 	{
