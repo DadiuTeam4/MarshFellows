@@ -1,5 +1,5 @@
 ﻿// Author: You Wu
-// Contributors: 
+// Contributors: Jonathan
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,11 @@ using UnityEngine;
 public class TreeController : Shakeable
 
 {
-    public float thresholdForTreeFallDown = 800f;
+    public float thresholdForTreeFallDown = 3200f;
+
+    public float treeFallForceMin = -0.05f;
+    public float treeFallForceMax = 0.05f;
+
     private Rigidbody treeRd;
 
 	private bool isTreeFallen;
@@ -37,7 +41,7 @@ public class TreeController : Shakeable
         if (magnitude > thresholdForTreeFallDown && isTreeFallen == false)
         {
 			Vector3 randomForce = GetShakeForceOnShakebleObject(magnitude);
-            treeRd.AddForce(new Vector3(randomForce.x, 0f, randomForce.y));
+            treeRd.AddForce(new Vector3(Random.Range(treeFallForceMin,treeFallForceMax), 0f, Random.Range(treeFallForceMin,treeFallForceMax)));
 			isTreeFallen = true;
         }
 

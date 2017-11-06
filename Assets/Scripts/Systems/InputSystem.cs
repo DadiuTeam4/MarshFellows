@@ -27,18 +27,21 @@ public class InputSystem : Singleton<InputSystem>
 	[Tooltip("Force multiplication to compensate for delta time.")]
 	public float forceMultiplier = 100f;
 	[Tooltip("Shakes under this threshold are ignored by the input system.")]
-	public float lowerShakeTreshold = 3.5f;
+	public float lowerShakeTreshold = 50f;
 	[Tooltip("This number represents how fast the cumulative magnitude drops when the tablet is not shaken.")]
-	public float magnitudeDropRate = 0.2f;
+	public float magnitudeDropRate = 0.4f;
 	[Tooltip("The limit for how fast the cumulative magnitude can rise and fall.")]
 	public float terminalVelocity = 50f;
 	[Tooltip("A cumulative magnitude under this threshold is ignored.")]
 	public float lowerMagnitudeThreshold = 200f;
 	[Tooltip("The upper limit for the cumulative magnitude.")]
-	public float maxCumulativeMagnitude = 10000f;
+	public float maxCumulativeMagnitude = 400f;
 
 	private float magnitudeVelocity;
 	private float cumulativeMagnitude;
+
+	// Camera position at the beginning of shake;
+	private Vector3 shakeEpicenter;
 
 	private bool shookLastFrame = false;
 	private bool shookThisFrame = false;
@@ -100,6 +103,11 @@ public class InputSystem : Singleton<InputSystem>
 		{
 			EventManager.GetInstance().CallEvent(CustomEvent.ShakeEnd, eventArgument);
 		}
+		
+		if (shookThisFrame == true)
+		{
+			Debug.Log(shookThisFrame);
+		}
 
 		CallShakeables();
 		shookLastFrame = shookThisFrame;
@@ -122,6 +130,7 @@ public class InputSystem : Singleton<InputSystem>
 	{
 		cumulativeMagnitude = Mathf.Clamp(cumulativeMagnitude + magnitudeVelocity, 0.0f, maxCumulativeMagnitude);
 		shookThisFrame = cumulativeMagnitude > lowerMagnitudeThreshold;
+		Debug.Log(maxCumulativeMagnitude);
 	}
 
 	private void CallShakeables()
