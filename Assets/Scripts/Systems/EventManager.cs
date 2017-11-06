@@ -22,7 +22,8 @@ namespace Events
 		RitualScenarioTriggered,
 		DeerScenarioTriggered,
 		BearScenarioTriggered,
-		ScenarioEnded
+		ScenarioEnded,
+		LoadScene
 	}
 
 	public class EventArgument
