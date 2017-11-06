@@ -15,10 +15,14 @@ namespace Events
 		ShakeEnd,
 		HoldBegin,
 		HoldEnd,
-		CameraMoving,
 		AppleFall,
 		SwipeEffectEnded, 
     	SwipeEffectStarted,
+		SeparationScenarioTriggered,
+		RitualScenarioTriggered,
+		DeerScenarioTriggered,
+		BearScenarioTriggered,
+		ScenarioEnded,
 		LoadScene
 	}
 
@@ -28,6 +32,7 @@ namespace Events
 		public float floatComponent = 0.0f;
 		public int intComponent = 0;
 		public Vector3 vectorComponent = new Vector3();
+		public Vector3[] vectorArrayComponent = null;
 		public CustomEvent eventComponent = CustomEvent.None;
 	}
 	

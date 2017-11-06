@@ -155,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000126321047246}
   - component: {fileID: 95739124882997598}
+  - component: {fileID: 114562616737950358}
   m_Layer: 0
   m_Name: hunter
   m_TagString: Untagged
@@ -355,6 +356,7 @@ GameObject:
   - component: {fileID: 114541993379908110}
   - component: {fileID: 195311209056050580}
   - component: {fileID: 120801206967813078}
+  - component: {fileID: 65962433336242862}
   m_Layer: 0
   m_Name: O
   m_TagString: Untagged
@@ -1296,7 +1298,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382409028041390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.635747, y: 0, z: -5.6200104}
+  m_LocalPosition: {x: 3.1, y: -0.5, z: -5.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000126321047246}
@@ -2277,6 +2279,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65962433336242862
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382409028041390}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 2.04, z: 0}
 --- !u!95 &95739124882997598
 Animator:
   serializedVersion: 3
@@ -2309,6 +2323,18 @@ MonoBehaviour:
   waypoint: {fileID: 0}
   autoRepath: 1
   drawPath: 1
+--- !u!114 &114562616737950358
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1182296940772590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6042ae82b984b95a48c71f8ebb6e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
 --- !u!114 &114917613892504564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2340,7 +2366,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 510e4c9a6b291cc4dbe9e1d764b901ff, type: 2}
+  - {fileID: 2100000, guid: 3904550f30c55114483600c421634530, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2360,7 +2386,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 2, z: 0}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.5
@@ -2518,7 +2544,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
