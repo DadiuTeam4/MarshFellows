@@ -13,10 +13,13 @@ public class ScenarioTrigger : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		EventArgument argument = new EventArgument();
-		argument.vectorArrayComponent = new Vector3[2];
-		argument.vectorArrayComponent[0] = transform.position;
-		argument.vectorArrayComponent[1] = otherTriggerZone.position;
-		EventManager.GetInstance().CallEvent(scenarioEvent, argument);
+		if (other.gameObject.CompareTag("ScenarioTrigger"))
+		{
+			EventArgument argument = new EventArgument();
+			argument.vectorArrayComponent = new Vector3[2];
+			argument.vectorArrayComponent[0] = transform.position;
+			argument.vectorArrayComponent[1] = otherTriggerZone.position;
+			EventManager.GetInstance().CallEvent(scenarioEvent, argument);
+		}
 	}
 }

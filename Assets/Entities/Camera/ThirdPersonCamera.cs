@@ -15,13 +15,13 @@ namespace CameraControl
     
         void Start()
         {
-            offset = transform.position - targets[1].position + (0.5f * (targets[0].position - targets[1].position));
+            offset = transform.position - controller.targets[1].position + (0.5f * (controller.targets[0].position - controller.targets[1].position));
         }
 
         protected override void UpdatePosition()
         {
             float currentAngle = transform.eulerAngles.y;
-            float desiredAngle = targets[0].eulerAngles.y;
+            float desiredAngle = controller.targets[0].eulerAngles.y;
             float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
             Quaternion rotation = Quaternion.Euler(0, angle, 0);
 
