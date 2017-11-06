@@ -19,7 +19,7 @@ namespace Events
 		AppleFall,
 		SwipeEffectEnded, 
     	SwipeEffectStarted,
-		ChangeScene
+		SceneHasChanged
 	}
 
 	public class EventArgument
