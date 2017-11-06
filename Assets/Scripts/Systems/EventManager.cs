@@ -18,7 +18,8 @@ namespace Events
 		CameraMoving,
 		AppleFall,
 		SwipeEffectEnded, 
-    	SwipeEffectStarted
+    	SwipeEffectStarted,
+		ChangeScene
 	}
 
 	public class EventArgument

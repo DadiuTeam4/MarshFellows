@@ -15,33 +15,44 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
     class CustomScene{
         public string nameOfScene;
-        public int firstIndexOfNextPossibleScene;
-        public int secondIndexOfNextPossibleScene;
+        public string firstPossibleNextScene = "";
+        public string secondPossibleNextScene = "";
 
     }
 
+    private string notSetStringName = "";
     // Variables to keep track of scenes to load and unload.
     CustomScene previousScene;
     CustomScene currentScene;
-    CustomScene nextScene;
 
     // Clusters of scenes to be loaded at certain points.
     string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
     string[] gameEnd = { "EndScene", "Credits" };
 
-    CustomScene[] allScenes= {new CustomScene{nameOfScene = "GameOpener",firstIndexOfNextPossibleScene = 0,secondIndexOfNextPossibleScene = 2 }};
+    CustomScene[] allScenes= {  new CustomScene{nameOfScene = "GameOpener",firstPossibleNextScene = "GlobalScene",secondPossibleNextScene = "" },
+                                new CustomScene{nameOfScene = "GlobalScene",firstPossibleNextScene = "IntroLevel",secondPossibleNextScene = "" },
+                                new CustomScene{nameOfScene = "IntroLevel",firstPossibleNextScene = "CrossRoad1",secondPossibleNextScene = "" },
+                                new CustomScene{nameOfScene = "CrossRoad1",firstPossibleNextScene = "EndScene",secondPossibleNextScene = "" }};
 
     void Start()
     {
         SceneClusterLoader(gameStart);
-        //EventManager.AddListener(CustomEvent.changeScene, sceneLoader(EventArgument));
+        
+        EventManager eventManager = EventManager.GetInstance();
+
+    	EventDelegate sceneLoader = SceneLoader;
+
+		eventManager.AddListener(CustomEvent.ChangeScene, sceneLoader);
+        
+        //EventManager.AddListener(CustomEvent.ChangeScene, sceneLoader(EventArgument));
 
         //previousScene = "GameOpener";
         //currentScene = "IntroLevel";
        // nextScenes.Add ("CrossRoad1");
 
     }
-    
+
+
 
 
     // Start the game!
@@ -58,31 +69,42 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     }
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
-    private void sceneLoader(CustomScene currentScene)
+    private void SceneLoader(EventArgument argument)
     {
+
         previousScene = currentScene;
-        currentScene = nextScene;
-        nextScene = currentScene;
 
-        foreach(int indexOfNextScene in currentScene)
+        foreach(CustomScene sceneCheck in allScenes)
         {
-
-        }
-        Scene scene = SceneManager.GetSceneByName(upComingScene);
-        if (!scene.isLoaded)
-        {
-            SceneManager.LoadScene(upComingScene, LoadSceneMode.Additive);
+            if(sceneCheck.nameOfScene == argument.stringComponent)
+            {
+                currentScene = sceneCheck;
+                break;
+            }
         }
 
-        SceneManager.UnloadSceneAsync(previousScene);
+        if(currentScene.firstPossibleNextScene != notSetStringName)
+        {
+            Scene scene = SceneManager.GetSceneByName(currentScene.firstPossibleNextScene);
+            if (!scene.isLoaded)
+            {
+                SceneManager.LoadScene(currentScene.firstPossibleNextScene, LoadSceneMode.Additive);
+            }
+        }
+
+        if(currentScene.secondPossibleNextScene != notSetStringName)
+        {
+            Scene scene = SceneManager.GetSceneByName(currentScene.secondPossibleNextScene);
+            if (!scene.isLoaded)
+            {
+                SceneManager.LoadScene(currentScene.secondPossibleNextScene, LoadSceneMode.Additive);
+            }
+        }
+
+        SceneManager.UnloadSceneAsync(previousScene.nameOfScene);
 
     }
 
-    // Takes a GameScene Enum and returns the scene name string.
-    private string GameSceneToString(CustomScene scene)
-    {
-        return scene.nameOfScene;
-    }
 
 /*
     public enum GameScene
