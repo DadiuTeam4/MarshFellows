@@ -28,6 +28,7 @@ namespace Events
 		public int intComponent = 0;
 		public Vector3 vectorComponent = new Vector3();
 		public CustomEvent eventComponent = CustomEvent.None;
+		public RaycastHit raycastComponent = new RaycastHit();
 	}
 	
 	public delegate void EventDelegate(EventArgument argument);

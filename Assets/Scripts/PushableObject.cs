@@ -6,19 +6,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PushableObject : Swipeable 
+public class PushableObject : MonoBehaviour 
 {
 	Rigidbody rigidbody;
-	public float forceScalar = 2.0f;
 
 	void Start()
 	{
 		rigidbody = GetComponent<Rigidbody>();	
 	}
 
-	public override void OnSwipe(RaycastHit raycastHit, Vector3 direction) 
+	public void Push(Vector3 direction, float force)
 	{
-		Vector3 force = new Vector3(direction.x, 0, direction.y);
-		rigidbody.AddForce(force * forceScalar);
+		direction.Normalize();
+		direction *= force;
+		rigidbody.AddForce(direction);
 	}
 }

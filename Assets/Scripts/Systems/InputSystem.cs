@@ -333,9 +333,12 @@ public class InputSystem : Singleton<InputSystem>
 			swipeable.OnSwipe(raycastHits[touch.fingerId].Value, direction);
 			touchPositions[touch.fingerId].Clear();
 			touchPositions[touch.fingerId].Add(touch.position);
-
-			EventManager.GetInstance().CallEvent(CustomEvent.Swipe);
 		}
+		
+		EventArgument argument = new EventArgument();
+		argument.vectorComponent = direction;
+		argument.raycastComponent = raycastHits[touch.fingerId].Value;
+		EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
 	}
 
 	private Holdable GetHoldable(RaycastHit hit)
