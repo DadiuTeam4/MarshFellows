@@ -15,7 +15,10 @@ namespace Events
 		ShakeEnd,
 		HoldBegin,
 		HoldEnd,
-		CameraMoving
+		CameraMoving,
+		AppleFall,
+		SwipeEffectEnded, 
+    	SwipeEffectStarted
 	}
 
 	public class EventArgument
@@ -55,6 +58,11 @@ namespace Events
 			}
 
 			return false;
+		}
+
+		public bool CallEvent(CustomEvent eventName)
+		{
+			return CallEvent(eventName, new EventArgument());
 		}
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)

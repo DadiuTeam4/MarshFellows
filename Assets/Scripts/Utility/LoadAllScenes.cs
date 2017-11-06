@@ -3,8 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using UnityEditor.SceneManagement;
+
 using UnityEngine.SceneManagement;
 
 using Events;
@@ -14,21 +13,22 @@ public class LoadAllScenes : Singleton<LoadAllScenes>
 {
     void Start()
     {
-        for (int i = 0; i < EditorBuildSettings.scenes.Length; i++)
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
+			if (i == 0) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
+			{
+				continue;
+			}
             Scene scene = SceneManager.GetSceneByBuildIndex(i);
             if (!scene.isLoaded)
             {
                 if (Application.isPlaying)
                 {
-                    if (i != 1) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
-                    {
-                        SceneManager.LoadScene(i, LoadSceneMode.Additive);
-                    }
+                	SceneManager.LoadScene(i, LoadSceneMode.Additive);
                 }
                 else
                 {
-                    EditorSceneManager.OpenScene(EditorBuildSettings.scenes[i].path, OpenSceneMode.Additive);
+                //    SceneManager.LoadScene(EditorBuildSettings.scenes[i].path, LoadSceneMode.Additive);
                 }
             }
         }

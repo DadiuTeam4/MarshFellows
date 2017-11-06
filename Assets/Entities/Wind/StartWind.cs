@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 public class StartWind : Swipeable {
 
@@ -24,6 +25,8 @@ private bool leftSwipeHasHappened = false;
 private bool rightSwipeHasHappened = false;
 private Vector3 windDirection;
 private GameObject newWind;
+private EventManager eventManager; 
+private EventArgument argument;
 
 	void Start()
 	{
@@ -33,7 +36,10 @@ private GameObject newWind;
 		leftFog = leftParticleSystem.GetComponentsInChildren<ParticleSystem>();
 		rightFog = rightParticleSystem.GetComponentsInChildren<ParticleSystem>();
 		
-	}
+		eventManager = EventManager.GetInstance(); 
+ 
+    	argument = new EventArgument(); 
+	}	
 
 
 	void LateUpdate()
@@ -56,6 +62,9 @@ private GameObject newWind;
 		if (Input.GetKeyDown("q") || rightSwipeHasHappened)//right wind
 		{
 			StopEverything();
+			argument.stringComponent = "Right"; 
+       
+        	eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument);
 			
  			foreach( ParticleSystem childPS in leftFog )
             {
@@ -71,6 +80,9 @@ private GameObject newWind;
 		if (Input.GetKeyDown("e") || leftSwipeHasHappened)//left wind
 		{
 			StopEverything();
+			argument.stringComponent = "Left"; 
+ 
+     	 	eventManager.CallEvent(CustomEvent.SwipeEffectStarted,argument); 
 			
  			foreach( ParticleSystem childPS in rightFog )
             {
@@ -85,7 +97,8 @@ private GameObject newWind;
 
 		if(timer < 0)
 		{
-			StopEverything();
+			StopEverything();      
+      		eventManager.CallEvent(CustomEvent.SwipeEffectEnded);
 		}
 
 
