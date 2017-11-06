@@ -15,24 +15,15 @@ namespace CameraControl
 		Bear
 	}
 
-	[RequireComponent(typeof(Animator))]
 	public class CinematicCamera : BaseCamera 
 	{
-		public Animation[] scenarioAnimations;
+		public CinematicAnimation[] scenarioAnimations;
+		public float damping = 1;
 
 		private Scenario currentScenario;
-		private Animation currentAnimation;
-		private Animator animator;
+		private CinematicAnimation currentAnimation;
 		private Vector3 scenarioStartPosition;
 		private Vector3 scenarioEndPosition;
-
-		private void Start()
-		{
-			foreach (Animation animation in scenarioAnimations)
-			{
-				// animation.
-			}
-		}
 
 		protected override void UpdatePosition()
 		{
@@ -40,7 +31,10 @@ namespace CameraControl
 			float distanceFromEndToHunters = Vector3.Distance(deltaPosition, scenarioEndPosition);
 			float progress = distanceFromBeginningToHunters / (distanceFromBeginningToHunters + distanceFromEndToHunters);
 
-			// transform.position = currentAnimation
+			Vector3 desiredPosition = currentAnimation.GetPosition(progress);
+			Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
+			transform.position = position;
+			transform.LookAt(currentAnimation.center);
 		}
 
 		public void SetScenario(Scenario scenario, Vector3 scenarioStartPosition, Vector3 scenarioEndPosition)

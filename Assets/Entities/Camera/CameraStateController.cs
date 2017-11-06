@@ -8,11 +8,10 @@ using Events;
 namespace CameraControl
 {
 	// Dependencies
-	[RequireComponent(typeof(Camera))]
 	[RequireComponent(typeof(ThirdPersonCamera))]
 	[RequireComponent(typeof(CinematicCamera))]
 	[RequireComponent(typeof(CameraShake))]
-	public class CameraStateController : MonoBehaviour 
+	public class CameraStateController : Singleton<CameraStateController> 
 	{
 		// State definition
 		private enum CameraState
@@ -22,21 +21,23 @@ namespace CameraControl
 		}
 
 		// Variables
+		public Transform[] targets;
 		[SerializeField]
 		private CameraState currentState;
 		private ThirdPersonCamera thirdPersonCamera;
 		private CinematicCamera cinematicCamera;
-		private Camera camera;
+		private EventManager eventManager;
 
-		void Start()
+		void Awake()
 		{	
 			// Get references
-			camera = GetComponent<Camera>();
 			thirdPersonCamera = GetComponent<ThirdPersonCamera>();
 			cinematicCamera = GetComponent<CinematicCamera>();
 
 			// Add event listeners
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
+			eventManager = EventManager.GetInstance();
+			eventManager.AddListener(CustomEvent.RitualScenarioTriggered, eventDelegate);
 		}
 
 		void Update() 
