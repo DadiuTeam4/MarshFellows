@@ -20,6 +20,7 @@ namespace AK
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
         static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
         static const AkUniqueID PLAY_GG_SD_SWIPE_1 = 3603427629U;
+        static const AkUniqueID STOP_ALL = 452547817U;
         static const AkUniqueID STOP_GG_SD_SHAKE_1 = 3879389907U;
         static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
     } // namespace EVENTS
