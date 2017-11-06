@@ -50,7 +50,9 @@ public class AppleController : Shakeable
         {
             appleRd.useGravity = true;
             isGravityActived = true;
-            EventManager.GetInstance().CallEvent(CustomEvent.AppleFall, new EventArgument());
+			EventArgument args = new EventArgument ();
+			args.stringComponent = "AppleFall";
+            EventManager.GetInstance().CallEvent(CustomEvent.AppleFall, args);
         }
     }
 
