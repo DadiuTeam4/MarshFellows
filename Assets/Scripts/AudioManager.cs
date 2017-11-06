@@ -101,7 +101,6 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 		
-		
 	//Checks if the events has stopped 
 	void EventHasStopped(object in_cookie, AkCallbackType in_type, object in_info)
 	{
