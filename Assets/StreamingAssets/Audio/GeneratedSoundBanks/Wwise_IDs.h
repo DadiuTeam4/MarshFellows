@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID PLAY_FS = 2262856515U;
         static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
         static const AkUniqueID PLAY_GG_SD_APPLEDROP = 1577744568U;
         static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
@@ -22,6 +23,22 @@ namespace AK
         static const AkUniqueID STOP_GG_SD_SHAKE_1 = 3879389907U;
         static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
     } // namespace EVENTS
+
+    namespace SWITCHES
+    {
+        namespace FS_SWITCH
+        {
+            static const AkUniqueID GROUP = 210744043U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID FS_FORREST = 1704637610U;
+                static const AkUniqueID FS_ICE = 193148416U;
+                static const AkUniqueID FS_SWAMP = 2790481301U;
+            } // namespace SWITCH
+        } // namespace FS_SWITCH
+
+    } // namespace SWITCHES
 
     namespace GAME_PARAMETERS
     {
