@@ -9,7 +9,8 @@ using Events;
 public class AudioManager : MonoBehaviour {
 
 	public EventManager eventManager;
-	public bool soundIsBeingPlayed = false; 
+	public bool soundIsBeingPlayed = false;
+    public Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
 	public uint eventID; 
 	public string groundLayer; 
 
@@ -87,9 +88,15 @@ public class AudioManager : MonoBehaviour {
 	//Play-function with stop-callback 
 	void PlaySoundWC(string soundEventName)
 	{
-		soundEventName = string.Concat ("", soundEventName, ""); 
-		eventID = AkSoundEngine.PostEvent (soundEventName, gameObject, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, 1); 
-		soundIsBeingPlayed = true; 
+        soundEventName = string.Concat("", soundEventName, "");
+
+        bool isSoundPlaying;
+        soundsBeingPlayed.TryGetValue(soundEventName, out isSoundPlaying);
+        if (!isSoundPlaying)
+        {
+            eventID = AkSoundEngine.PostEvent(soundEventName, gameObject, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, soundEventName);
+            soundsBeingPlayed[soundEventName] = true;
+        }
 	}
 
 	//Play-function without stop-callback 
@@ -102,20 +109,18 @@ public class AudioManager : MonoBehaviour {
 	//Stop function
 	void StopSound(string stopEventName)
 	{
-		if (!soundIsBeingPlayed) 
-		{
 			stopEventName = string.Concat ("", stopEventName, ""); 
 			AkSoundEngine.PostEvent (stopEventName, gameObject); 
 			//AkSoundEngine.GetIDFromString ("Stop_GG_SD_Shake_1");
-		}
 	}
 		
 	//Checks if the events has stopped 
 	void EventHasStopped(object in_cookie, AkCallbackType in_type, object in_info)
 	{
+        string soundEventName = (string) in_cookie;
 		if (in_type == AkCallbackType.AK_EndOfEvent)
 		{
-			soundIsBeingPlayed = false; 
-		}
-	}
+            soundsBeingPlayed[soundEventName] = false;
+        }
+    }
 }
