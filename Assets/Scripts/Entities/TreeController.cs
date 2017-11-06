@@ -7,10 +7,10 @@ using UnityEngine;
 public class TreeController : Shakeable
 
 {
-    public float thresholdForAppleFallDown = 800f;
+    public float thresholdForTreeFallDown = 800f;
     private Rigidbody treeRd;
 
-	private bool isTreeFall;
+	private bool isTreeFallen;
 
     void Awake()
     {
@@ -19,7 +19,7 @@ public class TreeController : Shakeable
 
 	void Start()
 	{
-		isTreeFall = false;
+		isTreeFallen = false;
 	}
 
     public override void OnShakeBegin(float magnitude)
@@ -34,11 +34,11 @@ public class TreeController : Shakeable
 
     private void checkTreeFallDown(float magnitude)
     {
-        if (magnitude > thresholdForAppleFallDown && isTreeFall == false)
+        if (magnitude > thresholdForTreeFallDown && isTreeFallen == false)
         {
 			Vector3 randomForce = GetShakeForceOnShakebleObject(magnitude);
             treeRd.AddForce(new Vector3(randomForce.x, 0f, randomForce.y));
-			isTreeFall = true;
+			isTreeFallen = true;
         }
 
     }
