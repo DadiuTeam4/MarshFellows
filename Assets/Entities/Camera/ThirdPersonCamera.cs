@@ -13,8 +13,9 @@ namespace CameraControl
         
         private Vector3 offset;
     
-        void Start()
+        private void Start()
         {
+            controller = CameraStateController.GetInstance();
             offset = transform.position - controller.targets[1].position + (0.5f * (controller.targets[0].position - controller.targets[1].position));
         }
 
@@ -25,7 +26,7 @@ namespace CameraControl
             float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
             Quaternion rotation = Quaternion.Euler(0, angle, 0);
 
-            Vector3 desiredPosition = deltaPosition + (rotation * (offset + deltaDistance));
+            Vector3 desiredPosition = deltaPosition + ((offset + deltaDistance));
             Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * positionDamping);
 
             transform.position = position;

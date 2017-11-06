@@ -13,7 +13,7 @@ namespace CameraControl
 		protected bool active = false;
 		protected CameraStateController controller;
 
-		private void Awake()
+		private void Start()
 		{
 			controller = CameraStateController.GetInstance();
 		}
@@ -31,8 +31,8 @@ namespace CameraControl
 
 		private void UpdateTargetPosition()
 		{
-			Vector3 deltaDistance = controller.targets[0].position - controller.targets[1].position;
-            Vector3 deltaPosition = controller.targets[1].position + (0.5f * deltaDistance);
+			deltaDistance = controller.targets[0].position - controller.targets[1].position;
+            deltaPosition = controller.targets[1].position + (0.5f * deltaDistance);
 		}
 
 		public void SetActive(bool value)

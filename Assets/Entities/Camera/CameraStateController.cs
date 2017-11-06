@@ -22,9 +22,6 @@ namespace CameraControl
 
 		// Variables
 		public Transform[] targets;
-
-		[SerializeField]
-		private GameObject mainCamera;
 		[SerializeField]
 		private CameraState currentState;
 		private ThirdPersonCamera thirdPersonCamera;
