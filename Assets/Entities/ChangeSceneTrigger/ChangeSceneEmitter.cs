@@ -38,6 +38,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
             argument.intComponent = 2;           
             eventManager.CallEvent(CustomEvent.LoadScene,argument);
         }
+        Destroy(this.gameObject);
     }
 
 }

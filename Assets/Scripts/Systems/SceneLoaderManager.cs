@@ -19,8 +19,8 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     string prePreviousScene="";
 
     // Clusters of scenes to be loaded at certain points.
-    string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
-    string[] gameEnd = { "EndScene", "Credits" };
+   // string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
+   // string[] gameEnd = { "EndScene", "Credits" };
 
     public string globalSceneName = "GlobalScene";
 
@@ -46,26 +46,11 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
     }
 
-
-    // Start the game!
-    private void SceneClusterLoader(string[] cluster)
-    {
-        foreach (string sceneName in cluster)
-        {   
-            Scene scene = SceneManager.GetSceneByName(sceneName);
-            if (!scene.isLoaded)
-            {
-                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-            }
-        }
-    }
-
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
     private void SceneLoader(EventArgument argument)
     {
         if(argument.intComponent == 0)
         {
-            prePreviousScene = previousScene;
             previousScene = currentScene;
             currentScene = argument.stringComponent;
             return;
@@ -77,16 +62,28 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
         }
 
-       if(prePreviousScene != emptyString && prePreviousScene != globalSceneName)
+       if(previousScene != emptyString && previousScene != globalSceneName)
         {
-            Scene unloadScene = SceneManager.GetSceneByName(prePreviousScene);
+            Scene unloadScene = SceneManager.GetSceneByName(previousScene);
             if (unloadScene.isLoaded)
             {
-                SceneManager.UnloadSceneAsync(prePreviousScene);
+                SceneManager.UnloadSceneAsync(previousScene);
             }
         }
- 
-
     }
+
+    
+    // Start the game!
+    /*private void SceneClusterLoader(string[] cluster)
+    {
+        foreach (string sceneName in cluster)
+        {   
+            Scene scene = SceneManager.GetSceneByName(sceneName);
+            if (!scene.isLoaded)
+            {
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            }
+        }
+    }*/
 
 }
