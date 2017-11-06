@@ -6,36 +6,30 @@ using UnityEngine;
 
 namespace CameraControl
 {
-    public class ThirdPersonCamera : MonoBehaviour 
+    public class ThirdPersonCamera : BaseCamera 
     {
-        public GameObject target;
-        public float damping = 1;
+        public float positionDamping = 1;
+        public float rotationDamping = 1;
         
         private Vector3 offset;
-        private bool active = false;
     
         void Start()
         {
-            offset = transform.position - target.transform.position;
+            offset = transform.position - targets[1].position + (0.5f * (targets[0].position - targets[1].position));
         }
-        
-        void LateUpdate()
-        {
-            if (!active)
-            {
-                return;
-            }
 
-            Vector3 desiredPosition = target.transform.position + offset;
-            Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
+        protected override void UpdatePosition()
+        {
+            float currentAngle = transform.eulerAngles.y;
+            float desiredAngle = targets[0].eulerAngles.y;
+            float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
+            Quaternion rotation = Quaternion.Euler(0, angle, 0);
+
+            Vector3 desiredPosition = deltaPosition + (rotation * (offset + deltaDistance));
+            Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * positionDamping);
+
             transform.position = position;
-    
-            transform.LookAt(target.transform.position);
-        }
-
-        public void SetActive(bool value)
-        {
-            active = value;
+            transform.LookAt(deltaPosition);
         }
     }
 }

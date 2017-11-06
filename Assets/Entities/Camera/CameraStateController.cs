@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 namespace CameraControl
 {
@@ -29,9 +30,13 @@ namespace CameraControl
 
 		void Start()
 		{	
+			// Get references
 			camera = GetComponent<Camera>();
 			thirdPersonCamera = GetComponent<ThirdPersonCamera>();
 			cinematicCamera = GetComponent<CinematicCamera>();
+
+			// Add event listeners
+			EventDelegate eventDelegate = ScenarioTriggerCallback;
 		}
 
 		void Update() 
@@ -43,6 +48,42 @@ namespace CameraControl
 		void CheckState()
 		{
 
+		}
+
+		void ScenarioTriggerCallback(EventArgument argument)
+		{
+			switch (argument.eventComponent)
+			{
+				case (CustomEvent.SeparationScenarioTriggered):
+				{
+					currentState = CameraState.Cinematic;
+					cinematicCamera.SetScenario(Scenario.Separation, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
+					break;
+				}
+				case (CustomEvent.RitualScenarioTriggered):
+				{
+					currentState = CameraState.Cinematic;
+					cinematicCamera.SetScenario(Scenario.Ritual, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
+					break;
+				}
+				case (CustomEvent.DeerScenarioTriggered):
+				{
+					currentState = CameraState.Cinematic;
+					cinematicCamera.SetScenario(Scenario.Deer, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
+					break;
+				}
+				case (CustomEvent.BearScenarioTriggered):
+				{
+					currentState = CameraState.Cinematic;
+					cinematicCamera.SetScenario(Scenario.Bear, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
+					break;
+				}
+				case (CustomEvent.ScenarioEnded):
+				{	
+					currentState = CameraState.ThirdPerson;
+					break;
+				}
+			}
 		}
 
 		void UpdateState()

@@ -39,7 +39,7 @@ public class CameraController : Shakeable
         offset = transform.position - playerTransform.position;
 
         EventDelegate eventDelegate = OnCameraSpecialEvent;
-        EventManager.GetInstance().AddListener(CustomEvent.CameraMoving, eventDelegate);
+        // EventManager.GetInstance().AddListener(CustomEvent.CameraMoving, eventDelegate);
 
     }
 
