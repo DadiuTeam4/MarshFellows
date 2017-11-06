@@ -1,5 +1,5 @@
 ﻿//Author: Emil Villumsen
-//Collaborator: Jonathan,
+//Collaborator: Jonathan,Tilemachos
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,74 +7,84 @@ using UnityEngine.SceneManagement;
 
 using Events;
 
+//2 events - 1 that signals what scenes to load and one that signals my current scene
+
 public class SceneLoaderManager : Singleton<SceneLoaderManager> 
 {
 
+
+    class CustomScene{
+        public string nameOfScene;
+        public int firstIndexOfNextPossibleScene;
+        public int secondIndexOfNextPossibleScene;
+
+    }
+
     // Variables to keep track of scenes to load and unload.
-    GameScene previousScene;
-    GameScene currentScene;
-    GameScene nextScene;
+    CustomScene previousScene;
+    CustomScene currentScene;
+    CustomScene nextScene;
 
     // Clusters of scenes to be loaded at certain points.
-    GameScene[] gameStart = { GameScene.GameOpener, GameScene.GlobalScene, GameScene.IntroLevel, GameScene.CrossRoad1 };
-    GameScene[] gameEnd = { GameScene.EndScene, GameScene.Credits };
+    string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
+    string[] gameEnd = { "EndScene", "Credits" };
+
+    CustomScene[] allScenes= {new CustomScene{nameOfScene = "GameOpener",firstIndexOfNextPossibleScene = 0,secondIndexOfNextPossibleScene = 2 }};
 
     void Start()
     {
         SceneClusterLoader(gameStart);
         //EventManager.AddListener(CustomEvent.changeScene, sceneLoader(EventArgument));
-     
-        previousScene = GameScene.GameOpener;
-        currentScene = GameScene.IntroLevel;
-        nextScene = GameScene.CrossRoad1;
 
+        //previousScene = "GameOpener";
+        //currentScene = "IntroLevel";
+       // nextScenes.Add ("CrossRoad1");
 
     }
+    
+
 
     // Start the game!
-    private void SceneClusterLoader(GameScene[] cluster)
+    private void SceneClusterLoader(string[] cluster)
     {
-        foreach (GameScene sceneName in cluster)
-        {
-            var sceneToLoad = GameSceneToString(sceneName);
-            Scene scene = SceneManager.GetSceneByName(sceneToLoad);
+        foreach (string sceneName in cluster)
+        {   
+            Scene scene = SceneManager.GetSceneByName(sceneName);
             if (!scene.isLoaded)
             {
-                SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
             }
         }
     }
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
-    private void sceneLoader(GameScene upComingScene)
+    private void sceneLoader(CustomScene currentScene)
     {
-        // This system is not correct, we need to find a way to keep track of
-        // upcoming scenes.
-        var sceneToUnload = GameSceneToString(previousScene);
-
         previousScene = currentScene;
         currentScene = nextScene;
-        nextScene = upComingScene;
+        nextScene = currentScene;
 
-        var sceneToLoad = GameSceneToString(nextScene);
+        foreach(int indexOfNextScene in currentScene)
+        {
 
-        Scene scene = SceneManager.GetSceneByName(sceneToLoad);
+        }
+        Scene scene = SceneManager.GetSceneByName(upComingScene);
         if (!scene.isLoaded)
         {
-            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+            SceneManager.LoadScene(upComingScene, LoadSceneMode.Additive);
         }
 
-        SceneManager.UnloadSceneAsync(sceneToUnload);
+        SceneManager.UnloadSceneAsync(previousScene);
 
     }
 
     // Takes a GameScene Enum and returns the scene name string.
-    private string GameSceneToString(GameScene sceneName)
+    private string GameSceneToString(CustomScene scene)
     {
-        return sceneName.ToString("D");
+        return scene.nameOfScene;
     }
 
-
+/*
     public enum GameScene
     {
         GameOpener,
@@ -84,7 +94,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         IntroLevel,
         CrossRoad1,
         RitualEvent
-
     }
-
+ */
 }
