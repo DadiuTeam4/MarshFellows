@@ -14,9 +14,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
     private string emptyString = "";
     // Variables to keep track of scenes to load and unload.
-    string currentScene="";
-    string previousScene="";
-    string prePreviousScene="";
+    List<string> scenesToUnload;
 
     // Clusters of scenes to be loaded at certain points.
    // string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
@@ -27,6 +25,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     void Start()
     {
         //SceneClusterLoader(gameStart);
+        scenesToUnload = new List<string>();
         
         EventManager eventManager = EventManager.GetInstance();
 
@@ -43,6 +42,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         argument.stringComponent = "IntroLevel";
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        
 
     }
 
@@ -51,10 +51,10 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         if(argument.intComponent == 0)
         {
-            previousScene = currentScene;
-            currentScene = argument.stringComponent;
+            scenesToUnload.Add(argument.stringComponent);
             return;
         }
+        
         //if you sent a new scene to load
         Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
         if (!scene.isLoaded)
@@ -62,14 +62,18 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
         }
 
-       if(previousScene != emptyString && previousScene != globalSceneName)
+        foreach(string sceneToUnload in scenesToUnload)
         {
-            Scene unloadScene = SceneManager.GetSceneByName(previousScene);
-            if (unloadScene.isLoaded)
+            if(sceneToUnload != emptyString && sceneToUnload != globalSceneName)
             {
-                SceneManager.UnloadSceneAsync(previousScene);
+                Scene unloadScene = SceneManager.GetSceneByName(sceneToUnload);
+                if (unloadScene.isLoaded)
+                {
+                    SceneManager.UnloadSceneAsync(sceneToUnload);
+                }
             }
         }
+
     }
 
     
