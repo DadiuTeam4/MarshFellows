@@ -14,7 +14,6 @@ GameStateManager newRound = new GameStateManager();
 			newRound.playedBefore = true;
 			newRound.roundsPlayed++;
 			GameStateManager.current = newRound;
-			print("N Played before = "+GameStateManager.current.roundsPlayed);
 			
 		}
 		if (Input.GetKeyDown("s"))
@@ -25,7 +24,6 @@ GameStateManager newRound = new GameStateManager();
 		if (Input.GetKeyDown("l"))
 		{
 			SaveLoadManager.Load();
-			print("L Played before = "+GameStateManager.current.roundsPlayed);
 		}
 	}
 }
