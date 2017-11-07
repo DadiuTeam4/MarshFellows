@@ -10,9 +10,8 @@ public class ChangeSceneEmitter : MonoBehaviour {
 
     public GameObject blocker;
     public int offsetForCreatingObstacle = 10;
-    public string currentScene = "";
-    public string basicSceneToLoad="";
-    public string secondarySceneToLoad="";
+    public List<string> nextUnloads;
+    public List<string> scenesToLoad;
     private string emptyString = "";
     Collider m_ObjectCollider;
 
@@ -22,25 +21,25 @@ public class ChangeSceneEmitter : MonoBehaviour {
  
     	EventArgument argument = new EventArgument(); 
 
-        if(currentScene != emptyString)
+        foreach(string unloadSceneName in nextUnloads)
         {
-            argument.stringComponent = currentScene;
-            argument.intComponent = 0;
-            eventManager.CallEvent(CustomEvent.LoadScene,argument);
+            if(unloadSceneName != emptyString)
+            {
+                argument.stringComponent = unloadSceneName;
+                argument.intComponent = 0;
+                eventManager.CallEvent(CustomEvent.LoadScene,argument);
+            }
         }
-
-        if(basicSceneToLoad != emptyString)
+        int index = 0;
+        foreach(string loadScene in scenesToLoad)
         {
-            argument.stringComponent = basicSceneToLoad;
-            argument.intComponent = 1;
-            eventManager.CallEvent(CustomEvent.LoadScene,argument);
-        }
-
-        if(secondarySceneToLoad != emptyString)
-        {
-            argument.stringComponent = secondarySceneToLoad;
-            argument.intComponent = 2;           
-            eventManager.CallEvent(CustomEvent.LoadScene,argument);
+            index++;
+            if(loadScene != emptyString)
+            {
+                argument.stringComponent = loadScene;
+                argument.intComponent = index;
+                eventManager.CallEvent(CustomEvent.LoadScene,argument);
+            }
         }
 
         Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
