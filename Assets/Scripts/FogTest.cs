@@ -4,10 +4,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class FogTest : Holdable 
 {
 	public float radius = 10f;
+	public Texture2D template;
 
 	private MeshRenderer meshRenderer;
 	private Material fogMaterial;
@@ -34,19 +36,25 @@ public class FogTest : Holdable
 	public override void OnTouchBegin(RaycastHit hit) 
 	{
 		Vector2 pixelUV = hit.textureCoord;
-		pixelUV.x *= workingTexture.width;
-		pixelUV.y *= workingTexture.height;
+		int x = (int) (pixelUV.x * workingTexture.width);
+		int y = (int) (pixelUV.y * workingTexture.height);
 
-		for (int i = 0; i < radius; i++)
+		x -= template.width / 2;
+		y -= template.height /2;
+
+		float alpha;
+
+		for(int i = 0; i < template.width; i++)
 		{
-			for(int j = 0; j < radius; j++)
+			for(int j = 0; j < template.height; j++)
 			{
-				Color col = workingTexture.GetPixel(i + (int)pixelUV.x, j + (int)pixelUV.y);
-				col.a = 0;
-				workingTexture.SetPixel(i + (int)pixelUV.x, j + (int)pixelUV.y, col);
+				alpha = template.GetPixel(i,j).r;
+				Color col = workingTexture.GetPixel(i + x, j + y);
+				col.a = col.a - alpha;
+
+				workingTexture.SetPixel(i + x, j + y, col);
 			}
 		}
-
 		workingTexture.Apply();
 	}
 	
