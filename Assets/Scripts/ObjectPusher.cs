@@ -26,17 +26,21 @@ public class ObjectPusher : MonoBehaviour
 	public void PushObjects(EventArgument argument)
 	{
 		Vector3 rayBegin = argument.raycastComponent.point;
-		Vector3 rayEnd = rayBegin + argument.vectorComponent;
+		Vector3 rayEnd = rayBegin + (argument.vectorComponent / Time.deltaTime);
+		rayBegin.y += yOffset;
+		rayEnd.y += yOffset;
 		Ray ray = new Ray(rayBegin, rayEnd);
 
+		//Debug.DrawLine(rayBegin, rayEnd, Color.green, 2.0f);
+
 		RaycastHit hit;
-		if(Physics.Raycast(ray, out hit, rayDistanceScalar * argument.vectorComponent.magnitude))
+		if(Physics.Raycast(ray, out hit, rayDistanceScalar * (argument.vectorComponent.magnitude / Time.deltaTime)))
 		{
 			PushableObject pushable = hit.collider.gameObject.GetComponent<PushableObject>();
 			
 			if(pushable != null)
 			{
-				float force = argument.vectorComponent.magnitude * forceScalar;
+				float force = (argument.vectorComponent.magnitude / Time.deltaTime) * forceScalar;
 				pushable.Push(argument.vectorComponent, force);
 			}
 		}
