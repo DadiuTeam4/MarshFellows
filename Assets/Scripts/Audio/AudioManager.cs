@@ -79,7 +79,6 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			StopSound ("Stop_All"); 
 		}
-
 	}
 
 	public void Footstep()
