@@ -38,17 +38,12 @@ namespace CameraControl
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
 			eventManager = EventManager.GetInstance();
 			eventManager.AddListener(CustomEvent.RitualScenarioTriggered, eventDelegate);
+			eventManager.AddListener(CustomEvent.ScenarioEnded, eventDelegate);
 		}
 
 		void Update() 
 		{
-			CheckState();
 			UpdateState();
-		}
-
-		void CheckState()
-		{
-
 		}
 
 		void ScenarioTriggerCallback(EventArgument argument)
