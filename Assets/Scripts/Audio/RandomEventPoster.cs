@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// Author: Kristian Riis 
+// Contributors: 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,17 +13,14 @@ public class RandomEventPoster : MonoBehaviour {
 	private float time;
 	//The time to spawn the event
 	private float postTime;
-	public string eventName; 
 
 	void Start()
 	{
 		SetRandomTime();
 		time = minTime;
-		eventName = string.Concat ("", eventName, ""); 
-
 	}
 	void FixedUpdate()
-	{
+	{	
 		//Counts up
 		time += Time.deltaTime;
 		//Check if its the right time to post the event
@@ -34,7 +34,7 @@ public class RandomEventPoster : MonoBehaviour {
 	void PostEvent()
 	{
 		time = 2;
-		AkSoundEngine.PostEvent (eventName, gameObject); 
+		AkSoundEngine.PostEvent ("Play_Music", gameObject); 
 	}
 	//Sets the random time between minTime and maxTime
 	void SetRandomTime()
