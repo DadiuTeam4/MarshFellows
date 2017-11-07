@@ -23,7 +23,8 @@ namespace Events
 		DeerScenarioTriggered,
 		BearScenarioTriggered,
 		ScenarioEnded,
-		LoadScene
+		LoadScene,
+		ResetGame
 	}
 
 	public class EventArgument
