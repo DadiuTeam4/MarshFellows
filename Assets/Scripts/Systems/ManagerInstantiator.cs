@@ -11,9 +11,9 @@ public class ManagerInstantiator : MonoBehaviour
 
     void OnEnable()
     {
-        if (!managerInstance && !GetComponentInChildren<DontDestroyOnLoad>())
+        if (!managerInstance && !FindObjectOfType<DontDestroyOnLoad>())
         {
-            managerInstance = Instantiate(managerPrefab, this.transform);
+            managerInstance = Instantiate(managerPrefab);
         }
     }
 }

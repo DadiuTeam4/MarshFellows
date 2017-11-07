@@ -7,25 +7,26 @@ using Events;
 
 public class EventTrigger : MonoBehaviour 
 {
+	public Transform startTrigger;
+	public Transform endTrigger;
+
 	private EventManager eventManager;
+	
+	void OnEnable()
+	{
+		eventManager = EventManager.GetInstance();
+	}
 
 	void Update()
 	{
 		if (Input.GetKeyDown("j"))
 		{
-			eventManager.CallEvent(CustomEvent.None, new EventArgument());
+			EventArgument argument = new EventArgument();
+			argument.vectorArrayComponent = new Vector3[2];
+			argument.vectorArrayComponent[0] = startTrigger.position;
+			argument.vectorArrayComponent[1] = endTrigger.position;
+			EventManager.GetInstance().CallEvent(CustomEvent.RitualScenarioTriggered, argument);
 		}
 	}
 
-	void OnEnable()
-	{
-		EventDelegate eventDelegate = EventCallback;
-		eventManager = EventManager.GetInstance();
-		eventManager.AddListener(CustomEvent.None, eventDelegate);		
-	}
-
-	void EventCallback(EventArgument eventArgument) 
-	{
-		print("Event triggered: " + eventArgument.eventComponent);
-	}
 }
