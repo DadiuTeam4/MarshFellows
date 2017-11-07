@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class TestSaveScript : MonoBehaviour {
 GameStateManager newRound = new GameStateManager();
-	// Update is called once per frame
+
 	void Update () {
 		if (Input.GetKeyDown("n"))
 		{
-			
+			newRound = GameStateManager.current;
 			newRound.playedBefore = true;
 			newRound.roundsPlayed++;
 			GameStateManager.current = newRound;
-			print("N Played before = "+newRound.roundsPlayed);
+			print("N Played before = "+GameStateManager.current.roundsPlayed);
 			
 		}
 		if (Input.GetKeyDown("s"))
