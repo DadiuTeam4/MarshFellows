@@ -14,7 +14,7 @@ public class CameraTrigger : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		EventManager.GetInstance().CallEvent(CustomEvent.CameraMoving, new EventArgument());
+		//EventManager.GetInstance().CallEvent(CustomEvent.CameraMoving, new EventArgument());
 	}
 
 
