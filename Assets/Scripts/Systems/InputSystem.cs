@@ -312,6 +312,16 @@ public class InputSystem : Singleton<InputSystem>
 		return false;
 	}
 
+	private Vector3 RotateVector(Vector3 vector, Vector3 angles)
+	{
+		Quaternion rotation = Quaternion.Euler(angles.x, angles.y, angles.z);
+
+		Matrix4x4 completeRotationMatrix = new Matrix4x4();
+		completeRotationMatrix = Matrix4x4.Rotate(rotation);
+
+		return completeRotationMatrix * new Vector4(vector.x, vector.y, vector.z, 0);	
+	}
+
 	private void CheckSwipe(Touch touch)
 	{
 		touchPositions[touch.fingerId].Add(touch.position);
@@ -325,17 +335,21 @@ public class InputSystem : Singleton<InputSystem>
 		Vector3 direction = lastPoint - firstPoint;
 		
 		swipeDirections.Add(direction);
-		// Check if the touch hit a swipable
+
 		Swipeable swipeable = GetSwipeable(raycastHits[touch.fingerId].Value);
-			
+
+		// Check if the touch hit a swipable	
 		if (swipeable)
 		{
 			swipeable.OnSwipe(raycastHits[touch.fingerId].Value, direction);
 			touchPositions[touch.fingerId].Clear();
 			touchPositions[touch.fingerId].Add(touch.position);
-
-			EventManager.GetInstance().CallEvent(CustomEvent.Swipe);
 		}
+		
+		EventArgument argument = new EventArgument();
+		argument.vectorComponent = direction;
+		argument.raycastComponent = raycastHits[touch.fingerId].Value;
+		EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
 	}
 
 	private Holdable GetHoldable(RaycastHit hit)
