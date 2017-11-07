@@ -37,6 +37,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		eventManager.AddListener (CustomEvent.ShakeBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.ShakeEnd, stopEvent);
+		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
@@ -73,6 +74,10 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.eventComponent == CustomEvent.ShakeEnd) 
 		{
 			StopSound("Stop_GG_SD_Shake_1"); 
+		}
+		if (argument.eventComponent == CustomEvent.ResetGame) 
+		{
+			StopSound ("Stop_All"); 
 		}
 	}
 
