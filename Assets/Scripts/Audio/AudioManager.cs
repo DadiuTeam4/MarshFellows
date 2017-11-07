@@ -83,7 +83,7 @@ public class AudioManager : Singleton<AudioManager> {
 		PlaySound ("Play_FS");
 	}
 
-	//Play-function with stop-callback 
+	//Play-function with stop-callback to a specific event  
 	void PlaySoundWC(string soundEventName)
 	{
         soundEventName = string.Concat("", soundEventName, "");
@@ -110,7 +110,7 @@ public class AudioManager : Singleton<AudioManager> {
 			AkSoundEngine.PostEvent (stopEventName, gameObject); 
 	}
 		
-	//Checks if the events has stopped 
+	//Checks if the specific event has stopped 
 	void EventHasStopped(object in_cookie, AkCallbackType in_type, object in_info)
 	{
         string soundEventName = (string) in_cookie;
