@@ -2,12 +2,12 @@
 	Properties{
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
 		_Cutoff("Cutoff", Range(0,1)) = 0.25
-		_GrassHeight("Grass Height", Float) = 0.25
-		_GrassWidth("Grass Width", Float) = 0.25
+		_GrassHeight("Grass Height", Range(0,10)) = 0.25
+		_GrassWidth("Grass Width", Range(0,10)) = 0.25
 	}
 		SubShader{
 		Tags{ "Queue" = "AlphaTest" "IgnoreProjector" = "True" "RenderType" = "TransparentCutout" }
-		LOD 200
+		LOD 300
 
 		Pass
 	{
@@ -133,4 +133,5 @@
 
 	}
 	}
+	Fallback "Diffuse"
 }

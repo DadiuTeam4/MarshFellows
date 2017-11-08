@@ -4,9 +4,10 @@ using UnityEngine;
 
 [ImageEffectAllowedInSceneView]
 [ExecuteInEditMode]
-
+[RequireComponent(typeof(Camera))]
 public class FogImageEffect : MonoBehaviour {
 
+	[SerializeField]
 	private Camera camera;
 	public Material effectMaterial;
 
