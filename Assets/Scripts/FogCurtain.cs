@@ -27,7 +27,8 @@ public class FogCurtain : Swipeable
 	private float distanceFromStart;
 	private float distancePercentage;
 
-	private Rigidbody ownRigidbody;
+	[HideInInspector]
+	public Rigidbody ownRigidbody;
 
 	void Start()
 	{
@@ -67,9 +68,6 @@ public class FogCurtain : Swipeable
 		float dot = Vector3.Dot(Vector3.left, direction);
 		
 		float directionMagnitude = direction.magnitude;
-
-		Debug.Log(dot);
-
 
 		if (dot > 0.0f)
 		{
