@@ -11,8 +11,6 @@ namespace Events
 	{
 		None,
 		Swipe,
-		ShakeBegin,
-		ShakeEnd,
 		HoldBegin,
 		HoldEnd,
 		AppleFall,

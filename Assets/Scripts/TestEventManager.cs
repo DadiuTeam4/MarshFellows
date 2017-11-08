@@ -18,14 +18,10 @@ public class TestEventManager : MonoBehaviour
 		EventDelegate holdStarted = HoldStarted;
 		EventDelegate holdEnded = HoldEnded;
 		EventDelegate swipe = Swipe;
-		EventDelegate shakeStarted = ShakeStarted;
-		EventDelegate shakeEnded = ShakeEnded;
 
 		eventManager.AddListener(CustomEvent.HoldBegin, holdStarted);
 		eventManager.AddListener(CustomEvent.HoldEnd, holdEnded);
 		eventManager.AddListener(CustomEvent.Swipe, swipe);
-		eventManager.AddListener(CustomEvent.ShakeBegin, shakeStarted);
-		eventManager.AddListener(CustomEvent.ShakeEnd, shakeEnded);
 	}
 
 	public void HoldStarted(EventArgument argument)
@@ -41,15 +37,5 @@ public class TestEventManager : MonoBehaviour
 	public void Swipe(EventArgument argument)
 	{
 		Debug.Log("SWIIIPE!");
-	}
-
-	public void ShakeStarted(EventArgument argument)
-	{
-		Debug.Log("Shake Started");
-	}
-
-	public void ShakeEnded(EventArgument argument)
-	{
-		Debug.Log("Shake Ended");
 	}
 }
