@@ -92,6 +92,7 @@ public class SinkableGround : Holdable
 	
 	public override void OnTouchHold(RaycastHit hit) 
 	{
+		Debug.Assert(nearestPoints.Count > 0, "Sinkable, OnTouchHold, L. 95: NO NEAREST POINTS FOUND!");
 		if(Time.frameCount % updateRate == 0)
 		{
 			currentVertices = mesh.vertices;
