@@ -22,7 +22,8 @@ namespace Events
 		BearScenarioTriggered,
 		ScenarioEnded,
 		LoadScene,
-		ResetGame
+		ResetGame,
+		HiddenByFog
 	}
 
 	public class EventArgument
@@ -30,6 +31,7 @@ namespace Events
 		public string stringComponent = "";
 		public float floatComponent = 0.0f;
 		public int intComponent = 0;
+		public bool boolComponent = false;
 		public Vector3 vectorComponent = new Vector3();
 		public Vector3[] vectorArrayComponent = null;
 		public CustomEvent eventComponent = CustomEvent.None;
