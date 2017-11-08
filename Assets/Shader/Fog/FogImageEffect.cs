@@ -4,21 +4,17 @@ using UnityEngine;
 
 [ImageEffectAllowedInSceneView]
 [ExecuteInEditMode]
-
+[RequireComponent(typeof(Camera))]
 public class FogImageEffect : MonoBehaviour {
 
+	[SerializeField]
 	private Camera camera;
 	public Material effectMaterial;
 
 	// Use this for initialization
 	void Start () {
-
-		/* This was generating errors all the time, so I commented it out.
-		Please put "//Author: <Your name> //Contributors: " in the top of your Unity 
-		script template so your scripts always have your name in the top.*/
-
-		// camera.GetComponent<Camera>();
-		// camera.depthTextureMode = DepthTextureMode.Depth;
+		camera.GetComponent<Camera>();
+		camera.depthTextureMode = DepthTextureMode.Depth;
 	}
 [ImageEffectOpaque]	
 	void OnRenderImage(RenderTexture src, RenderTexture dst)
