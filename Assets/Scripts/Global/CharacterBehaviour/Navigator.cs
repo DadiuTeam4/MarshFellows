@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
@@ -12,11 +13,16 @@ public class Navigator : MonoBehaviour
 	[HideInInspector] public Transform currentWaypoint; 
 
 	public Transform waypoint;
+    public Transform splitWaypoint;
 	public bool autoRepath;
 	public bool drawPath;
 
-	private NavMeshAgent navMeshAgent;
+    private EventManager eventManager;
+    private EventDelegate eventDelegate;
+
+    private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
+
 
 	#region DEBUG
 	#if UNITY_EDITOR
@@ -37,11 +43,16 @@ public class Navigator : MonoBehaviour
 		#endif
 		#endregion
 		navMeshAgent.autoRepath = autoRepath;
-	}
+        SetDestination();
 
-	public void SetRandomDestination(StateController controller)
+        eventManager = EventManager.GetInstance();
+        //eventDelegate += EventCallback;
+    }
+
+
+    public void SetSplitPath()
 	{
-		
+        SetDestination(splitWaypoint.transform);
 	}
 
 	public void Move(Vector3 direction)

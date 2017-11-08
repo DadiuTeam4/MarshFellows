@@ -18,13 +18,14 @@ namespace Events
 		AppleFall,
 		SwipeEffectEnded, 
     	SwipeEffectStarted,
-		SeparationScenarioTriggered,
-		RitualScenarioTriggered,
-		DeerScenarioTriggered,
-		BearScenarioTriggered,
+		SeparationScenarioEntered,
+		RitualScenarioEntered,
+		DeerScenarioEntered,
+		BearScenarioEntered,
 		ScenarioEnded,
 		LoadScene,
-		ResetGame
+		ResetGame,
+        ScenarioInteracted
 	}
 
 	public class EventArgument
@@ -77,6 +78,7 @@ namespace Events
 		{
 			if (listeners.ContainsKey(eventName))
 			{
+                print("Calling event " + eventName);
 				argument.eventComponent = eventName;
 				EventDelegate eventDelegate;
 				listeners.TryGetValue(eventName, out eventDelegate);
