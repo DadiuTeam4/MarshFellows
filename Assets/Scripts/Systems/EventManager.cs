@@ -9,23 +9,23 @@ namespace Events
 {
 	public enum CustomEvent
 	{
-		None,
-		Swipe,
-		HoldBegin,
-		HoldEnd,
-		AppleFall,
-		SwipeEffectEnded, 
-    	SwipeEffectStarted,
-		SeparationScenarioEntered,
-		RitualScenarioEntered,
-		DeerScenarioEntered,
-		BearScenarioEntered,
-		ScenarioEnded,
-		LoadScene,
-		ResetGame,
-        ScenarioInteracted,
-		HiddenByFog
-	}
+		None = 0,
+        Swipe = 1,
+        HoldBegin = 2,
+        HoldEnd = 3,
+        AppleFall = 4,
+        SwipeEffectEnded = 5,
+        SwipeEffectStarted = 6,
+        SeparationScenarioEntered = 7,
+        RitualScenarioEntered = 8,
+        DeerScenarioEntered = 9,
+        BearScenarioEntered = 10,
+        ScenarioEnded = 11,
+        LoadScene = 12,
+        ResetGame = 13,
+        ScenarioInteracted = 14,
+        HiddenByFog = 15
+    }
 
 	public class EventArgument
 	{
