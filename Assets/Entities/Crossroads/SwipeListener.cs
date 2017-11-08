@@ -32,7 +32,6 @@ public class SwipeListener : MonoBehaviour
 
 	void EventCallback(EventArgument eventArgument)
 	{
-        print(eventArgument.stringComponent);
 		if (eventArgument.eventComponent == CustomEvent.SwipeEffectStarted)
 		{
 			if (eventArgument.stringComponent == "Left")

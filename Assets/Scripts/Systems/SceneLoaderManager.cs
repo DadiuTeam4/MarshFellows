@@ -1,5 +1,5 @@
 ﻿//Author: Emil Villumsen
-//Collaborator: Jonathan,
+//Collaborator: Jonathan,Tilemachos
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,84 +7,87 @@ using UnityEngine.SceneManagement;
 
 using Events;
 
+//2 events - 1 that signals what scenes to load and one that signals my current scene
+
 public class SceneLoaderManager : Singleton<SceneLoaderManager> 
 {
 
+    private string emptyString = "";
     // Variables to keep track of scenes to load and unload.
-    GameScene previousScene;
-    GameScene currentScene;
-    GameScene nextScene;
+    List<string> scenesToUnload;
 
     // Clusters of scenes to be loaded at certain points.
-    GameScene[] gameStart = { GameScene.GameOpener, GameScene.GlobalScene, GameScene.IntroLevel, GameScene.CrossRoad1 };
-    GameScene[] gameEnd = { GameScene.EndScene, GameScene.Credits };
+   // string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
+   // string[] gameEnd = { "EndScene", "Credits" };
+
+    public string globalSceneName = "GlobalScene";
 
     void Start()
     {
-        SceneClusterLoader(gameStart);
-        //EventManager.AddListener(CustomEvent.changeScene, sceneLoader(EventArgument));
-     
-        previousScene = GameScene.GameOpener;
-        currentScene = GameScene.IntroLevel;
-        nextScene = GameScene.CrossRoad1;
+        //SceneClusterLoader(gameStart);
+        scenesToUnload = new List<string>();
+        
+        EventManager eventManager = EventManager.GetInstance();
+
+    	EventDelegate sceneLoader = SceneLoader;
+
+		eventManager.AddListener(CustomEvent.LoadScene, sceneLoader);
 
 
-    }
+        EventArgument argument = new EventArgument(); 
+        argument.stringComponent = "GlobalScene";
+        argument.intComponent = 0;
+        eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-    // Start the game!
-    private void SceneClusterLoader(GameScene[] cluster)
-    {
-        foreach (GameScene sceneName in cluster)
-        {
-            var sceneToLoad = GameSceneToString(sceneName);
-            Scene scene = SceneManager.GetSceneByName(sceneToLoad);
-            if (!scene.isLoaded)
-            {
-                SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
-            }
-        }
+        argument.stringComponent = "IntroLevel";
+        argument.intComponent = 1;
+        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        
+
     }
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
-    private void sceneLoader(GameScene upComingScene)
+    private void SceneLoader(EventArgument argument)
     {
-        // This system is not correct, we need to find a way to keep track of
-        // upcoming scenes.
-        var sceneToUnload = GameSceneToString(previousScene);
-
-        previousScene = currentScene;
-        currentScene = nextScene;
-        nextScene = upComingScene;
-
-        var sceneToLoad = GameSceneToString(nextScene);
-
-        Scene scene = SceneManager.GetSceneByName(sceneToLoad);
+        if(argument.intComponent == 0)
+        {
+            scenesToUnload.Add(argument.stringComponent);
+            return;
+        }
+        
+        //if you sent a new scene to load
+        Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
         if (!scene.isLoaded)
         {
-            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+            SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
         }
 
-        SceneManager.UnloadSceneAsync(sceneToUnload);
+        foreach(string sceneToUnload in scenesToUnload)
+        {
+            if(sceneToUnload != emptyString && sceneToUnload != globalSceneName)
+            {
+                Scene unloadScene = SceneManager.GetSceneByName(sceneToUnload);
+                if (unloadScene.isLoaded)
+                {
+                    SceneManager.UnloadSceneAsync(sceneToUnload);
+                }
+            }
+        }
 
     }
 
-    // Takes a GameScene Enum and returns the scene name string.
-    private string GameSceneToString(GameScene sceneName)
+    
+    // Start the game!
+    /*private void SceneClusterLoader(string[] cluster)
     {
-        return sceneName.ToString("D");
-    }
-
-
-    public enum GameScene
-    {
-        GameOpener,
-        GlobalScene,
-        EndScene,
-        Credits,
-        IntroLevel,
-        CrossRoad1,
-        RitualEvent
-
-    }
+        foreach (string sceneName in cluster)
+        {   
+            Scene scene = SceneManager.GetSceneByName(sceneName);
+            if (!scene.isLoaded)
+            {
+                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+            }
+        }
+    }*/
 
 }
