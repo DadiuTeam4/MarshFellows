@@ -17,7 +17,7 @@ with open(IGNOREDFILENAME) as csvfile:
         ignoredIssues = issues
 
 # Run ReSharper
-os.system("inspectcode.exe .\GraduationGame.sln -o=\"" + XMLFILENAME + "\"")
+os.system("inspectcode.exe .\MarshFellows.sln -o=\"" + XMLFILENAME + "\"")
 
 # Get issues from XML output
 tree = ET.parse(XMLFILENAME)

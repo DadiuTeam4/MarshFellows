@@ -36,8 +36,6 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
-		eventManager.AddListener (CustomEvent.ShakeBegin, postEvent); 
-		eventManager.AddListener (CustomEvent.ShakeEnd, stopEvent);
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 
 		//Ritual events
@@ -53,11 +51,7 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
 		{
-			PlaySoundWC ("Play_GG_SD_Sink_1"); 
-		}
-		if (argument.eventComponent == CustomEvent.ShakeBegin) 
-		{
-			PlaySoundWC ("Play_GG_SD_Shake_1"); 
+			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
 		if (argument.eventComponent == CustomEvent.AppleFall) 
 		{
@@ -71,10 +65,6 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.eventComponent == CustomEvent.HoldEnd) 
 		{
 			StopSound("Stop_GG_SD_Sink_1"); 
-		}
-		if (argument.eventComponent == CustomEvent.ShakeEnd) 
-		{
-			StopSound("Stop_GG_SD_Shake_1"); 
 		}
 		if (argument.eventComponent == CustomEvent.ResetGame) 
 		{
