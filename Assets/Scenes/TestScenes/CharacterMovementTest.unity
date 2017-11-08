@@ -353,13 +353,18 @@ Prefab:
     - target: {fileID: 114246764904318602, guid: d75fbd8790ae53047a5eaa0024f4a241,
         type: 2}
       propertyPath: aiDebugging
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114246764904318602, guid: d75fbd8790ae53047a5eaa0024f4a241,
         type: 2}
       propertyPath: events.Array.data[0]
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114001317796091376, guid: d75fbd8790ae53047a5eaa0024f4a241,
+        type: 2}
+      propertyPath: splitWaypoint
+      value: 
+      objectReference: {fileID: 68910849}
     m_RemovedComponents:
     - {fileID: 114158762052848688, guid: d75fbd8790ae53047a5eaa0024f4a241, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d75fbd8790ae53047a5eaa0024f4a241, type: 2}
@@ -437,7 +442,7 @@ Prefab:
     - target: {fileID: 114917613892504564, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
       propertyPath: aiDebugging
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114562616737950358, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
@@ -1021,8 +1026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb36f8e83b572924a87eaa7206b5fdc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTrigger: {fileID: 0}
-  endTrigger: {fileID: 0}
 --- !u!114 &1553164305 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114905927693067210, guid: 67d67abca5fb8344ba0632b3c65ded95,

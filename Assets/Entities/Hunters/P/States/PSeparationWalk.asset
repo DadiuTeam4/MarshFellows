@@ -11,5 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
   m_Name: PSeparationWalk
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
+  actions:
+  - {fileID: 11400000, guid: aa02eab44c3f1bc41a7a345033cc05ae, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: a584ca399611a9e438a5b8a706500210, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 7db7d8c459225a64c836b12d72140c64, type: 2}
+    falseState: {fileID: 11400000}
