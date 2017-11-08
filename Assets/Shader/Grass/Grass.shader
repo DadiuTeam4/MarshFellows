@@ -7,7 +7,7 @@
 		_Cutoff("Alpha cutoff", Range(0,1)) = 0.5
 		_WindSpeed("Wind Speed", Range(0,1)) = 0.5
 		_WindStrength("Wind Strength", Range(0,1)) = 0.5
-		_WindDir("Wind Direction", Vector) = (0,0,0,0)
+		_WindDir("Wind Direction", Vector) = (0.1,0,0.1,0)
 
 	}
 	SubShader {
@@ -34,7 +34,7 @@
 		float fObjectHeight;
 		half _Glossiness;
 		half _Metallic;
-		//fixed4 _Color;
+		fixed4 _Color;
 
 
 
@@ -42,17 +42,16 @@
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
 		// #pragma instancing_options assumeuniformscaling
 		UNITY_INSTANCING_CBUFFER_START(Props)
-			UNITY_DEFINE_INSTANCED_PROP(fixed4, _Color)
+			//UNITY_DEFINE_INSTANCED_PROP(fixed4, _Color)
 		UNITY_INSTANCING_CBUFFER_END
 
 		void vert(inout appdata_full v)
 		{
-			_WindDir = normalize(_WindDir);
-			float3 center = float3(0,-0.5,0);
-			float lengthFromCenter = distance(v.vertex, center);
+			
+			_WindDir = normalize(_WindDir * float4(1,1,1,1));
 
-			v.vertex.xz += sin(_Time.w * _WindSpeed) * _WindStrength * (v.vertex.y + 0.5) * _WindDir.xz;
-			v.vertex.y += (sin(_Time.w * _WindSpeed)  * _WindStrength * 0.1 + 1) * (v.vertex.y + 0.5);
+			v.vertex.xz += sin(_Time.w * _WindSpeed) * _WindStrength * (v.vertex.y + 0.5) * max(_WindDir.xz, float2(0.0001, 0.0001));
+			v.vertex.y += (sin(_Time.w * _WindSpeed) * _WindStrength * 0.1 + 1) * (v.vertex.y + 0.5);
 			
 
 		}
@@ -60,7 +59,7 @@
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 			// Albedo comes from a texture tinted by color
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex - float2(0, 0.05)) * UNITY_ACCESS_INSTANCED_PROP(_Color);
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex - float2(0, 0.05)) * _Color;
 			o.Albedo = c.rgb;
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
