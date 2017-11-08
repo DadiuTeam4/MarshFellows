@@ -22,6 +22,7 @@ public class Hideable : MonoBehaviour
 	{
 		curtain = hidingCurtain.gameObject;
 		currentlyhidden = CheckIfHidden();
+		argument.gameObjectComponent = gameObject;
 	}
 
 	void Update () 

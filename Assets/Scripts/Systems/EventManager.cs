@@ -36,6 +36,7 @@ namespace Events
 		public Vector3[] vectorArrayComponent = null;
 		public CustomEvent eventComponent = CustomEvent.None;
 		public RaycastHit raycastComponent = new RaycastHit();
+		public GameObject gameObjectComponent;
 	}
 	
 	public delegate void EventDelegate(EventArgument argument);
