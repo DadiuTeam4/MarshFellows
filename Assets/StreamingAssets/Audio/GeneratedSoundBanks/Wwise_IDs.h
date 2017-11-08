@@ -23,6 +23,7 @@ namespace AK
         static const AkUniqueID PLAY_GG_SD_SWIPE_1 = 3603427629U;
         static const AkUniqueID PLAY_K = 1774091805U;
         static const AkUniqueID PLAY_MUSIC = 2932040671U;
+        static const AkUniqueID PLAY_MUSIC_1 = 4068124967U;
         static const AkUniqueID PLAY_S = 1774091781U;
         static const AkUniqueID STOP_ALL = 452547817U;
         static const AkUniqueID STOP_GG_SD_SHAKE_1 = 3879389907U;
