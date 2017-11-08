@@ -31,7 +31,7 @@ namespace CameraControl
 			float distanceFromEndToHunters = Vector3.Distance(deltaPosition, scenarioEndPosition);
 			float progress = distanceFromBeginningToHunters / (distanceFromBeginningToHunters + distanceFromEndToHunters);
 
-			Vector3 desiredPosition = currentAnimation.GetPosition(progress);
+			Vector3 desiredPosition = currentAnimation.GetPosition(progress, deltaPosition);
 			Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
 			transform.position = position;
 			transform.LookAt(currentAnimation.center);
