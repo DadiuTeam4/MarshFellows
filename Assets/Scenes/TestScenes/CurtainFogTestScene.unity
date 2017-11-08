@@ -251,12 +251,6 @@ MonoBehaviour:
   header: Handles all touch input and accelerometer input. All objects inheriting
     from the Holdable, Swipable and Shakable classes are called accordingly from this
     class.
-  forceMultiplier: 100
-  lowerShakeTreshold: 3.5
-  magnitudeDropRate: 0.2
-  terminalVelocity: 50
-  lowerMagnitudeThreshold: 200
-  maxCumulativeMagnitude: 10000
 --- !u!1 &524995445
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +524,7 @@ Prefab:
     - target: {fileID: 54568815893074112, guid: 7a04f01dd9be1da40903228737f1f52c,
         type: 2}
       propertyPath: m_Drag
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4536152955879938, guid: 7a04f01dd9be1da40903228737f1f52c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -539,27 +533,27 @@ Prefab:
     - target: {fileID: 114175003518489502, guid: 7a04f01dd9be1da40903228737f1f52c,
         type: 2}
       propertyPath: speedScalar
-      value: 1
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 114175003518489502, guid: 7a04f01dd9be1da40903228737f1f52c,
         type: 2}
       propertyPath: animationCurve.m_Curve.Array.data[0].inSlope
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114175003518489502, guid: 7a04f01dd9be1da40903228737f1f52c,
         type: 2}
       propertyPath: animationCurve.m_Curve.Array.data[0].outSlope
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114175003518489502, guid: 7a04f01dd9be1da40903228737f1f52c,
         type: 2}
       propertyPath: animationCurve.m_Curve.Array.data[1].inSlope
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114175003518489502, guid: 7a04f01dd9be1da40903228737f1f52c,
         type: 2}
       propertyPath: animationCurve.m_Curve.Array.data[1].outSlope
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 54568815893074112, guid: 7a04f01dd9be1da40903228737f1f52c,
         type: 2}
