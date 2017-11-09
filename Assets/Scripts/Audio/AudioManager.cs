@@ -64,7 +64,7 @@ public class AudioManager : Singleton<AudioManager> {
 		}	
 	}
 
-	//Scene-loader 
+	//Scene-manager 
 	void NewScene(EventArgument argument)
 	{
 		if (argument.stringComponent == "TittleScreen" && argument.intComponent == -1) 
@@ -76,23 +76,26 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			PlaySound("Play_GG_Ambience_Open_1"); 
-			print ("hey hey hey, I work"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Play overture 
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Mere spacey musik 
 		}
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Musik, der udtrykker seperation/ensomhed/etc
 		}
 		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
 		{
@@ -105,6 +108,7 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "BeachEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//End music 
 		}
 	}
 		
