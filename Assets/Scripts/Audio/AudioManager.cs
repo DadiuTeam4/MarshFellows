@@ -21,7 +21,6 @@ public class AudioManager : Singleton<AudioManager> {
 	void Start()
 	{
 		//If Scene is this...
-		AkSoundEngine.PostEvent("Play_GG_Ambience_Open_1", gameObject);
 		groundLayer = "Swamp";
 		PlaySound ("Play_Music_1"); 
 	}
@@ -39,7 +38,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
-		eventManager.AddListener(CustomEvent.LoadScene, changeScene);
+		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
@@ -62,30 +61,49 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.eventComponent == CustomEvent.AppleFall) 
 		{
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
-		}
-		//Current scene
-	
+		}	
 	}
 
 	//Scene-loader 
 	void NewScene(EventArgument argument)
 	{
+		if (argument.stringComponent == "TittleScreen" && argument.intComponent == -1) 
+		{
+			//Do this
+			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
+		}
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
-			//do this 
-			//print("what ever never"+argument.stringComponent + argument.intComponent);
+			//Do this
+			PlaySound("Play_GG_Ambience_Open_1"); 
+		}
+		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
+		{
+			//Do this
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
-			
+			//Do this
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
-			
+			//Do this
 		}
-		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
-
+			//Do this
+		}
+		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
+		{
+			//Do this
+		}
+		if (argument.stringComponent == "DeerEvent" && argument.intComponent == -1) 
+		{
+			//Do this
+		}
+		if (argument.stringComponent == "BeachEvent" && argument.intComponent == -1) 
+		{
+			//Do this
 		}
 	}
 		
@@ -133,8 +151,7 @@ public class AudioManager : Singleton<AudioManager> {
 			soundsBeingPlayed[soundEventName] = true;
 		}
 	}
-
-
+		
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)
 	{

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class EnvironmentObjectAudio : MonoBehaviour {
 
-	public EventAudioTrigger eventAudioTrigger; 
+	//public EventAudioTrigger eventAudioTrigger; 
 	public ObjectType objectType; 
 	public AudioManager audioManager; 
 
@@ -15,12 +15,13 @@ public class EnvironmentObjectAudio : MonoBehaviour {
 	{
 		audioManager = AudioManager.GetInstance(); 	
 	}
-
+	/*
 	public enum EventAudioTrigger
 	{
 		hasBeenSunk,
 		hasFallen
 	}
+	*/
 
 	public enum ObjectType
 	{
@@ -29,34 +30,31 @@ public class EnvironmentObjectAudio : MonoBehaviour {
 		ice
 	}
 		
-	public void PlayEnvironmentAudio()
+	public void PlayEnvironmentFallAudio()
 	{
 		//EvenTrigger : Fallen 
-		if (eventAudioTrigger == EventAudioTrigger.hasFallen) 
-		//ObjectType
-		{
-			if (objectType == ObjectType.tree) 
-			{
+		//if (eventAudioTrigger == EventAudioTrigger.hasFallen) 
+ {		//ObjectType
+			if (objectType == ObjectType.tree) {
 				//play tree fall sound
-				audioManager.PlaySoundWCOtherScript("PlayTree", gameObject); 
+				audioManager.PlaySoundWCOtherScript ("PlayTree", gameObject); 
+				print ("Fallen"); 
 			}
-			if (objectType == ObjectType.stone) 
-			{
+			if (objectType == ObjectType.stone) {
 				//play stone fall sound
 			}
-			if (objectType == ObjectType.ice) 
-			{
+			if (objectType == ObjectType.ice) {
 				//play ice fall sound
 			}
 		}
+	}
 
-		//EvenTrigger : Sunken 
-		if (eventAudioTrigger == EventAudioTrigger.hasBeenSunk) 
-			//ObjectType
+		public void PlayEnvironmentSunkAudio()
 		{
 			if (objectType == ObjectType.tree) 
 			{
 				//play tree sunk sound
+			print ("Sunken"); 
 			}
 			if (objectType == ObjectType.stone) 
 			{
@@ -68,4 +66,3 @@ public class EnvironmentObjectAudio : MonoBehaviour {
 			}
 		}
 	}
-}
