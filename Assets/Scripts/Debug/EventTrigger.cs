@@ -7,12 +7,11 @@ using Events;
 
 public class EventTrigger : MonoBehaviour 
 {
-	public Transform startTrigger;
-	public Transform endTrigger;
 
 	private EventManager eventManager;
-	
-	void OnEnable()
+
+
+    void OnEnable()
 	{
 		eventManager = EventManager.GetInstance();
 	}
@@ -22,11 +21,28 @@ public class EventTrigger : MonoBehaviour
 		if (Input.GetKeyDown("j"))
 		{
 			EventArgument argument = new EventArgument();
-			argument.vectorArrayComponent = new Vector3[2];
+			/* argument.vectorArrayComponent = new Vector3[2];
 			argument.vectorArrayComponent[0] = startTrigger.position;
-			argument.vectorArrayComponent[1] = endTrigger.position;
-			EventManager.GetInstance().CallEvent(CustomEvent.RitualScenarioTriggered, argument);
+			argument.vectorArrayComponent[1] = endTrigger.position; */
+			EventManager.GetInstance().CallEvent(CustomEvent.RitualScenarioEntered, argument);
 		}
-	}
+        if (Input.GetKeyDown("s"))
+        {
+            EventArgument argument = new EventArgument();
+            /* argument.vectorArrayComponent = new Vector3[2];
+			argument.vectorArrayComponent[0] = startTrigger.position;
+			argument.vectorArrayComponent[1] = endTrigger.position; */
+            EventManager.GetInstance().CallEvent(CustomEvent.SeparationScenarioEntered, argument);
+        }
+        if (Input.GetKeyDown("k"))
+        {
+            EventArgument argument = new EventArgument();
+            /* argument.vectorArrayComponent = new Vector3[2];
+			argument.vectorArrayComponent[0] = startTrigger.position;
+			argument.vectorArrayComponent[1] = endTrigger.position; */
+            EventManager.GetInstance().CallEvent(CustomEvent.ScenarioInteracted, argument);
+        }
 
+    }
 }
+
