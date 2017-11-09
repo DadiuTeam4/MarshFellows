@@ -14,7 +14,7 @@ public class DeerAnimationController : MonoBehaviour
 	Rigidbody rigidbody;
 	float currentTime;
 	int reactHash = Animator.StringToHash("deerReact");
-	int RunHash = Animator.StringToHash("deerSpeed");
+
 
 	[SerializeField]
 	private bool found; 
@@ -54,7 +54,6 @@ public class DeerAnimationController : MonoBehaviour
 		
 		if((currentTime + stateInfo.length + runDelay) < Time.time)
 		{
-			print("run");
 			Vector3 relativePos = targetPoint - transform.position;
 			Quaternion rotation = Quaternion.LookRotation(relativePos);
 			Vector3 v3Force = runSpeed * transform.forward;
@@ -63,7 +62,7 @@ public class DeerAnimationController : MonoBehaviour
 			anim.SetFloat("deerSpeed", rigidbody.velocity.magnitude);
 		}
 		
-		if((transform.position - targetPoint).magnitude < 2)
+		if((transform.position - targetPoint).magnitude < 10)
 		{
 			Destroy(this.gameObject);
 		}
