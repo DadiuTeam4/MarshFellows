@@ -58,7 +58,6 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 		
 		if((currentTime + stateInfo.length + runDelay) < Time.time)
 		{
-			print("Run!");
 			Vector3 relativePos = targetPoint - transform.position;
 			Quaternion rotation = Quaternion.LookRotation(relativePos);
 			Vector3 v3Force = runSpeed * transform.forward;
@@ -76,7 +75,6 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		print("Revealed!");
 		found = true;
 	}
 	
@@ -84,7 +82,6 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 	{
 		if (found == true)
 		{
-			print("Scared!");
 			scared = true;
 		}
 	}
