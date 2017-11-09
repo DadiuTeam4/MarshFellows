@@ -31,7 +31,7 @@ public class AudioManager : Singleton<AudioManager> {
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper;
 		EventDelegate changeScene = NewScene; 
-	
+		EventDelegate somethingSunk = SunkAction;
 		// Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
@@ -39,7 +39,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
-
+		eventManager.AddListener(CustomEvent.SinkHasHappened, somethingSunk);
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
 	}
@@ -63,7 +63,26 @@ public class AudioManager : Singleton<AudioManager> {
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
 		}	
 	}
+	void SunkAction(EventArgument argument)
+	{
+		Vector3 positionToPlaySoundFrom;
+		
+		positionToPlaySoundFrom = argument.gameObjectComponent.transform.position;
 
+
+		if(argument.stringComponent == "tree")
+		{
+			print("it is a tree");
+		}
+		else if(argument.stringComponent == "stone")
+		{
+
+		}
+		else if(argument.stringComponent == "somethingElse")
+		{
+
+		}
+	}
 	//Scene-loader 
 	void NewScene(EventArgument argument)
 	{
