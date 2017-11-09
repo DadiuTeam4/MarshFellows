@@ -17,7 +17,8 @@ public class StateController : MonoBehaviour
 	[HideInInspector] public Animator animator;
 	[HideInInspector] public Dictionary<CustomEvent, bool> triggeredEvents;
 	[HideInInspector] public Dictionary<CustomEvent, EventArgument> eventArguments;
-	[HideInInspector] public EventArgument latestEventArgument;
+    [HideInInspector] public EventManager eventManager;
+    [HideInInspector] public EventArgument latestEventArgument;
 
 	private State previousState;
 	private float stateTimeElapsed;
@@ -40,7 +41,8 @@ public class StateController : MonoBehaviour
 
 	private void Start()
 	{
-		triggeredEvents = new Dictionary<CustomEvent, bool>();
+        eventManager = EventManager.GetInstance();
+        triggeredEvents = new Dictionary<CustomEvent, bool>();
 		eventArguments = new Dictionary<CustomEvent, EventArgument>();
         foreach (CustomEvent e in System.Enum.GetValues(typeof(CustomEvent)))
         {
@@ -48,7 +50,7 @@ public class StateController : MonoBehaviour
 
             EventDelegate action = EventCallback;
             eventOccurredCallbacks += action;
-            EventManager.GetInstance().AddListener(e, action);
+            eventManager.AddListener(e, action);
         }
  /*       for (int i = 0; i < events.Length; i++) 
 		{
