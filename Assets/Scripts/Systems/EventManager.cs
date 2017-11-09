@@ -16,7 +16,7 @@ namespace Events
         AppleFall = 4,
         SwipeEffectEnded = 5,
         SwipeEffectStarted = 6,
-        SeparationScenarioEntered = 7,
+        SeparationScenarioEntered = 7, 
         RitualScenarioEntered = 8,
         DeerScenarioEntered = 9,
         BearScenarioEntered = 10,
@@ -26,7 +26,8 @@ namespace Events
         ScenarioInteracted = 14,
         HiddenByFog = 15,
 		UnlockedItem = 16,
-        OReachedByP = 17
+        OReachedByP = 17,
+		SwipeEnded
     }
 
 	public class EventArgument
@@ -79,7 +80,6 @@ namespace Events
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
 		{
-            print("Calling event " + eventName);
             if (listeners.ContainsKey(eventName))
 			{
 				argument.eventComponent = eventName;

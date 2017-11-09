@@ -24,7 +24,7 @@ public class EventOccured : Decision
 
 		if (chanceOfReacting == 1.0f)
 		{
-			//controller.SetLatestEventArguments(controller.eventArguments[eventName]);
+            //controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 			return true;
 		}
 
