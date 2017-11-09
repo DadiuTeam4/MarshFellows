@@ -57,7 +57,6 @@ public class Hideable : MonoBehaviour
 		{
 			if (hit.collider.gameObject.tag == "FogCurtain")
 			{
-				print(hit.collider.gameObject.tag);
 				return true;
 			}
 		}
