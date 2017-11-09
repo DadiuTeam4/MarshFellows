@@ -21,7 +21,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
    // string[] gameEnd = { "EndScene", "Credits" };
 
     public string globalSceneName = "GlobalScene";
-
+    public string firstSceneToLoadName = "IntroLevel";
     void Start()
     {
         //SceneClusterLoader(gameStart);
@@ -35,11 +35,11 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         EventArgument argument = new EventArgument(); 
-        argument.stringComponent = "GlobalScene";
+        argument.stringComponent = globalSceneName;
         argument.intComponent = 0;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-        argument.stringComponent = "IntroLevel";
+        argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
         
@@ -75,19 +75,5 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
 
     }
-
-    
-    // Start the game!
-    /*private void SceneClusterLoader(string[] cluster)
-    {
-        foreach (string sceneName in cluster)
-        {   
-            Scene scene = SceneManager.GetSceneByName(sceneName);
-            if (!scene.isLoaded)
-            {
-                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-            }
-        }
-    }*/
 
 }

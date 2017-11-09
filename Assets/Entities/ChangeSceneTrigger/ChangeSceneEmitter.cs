@@ -12,8 +12,11 @@ public class ChangeSceneEmitter : MonoBehaviour {
     public int offsetForCreatingObstacle = 10;
     public List<string> nextUnloads;
     public List<string> scenesToLoad;
+    public string unlockableInThisScreen = "";
     private string emptyString = "";
     Collider m_ObjectCollider;
+    GameStateManager gameState = new GameStateManager();
+
 
     void OnTriggerEnter(Collider other)
     {
@@ -41,11 +44,21 @@ public class ChangeSceneEmitter : MonoBehaviour {
                 eventManager.CallEvent(CustomEvent.LoadScene,argument);
             }
         }
+        if(unlockableInThisScreen != emptyString)
+        {
+            ///NOT WORKING PROPERLY NEEDS FIX
+            //saves null instead of the list
+            gameState = GameStateManager.current;
+            if(GameStateManager.current == null)
+            {
+                gameState.unlockables = new List<string>();
+            }
+            gameState.unlockables.Add(argument.stringComponent);
+            GameStateManager.current = gameState;
+        }
 
-        Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
+        //Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
         Destroy(this.gameObject);
-
-
     }
 
 }
