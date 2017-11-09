@@ -103,7 +103,7 @@ GameObject:
   m_Layer: 0
   m_Name: FogCurtain
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347928675786234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.4898045, y: 1.21, z: -2.0264554}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0.5}
   m_Children:
   - {fileID: 4604181446668738}
@@ -172,8 +172,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1879967805694822}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.47, y: 1.37, z: -40.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4156955124635660}
@@ -253,7 +253,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 4, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114175003518489502
 MonoBehaviour:
@@ -288,6 +288,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   positionOneTransform: {fileID: 4156955124635660}
   positionTwoTransform: {fileID: 4891061798742572}
+  ownRigidbody: {fileID: 0}
 --- !u!198 &198371924579443424
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -347,7 +348,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -277206303
+  randomSeed: 1525153452
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -798,7 +799,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 3, y: 2.5, z: 0.2}
+    m_Scale: {x: 15, y: 2.5, z: 0.2}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -906,8 +907,8 @@ ParticleSystem:
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 100
+      minMaxState: 0
+      scalar: 600
       minScalar: 50
       maxCurve:
         serializedVersion: 2
@@ -3609,7 +3610,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1908256783
+  randomSeed: 1795152076
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4060,7 +4061,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 3, y: 2.5, z: 0.2}
+    m_Scale: {x: 15, y: 2.5, z: 0.2}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -4169,7 +4170,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 600
       minScalar: 10
       maxCurve:
         serializedVersion: 2
