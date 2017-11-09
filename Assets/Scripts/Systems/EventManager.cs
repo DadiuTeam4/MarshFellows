@@ -24,7 +24,8 @@ namespace Events
         LoadScene = 12,
         ResetGame = 13,
         ScenarioInteracted = 14,
-        HiddenByFog = 15
+        HiddenByFog = 15,
+        OReachedByP = 16
     }
 
 	public class EventArgument
@@ -77,9 +78,9 @@ namespace Events
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
 		{
-			if (listeners.ContainsKey(eventName))
+            print("Calling event " + eventName);
+            if (listeners.ContainsKey(eventName))
 			{
-                print("Calling event " + eventName);
 				argument.eventComponent = eventName;
 				EventDelegate eventDelegate;
 				listeners.TryGetValue(eventName, out eventDelegate);
