@@ -24,8 +24,7 @@ namespace Events
         LoadScene = 12,
         ResetGame = 13,
         ScenarioInteracted = 14,
-        HiddenByFog = 15,
-		ScareDeerEvent = 16
+        HiddenByFog = 15
     }
 
 	public class EventArgument
