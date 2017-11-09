@@ -27,7 +27,6 @@ public class WayPointController : MonoBehaviour {
         bearScenario += SetBearWaypoints;
         eventManager.AddListener(CustomEvent.SeparationScenarioEntered, separationScenario);
         eventManager.AddListener(CustomEvent.BearScenarioEntered, bearScenario);
-        print("events added");
     }
 
     void SetBearWaypoints(EventArgument args) {
