@@ -76,6 +76,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			PlaySound("Play_GG_Ambience_Open_1"); 
+			print ("hey hey hey, I work"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
