@@ -30,7 +30,6 @@ public class WindGust : MonoBehaviour
 
 	public void DisableGust(EventArgument argument)
 	{
-		Debug.Log("DISABLED");
 		windZone.windMain = 0;
 	}
 
