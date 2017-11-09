@@ -23,6 +23,7 @@ public class AudioManager : Singleton<AudioManager> {
 		//If Scene is this...
 		AkSoundEngine.PostEvent("Play_GG_Ambience_Open_1", gameObject);
 		groundLayer = "Swamp";
+		PlaySound ("Play_Music_1"); 
 	}
 		
 	//Calls when ever listened event is triggered 
@@ -35,8 +36,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
-		eventManager.AddListener (CustomEvent.ShakeBegin, postEvent); 
-		eventManager.AddListener (CustomEvent.ShakeEnd, stopEvent);
+		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
@@ -51,11 +51,7 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
 		{
-			PlaySoundWC ("Play_GG_SD_Sink_1"); 
-		}
-		if (argument.eventComponent == CustomEvent.ShakeBegin) 
-		{
-			PlaySoundWC ("Play_GG_SD_Shake_1"); 
+			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
 		if (argument.eventComponent == CustomEvent.AppleFall) 
 		{
@@ -70,9 +66,9 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			StopSound("Stop_GG_SD_Sink_1"); 
 		}
-		if (argument.eventComponent == CustomEvent.ShakeEnd) 
+		if (argument.eventComponent == CustomEvent.ResetGame) 
 		{
-			StopSound("Stop_GG_SD_Shake_1"); 
+			StopSound ("Stop_All"); 
 		}
 	}
 
@@ -83,7 +79,7 @@ public class AudioManager : Singleton<AudioManager> {
 		PlaySound ("Play_FS");
 	}
 
-	//Play-function with stop-callback 
+	//Play-function with stop-callback to a specific event  
 	void PlaySoundWC(string soundEventName)
 	{
         soundEventName = string.Concat("", soundEventName, "");
@@ -110,7 +106,7 @@ public class AudioManager : Singleton<AudioManager> {
 			AkSoundEngine.PostEvent (stopEventName, gameObject); 
 	}
 		
-	//Checks if the events has stopped 
+	//Checks if the specific event has stopped 
 	void EventHasStopped(object in_cookie, AkCallbackType in_type, object in_info)
 	{
         string soundEventName = (string) in_cookie;

@@ -8,7 +8,7 @@ using UnityEditor;
 [CustomEditor(typeof(Walk))]
 public class DynamicWalkFields : Editor 
 {
-	public override void OnInspectorGUI()
+	/* public override void OnInspectorGUI()
 	{
 		serializedObject.Update();
 		Walk walk = target as Walk;
@@ -19,5 +19,5 @@ public class DynamicWalkFields : Editor
 		{
 			walk.direction = EditorGUILayout.Vector3Field("Direction in world space", walk.direction);
 		}
-	}
+	} */
 }
