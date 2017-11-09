@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Events;
+[RequireComponent(typeof(WindZone))]
 public class WindGust : MonoBehaviour 
 {
 	private WindZone windZone;
@@ -15,7 +16,10 @@ public class WindGust : MonoBehaviour
 
 	void Start () 
 	{	
+		windZone = GetComponent<WindZone>();
+
 		eventDelegate = PlaceGust;
+		EventManager.GetInstance().AddListener(CustomEvent.Swipe, eventDelegate);
 	}
 
 	public void PlaceGust(EventArgument argument)
