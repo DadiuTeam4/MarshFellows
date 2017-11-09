@@ -28,6 +28,7 @@ public class WayPointController : MonoBehaviour {
         eventManager = EventManager.GetInstance();
         separationScenario += SetSeparationWaypoints;
         bearScenario += SetBearWaypoints;
+        deerScenario += SetDeerWaypoints;
         eventManager.AddListener(CustomEvent.SeparationScenarioEntered, separationScenario);
         eventManager.AddListener(CustomEvent.BearScenarioEntered, bearScenario);
         eventManager.AddListener(CustomEvent.DeerScenarioEntered, deerScenario);
