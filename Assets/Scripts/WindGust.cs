@@ -18,9 +18,12 @@ public class WindGust : MonoBehaviour
 	private EventDelegate onSwipe;
 	private EventDelegate onSwipeEnd;
 
+	private Quaternion lookDirection;
+
 	void Start () 
 	{	
 		windZone = GetComponent<WindZone>();
+		windParticles = GetComponent<ParticleSystem>();
 
 		onSwipe = PlaceGust;
 		onSwipeEnd = DisableGust;
@@ -30,6 +33,10 @@ public class WindGust : MonoBehaviour
 
 	public void DisableGust(EventArgument argument)
 	{
+		/*if (!windParticles.isStopped)
+		{
+			windParticles.Stop();
+		} */
 		windZone.windMain = 0;
 	}
 
@@ -39,6 +46,14 @@ public class WindGust : MonoBehaviour
 		{
 			windZone.windMain = windForce;
 		}
+
+		/*if(windParticles.isStopped)
+		{
+			windParticles.Play();
+		}*/
+
+		//Debug.DrawLine(transform.position, transform.position + argument.vectorComponent * 10, Color.red, 1.0f);
+		transform.rotation = Quaternion.LookRotation(argument.vectorComponent.normalized);
 
 		transform.position = argument.raycastComponent.point;
 	}
