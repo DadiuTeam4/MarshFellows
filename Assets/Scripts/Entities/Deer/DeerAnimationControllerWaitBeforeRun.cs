@@ -39,7 +39,7 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 		rigidbody = GetComponent<Rigidbody>();
 
 		fogEvent = HiddenTest;
-		scareEvent = scaredTest;
+		scareEvent = ScaredTest;
 		EventManager.GetInstance().AddListener(CustomEvent.HiddenByFog, fogEvent);
 	}
 	
@@ -79,5 +79,8 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 	}
 	
 	public void ScaredTest(EventArgument argument)
+	{
+
+	}
 
 }

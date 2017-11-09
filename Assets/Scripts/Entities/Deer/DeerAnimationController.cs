@@ -14,10 +14,8 @@ public class DeerAnimationController : MonoBehaviour
 	Rigidbody rigidbody;
 	float currentTime;
 	int reactHash = Animator.StringToHash("deerReact");
-
-
-	[SerializeField]
 	private bool found; 
+	private bool run;
 
 	[SerializeField]
 	private float runDelay = 3.0f;
@@ -50,9 +48,10 @@ public class DeerAnimationController : MonoBehaviour
 			anim.SetTrigger(reactHash);
 			currentTime = Time.time;
 			found = false;
+			run = true;
 		}
 		
-		if((currentTime + stateInfo.length + runDelay) < Time.time)
+		if((currentTime + stateInfo.length + runDelay) < Time.time && run)
 		{
 			Vector3 relativePos = targetPoint - transform.position;
 			Quaternion rotation = Quaternion.LookRotation(relativePos);
