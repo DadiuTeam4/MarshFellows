@@ -236,7 +236,7 @@ Rigidbody:
   m_GameObject: {fileID: 1347928675786234}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.9
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -253,7 +253,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114175003518489502
 MonoBehaviour:
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68cb0558d015ee4cbaecd6262b427e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedScalar: 2000
+  speedScalar: 10000
   distanceAccuracy: 0.01
   animationCurve:
     serializedVersion: 2
@@ -288,6 +288,7 @@ MonoBehaviour:
     m_RotationOrder: 0
   positionOneTransform: {fileID: 4156955124635660}
   positionTwoTransform: {fileID: 4891061798742572}
+  ownRigidbody: {fileID: 0}
 --- !u!198 &198371924579443424
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -347,7 +348,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -277206303
+  randomSeed: -1377028229
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -798,7 +799,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 3, y: 2.5, z: 0.2}
+    m_Scale: {x: 8.220506, y: 2.5, z: 0.2}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -907,8 +908,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 100
-      minScalar: 50
+      scalar: 300
+      minScalar: 250
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1251,8 +1252,8 @@ ParticleSystem:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
         key1: {r: 1, g: 1, b: 1, a: 1}
-        key2: {r: 0, g: 0, b: 0, a: 0}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key2: {r: 0, g: 0, b: 0, a: 1}
+        key3: {r: 0, g: 0, b: 0, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -1265,17 +1266,17 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
-        atime1: 32768
-        atime2: 65535
-        atime3: 0
-        atime4: 0
-        atime5: 0
+        atime0: 193
+        atime1: 8867
+        atime2: 32768
+        atime3: 59753
+        atime4: 65535
+        atime5: 65535
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 3
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3609,7 +3610,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1908256783
+  randomSeed: -1504864468
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4060,7 +4061,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 3, y: 2.5, z: 0.2}
+    m_Scale: {x: 8.100281, y: 2.5, z: 0.2}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -4169,7 +4170,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 300
       minScalar: 10
       maxCurve:
         serializedVersion: 2
