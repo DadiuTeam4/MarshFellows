@@ -31,7 +31,7 @@ public class ObjectPusher : MonoBehaviour
 		rayEnd.y += yOffset;
 		Ray ray = new Ray(rayBegin, rayEnd);
 
-		//Debug.DrawLine(rayBegin, rayEnd, Color.green, 2.0f);
+		Debug.DrawLine(rayBegin, rayEnd, Color.green, 2.0f);
 
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit, rayDistanceScalar * (argument.vectorComponent.magnitude / Time.deltaTime)))

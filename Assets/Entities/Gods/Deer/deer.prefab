@@ -95,6 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4214231658029266}
   - component: {fileID: 95174190463423224}
+  - component: {fileID: 114411290367592316}
   m_Layer: 0
   m_Name: deer
   m_TagString: Untagged
@@ -857,16 +858,16 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1161607112842766}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.95851034, z: -0, w: -0.28505778}
+  m_LocalPosition: {x: 7.61, y: -0.16, z: -34.74}
+  m_LocalScale: {x: 1.5615511, y: 1.56155, z: 1.56155}
   m_Children:
   - {fileID: 4213967460743468}
   - {fileID: 4043837747571958}
   - {fileID: 4398177026429956}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 506.875, z: 0}
 --- !u!4 &4216261810006596
 Transform:
   m_ObjectHideFlags: 1
@@ -1421,6 +1422,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114411290367592316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1161607112842766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f692385f76888f14da8038abaee0a626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hidingCurtain: {fileID: 0}
+  checkFrequency: 5
+  falseMessage: 
+  trueMessage: 
 --- !u!137 &137478162604701138
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
