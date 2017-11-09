@@ -27,7 +27,8 @@ namespace Events
         HiddenByFog = 15,
 		UnlockedItem = 16,
         OReachedByP = 17,
-		SwipeEnded
+		SwipeEnded = 18,
+		SinkHasHappened = 19,
     }
 
 	public class EventArgument
