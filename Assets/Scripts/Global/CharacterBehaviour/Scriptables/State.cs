@@ -14,7 +14,9 @@ public class State : ScriptableObject
 	{
 		DoActions(controller);
 		CheckTransitions(controller);
-	}
+    }
+
+
 
 	private void DoActions(StateController controller)
 	{
@@ -29,20 +31,14 @@ public class State : ScriptableObject
 		foreach (Transition transition in transitions)
 		{
 			bool decisionSucceeded = transition.decision.Decide(controller);
+            // Debug.Log("Transition to " + transition.trueState + " " + decisionSucceeded);
 
-			if (decisionSucceeded)
+            if (decisionSucceeded)
 			{
-				if (transition.returnToPreviousState) 
-				{
-					controller.ReturnToPreviousState();
-				}
-				else 
-				{
-					controller.TransitionToState(transition.trueState);
-				}
-				break;
+			    controller.TransitionToState(transition.trueState);
+                break;
 			}
-			else if (transition.falseState != null)
+			else
 			{
 				controller.TransitionToState(transition.falseState);
 			}

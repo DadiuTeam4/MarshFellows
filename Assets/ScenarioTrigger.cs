@@ -11,15 +11,25 @@ public class ScenarioTrigger : MonoBehaviour
 	public CustomEvent scenarioEvent;
 	public Transform otherTriggerZone;
 
+    private bool hasBeenTriggered = false;
+
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("ScenarioTrigger"))
+		if (other.gameObject.CompareTag("ScenarioTrigger") && !hasBeenTriggered)
 		{
 			EventArgument argument = new EventArgument();
 			argument.vectorArrayComponent = new Vector3[2];
-			argument.vectorArrayComponent[0] = transform.position;
-			argument.vectorArrayComponent[1] = otherTriggerZone.position;
+            argument.vectorArrayComponent[0] = transform.position;
+            if (otherTriggerZone)
+            {
+                argument.vectorArrayComponent[1] = otherTriggerZone.position;
+            }
+            else
+            {
+                Debug.LogError("No second trigger zone set on Scenario Trigger Zone");
+            }
 			EventManager.GetInstance().CallEvent(scenarioEvent, argument);
+            hasBeenTriggered = true;
 		}
 	}
 }

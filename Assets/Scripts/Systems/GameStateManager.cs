@@ -9,6 +9,6 @@ public class GameStateManager {
 	public static GameStateManager current;
 	public bool playedBefore = false;
 	public int roundsPlayed = 0; 
-
+	public List<string> unlockables;
 
 }

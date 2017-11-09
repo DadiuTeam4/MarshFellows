@@ -37,7 +37,7 @@ namespace CameraControl
 			// Add event listeners
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
 			eventManager = EventManager.GetInstance();
-			eventManager.AddListener(CustomEvent.RitualScenarioTriggered, eventDelegate);
+			eventManager.AddListener(CustomEvent.RitualScenarioEntered, eventDelegate);
 			eventManager.AddListener(CustomEvent.ScenarioEnded, eventDelegate);
 		}
 
@@ -50,25 +50,25 @@ namespace CameraControl
 		{
 			switch (argument.eventComponent)
 			{
-				case (CustomEvent.SeparationScenarioTriggered):
+				case (CustomEvent.SeparationScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;
 					cinematicCamera.SetScenario(Scenario.Separation, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
 					break;
 				}
-				case (CustomEvent.RitualScenarioTriggered):
+				case (CustomEvent.RitualScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;
 					cinematicCamera.SetScenario(Scenario.Ritual, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
 					break;
 				}
-				case (CustomEvent.DeerScenarioTriggered):
+				case (CustomEvent.DeerScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;
 					cinematicCamera.SetScenario(Scenario.Deer, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
 					break;
 				}
-				case (CustomEvent.BearScenarioTriggered):
+				case (CustomEvent.BearScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;
 					cinematicCamera.SetScenario(Scenario.Bear, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);

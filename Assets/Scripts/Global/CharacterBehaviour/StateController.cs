@@ -17,7 +17,8 @@ public class StateController : MonoBehaviour
 	[HideInInspector] public Animator animator;
 	[HideInInspector] public Dictionary<CustomEvent, bool> triggeredEvents;
 	[HideInInspector] public Dictionary<CustomEvent, EventArgument> eventArguments;
-	[HideInInspector] public EventArgument latestEventArgument;
+    [HideInInspector] public EventManager eventManager;
+    [HideInInspector] public EventArgument latestEventArgument;
 
 	private State previousState;
 	private float stateTimeElapsed;
@@ -34,52 +35,61 @@ public class StateController : MonoBehaviour
 
 	private void Awake()
 	{ 
-		animator = GetComponent<Animator>();
+		animator = GetComponentInChildren<Animator>();
 		navigator = GetComponent<Navigator>();
 	}
 
 	private void Start()
 	{
-		triggeredEvents = new Dictionary<CustomEvent, bool>();
+        eventManager = EventManager.GetInstance();
+        triggeredEvents = new Dictionary<CustomEvent, bool>();
 		eventArguments = new Dictionary<CustomEvent, EventArgument>();
-		for (int i = 0; i < events.Length; i++) 
+        foreach (CustomEvent e in System.Enum.GetValues(typeof(CustomEvent)))
+        {
+            triggeredEvents.Add(e, false);
+
+            EventDelegate action = EventCallback;
+            eventOccurredCallbacks += action;
+            eventManager.AddListener(e, action);
+        }
+ /*       for (int i = 0; i < events.Length; i++) 
 		{
 			triggeredEvents.Add(events[i], false);
 
 			EventDelegate action = EventCallback;
 			eventOccurredCallbacks += action;
 			EventManager.GetInstance().AddListener(events[i], action);
-		}
+		} */
 	}
 
 	public bool CheckEventOccured(CustomEvent eventName) 
 	{
-		bool eventOccured = triggeredEvents[eventName];
+        bool eventOccured;
+        triggeredEvents.TryGetValue(eventName, out eventOccured);
+
 		triggeredEvents[eventName] = false;
 		return eventOccured;
 	}
 
 	private void EventCallback(EventArgument eventArgument)
 	{
-		bool eventValue;
-		if (triggeredEvents.TryGetValue(eventArgument.eventComponent, out eventValue)) 
-		{
-			triggeredEvents[eventArgument.eventComponent] = true;
-			eventArguments[eventArgument.eventComponent] = eventArgument;
-		}
-		else
-		{
-			print("Event " + eventArgument.eventComponent + " does not exist");
-		}
-	}
+        //print("callback " + eventArgument.eventComponent);
+        triggeredEvents[eventArgument.eventComponent] = true;
+        eventArguments[eventArgument.eventComponent] = eventArgument;
+        foreach (KeyValuePair<CustomEvent, bool> kvp in triggeredEvents)
+        {
+            //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+            //Debug.Log("Key = " + kvp.Key + ", Value = " + kvp.Value);
+        }
+    }
 
 	public void TransitionToState(State nextState)
 	{
 		if (nextState != currentState) 
 		{
 			previousState = currentState;
-			currentState = nextState;
-			OnExitState();
+            OnExitState();
+            currentState = nextState;
 		}
 	}
 
@@ -90,7 +100,8 @@ public class StateController : MonoBehaviour
 
 	private void Update()
 	{
-		if (!active) 
+        stateTimeElapsed += Time.deltaTime;
+        if (!active) 
 		{
 			return;
 		}
@@ -101,15 +112,15 @@ public class StateController : MonoBehaviour
 			debugInfo = "";
 			UpdateDebugInfo();
 		}
-		#endif
-		#endregion
-		//animator.SetFloat("speed", navigator.GetSpeed());
+#endif
+        #endregion
+        //animator.SetFloat("speed", navigator.GetSpeed());
+
 		currentState.UpdateState(this);
 	}
 
 	public bool CheckIfCountDownElapsed(float duration)
 	{
-		stateTimeElapsed += Time.deltaTime;
 		return stateTimeElapsed >= duration;
 	}
 
@@ -128,9 +139,11 @@ public class StateController : MonoBehaviour
 		return navigator.GetDestination();
 	}
 
-	public void LookAt(Vector3 position)
+	public void LookAt(float n)
 	{
-		// TODO: Get look direction and convert to animation coordinates
+        // TODO: Get look direction and convert to animation coordinates
+        animator.SetFloat("reactDirection", n);
+
 	}
 
 	public void ResetLook()
@@ -148,7 +161,7 @@ public class StateController : MonoBehaviour
 	private void UpdateDebugInfo()
 	{
 		debugInfo += ("State time elapsed:\t" + stateTimeElapsed + "\n");
-		debugInfo += ("Current state:\t" + currentState.name + "\n");
+		debugInfo += ("Current state:\t" + currentState + "\n");
 		debugInfo += ("Current waypoint:\t" + navigator.GetDestination() + "\n");
 		debugInfo += ("\nTriggered events:\n");
 		foreach (CustomEvent eventName in events)

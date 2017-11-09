@@ -23,6 +23,7 @@ public class AudioManager : Singleton<AudioManager> {
 		//If Scene is this...
 		AkSoundEngine.PostEvent("Play_GG_Ambience_Open_1", gameObject);
 		groundLayer = "Swamp";
+		PlaySound ("Play_Music_1"); 
 	}
 		
 	//Calls when ever listened event is triggered 

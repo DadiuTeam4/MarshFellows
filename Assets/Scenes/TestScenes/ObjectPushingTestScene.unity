@@ -840,8 +840,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1195115635}
-  m_LocalRotation: {x: 0.24872175, y: 0.6627708, z: -0.24946885, w: 0.6607857}
-  m_LocalPosition: {x: -27.061317, y: 20.167412, z: -1.5781614}
+  m_LocalRotation: {x: 0.2476714, y: -0.62812334, z: 0.22106202, w: 0.7037411}
+  m_LocalPosition: {x: 8.683114, y: 7.7581387, z: 1.496804}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -889,15 +889,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cccef2c79be46c644b3708bc48247272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testingCamera: {fileID: 1953455627}
   header: Handles all touch input and accelerometer input. All objects inheriting
     from the Holdable, Swipable and Shakable classes are called accordingly from this
     class.
-  forceMultiplier: 100
-  lowerShakeTreshold: 3.5
-  magnitudeDropRate: 0.2
-  terminalVelocity: 50
-  lowerMagnitudeThreshold: 200
-  maxCumulativeMagnitude: 10000
 --- !u!114 &1195115644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,9 +904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a198324c6a31c439a427c248ca308d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yOffset: 0
-  forceScalar: 100
-  rayDistanceScalar: 1
+  yOffset: 0.5
+  forceScalar: 10
+  rayDistanceScalar: 2
 --- !u!1 &1204167092
 GameObject:
   m_ObjectHideFlags: 0
@@ -1073,6 +1068,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1df5ee4b39b75e408aa0cd1feee72ed, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1348279553
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4963473722849550, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.3907808
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963473722849550, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 27.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963473722849550, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963473722849550, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963473722849550, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963473722849550, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963473722849550, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963473722849550, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1436390021
 GameObject:
@@ -1758,3 +1795,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1923360130}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!20 &1953455627 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20481779705674398, guid: dc14ca0f82a7d2149aaa0bb8b5b7003a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1348279553}
