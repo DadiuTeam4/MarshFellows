@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using UnityEngine.SceneManagement;
 
 //0 for sending current scene , 1 for sending next in order to load, 2 for sending another one
 public class ChangeSceneEmitter : MonoBehaviour {
@@ -16,7 +17,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
     private string emptyString = "";
     Collider m_ObjectCollider;
     GameStateManager gameState = new GameStateManager();
-
+    static int sceneIndex = 1;
 
     void OnTriggerEnter(Collider other)
     {
@@ -44,6 +45,12 @@ public class ChangeSceneEmitter : MonoBehaviour {
                 eventManager.CallEvent(CustomEvent.LoadScene,argument);
             }
         }
+    
+        argument.stringComponent = SceneManager.GetSceneAt(sceneIndex).name;
+        argument.intComponent = -1;
+        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        sceneIndex++;
+
         if(unlockableInThisScreen != emptyString)
         {
             ///NOT WORKING PROPERLY NEEDS FIX
@@ -53,7 +60,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
             {
                 gameState.unlockables = new List<string>();
             }
-            gameState.unlockables.Add(argument.stringComponent);
+//            gameState.unlockables.Add(argument.stringComponent);
             GameStateManager.current = gameState;
         }
 

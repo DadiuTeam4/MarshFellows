@@ -15,11 +15,11 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     private string emptyString = "";
     // Variables to keep track of scenes to load and unload.
     List<string> scenesToUnload;
-
+    
     // Clusters of scenes to be loaded at certain points.
    // string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
    // string[] gameEnd = { "EndScene", "Credits" };
-
+    EventManager eventManager;
     public string globalSceneName = "GlobalScene";
     public string firstSceneToLoadName = "IntroLevel";
     void Start()
@@ -27,7 +27,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         //SceneClusterLoader(gameStart);
         scenesToUnload = new List<string>();
         
-        EventManager eventManager = EventManager.GetInstance();
+        eventManager = EventManager.GetInstance();
 
     	EventDelegate sceneLoader = SceneLoader;
 
@@ -54,25 +54,34 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             scenesToUnload.Add(argument.stringComponent);
             return;
         }
-        
-        //if you sent a new scene to load
-        Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
-        if (!scene.isLoaded)
+        if(argument.intComponent > 0)
         {
-            SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
-        }
-
-        foreach(string sceneToUnload in scenesToUnload)
-        {
-            if(sceneToUnload != emptyString && sceneToUnload != globalSceneName)
+            //if you sent a new scene to load
+            Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
+            if (!scene.isLoaded)
             {
-                Scene unloadScene = SceneManager.GetSceneByName(sceneToUnload);
-                if (unloadScene.isLoaded)
+                SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
+            }
+
+            foreach(string sceneToUnload in scenesToUnload)
+            {
+                if(sceneToUnload != emptyString && sceneToUnload != globalSceneName)
                 {
-                    SceneManager.UnloadSceneAsync(sceneToUnload);
+                    Scene unloadScene = SceneManager.GetSceneByName(sceneToUnload);
+                    if (unloadScene.isLoaded)
+                    {
+                        SceneManager.UnloadSceneAsync(sceneToUnload);
+                    }
                 }
             }
+
         }
+        
+        if(argument.intComponent < 0)
+        {
+            print("Name of the scene is:" + argument.stringComponent + " Time for new Music");
+        }
+
 
     }
 
