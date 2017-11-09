@@ -9,13 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
-  m_Name: PReacting
+  m_Name: PBearWalk
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 9aa7f4dd0e81f7c45883ded557db6941, type: 2}
   - {fileID: 11400000, guid: aa02eab44c3f1bc41a7a345033cc05ae, type: 2}
   transitions:
-  - decision: {fileID: 11400000, guid: f1944ba02328a7242aa2350bb6894535, type: 2}
-    returnToPreviousState: 1
-    trueState: {fileID: 11400000, guid: e008e31368147904f815bf8f48f44781, type: 2}
+  - decision: {fileID: 11400000, guid: 716f2c94410099e4f917bdadf54f11c8, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 37a588beabccad240aa1675765756e62, type: 2}
+    falseState: {fileID: 11400000}
+  - decision: {fileID: 11400000, guid: a584ca399611a9e438a5b8a706500210, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 46ab7042ae963224ab3054262b4d23ac, type: 2}
     falseState: {fileID: 11400000}
