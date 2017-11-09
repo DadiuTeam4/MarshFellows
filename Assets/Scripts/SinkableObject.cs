@@ -32,12 +32,15 @@ public class SinkableObject : Holdable
 
 	private RaycastHit hit;
 	private float t = 0.0f;
+	Rigidbody myRigidbody;
 
 	void Start()
 	{
 		startPosition = transform.position;
 		endPosition = startPosition;
 		endPosition.y = startPosition.y - depth;
+			
+
 	}
 
 	void Update()
@@ -45,6 +48,7 @@ public class SinkableObject : Holdable
 		if (rising && Time.time > timeTillRise)
 		{
 			Rise();
+			MakeObjectStationary();
 		}
 	}
 
@@ -99,5 +103,11 @@ public class SinkableObject : Holdable
         Physics.Raycast(ray, out hit);
 
 		return hit;
+	}
+
+	private void MakeObjectStationary()
+	{
+
+		
 	}
 }
