@@ -26,6 +26,9 @@ namespace Events
         ScenarioInteracted = 14,
         HiddenByFog = 15,
 		UnlockedItem = 16
+        HiddenByFog = 15,
+		ScareDeerEvent = 16,
+        OReachedByP = 17
     }
 
 	public class EventArgument
@@ -78,9 +81,9 @@ namespace Events
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
 		{
-			if (listeners.ContainsKey(eventName))
+            print("Calling event " + eventName);
+            if (listeners.ContainsKey(eventName))
 			{
-                print("Calling event " + eventName);
 				argument.eventComponent = eventName;
 				EventDelegate eventDelegate;
 				listeners.TryGetValue(eventName, out eventDelegate);
