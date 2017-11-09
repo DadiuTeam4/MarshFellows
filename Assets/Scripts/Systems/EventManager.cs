@@ -26,8 +26,7 @@ namespace Events
         ScenarioInteracted = 14,
         HiddenByFog = 15,
 		UnlockedItem = 16,
-		ScareDeerEvent = 17,
-        OReachedByP = 18
+        OReachedByP = 17
     }
 
 	public class EventArgument
