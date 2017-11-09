@@ -26,7 +26,8 @@ namespace Events
         ScenarioInteracted = 14,
         HiddenByFog = 15,
 		ScareDeerEvent = 16,
-        OReachedByP = 17
+        OReachedByP = 17,
+		SinkGround = 18
     }
 
 	public class EventArgument
