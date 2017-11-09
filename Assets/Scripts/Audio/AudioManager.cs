@@ -37,6 +37,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
+		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
@@ -45,19 +46,27 @@ public class AudioManager : Singleton<AudioManager> {
 	//Event poster 
 	void Poster(EventArgument argument)
 	{
-		if (argument.eventComponent == CustomEvent.Swipe) 
-		{
+		//Swipe
+		if (argument.eventComponent == CustomEvent.Swipe) {
 			PlaySoundWC ("Play_GG_SD_Swipe_1"); 
 		}
-		if (argument.eventComponent == CustomEvent.HoldBegin) 
-		{
+		//Hold begin
+		if (argument.eventComponent == CustomEvent.HoldBegin) {
 			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
-		if (argument.eventComponent == CustomEvent.AppleFall) 
-		{
+		//Apple 
+		if (argument.eventComponent == CustomEvent.AppleFall) {
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
 		}
+		//Current scene 
+		if (argument.eventComponent == CustomEvent.LoadScene) {
+			if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) {
+				//do this 
+			}
+		}
 	}
+	
+	
 
 	//Event stopper 
 	void Stopper(EventArgument argument)

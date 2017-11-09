@@ -18,6 +18,7 @@ namespace AK
         static const AkUniqueID PLAY_GG_SD_APPLEDROP = 1577744568U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
         static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
+        static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
         static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
         static const AkUniqueID PLAY_GG_SD_SWIPE_1 = 3603427629U;
@@ -74,6 +75,11 @@ namespace AK
         static const AkUniqueID MASTER_SECONDARY_BUS = 805203703U;
         static const AkUniqueID MUSIC = 3991942870U;
     } // namespace BUSSES
+
+    namespace AUX_BUSSES
+    {
+        static const AkUniqueID REVERB = 348963605U;
+    } // namespace AUX_BUSSES
 
 }// namespace AK
 
