@@ -31,13 +31,15 @@ public class EnvironmentObjectAudio : MonoBehaviour {
 		
 	public void PlayEnvironmentAudio()
 	{
-		//Fall 
+		//EvenTrigger : Fallen 
 		if (eventAudioTrigger == EventAudioTrigger.hasFallen) 
+		//ObjectType
 		{
 			if (objectType == ObjectType.tree) 
 			{
 				//play tree fall sound
 				//AudioManager.PlaySoundWC("name"); 
+				audioManager.PlaySoundWCOtherScript("PlayTree", gameObject); 
 			}
 			if (objectType == ObjectType.stone) 
 			{
@@ -49,8 +51,9 @@ public class EnvironmentObjectAudio : MonoBehaviour {
 			}
 		}
 
-		//Sunk 
+		//EvenTrigger : Sunken 
 		if (eventAudioTrigger == EventAudioTrigger.hasBeenSunk) 
+			//ObjectType
 		{
 			if (objectType == ObjectType.tree) 
 			{

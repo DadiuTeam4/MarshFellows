@@ -31,6 +31,7 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper;
+		EventDelegate changeScene = NewScene; 
 	
 		// Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
@@ -38,6 +39,8 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
+		eventManager.AddListener(CustomEvent.LoadScene, changeScene);
+
 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
@@ -58,16 +61,24 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.eventComponent == CustomEvent.AppleFall) {
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
 		}
-		//Current scene 
-		if (argument.eventComponent == CustomEvent.LoadScene) {
-			if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) {
-				//do this 
-			}
-		}
+		//Current scene
+	
 	}
 	
-	
+	void NewScene(EventArgument argument)
+	{
+		
+			print("what ever never"+argument.stringComponent + argument.intComponent);
 
+			if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) {
+				//do this 
+
+			}
+			if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
+			{
+		}
+	}
+		
 	//Event stopper 
 	void Stopper(EventArgument argument)
 	{
@@ -101,17 +112,18 @@ public class AudioManager : Singleton<AudioManager> {
         }
 	}
 
-	void PlaySoundWCOtherScript(string soundEventName, object thisthis)
+	public void PlaySoundWCOtherScript(string soundEventName, GameObject thisthis)
 	{
 		soundEventName = string.Concat("", soundEventName, "");
 		bool isSoundPlaying;
 		soundsBeingPlayed.TryGetValue(soundEventName, out isSoundPlaying);
 		if (!isSoundPlaying)
 		{
-			eventID = AkSoundEngine.PostEvent(soundEventName, gameObject, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, soundEventName);
+			eventID = AkSoundEngine.PostEvent(soundEventName, thisthis, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, soundEventName);
 			soundsBeingPlayed[soundEventName] = true;
 		}
 	}
+
 
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)
