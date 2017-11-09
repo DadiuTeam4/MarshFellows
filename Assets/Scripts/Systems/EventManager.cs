@@ -25,7 +25,8 @@ namespace Events
         ResetGame = 13,
         ScenarioInteracted = 14,
         HiddenByFog = 15,
-        OReachedByP = 16
+        OReachedByP = 16,
+		UnlockedItem = 17
     }
 
 	public class EventArgument
