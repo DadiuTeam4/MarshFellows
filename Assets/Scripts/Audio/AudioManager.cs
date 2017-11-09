@@ -94,8 +94,7 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
 			//Do this
-			PlaySound("Play_GG_Ambience_Open_1"); 
-			print ("hey hey hey, I work"); 
+			PlaySound("Play_GG_Ambience_Open_1");
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{

@@ -26,6 +26,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1359254747257760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4807951873790814}
+  m_Layer: 0
+  m_Name: DeerWayPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1467323584405022
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1803581005297724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 216.98, y: 0, z: 271.21}
+  m_LocalPosition: {x: 212.15, y: 0, z: 273.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4945677484119006}
@@ -126,6 +141,19 @@ Transform:
   m_Father: {fileID: 4945677484119006}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4807951873790814
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1359254747257760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -115.2, y: 0, z: 385.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4945677484119006}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4945677484119006
 Transform:
   m_ObjectHideFlags: 1
@@ -140,6 +168,7 @@ Transform:
   - {fileID: 4989214907109774}
   - {fileID: 4092379755510560}
   - {fileID: 4226746213568536}
+  - {fileID: 4807951873790814}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,6 +199,8 @@ MonoBehaviour:
   O: {fileID: 0}
   oSeparationSplit: {fileID: 4092379755510560}
   oBearSplit: {fileID: 4226746213568536}
+  oDeerSplit: {fileID: 4807951873790814}
   P: {fileID: 0}
   pSeparationSplit: {fileID: 4989214907109774}
   pBearSplit: {fileID: 4639200980918582}
+  pDeerSplit: {fileID: 4807951873790814}
