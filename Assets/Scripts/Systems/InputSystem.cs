@@ -182,6 +182,9 @@ public class InputSystem : Singleton<InputSystem>
 			heldLastFrame[touch.fingerId].OnTouchReleased();
 			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
+
+		EventManager.GetInstance().CallEvent(CustomEvent.SwipeEnded);
+		
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
 	}
