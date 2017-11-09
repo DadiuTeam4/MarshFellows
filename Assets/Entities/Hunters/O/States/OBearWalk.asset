@@ -11,5 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
   m_Name: OBearWalk
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
+  actions:
+  - {fileID: 11400000, guid: a3bd0d6fe07a66348ad62ccfd545f767, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 716f2c94410099e4f917bdadf54f11c8, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 93244de6d2fc3a4499e10f2dd7cbdfae, type: 2}
+    falseState: {fileID: 11400000}
+  - decision: {fileID: 11400000, guid: a584ca399611a9e438a5b8a706500210, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 46d41c1711dff9044b2f6dba7d94d760, type: 2}
+    falseState: {fileID: 11400000}
