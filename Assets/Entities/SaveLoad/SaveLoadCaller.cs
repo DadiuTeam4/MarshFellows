@@ -3,19 +3,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 public class SaveLoadCaller : MonoBehaviour {
+
+GameStateManager gameState = new GameStateManager();
 
     void OnApplicationQuit()
     {
 		SaveLoadManager.Save();
-        Debug.Log("Application ending after " + Time.time + " seconds");
     }
 
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntimeMethod()
     {
 		SaveLoadManager.Load();
-        Debug.Log("Before scene loaded");
     }
+
+
 }
