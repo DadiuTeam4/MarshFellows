@@ -18,6 +18,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
     Collider m_ObjectCollider;
     GameStateManager gameState = new GameStateManager();
     static int sceneIndex = 1;
+    private bool addOnSceneIndex= true;
 
     void OnTriggerEnter(Collider other)
     {
@@ -46,10 +47,14 @@ public class ChangeSceneEmitter : MonoBehaviour {
             }
         }
     
-        argument.stringComponent = SceneManager.GetSceneAt(sceneIndex).name;
-        argument.intComponent = -1;
-        eventManager.CallEvent(CustomEvent.LoadScene,argument);
-        sceneIndex++;
+        if (addOnSceneIndex)
+        {
+            argument.stringComponent = SceneManager.GetSceneAt(sceneIndex).name;
+            argument.intComponent = -1;
+            eventManager.CallEvent(CustomEvent.LoadScene,argument);
+            sceneIndex++;
+            addOnSceneIndex = false;
+        }
 
         if(unlockableInThisScreen != emptyString)
         {
@@ -64,7 +69,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
             GameStateManager.current = gameState;
         }
 
-        //Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
+        Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
         Destroy(this.gameObject);
     }
 

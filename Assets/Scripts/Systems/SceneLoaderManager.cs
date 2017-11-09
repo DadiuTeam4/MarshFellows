@@ -79,7 +79,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         
         if(argument.intComponent < 0)
         {
-            print("Name of the scene is:" + argument.stringComponent + " Time for new Music");
+            print("Name of the scene is:" + argument.stringComponent + " Time for new Music" + argument.intComponent);
         }
 
 
