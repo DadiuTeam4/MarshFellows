@@ -41,7 +41,6 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
 		eventManager.AddListener(CustomEvent.LoadScene, changeScene);
 
-
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
 	}
@@ -50,32 +49,43 @@ public class AudioManager : Singleton<AudioManager> {
 	void Poster(EventArgument argument)
 	{
 		//Swipe
-		if (argument.eventComponent == CustomEvent.Swipe) {
+		if (argument.eventComponent == CustomEvent.Swipe) 
+		{
 			PlaySoundWC ("Play_GG_SD_Swipe_1"); 
 		}
 		//Hold begin
-		if (argument.eventComponent == CustomEvent.HoldBegin) {
+		if (argument.eventComponent == CustomEvent.HoldBegin) 
+		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
 		//Apple 
-		if (argument.eventComponent == CustomEvent.AppleFall) {
+		if (argument.eventComponent == CustomEvent.AppleFall) 
+		{
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
 		}
 		//Current scene
 	
 	}
-	
+
+	//Scene-loader 
 	void NewScene(EventArgument argument)
 	{
-		
-			print("what ever never"+argument.stringComponent + argument.intComponent);
+		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
+		{
+			//do this 
+			//print("what ever never"+argument.stringComponent + argument.intComponent);
+		}
+		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
+		{
+			
+		}
+		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
+		{
+			
+		}
+		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
+		{
 
-			if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) {
-				//do this 
-
-			}
-			if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
-			{
 		}
 	}
 		
@@ -119,7 +129,7 @@ public class AudioManager : Singleton<AudioManager> {
 		soundsBeingPlayed.TryGetValue(soundEventName, out isSoundPlaying);
 		if (!isSoundPlaying)
 		{
-			eventID = AkSoundEngine.PostEvent(soundEventName, thisthis, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, soundEventName);
+			AkSoundEngine.PostEvent(soundEventName, thisthis, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, soundEventName);
 			soundsBeingPlayed[soundEventName] = true;
 		}
 	}

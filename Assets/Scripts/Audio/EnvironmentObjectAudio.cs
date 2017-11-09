@@ -38,7 +38,6 @@ public class EnvironmentObjectAudio : MonoBehaviour {
 			if (objectType == ObjectType.tree) 
 			{
 				//play tree fall sound
-				//AudioManager.PlaySoundWC("name"); 
 				audioManager.PlaySoundWCOtherScript("PlayTree", gameObject); 
 			}
 			if (objectType == ObjectType.stone) 
