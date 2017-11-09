@@ -101,6 +101,18 @@ public class AudioManager : Singleton<AudioManager> {
         }
 	}
 
+	void PlaySoundWCOtherScript(string soundEventName, object thisthis)
+	{
+		soundEventName = string.Concat("", soundEventName, "");
+		bool isSoundPlaying;
+		soundsBeingPlayed.TryGetValue(soundEventName, out isSoundPlaying);
+		if (!isSoundPlaying)
+		{
+			eventID = AkSoundEngine.PostEvent(soundEventName, gameObject, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, soundEventName);
+			soundsBeingPlayed[soundEventName] = true;
+		}
+	}
+
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)
 	{
