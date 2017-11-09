@@ -26,6 +26,14 @@ public class EventTrigger : MonoBehaviour
 			argument.vectorArrayComponent[1] = endTrigger.position; */
 			EventManager.GetInstance().CallEvent(CustomEvent.RitualScenarioEntered, argument);
 		}
+        if (Input.GetKeyDown("b"))
+        {
+            EventArgument argument = new EventArgument();
+            /* argument.vectorArrayComponent = new Vector3[2];
+			argument.vectorArrayComponent[0] = startTrigger.position;
+			argument.vectorArrayComponent[1] = endTrigger.position; */ 
+            EventManager.GetInstance().CallEvent(CustomEvent.BearScenarioEntered, argument);
+        }
         if (Input.GetKeyDown("s"))
         {
             EventArgument argument = new EventArgument();
@@ -34,7 +42,7 @@ public class EventTrigger : MonoBehaviour
 			argument.vectorArrayComponent[1] = endTrigger.position; */
             EventManager.GetInstance().CallEvent(CustomEvent.SeparationScenarioEntered, argument);
         }
-        if (Input.GetKeyDown("k"))
+        if (Input.GetKeyDown("i"))
         {
             EventArgument argument = new EventArgument();
             /* argument.vectorArrayComponent = new Vector3[2];
