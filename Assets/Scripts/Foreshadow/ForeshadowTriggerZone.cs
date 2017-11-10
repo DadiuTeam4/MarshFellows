@@ -7,7 +7,7 @@ using UnityEngine;
 
 using Events;
 
-public enum ForeshadowEvents { RitualEvent, DeerEvent, BearEvent }
+public enum ForeshadowEvents {RitualEvent,DeerEvent,BearEvent}
 
 public class ForeshadowTriggerZone : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class ForeshadowTriggerZone : MonoBehaviour
 			EventArgument argument = new EventArgument();
 
 			argument.stringComponent = current.ToString();
+			Debug.Log (argument.stringComponent);
 			eventManager.CallEvent(CustomEvent.ForeshadowEventTriggered,
 									argument);
 

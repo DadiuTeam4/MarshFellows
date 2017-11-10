@@ -87,6 +87,7 @@ public class AudioManager : Singleton<AudioManager> {
 
 	void ForeshadowPost(EventArgument argument)
 	{
+
 			if(argument.stringComponent == "RitualEvent")
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Shaman");
@@ -98,7 +99,6 @@ public class AudioManager : Singleton<AudioManager> {
 			if(argument.stringComponent == "BearEvent")
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Bear");
-
 			}
 	}
 
