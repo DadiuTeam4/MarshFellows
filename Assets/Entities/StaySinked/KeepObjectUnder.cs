@@ -13,11 +13,15 @@ private Collider myCollider;
 	void OnTriggerEnter(Collider other)
 	{
 		Rigidbody rigidbody = other.GetComponent<Rigidbody>();
-		rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY |RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-		try
+		if (rigidbody)
 		{
-			SinkableObjectType sinked = other.GetComponent<SinkableObjectType>();
+			rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY |RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+		}
 
+		SinkableObjectType sinked = other.GetComponent<SinkableObjectType>();
+
+		if (sinked)
+		{		
 			EventManager eventManager = EventManager.GetInstance();
 
 			EventArgument argument = new EventArgument();
@@ -27,11 +31,6 @@ private Collider myCollider;
 			argument.gameObjectComponent = other.gameObject;
 
 			eventManager.CallEvent(CustomEvent.SinkHasHappened,argument);
-				
-		}
-		catch
-		{
-			
 		}
 	}
 }
