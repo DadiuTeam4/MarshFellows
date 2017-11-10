@@ -7,13 +7,14 @@ using UnityEngine;
 
 using Events;
 
+public enum ForeshadowEvents {RitualEvent,DeerEvent,BearEvent}
 
 public class ForeshadowTriggerZone : MonoBehaviour
 {
-	public GameObject foreshadowEvent;
+	public ForeshadowEvents current;
 
-	public string foreshadowEventToTrigger;
-
+	public GameObject foreshadowObject;
+	
 	void OnTriggerEnter(Collider other)
 	{
 		if (string.Compare(other.transform.name, "O") == 0)
@@ -21,11 +22,12 @@ public class ForeshadowTriggerZone : MonoBehaviour
 			EventManager eventManager = EventManager.GetInstance();
 			EventArgument argument = new EventArgument();
 
-			argument.stringComponent = foreshadowEventToTrigger;
+			argument.stringComponent = current.ToString();
+			Debug.Log (argument.stringComponent);
 			eventManager.CallEvent(CustomEvent.ForeshadowEventTriggered,
 									argument);
 
-			Instantiate(foreshadowEvent, transform.position,
+			Instantiate(foreshadowObject, transform.position,
 						transform.rotation);
 		}
 	}
