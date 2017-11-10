@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
+        static const AkUniqueID PLAY_FALLTREE = 513156325U;
         static const AkUniqueID PLAY_FS = 2262856515U;
         static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
         static const AkUniqueID PLAY_GG_SD_APPLEDROP = 1577744568U;
