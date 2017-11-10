@@ -23,6 +23,8 @@ public class AudioManager : Singleton<AudioManager> {
 		//If Scene is this...
 		groundLayer = "Swamp";
 		PlaySound ("Play_Music_1"); 
+		PlaySound("Play_GG_Ambience_Open_1"); 
+
 	}
 		
 	//Calls when ever listened event is triggered 
@@ -40,6 +42,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
 		eventManager.AddListener(CustomEvent.SinkHasHappened, somethingSunk);
+		eventManager.AddListener (CustomEvent.ForeshadowEventTriggered, postEvent); 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
 	}
@@ -62,11 +65,26 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
 		}	
+		if (argument.eventComponent == CustomEvent.ForeshadowEventTriggered) 
+		{
+			if(argument.stringComponent == ("RitualEvent"))
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Shaman");
+			}
+			if(argument.stringComponent == ("DeerEvent"))
+			{
+				PlaySoundWC ("Play_Deer_FS"); 
+			}
+			if(argument.stringComponent == ("BearEvent"))
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Bear");
+
+			}
+		}
 	}
 	void SunkAction(EventArgument argument)
 	{
 		//argument.gameObjectComponent;
-
 
 		if(argument.stringComponent == "Tree")
 		{
@@ -92,12 +110,13 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
 			//Do this
-			PlaySound("Play_GG_Ambience_Open_1"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
 			//Do this
 			//Play overture 
+			//PlaySoundWC("Play_Overture"); 
+			//print ("OVERTURE"); 
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
@@ -108,6 +127,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			//Mere spacey musik 
+			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
 		}
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
@@ -117,6 +137,7 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//PlaySoundWC("Play_GG_SD_FSD_Bear");
 		}
 		if (argument.stringComponent == "DeerEvent" && argument.intComponent == -1) 
 		{
@@ -126,6 +147,12 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			//End music 
+		}
+		if (argument.stringComponent == "Restart") 
+		{
+			//Do this
+			//Restart 
+			StopSound ("Stop_All"); 
 		}
 	}
 		
