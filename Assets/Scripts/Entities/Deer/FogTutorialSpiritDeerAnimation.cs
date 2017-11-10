@@ -13,14 +13,11 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 
 	private EventDelegate swipeEvent;
 	Animator anim;
-	Rigidbody rigidbody;
+	Rigidbody rb;
 	float currentTime;
 	int reactHash = Animator.StringToHash("deerReact");
 	private bool found; 
 	private bool run;
-
-	[SerializeField]
-	private float runDelay = 3.0f;
 
 	[SerializeField]
 	private Vector3 targetPoint;
@@ -41,7 +38,7 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 	void Awake () 
 	{
 		anim = GetComponentInChildren<Animator>();
-		rigidbody = GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
 
 		fogEvent = HiddenTest;
 		scareEvent = Scared;
@@ -56,21 +53,19 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
-		AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-		if(found)
+		if (found)
 		{
 			anim.SetTrigger(reactHash);
 		}
 		
-		if(run && found)
+		if (run && found)
 		{
 			Vector3 relativePos = targetPoint - transform.position;
 			Quaternion rotation = Quaternion.LookRotation(relativePos);
 			Vector3 v3Force = runSpeed * transform.forward;
-			rigidbody.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
-			rigidbody.AddForce(v3Force);
-			anim.SetFloat("deerSpeed", rigidbody.velocity.magnitude);
+			rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
+			rb.AddForce(v3Force);
+			anim.SetFloat("deerSpeed", rb.velocity.magnitude);
 			if(!triggered)
 			{
 			EventManager.GetInstance().CallEvent(CustomEvent.ScenarioInteracted);
@@ -81,14 +76,17 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 		if ((transform.position - targetPoint).magnitude < 10)
 		{
 			run = false;
+			rb.velocity = new Vector3(0,0,0);
 		}
 
 		if (Input.GetKey(KeyCode.S) && found)
-		run = true;
+		{
+			run = true;
+		}
 
 	}
 
-	public void HiddenTest(EventArgument argument)
+	public void HiddenTest (EventArgument argument)
 	{
 		if (argument.gameObjectComponent == this.gameObject)
 		{
@@ -96,7 +94,7 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 		}
 	}
 
-	public void Scared(EventArgument argument)
+	public void Scared (EventArgument argument)
 	{
 		scarePoint = argument.vectorComponent;
 		scarePoint = scarePoint + argument.gameObjectComponent.transform.position;
@@ -107,7 +105,7 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 		}
 	}
 
-		public void Swipe(EventArgument argument)
+		public void Swipe (EventArgument argument)
 	{
 		scarePoint = argument.raycastComponent.point;
 		float dist = (scarePoint - transform.position).magnitude;
