@@ -25,11 +25,16 @@ namespace Events
         ResetGame = 13,
         ScenarioInteracted = 14,
         HiddenByFog = 15,
-		UnlockedItem = 16,
+		ScareDeerEvent = 16,
         OReachedByP = 17,
-		SwipeEnded = 18,
+		SinkGround = 18,
 		SinkHasHappened = 19,
+<<<<<<< HEAD
 		GroundChecked
+=======
+		UnlockedItem = 20,
+		SwipeEnded = 21
+>>>>>>> dev
     }
 
 	public class EventArgument

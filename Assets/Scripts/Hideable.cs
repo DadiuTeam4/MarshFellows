@@ -13,7 +13,7 @@ public class Hideable : MonoBehaviour
 	public int checkFrequency = 1;
 	public string falseMessage = "";
 	public string trueMessage = "";
-
+	[SerializeField]
 	private bool currentlyhidden;
 	//private GameObject curtain;
 	private EventArgument argument = new EventArgument();
@@ -23,10 +23,13 @@ public class Hideable : MonoBehaviour
 		//curtain = hidingCurtain.gameObject;
 		currentlyhidden = CheckIfHidden();
 		argument.gameObjectComponent = gameObject;
+		argument.boolComponent = currentlyhidden;
+		EventManager.GetInstance().CallEvent(CustomEvent.HiddenByFog, argument);
 	}
 
 	void Update () 
 	{
+		print(currentlyhidden);
 		if (Time.frameCount % checkFrequency == 0)
 		{
 			if(CheckIfHidden())
@@ -55,6 +58,7 @@ public class Hideable : MonoBehaviour
 		Ray ray = new Ray(transform.position, Camera.main.transform.position - transform.position);
 		if (Physics.Raycast(ray, out hit))
 		{
+			print(hit.collider.gameObject.tag);
 			if (hit.collider.gameObject.tag == "FogCurtain")
 			{
 				return true;
