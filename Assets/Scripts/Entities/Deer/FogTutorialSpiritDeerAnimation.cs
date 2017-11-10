@@ -20,9 +20,6 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 	private bool run;
 
 	[SerializeField]
-	private float runDelay = 3.0f;
-
-	[SerializeField]
 	private Vector3 targetPoint;
 
 	[SerializeField]
