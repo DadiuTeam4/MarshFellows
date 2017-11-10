@@ -90,18 +90,15 @@ public class AudioManager : Singleton<AudioManager> {
 
 			if(argument.stringComponent == "RitualEvent")
 			{
-			print ("event happened ijsfdijsdfij"); 
 				PlaySoundWC("Play_GG_SD_FSD_Shaman");
 			}
 			if(argument.stringComponent == "DeerEvent")
 			{
 				PlaySoundWC ("Play_Deer_FS"); 
-			print("event happened ijsfdijsdfij"); 
 			}
 			if(argument.stringComponent == "BearEvent")
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Bear");
-			print("event happened ijsfdijsdfij"); 
 			}
 	}
 
