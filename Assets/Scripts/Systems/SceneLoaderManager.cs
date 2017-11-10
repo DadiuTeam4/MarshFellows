@@ -15,19 +15,19 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     private string emptyString = "";
     // Variables to keep track of scenes to load and unload.
     List<string> scenesToUnload;
-
+    
     // Clusters of scenes to be loaded at certain points.
    // string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
    // string[] gameEnd = { "EndScene", "Credits" };
-
+    EventManager eventManager;
     public string globalSceneName = "GlobalScene";
-
+    public string firstSceneToLoadName = "IntroLevel";
     void Start()
     {
         //SceneClusterLoader(gameStart);
         scenesToUnload = new List<string>();
         
-        EventManager eventManager = EventManager.GetInstance();
+        eventManager = EventManager.GetInstance();
 
     	EventDelegate sceneLoader = SceneLoader;
 
@@ -35,11 +35,11 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         EventArgument argument = new EventArgument(); 
-        argument.stringComponent = "GlobalScene";
+        argument.stringComponent = globalSceneName;
         argument.intComponent = 0;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-        argument.stringComponent = "IntroLevel";
+        argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
         
@@ -54,40 +54,35 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             scenesToUnload.Add(argument.stringComponent);
             return;
         }
-        
-        //if you sent a new scene to load
-        Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
-        if (!scene.isLoaded)
+        if(argument.intComponent > 0)
         {
-            SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
-        }
-
-        foreach(string sceneToUnload in scenesToUnload)
-        {
-            if(sceneToUnload != emptyString && sceneToUnload != globalSceneName)
-            {
-                Scene unloadScene = SceneManager.GetSceneByName(sceneToUnload);
-                if (unloadScene.isLoaded)
-                {
-                    SceneManager.UnloadSceneAsync(sceneToUnload);
-                }
-            }
-        }
-
-    }
-
-    
-    // Start the game!
-    /*private void SceneClusterLoader(string[] cluster)
-    {
-        foreach (string sceneName in cluster)
-        {   
-            Scene scene = SceneManager.GetSceneByName(sceneName);
+            //if you sent a new scene to load
+            Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
             if (!scene.isLoaded)
             {
-                SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+                SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
             }
+
+            foreach(string sceneToUnload in scenesToUnload)
+            {
+                if(sceneToUnload != emptyString && sceneToUnload != globalSceneName)
+                {
+                    Scene unloadScene = SceneManager.GetSceneByName(sceneToUnload);
+                    if (unloadScene.isLoaded)
+                    {
+                        SceneManager.UnloadSceneAsync(sceneToUnload);
+                    }
+                }
+            }
+
         }
-    }*/
+        
+        if(argument.intComponent < 0)
+        {
+            print("Name of the scene is:" + argument.stringComponent + " Time for new Music" + argument.intComponent);
+        }
+
+
+    }
 
 }

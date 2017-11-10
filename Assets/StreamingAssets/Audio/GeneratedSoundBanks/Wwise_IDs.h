@@ -13,11 +13,15 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
+        static const AkUniqueID PLAY_DEER_FS = 675749344U;
+        static const AkUniqueID PLAY_FALLTREE = 513156325U;
         static const AkUniqueID PLAY_FS = 2262856515U;
         static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
         static const AkUniqueID PLAY_GG_SD_APPLEDROP = 1577744568U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
         static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
+        static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
         static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
         static const AkUniqueID PLAY_GG_SD_SWIPE_1 = 3603427629U;
@@ -74,6 +78,11 @@ namespace AK
         static const AkUniqueID MASTER_SECONDARY_BUS = 805203703U;
         static const AkUniqueID MUSIC = 3991942870U;
     } // namespace BUSSES
+
+    namespace AUX_BUSSES
+    {
+        static const AkUniqueID REVERB = 348963605U;
+    } // namespace AUX_BUSSES
 
 }// namespace AK
 

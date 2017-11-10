@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Events;
 
 public class SinkableGround : Holdable 
 {
@@ -40,6 +41,8 @@ public class SinkableGround : Holdable
 	private bool madeChange = false;
 
 	private List<Pair<int, float>> nearestPoints = new List<Pair<int, float>>();
+
+	private EventArgument argument = new EventArgument();
 	
 	void Start () {
 		meshCollider = transform.GetChild(0).GetComponent<MeshCollider>();
@@ -52,6 +55,7 @@ public class SinkableGround : Holdable
 		currentVertices = mesh.vertices;
 
 		verticeTimes = new float[originalVerticePositions.Length];
+		argument.gameObjectComponent = gameObject;
 	}
 	
 	void Update () 
@@ -88,6 +92,8 @@ public class SinkableGround : Holdable
 		Vector3 obstaclePosition = transform.TransformPoint(originalVerticePositions[nearestPoints[0].GetFirst()]);
 		verticeObstacles[nearestPoints[0].GetFirst()] = new Obstacle(obstaclePosition, radius);
 		verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform.GetChild(0));
+		argument.vectorComponent = pointHit;
+		EventManager.GetInstance().CallEvent(CustomEvent.SinkGround, argument);
 	}
 	
 	public override void OnTouchHold(RaycastHit hit) 

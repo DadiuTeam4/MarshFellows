@@ -65,6 +65,11 @@ public class Navigator : MonoBehaviour
 		SetDestination(waypoint);
 	}
 
+    public void SetSplitWaypoint(Transform waypoint)
+    {
+        splitWaypoint = waypoint;
+    }
+
 	public void SetDestination(Transform destination) 
 	{
 		currentWaypoint = destination;
