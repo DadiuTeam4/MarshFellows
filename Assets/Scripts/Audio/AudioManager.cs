@@ -65,12 +65,13 @@ public class AudioManager : Singleton<AudioManager> {
 	}
 	void SunkAction(EventArgument argument)
 	{
-		argument.gameObjectComponent;
+		//argument.gameObjectComponent;
 
 
 		if(argument.stringComponent == "Tree")
 		{
 			print("it is a tree");
+			PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "Stone")
 		{
