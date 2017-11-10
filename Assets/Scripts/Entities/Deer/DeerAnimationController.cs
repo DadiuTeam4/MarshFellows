@@ -11,7 +11,7 @@ public class DeerAnimationController : MonoBehaviour
 	private EventDelegate eventDelegate;
 	// Use this for initialization
 	Animator anim;
-	Rigidbody rigidbody;
+	Rigidbody rb;
 	float currentTime;
 	int reactHash = Animator.StringToHash("deerReact");
 	private bool found; 
@@ -32,7 +32,7 @@ public class DeerAnimationController : MonoBehaviour
 	void Start () 
 	{
 		anim = GetComponentInChildren<Animator>();
-		rigidbody = GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
 
 		eventDelegate = HiddenTest;
 		EventManager.GetInstance().AddListener(CustomEvent.HiddenByFog, eventDelegate);
@@ -43,7 +43,7 @@ public class DeerAnimationController : MonoBehaviour
 	{
 		
 		AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-		if(found)
+		if (found)
 		{
 			anim.SetTrigger(reactHash);
 			currentTime = Time.time;
@@ -51,17 +51,17 @@ public class DeerAnimationController : MonoBehaviour
 			run = true;
 		}
 		
-		if((currentTime + stateInfo.length + runDelay) < Time.time && run)
+		if ((currentTime + stateInfo.length + runDelay) < Time.time && run)
 		{
 			Vector3 relativePos = targetPoint - transform.position;
 			Quaternion rotation = Quaternion.LookRotation(relativePos);
 			Vector3 v3Force = runSpeed * transform.forward;
-			rigidbody.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
-			rigidbody.AddForce(v3Force);
-			anim.SetFloat("deerSpeed", rigidbody.velocity.magnitude);
+			rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
+			rb.AddForce(v3Force);
+			anim.SetFloat("deerSpeed", rb.velocity.magnitude);
 		}
 		
-		if((transform.position - targetPoint).magnitude < 10)
+		if ((transform.position - targetPoint).magnitude < 10)
 		{
 			run = false;
 		}
@@ -70,7 +70,7 @@ public class DeerAnimationController : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		if(argument.gameObjectComponent == this.gameObject)
+		if (argument.gameObjectComponent == this.gameObject)
 		{
 			found = !argument.boolComponent;
 		}
