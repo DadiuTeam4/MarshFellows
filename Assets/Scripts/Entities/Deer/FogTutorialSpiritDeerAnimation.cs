@@ -90,7 +90,10 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		found = !argument.boolComponent;
+		if(argument.gameObjectComponent == this.gameObject)
+		{
+			found = !argument.boolComponent;
+		}
 	}
 
 	public void Scared(EventArgument argument)
