@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4260954019866930}
+  - component: {fileID: 114426919120221620}
   m_Layer: 0
   m_Name: DebugPanel
   m_TagString: Untagged
@@ -132,7 +133,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114426919120221620}
         m_MethodName: CallScenarioInteracted
         m_Mode: 1
         m_Arguments:
@@ -182,6 +183,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114426919120221620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1142278473353154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 389a29cc10d92124f90d825d7984ecf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114735706808482010
 MonoBehaviour:
   m_ObjectHideFlags: 1

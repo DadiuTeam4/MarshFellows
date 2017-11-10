@@ -7,16 +7,17 @@ using UnityEngine;
 public class SpawnDebugPanel : MonoBehaviour 
 {
 	public GameObject debugPanel;
+	public GameObject instance;
 
 	public void SpawnPanel() 
 	{
-		if (!debugPanel)
+		if (!instance)
 		{
-			Instantiate(debugPanel);
+			instance = Instantiate(debugPanel);
 		}
 		else 
 		{
-			debugPanel.SetActive(!debugPanel.active);
+			instance.SetActive(!instance.active);
 		}
 	}
 }
