@@ -29,6 +29,7 @@ namespace Events
         OReachedByP = 17,
 		SwipeEnded = 18,
 		SinkHasHappened = 19,
+		GroundChecked
     }
 
 	public class EventArgument
