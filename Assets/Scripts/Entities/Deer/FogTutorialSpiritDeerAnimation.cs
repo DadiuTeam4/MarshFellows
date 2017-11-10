@@ -90,14 +90,18 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		found = !argument.boolComponent;
+		if(argument.gameObjectComponent == this.gameObject)
+		{
+			found = !argument.boolComponent;
+		}
 	}
 
 	public void Scared(EventArgument argument)
 	{
 		scarePoint = argument.vectorComponent;
+		scarePoint = scarePoint + argument.gameObjectComponent.transform.position;
 		float dist = (scarePoint - transform.position).magnitude;
-		if(dist < 5 && found)
+		if(dist < accuracy && found)
 		{
 			run = true;
 		}
@@ -106,8 +110,9 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 		public void Swipe(EventArgument argument)
 	{
 		scarePoint = argument.raycastComponent.point;
+		print(scarePoint + " + " + transform.position);
 		float dist = (scarePoint - transform.position).magnitude;
-		if(dist < 5 && found)
+		if(dist < accuracy && found)
 		{
 			run = true;
 		}

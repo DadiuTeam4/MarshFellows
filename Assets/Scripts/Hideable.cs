@@ -29,7 +29,6 @@ public class Hideable : MonoBehaviour
 
 	void Update () 
 	{
-		print(currentlyhidden);
 		if (Time.frameCount % checkFrequency == 0)
 		{
 			if(CheckIfHidden())
@@ -58,7 +57,6 @@ public class Hideable : MonoBehaviour
 		Ray ray = new Ray(transform.position, Camera.main.transform.position - transform.position);
 		if (Physics.Raycast(ray, out hit))
 		{
-			print(hit.collider.gameObject.tag);
 			if (hit.collider.gameObject.tag == "FogCurtain")
 			{
 				return true;
