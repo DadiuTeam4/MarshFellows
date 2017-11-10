@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID MUTEALL = 2308878679U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
@@ -20,6 +21,8 @@ namespace AK
         static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
         static const AkUniqueID PLAY_GG_SD_APPLEDROP = 1577744568U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
+        static const AkUniqueID PLAY_GG_SD_FSD_BEAR = 4141043401U;
+        static const AkUniqueID PLAY_GG_SD_FSD_SHAMAN = 2756361781U;
         static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
@@ -28,10 +31,12 @@ namespace AK
         static const AkUniqueID PLAY_K = 1774091805U;
         static const AkUniqueID PLAY_MUSIC = 2932040671U;
         static const AkUniqueID PLAY_MUSIC_1 = 4068124967U;
+        static const AkUniqueID PLAY_OVERTURE = 2127114922U;
         static const AkUniqueID PLAY_S = 1774091781U;
         static const AkUniqueID STOP_ALL = 452547817U;
         static const AkUniqueID STOP_GG_SD_SHAKE_1 = 3879389907U;
         static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
+        static const AkUniqueID UNMUTEALL = 3340787584U;
     } // namespace EVENTS
 
     namespace SWITCHES
