@@ -110,7 +110,6 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 		public void Swipe(EventArgument argument)
 	{
 		scarePoint = argument.raycastComponent.point;
-		print(scarePoint + " + " + transform.position);
 		float dist = (scarePoint - transform.position).magnitude;
 		if(dist < accuracy && found)
 		{
