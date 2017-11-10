@@ -63,7 +63,7 @@ public class DeerAnimationController : MonoBehaviour
 		
 		if((transform.position - targetPoint).magnitude < 10)
 		{
-			Destroy(this.gameObject);
+			run = false;
 		}
 
 	}

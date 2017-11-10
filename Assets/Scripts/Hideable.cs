@@ -13,7 +13,13 @@ public class Hideable : MonoBehaviour
 	public int checkFrequency = 1;
 	public string falseMessage = "";
 	public string trueMessage = "";
-	[SerializeField]
+
+	[Header("Extra event call variables")]
+	public bool callsExtra = false;
+	[Tooltip("Extra event is called only if currentlyhidden bool is same as this")]
+	public bool extraEventIfSameAsHiddenBool = false;
+	public CustomEvent extraCall;
+
 	private bool currentlyhidden;
 	//private GameObject curtain;
 	private EventArgument argument = new EventArgument();
@@ -39,6 +45,11 @@ public class Hideable : MonoBehaviour
 					argument.stringComponent = trueMessage;
 					currentlyhidden = true;
 					EventManager.GetInstance().CallEvent(CustomEvent.HiddenByFog, argument);
+					
+					if(callsExtra && !extraEventIfSameAsHiddenBool)
+					{
+						EventManager.GetInstance().CallEvent(extraCall);
+					}
 				}
 			}
 			else if(currentlyhidden)
@@ -47,6 +58,11 @@ public class Hideable : MonoBehaviour
 				argument.stringComponent = falseMessage;
 				currentlyhidden = false;
 				EventManager.GetInstance().CallEvent(CustomEvent.HiddenByFog, argument);
+				
+				if(callsExtra && extraEventIfSameAsHiddenBool)
+				{
+					EventManager.GetInstance().CallEvent(extraCall);
+				}
 			}
 		}
 	}

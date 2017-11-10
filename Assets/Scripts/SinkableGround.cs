@@ -1,5 +1,5 @@
 ﻿// Author: Itai Yavin
-// Contributors:
+// Contributors: Peter
 
 using System;
 using System.Collections;
@@ -39,6 +39,9 @@ public class SinkableGround : Holdable
 	private float[] verticeTimes;
 	private bool verticesWaiting = false;
 	private bool madeChange = false;
+
+	public bool callExtra;
+	public CustomEvent extraEvent;
 
 	private List<Pair<int, float>> nearestPoints = new List<Pair<int, float>>();
 
@@ -92,8 +95,14 @@ public class SinkableGround : Holdable
 		Vector3 obstaclePosition = transform.TransformPoint(originalVerticePositions[nearestPoints[0].GetFirst()]);
 		verticeObstacles[nearestPoints[0].GetFirst()] = new Obstacle(obstaclePosition, radius);
 		verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform.GetChild(0));
+
 		argument.vectorComponent = pointHit;
 		EventManager.GetInstance().CallEvent(CustomEvent.SinkGround, argument);
+
+		if (callExtra)
+		{
+			EventManager.GetInstance().CallEvent(extraEvent);
+		}
 	}
 	
 	public override void OnTouchHold(RaycastHit hit) 

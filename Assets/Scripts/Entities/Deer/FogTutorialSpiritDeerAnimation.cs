@@ -78,19 +78,19 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 			}
 		}
 		
-		if((transform.position - targetPoint).magnitude < 10)
+		if ((transform.position - targetPoint).magnitude < 10)
 		{
-			Destroy(this.gameObject);
+			run = false;
 		}
 
-		if(Input.GetKey(KeyCode.S) && found)
+		if (Input.GetKey(KeyCode.S) && found)
 		run = true;
 
 	}
 
 	public void HiddenTest(EventArgument argument)
 	{
-		if(argument.gameObjectComponent == this.gameObject)
+		if (argument.gameObjectComponent == this.gameObject)
 		{
 			found = !argument.boolComponent;
 		}
@@ -101,7 +101,7 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 		scarePoint = argument.vectorComponent;
 		scarePoint = scarePoint + argument.gameObjectComponent.transform.position;
 		float dist = (scarePoint - transform.position).magnitude;
-		if(dist < accuracy && found)
+		if (dist < accuracy && found)
 		{
 			run = true;
 		}
@@ -111,7 +111,7 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 	{
 		scarePoint = argument.raycastComponent.point;
 		float dist = (scarePoint - transform.position).magnitude;
-		if(dist < accuracy && found)
+		if (dist < accuracy && found)
 		{
 			run = true;
 		}

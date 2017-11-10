@@ -34,6 +34,7 @@ public class AudioManager : Singleton<AudioManager> {
 		EventDelegate stopEvent = Stopper;
 		EventDelegate changeScene = NewScene; 
 		EventDelegate somethingSunk = SunkAction;
+		EventDelegate foreshadow = ForeshadowPost; 
 		// Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
@@ -42,6 +43,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
 		eventManager.AddListener(CustomEvent.SinkHasHappened, somethingSunk);
+		eventManager.AddListener (CustomEvent.ForeshadowEventTriggered, foreshadow); 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
 	}
@@ -82,6 +84,24 @@ public class AudioManager : Singleton<AudioManager> {
 
 		}
 	}
+
+	void ForeshadowPost(EventArgument argument)
+	{
+			if(argument.stringComponent == "RitualEvent")
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Shaman");
+			}
+			if(argument.stringComponent == "DeerEvent")
+			{
+				PlaySoundWC ("Play_Deer_FS"); 
+			}
+			if(argument.stringComponent == "BearEvent")
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Bear");
+
+			}
+	}
+
 	//Scene-loader 
 	void NewScene(EventArgument argument)
 	{
@@ -98,8 +118,8 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			//Play overture 
-			PlaySoundWC("Play_Overture"); 
-			print ("OVERTURE"); 
+			//PlaySoundWC("Play_Overture"); 
+			//print ("OVERTURE"); 
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
@@ -130,6 +150,12 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			//End music 
+		}
+		if (argument.stringComponent == "Restart") 
+		{
+			//Do this
+			//Restart 
+			StopSound ("Stop_All"); 
 		}
 	}
 		
