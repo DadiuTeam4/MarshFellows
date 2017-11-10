@@ -27,9 +27,10 @@ namespace Events
         HiddenByFog = 15,
 		ScareDeerEvent = 16,
         OReachedByP = 17,
-		SinkGround = 18
+		SinkGround = 18,
 		SinkHasHappened = 19,
-		UnlockedItem = 16,
+		UnlockedItem = 20,
+		SwipeEnded = 21
     }
 
 	public class EventArgument
