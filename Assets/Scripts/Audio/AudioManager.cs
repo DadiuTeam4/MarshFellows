@@ -65,20 +65,18 @@ public class AudioManager : Singleton<AudioManager> {
 	}
 	void SunkAction(EventArgument argument)
 	{
-		Vector3 positionToPlaySoundFrom;
-		
-		positionToPlaySoundFrom = argument.gameObjectComponent.transform.position;
+		//argument.gameObjectComponent;
 
 
-		if(argument.stringComponent == "tree")
+		if(argument.stringComponent == "Tree")
 		{
-			print("it is a tree");
+		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
 		}
-		else if(argument.stringComponent == "stone")
+		else if(argument.stringComponent == "Stone")
 		{
 
 		}
-		else if(argument.stringComponent == "somethingElse")
+		else if(argument.stringComponent == "SomethingElse")
 		{
 
 		}
@@ -94,23 +92,27 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
 			//Do this
-			PlaySound("Play_GG_Ambience_Open_1");
+			PlaySound("Play_GG_Ambience_Open_1"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Play overture 
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Mere spacey musik 
 		}
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Musik, der udtrykker seperation/ensomhed/etc
 		}
 		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
 		{
@@ -123,6 +125,7 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "BeachEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//End music 
 		}
 	}
 		
