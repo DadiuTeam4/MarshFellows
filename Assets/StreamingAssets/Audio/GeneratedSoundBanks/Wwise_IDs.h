@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID MUTEALL = 2308878679U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
@@ -35,6 +36,7 @@ namespace AK
         static const AkUniqueID STOP_ALL = 452547817U;
         static const AkUniqueID STOP_GG_SD_SHAKE_1 = 3879389907U;
         static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
+        static const AkUniqueID UNMUTEALL = 3340787584U;
     } // namespace EVENTS
 
     namespace SWITCHES
