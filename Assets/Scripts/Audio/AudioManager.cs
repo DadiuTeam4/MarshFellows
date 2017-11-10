@@ -42,6 +42,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
 		eventManager.AddListener(CustomEvent.SinkHasHappened, somethingSunk);
+		eventManager.AddListener (CustomEvent.ForeshadowEventTriggered, postEvent); 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
 	}
@@ -64,6 +65,22 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
 		}	
+		if (argument.eventComponent == CustomEvent.ForeshadowEventTriggered) 
+		{
+			if(argument.stringComponent == ("RitualEvent"))
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Shaman");
+			}
+			if(argument.stringComponent == ("DeerEvent"))
+			{
+				PlaySoundWC ("Play_Deer_FS"); 
+			}
+			if(argument.stringComponent == ("BearEvent"))
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Bear");
+
+			}
+		}
 	}
 	void SunkAction(EventArgument argument)
 	{
