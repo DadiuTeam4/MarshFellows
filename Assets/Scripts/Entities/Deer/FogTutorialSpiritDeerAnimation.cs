@@ -81,10 +81,13 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 		if ((transform.position - targetPoint).magnitude < 10)
 		{
 			run = false;
+			rb.velocity = new Vector3(0,0,0);
 		}
 
 		if (Input.GetKey(KeyCode.S) && found)
-		run = true;
+		{
+			run = true;
+		}
 
 	}
 

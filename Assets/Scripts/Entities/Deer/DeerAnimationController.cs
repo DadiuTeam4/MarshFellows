@@ -64,6 +64,7 @@ public class DeerAnimationController : MonoBehaviour
 		if ((transform.position - targetPoint).magnitude < 10)
 		{
 			run = false;
+			rb.velocity = new Vector3(0,0,0);
 		}
 
 	}
