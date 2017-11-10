@@ -41,6 +41,7 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 		fogEvent = HiddenTest;
 		scareEvent = ScaredTest;
 		EventManager.GetInstance().AddListener(CustomEvent.HiddenByFog, fogEvent);
+		EventManager.GetInstance().AddListener(CustomEvent.HoldEnd, ScaredTest);
 	}
 	
 	// Update is called once per frame
@@ -48,7 +49,7 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 	{
 		
 		AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-		if(found)
+		if(found && scared)
 		{
 			anim.SetTrigger(reactHash);
 			currentTime = Time.time;
@@ -57,7 +58,6 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 		
 		if((currentTime + stateInfo.length + runDelay) < Time.time)
 		{
-			print("run");
 			Vector3 relativePos = targetPoint - transform.position;
 			Quaternion rotation = Quaternion.LookRotation(relativePos);
 			Vector3 v3Force = runSpeed * transform.forward;
@@ -80,7 +80,10 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 	
 	public void ScaredTest(EventArgument argument)
 	{
-
+		if (found == true)
+		{
+			scared = true;
+		}
 	}
 
 }

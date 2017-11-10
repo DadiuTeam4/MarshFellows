@@ -10,6 +10,8 @@ using Events;
 
 public class InputSystem : Singleton<InputSystem>
 {
+	public Camera testingCamera;
+
 	[TextArea(0, 10)]
 	public string header = "Handles all touch input. All objects inheriting from the Holdable and Swipable are called accordingly from this class.";
 	#region TOUCH_INPUT
@@ -180,6 +182,9 @@ public class InputSystem : Singleton<InputSystem>
 			heldLastFrame[touch.fingerId].OnTouchReleased();
 			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
+
+		EventManager.GetInstance().CallEvent(CustomEvent.SwipeEnded);
+		
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
 	}
@@ -225,8 +230,8 @@ public class InputSystem : Singleton<InputSystem>
 		Vector3 firstPosition = touchPositions[touch.fingerId][0];
 		Vector3 lastPosition = touchPositions[touch.fingerId][touchPositions[touch.fingerId].Count-1];
 
-		Vector3 firstPoint = Camera.main.ScreenToWorldPoint(new Vector3(firstPosition.x, firstPosition.y, Camera.main.nearClipPlane));
-		Vector3 lastPoint = Camera.main.ScreenToWorldPoint(new Vector3(lastPosition.x, lastPosition.y, Camera.main.nearClipPlane));
+		Vector3 firstPoint = testingCamera.ScreenToWorldPoint(new Vector3(firstPosition.x, firstPosition.y, testingCamera.nearClipPlane));
+		Vector3 lastPoint = testingCamera.ScreenToWorldPoint(new Vector3(lastPosition.x, lastPosition.y, testingCamera.nearClipPlane));
 
 		Vector3 direction = lastPoint - firstPoint;
 		
