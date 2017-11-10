@@ -42,10 +42,22 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
+
+        GameObject o = GameObject.Find("O");
         
-
+        for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
+        {
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.AddComponent<MeshRenderer>();
+            //cube.transform.position = new Vector3(5.47f, i, -64.00999f);
+            cube.transform.parent=o.transform;
+            
+            cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z);
+            //cube.transform.position = cube.transform.position.y+i;
+        }
+        
     }
-
+    
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
     private void SceneLoader(EventArgument argument)
     {
@@ -78,6 +90,15 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
         if(argument.stringComponent == "restart")
         {
+            GameStateManager newRound = new GameStateManager();
+
+			newRound = GameStateManager.current;
+			newRound.playedBefore = true;
+			newRound.roundsPlayed++;
+			GameStateManager.current = newRound;
+
+            SaveLoadManager.Save();
+
             UnloadAllScenes();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
