@@ -131,6 +131,12 @@ public class AudioManager : Singleton<AudioManager> {
 			//Do this
 			//End music 
 		}
+		if (argument.stringComponent == "Restart") 
+		{
+			//Do this
+			//Restart 
+			StopSound ("Stop_All"); 
+		}
 	}
 		
 	//Event stopper 
