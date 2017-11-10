@@ -31,7 +31,8 @@ namespace Events
 		SinkHasHappened = 19,
 		UnlockedItem = 20,
 		SwipeEnded = 21,
-		ForeshadowEventTriggered
+		ForeshadowEventTriggered = 22,
+		GroundChecked
     }
 
 	public class EventArgument

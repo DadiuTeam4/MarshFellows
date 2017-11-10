@@ -23,6 +23,8 @@ public class AudioManager : Singleton<AudioManager> {
 		//If Scene is this...
 		groundLayer = "Swamp";
 		PlaySound ("Play_Music_1"); 
+		PlaySound("Play_GG_Ambience_Open_1"); 
+
 	}
 		
 	//Calls when ever listened event is triggered 
@@ -67,7 +69,6 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		//argument.gameObjectComponent;
 
-
 		if(argument.stringComponent == "Tree")
 		{
 		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
@@ -92,12 +93,13 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
 			//Do this
-			PlaySound("Play_GG_Ambience_Open_1"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
 			//Do this
 			//Play overture 
+			PlaySoundWC("Play_Overture"); 
+			print ("OVERTURE"); 
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
@@ -108,6 +110,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			//Mere spacey musik 
+			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
 		}
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
@@ -117,6 +120,7 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//PlaySoundWC("Play_GG_SD_FSD_Bear");
 		}
 		if (argument.stringComponent == "DeerEvent" && argument.intComponent == -1) 
 		{
