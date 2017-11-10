@@ -29,12 +29,9 @@ namespace Events
         OReachedByP = 17,
 		SinkGround = 18,
 		SinkHasHappened = 19,
-<<<<<<< HEAD
-		GroundChecked
-=======
 		UnlockedItem = 20,
-		SwipeEnded = 21
->>>>>>> dev
+		SwipeEnded = 21,
+		GroundChecked
     }
 
 	public class EventArgument
