@@ -115,8 +115,8 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			//Play overture 
-			PlaySoundWC("Play_Overture"); 
-			print ("OVERTURE"); 
+			//PlaySoundWC("Play_Overture"); 
+			//print ("OVERTURE"); 
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
