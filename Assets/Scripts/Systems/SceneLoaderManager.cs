@@ -93,7 +93,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             }
 
         }
-        if(argument.stringComponent == "restart")
+        if(argument.stringComponent == "restart" || argument.stringComponent == "Restart")
         {
             GameStateManager newRound = new GameStateManager();
 
