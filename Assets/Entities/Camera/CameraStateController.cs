@@ -38,6 +38,9 @@ namespace CameraControl
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
 			eventManager = EventManager.GetInstance();
 			eventManager.AddListener(CustomEvent.RitualScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.BearScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.DeerScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.SeparationScenarioEntered, eventDelegate);
 			eventManager.AddListener(CustomEvent.ScenarioEnded, eventDelegate);
 		}
 
