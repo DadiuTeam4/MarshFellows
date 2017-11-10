@@ -53,8 +53,6 @@ public class FogTutorialSpiritDeerAnimation : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		
-		AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 		if (found)
 		{
 			anim.SetTrigger(reactHash);
