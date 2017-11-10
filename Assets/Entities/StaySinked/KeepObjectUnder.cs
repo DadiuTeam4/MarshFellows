@@ -14,18 +14,24 @@ private Collider myCollider;
 	{
 		Rigidbody rigidbody = other.GetComponent<Rigidbody>();
 		rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY |RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-		
-		SinkableObjectType sinked = other.GetComponent<SinkableObjectType>();
-		
-		EventManager eventManager = EventManager.GetInstance();
+		try
+		{
+			SinkableObjectType sinked = other.GetComponent<SinkableObjectType>();
 
-		EventArgument argument = new EventArgument();
+			EventManager eventManager = EventManager.GetInstance();
 
-		argument.stringComponent = sinked.typeOfSinkable;
+			EventArgument argument = new EventArgument();
 
-		argument.gameObjectComponent = other.gameObject;
+			argument.stringComponent = sinked.typeOfSinkable;
 
-        eventManager.CallEvent(CustomEvent.SinkHasHappened,argument);
+			argument.gameObjectComponent = other.gameObject;
 
+			eventManager.CallEvent(CustomEvent.SinkHasHappened,argument);
+				
+		}
+		catch
+		{
+			
+		}
 	}
 }

@@ -65,20 +65,18 @@ public class AudioManager : Singleton<AudioManager> {
 	}
 	void SunkAction(EventArgument argument)
 	{
-		Vector3 positionToPlaySoundFrom;
-		
-		positionToPlaySoundFrom = argument.gameObjectComponent.transform.position;
+		argument.gameObjectComponent;
 
 
-		if(argument.stringComponent == "tree")
+		if(argument.stringComponent == "Tree")
 		{
 			print("it is a tree");
 		}
-		else if(argument.stringComponent == "stone")
+		else if(argument.stringComponent == "Stone")
 		{
 
 		}
-		else if(argument.stringComponent == "somethingElse")
+		else if(argument.stringComponent == "SomethingElse")
 		{
 
 		}
