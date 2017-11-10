@@ -76,13 +76,25 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             }
 
         }
+        if(argument.stringComponent == "restart")
+        {
+            UnloadAllScenes();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         
         if(argument.intComponent < 0)
         {
             print("Name of the scene is:" + argument.stringComponent + " Time for new Music" + argument.intComponent);
         }
-
-
     }
+
+    void UnloadAllScenes() 
+    {
+     int c = SceneManager.sceneCount;
+     for (int i = 0; i < c; i++) {
+        Scene scene = SceneManager.GetSceneAt (i);       
+        SceneManager.UnloadSceneAsync (scene);
+    }
+ }
 
 }
