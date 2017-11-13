@@ -22,6 +22,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     EventManager eventManager;
     public string globalSceneName = "GlobalScene";
     public string firstSceneToLoadName = "IntroLevel";
+    public string whoToAddTheUnlockables = "O";
     void Start()
     {
         //SceneClusterLoader(gameStart);
@@ -42,8 +43,24 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
-        
 
+
+        AddUnlockables(whoToAddTheUnlockables);
+
+        
+    }
+    private void AddUnlockables(string whoToAdd)
+    {
+        GameObject o = GameObject.Find(whoToAdd);
+        
+        for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
+        {
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cube.AddComponent<MeshRenderer>();
+            cube.transform.parent=o.transform;
+            
+            cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z-1);
+        }
     }
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
@@ -76,13 +93,34 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             }
 
         }
+        if(argument.stringComponent == "restart" || argument.stringComponent == "Restart")
+        {
+            GameStateManager newRound = new GameStateManager();
+
+			newRound = GameStateManager.current;
+			newRound.playedBefore = true;
+			newRound.roundsPlayed++;
+			GameStateManager.current = newRound;
+
+            SaveLoadManager.Save();
+
+            UnloadAllScenes();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         
         if(argument.intComponent < 0)
         {
-            print("Name of the scene is:" + argument.stringComponent + " Time for new Music");
+            print("Name of the scene is:" + argument.stringComponent + " Time for new Music" + argument.intComponent);
         }
-
-
     }
+
+    void UnloadAllScenes() 
+    {
+     int c = SceneManager.sceneCount;
+     for (int i = 0; i < c; i++) {
+        Scene scene = SceneManager.GetSceneAt (i);       
+        SceneManager.UnloadSceneAsync (scene);
+    }
+ }
 
 }

@@ -146,6 +146,11 @@ public class StateController : MonoBehaviour
 
 	}
 
+    public void SetAnimatorBool(string s, bool b)
+    {
+        animator.SetBool(s, b);
+    }
+
 	public void ResetLook()
 	{
 		// TODO: Reset animation to origin

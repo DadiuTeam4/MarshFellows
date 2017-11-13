@@ -19,4 +19,14 @@ public class AudioHolder : MonoBehaviour {
 	{
 		audioManager.Footstep (); 
 	}
+
+	void DeerFS()
+	{
+		audioManager.PlaySoundWCOtherScript ("Play_Deer_FS", gameObject); 
+	}
+
+	void BearFS()
+	{
+		audioManager.PlaySoundWCOtherScript ("Play_Bear_FS", gameObject); 
+	}
 }

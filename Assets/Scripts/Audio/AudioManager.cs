@@ -21,9 +21,10 @@ public class AudioManager : Singleton<AudioManager> {
 	void Start()
 	{
 		//If Scene is this...
-		AkSoundEngine.PostEvent("Play_GG_Ambience_Open_1", gameObject);
 		groundLayer = "Swamp";
 		PlaySound ("Play_Music_1"); 
+		PlaySound("Play_GG_Ambience_Open_1"); 
+
 	}
 		
 	//Calls when ever listened event is triggered 
@@ -31,13 +32,18 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper;
-	
+		EventDelegate changeScene = NewScene; 
+		EventDelegate somethingSunk = SunkAction;
+		EventDelegate foreshadow = ForeshadowPost; 
 		// Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
-
+		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
+		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
+		eventManager.AddListener(CustomEvent.SinkHasHappened, somethingSunk);
+		eventManager.AddListener (CustomEvent.ForeshadowEventTriggered, foreshadow); 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
 	}
@@ -45,20 +51,114 @@ public class AudioManager : Singleton<AudioManager> {
 	//Event poster 
 	void Poster(EventArgument argument)
 	{
+		//Swipe
 		if (argument.eventComponent == CustomEvent.Swipe) 
 		{
 			PlaySoundWC ("Play_GG_SD_Swipe_1"); 
 		}
+		//Hold begin
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
 		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
+		//Apple 
 		if (argument.eventComponent == CustomEvent.AppleFall) 
 		{
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
+		}	
+	}
+	void SunkAction(EventArgument argument)
+	{
+		//argument.gameObjectComponent;
+
+		if(argument.stringComponent == "Tree")
+		{
+		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
+		}
+		else if(argument.stringComponent == "Stone")
+		{
+
+		}
+		else if(argument.stringComponent == "SomethingElse")
+		{
+
 		}
 	}
 
+	void ForeshadowPost(EventArgument argument)
+	{
+
+			if(argument.stringComponent == "RitualEvent")
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Shaman");
+			}
+			if(argument.stringComponent == "DeerEvent")
+			{
+				PlaySoundWC ("Play_Deer_FS"); 
+			}
+			if(argument.stringComponent == "BearEvent")
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Bear");
+			}
+	}
+
+	//Scene-loader 
+	void NewScene(EventArgument argument)
+	{
+		if (argument.stringComponent == "TittleScreen" && argument.intComponent == -1) 
+		{
+			//Do this
+			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
+		}
+		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
+		{
+			//Do this
+		}
+		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
+		{
+			//Do this
+			//Play overture 
+			//PlaySoundWC("Play_Overture"); 
+			//print ("OVERTURE"); 
+		}
+		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
+		{
+			//Do this
+			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
+		}
+		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
+		{
+			//Do this
+			//Mere spacey musik 
+			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
+		}
+		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
+		{
+			//Do this
+			//Musik, der udtrykker seperation/ensomhed/etc
+		}
+		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
+		{
+			//Do this
+			//PlaySoundWC("Play_GG_SD_FSD_Bear");
+		}
+		if (argument.stringComponent == "DeerEvent" && argument.intComponent == -1) 
+		{
+			//Do this
+		}
+		if (argument.stringComponent == "BeachEvent" && argument.intComponent == -1) 
+		{
+			//Do this
+			//End music 
+		}
+		if (argument.stringComponent == "Restart") 
+		{
+			//Do this
+			//Restart 
+			StopSound ("Stop_All"); 
+		}
+	}
+		
 	//Event stopper 
 	void Stopper(EventArgument argument)
 	{
@@ -92,6 +192,18 @@ public class AudioManager : Singleton<AudioManager> {
         }
 	}
 
+	public void PlaySoundWCOtherScript(string soundEventName, GameObject thisthis)
+	{
+		soundEventName = string.Concat("", soundEventName, "");
+		bool isSoundPlaying;
+		soundsBeingPlayed.TryGetValue(soundEventName, out isSoundPlaying);
+		if (!isSoundPlaying)
+		{
+			AkSoundEngine.PostEvent(soundEventName, thisthis, (uint)AkCallbackType.AK_EndOfEvent, EventHasStopped, soundEventName);
+			soundsBeingPlayed[soundEventName] = true;
+		}
+	}
+		
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)
 	{

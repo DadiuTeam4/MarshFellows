@@ -1,5 +1,5 @@
 ﻿// Author: Mathias Dam Hedelund
-// Contributors: 
+// Contributors: Emil
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,28 +18,34 @@ public class EventTrigger : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown("j"))
+        if (Input.GetKeyDown("d"))
+        {
+            EventArgument argument = new EventArgument();
+
+            EventManager.GetInstance().CallEvent(CustomEvent.DeerScenarioEntered, argument);
+        }
+        if (Input.GetKeyDown("j"))
 		{
 			EventArgument argument = new EventArgument();
-			/* argument.vectorArrayComponent = new Vector3[2];
-			argument.vectorArrayComponent[0] = startTrigger.position;
-			argument.vectorArrayComponent[1] = endTrigger.position; */
+
 			EventManager.GetInstance().CallEvent(CustomEvent.RitualScenarioEntered, argument);
 		}
+        if (Input.GetKeyDown("b"))
+        {
+            EventArgument argument = new EventArgument();
+ 
+            EventManager.GetInstance().CallEvent(CustomEvent.BearScenarioEntered, argument);
+        }
         if (Input.GetKeyDown("s"))
         {
             EventArgument argument = new EventArgument();
-            /* argument.vectorArrayComponent = new Vector3[2];
-			argument.vectorArrayComponent[0] = startTrigger.position;
-			argument.vectorArrayComponent[1] = endTrigger.position; */
+
             EventManager.GetInstance().CallEvent(CustomEvent.SeparationScenarioEntered, argument);
         }
-        if (Input.GetKeyDown("k"))
+        if (Input.GetKeyDown("i"))
         {
             EventArgument argument = new EventArgument();
-            /* argument.vectorArrayComponent = new Vector3[2];
-			argument.vectorArrayComponent[0] = startTrigger.position;
-			argument.vectorArrayComponent[1] = endTrigger.position; */
+
             EventManager.GetInstance().CallEvent(CustomEvent.ScenarioInteracted, argument);
         }
 
