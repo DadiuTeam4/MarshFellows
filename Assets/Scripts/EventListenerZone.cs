@@ -39,7 +39,6 @@ public class EventListenerZone : MonoBehaviour {
     private void FogReveal(EventArgument args)
     {
         currentlyHidden = args.boolComponent;
-        print(currentlyHidden);
         if (huntersInZone && !currentlyHidden)
         {
             eventManager.CallEvent(CustomEvent.ScenarioInteracted);
