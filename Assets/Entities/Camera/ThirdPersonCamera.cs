@@ -13,7 +13,7 @@ namespace CameraControl
         public float rotationDamping = 1;
         private Transform pTransform;
         private Transform oTransform;
-
+        public bool isFollowingCenterBetweenPAndO = true;
         private Vector3 offset;
 
         private void Start()
@@ -44,10 +44,21 @@ namespace CameraControl
             Quaternion rotation = Quaternion.Euler(transform.eulerAngles.x, angle, 0);
             transform.rotation = rotation;
 
-            Vector3 desiredPosition = pTransform.position - (rotation * Vector3.forward * offset.magnitude) + ajustablePos;
-            Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * positionDamping);
+            Vector3 position = Vector3.Lerp(transform.position, getDesiredPosByPOrCenterBetweenOandP(rotation), Time.deltaTime * positionDamping);
 
             transform.position = position;
+        }
+
+        private Vector3 getDesiredPosByPOrCenterBetweenOandP(Quaternion currentRotation)
+        {
+            if (isFollowingCenterBetweenPAndO)
+            {
+                return deltaPosition - (currentRotation * Vector3.forward * offset.magnitude) + ajustablePos;
+            }
+            else
+            {
+                return pTransform.position - (currentRotation * Vector3.forward * offset.magnitude) + ajustablePos;
+            }
         }
     }
 }
