@@ -16,23 +16,26 @@ public class EventOccured : Decision
 	public override bool Decide(StateController controller)
 	{
 		eventOccured = controller.CheckEventOccured(eventName);
+
 		if (!eventOccured)
 		{
 			return false;
-		}
+		} 
 
 		if (chanceOfReacting == 1.0f)
 		{
+            //controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 			return true;
 		}
 
 		float chance = 1 - chanceOfReacting;
 		float reactionRoll = Random.Range(0f, 1f);
-		if (reactionRoll > chance) 
+		if (reactionRoll > chance)
 		{
+			controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 			return true;
 		}
-		else 
+		else
 		{
 			eventOccured = false;
 			return false;

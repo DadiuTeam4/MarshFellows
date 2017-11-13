@@ -1,5 +1,5 @@
 ﻿//Author: Emil Villumsen
-//Collaborator: Jonathan,
+//Collaborator: Jonathan,Tilemachos
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,84 +7,124 @@ using UnityEngine.SceneManagement;
 
 using Events;
 
+//2 events - 1 that signals what scenes to load and one that signals my current scene
+
 public class SceneLoaderManager : Singleton<SceneLoaderManager> 
 {
 
+    private string emptyString = "";
     // Variables to keep track of scenes to load and unload.
-    GameScene previousScene;
-    GameScene currentScene;
-    GameScene nextScene;
-
+    List<string> scenesToUnload;
+    
     // Clusters of scenes to be loaded at certain points.
-    GameScene[] gameStart = { GameScene.GameOpener, GameScene.GlobalScene, GameScene.IntroLevel, GameScene.CrossRoad1 };
-    GameScene[] gameEnd = { GameScene.EndScene, GameScene.Credits };
-
+   // string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
+   // string[] gameEnd = { "EndScene", "Credits" };
+    EventManager eventManager;
+    public string globalSceneName = "GlobalScene";
+    public string firstSceneToLoadName = "IntroLevel";
+    public string whoToAddTheUnlockables = "O";
     void Start()
     {
-        SceneClusterLoader(gameStart);
-        //EventManager.AddListener(CustomEvent.changeScene, sceneLoader(EventArgument));
-     
-        previousScene = GameScene.GameOpener;
-        currentScene = GameScene.IntroLevel;
-        nextScene = GameScene.CrossRoad1;
+        //SceneClusterLoader(gameStart);
+        scenesToUnload = new List<string>();
+        
+        eventManager = EventManager.GetInstance();
+
+    	EventDelegate sceneLoader = SceneLoader;
+
+		eventManager.AddListener(CustomEvent.LoadScene, sceneLoader);
 
 
+        EventArgument argument = new EventArgument(); 
+        argument.stringComponent = globalSceneName;
+        argument.intComponent = 0;
+        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+
+        argument.stringComponent = firstSceneToLoadName;
+        argument.intComponent = 1;
+        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+
+
+        AddUnlockables(whoToAddTheUnlockables);
+
+        
     }
-
-    // Start the game!
-    private void SceneClusterLoader(GameScene[] cluster)
+    private void AddUnlockables(string whoToAdd)
     {
-        foreach (GameScene sceneName in cluster)
+        GameObject o = GameObject.Find(whoToAdd);
+        if(GameStateManager.current != null)
         {
-            var sceneToLoad = GameSceneToString(sceneName);
-            Scene scene = SceneManager.GetSceneByName(sceneToLoad);
-            if (!scene.isLoaded)
+            for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
             {
-                SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.parent=o.transform;
+                
+                cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z-1);
             }
         }
     }
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
-    private void sceneLoader(GameScene upComingScene)
+    private void SceneLoader(EventArgument argument)
     {
-        // This system is not correct, we need to find a way to keep track of
-        // upcoming scenes.
-        var sceneToUnload = GameSceneToString(previousScene);
-
-        previousScene = currentScene;
-        currentScene = nextScene;
-        nextScene = upComingScene;
-
-        var sceneToLoad = GameSceneToString(nextScene);
-
-        Scene scene = SceneManager.GetSceneByName(sceneToLoad);
-        if (!scene.isLoaded)
+        if(argument.intComponent == 0)
         {
-            SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Additive);
+            scenesToUnload.Add(argument.stringComponent);
+            return;
         }
+        if(argument.intComponent > 0)
+        {
+            //if you sent a new scene to load
+            Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
+            if (!scene.isLoaded)
+            {
+                SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
+            }
 
-        SceneManager.UnloadSceneAsync(sceneToUnload);
+            foreach(string sceneToUnload in scenesToUnload)
+            {
+                if(sceneToUnload != emptyString && sceneToUnload != globalSceneName)
+                {
+                    Scene unloadScene = SceneManager.GetSceneByName(sceneToUnload);
+                    if (unloadScene.isLoaded)
+                    {
+                        SceneManager.UnloadSceneAsync(sceneToUnload);
+                    }
+                }
+            }
 
+        }
+        if(argument.stringComponent == "restart" || argument.stringComponent == "Restart")
+        {
+            GameStateManager newRound = new GameStateManager();
+
+            if(GameStateManager.current != null)
+            {
+			    newRound = GameStateManager.current;
+            }
+
+			newRound.playedBefore = true;
+			newRound.roundsPlayed++;
+			GameStateManager.current = newRound;
+
+            SaveLoadManager.Save();
+            UnloadAllScenes();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        
+        if(argument.intComponent < 0)
+        {
+            print("Name of the scene is:" + argument.stringComponent + " Time for new Music" + argument.intComponent);
+        }
     }
 
-    // Takes a GameScene Enum and returns the scene name string.
-    private string GameSceneToString(GameScene sceneName)
+    void UnloadAllScenes() 
     {
-        return sceneName.ToString("D");
+     int c = SceneManager.sceneCount;
+     for (int i = 0; i < c; i++) {
+        Scene scene = SceneManager.GetSceneAt (i);       
+        SceneManager.UnloadSceneAsync (scene);
     }
-
-
-    public enum GameScene
-    {
-        GameOpener,
-        GlobalScene,
-        EndScene,
-        Credits,
-        IntroLevel,
-        CrossRoad1,
-        RitualEvent
-
-    }
+ }
 
 }

@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class ManagerInstantiator : MonoBehaviour
 {
     public GameObject managerPrefab;
+    public GameObject managerInstance;
 
-    void Awake()
+    void OnEnable()
     {
-        if (GameObject.FindWithTag("ManagerParent") == null)
+        if (!managerInstance && !FindObjectOfType<DontDestroyOnLoad>())
         {
-            Instantiate(managerPrefab);
-            //Instantiate(managerPrefab, Vector3.zero, Quaternion.identity);
+            managerInstance = Instantiate(managerPrefab);
         }
     }
 }

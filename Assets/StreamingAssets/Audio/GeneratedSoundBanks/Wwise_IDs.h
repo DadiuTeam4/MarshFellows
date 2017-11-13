@@ -11,8 +11,53 @@
 
 namespace AK
 {
+    namespace EVENTS
+    {
+        static const AkUniqueID MUTEALL = 2308878679U;
+        static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
+        static const AkUniqueID PLAY_DEER_FS = 675749344U;
+        static const AkUniqueID PLAY_FALLTREE = 513156325U;
+        static const AkUniqueID PLAY_FS = 2262856515U;
+        static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
+        static const AkUniqueID PLAY_GG_SD_APPLEDROP = 1577744568U;
+        static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
+        static const AkUniqueID PLAY_GG_SD_FSD_BEAR = 4141043401U;
+        static const AkUniqueID PLAY_GG_SD_FSD_SHAMAN = 2756361781U;
+        static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
+        static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
+        static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
+        static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
+        static const AkUniqueID PLAY_GG_SD_SWIPE_1 = 3603427629U;
+        static const AkUniqueID PLAY_K = 1774091805U;
+        static const AkUniqueID PLAY_MUSIC = 2932040671U;
+        static const AkUniqueID PLAY_MUSIC_1 = 4068124967U;
+        static const AkUniqueID PLAY_OVERTURE = 2127114922U;
+        static const AkUniqueID PLAY_S = 1774091781U;
+        static const AkUniqueID STOP_ALL = 452547817U;
+        static const AkUniqueID STOP_GG_SD_SHAKE_1 = 3879389907U;
+        static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
+        static const AkUniqueID UNMUTEALL = 3340787584U;
+    } // namespace EVENTS
+
+    namespace SWITCHES
+    {
+        namespace FS_SWITCH
+        {
+            static const AkUniqueID GROUP = 210744043U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID FS_FORREST = 1704637610U;
+                static const AkUniqueID FS_ICE = 193148416U;
+                static const AkUniqueID FS_SWAMP = 2790481301U;
+            } // namespace SWITCH
+        } // namespace FS_SWITCH
+
+    } // namespace SWITCHES
+
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID SIDECHAIN = 1883033791U;
         static const AkUniqueID SS_AIR_FEAR = 1351367891U;
         static const AkUniqueID SS_AIR_FREEFALL = 3002758120U;
         static const AkUniqueID SS_AIR_FURY = 1029930033U;
@@ -33,9 +78,16 @@ namespace AK
 
     namespace BUSSES
     {
+        static const AkUniqueID AMBIENCE = 85412153U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MASTER_SECONDARY_BUS = 805203703U;
+        static const AkUniqueID MUSIC = 3991942870U;
     } // namespace BUSSES
+
+    namespace AUX_BUSSES
+    {
+        static const AkUniqueID REVERB = 348963605U;
+    } // namespace AUX_BUSSES
 
 }// namespace AK
 
