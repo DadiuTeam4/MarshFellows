@@ -13,7 +13,7 @@ public class FogCurtain : Swipeable
 	public float speed = 0.05f;
 	
 	[Tooltip("The loss of speed of the fog curtain, tick")]
-	[Range(0.01f, 1.0f)]
+	[Range(0.001f, 1.0f)]
 	public float dampening = 0.01f;
 	
 	[Tooltip("How often the speed is applied in seconds")]
@@ -21,7 +21,7 @@ public class FogCurtain : Swipeable
 	public float tickRate = 1.0f;
 
 	[Tooltip("How much the animationcurve is scaled on the Z axis of the curtains position")]
-	[Range(0.1f, 10f)]
+	[Range(0.0f, 10f)]
 	public float zScalar;
 
 	public AnimationCurve animationCurve;
@@ -65,8 +65,8 @@ public class FogCurtain : Swipeable
 	{
 		Vector3 calculatedPosition;
 		calculatedPosition = Vector3.Lerp(firstPosition, secondPosition, lerpT);
-		//float z = animationCurve.Evaluate(lerpT);
-		//calculatedPosition.z += animationCurve.Evaluate(lerpT) * zScalar;
+		float z = animationCurve.Evaluate(lerpT);
+		calculatedPosition.z += animationCurve.Evaluate(lerpT) * zScalar;
 		transform.position = calculatedPosition;
 	}
 
