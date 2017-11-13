@@ -18,6 +18,6 @@ public class TestHiddenCall : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		Debug.Log(argument.gameObjectComponent.name + " says: " + argument.stringComponent);
+		Debug.Log(argument.gameObjectComponent.name + " says: " + argument.stringComponent + " " + argument.vectorComponent);
 	}
 }

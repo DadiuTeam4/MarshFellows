@@ -8,59 +8,66 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FogCurtain : Swipeable 
 {
-	public float speedScalar = 1.0f;
+	[Tooltip("The movement speed of the fog curtain")]
 	[Range(0.01f, 1.0f)]
-	public float distanceAccuracy = 0.05f;
+	public float speed = 0.05f;
+	
+	[Tooltip("The loss of speed of the fog curtain, tick")]
+	[Range(0.01f, 1.0f)]
+	public float dampening = 0.01f;
+	
+	[Tooltip("How often the speed is applied in seconds")]
+	[Range(0.1f, 5.0f)]
+	public float tickRate = 1.0f;
+
+	[Tooltip("How much the animationcurve is scaled on the Z axis of the curtains position")]
+	[Range(0.1f, 10f)]
+	public float zScalar;
 
 	public AnimationCurve animationCurve;
 	
 	public Transform positionOneTransform;
 	public Transform positionTwoTransform;
 	
-	private Vector3 startPosition;
-	private Vector3 endPosition;
+	private Vector3 firstPosition;
+	private Vector3 secondPosition;
 
-	private Vector3 currentStartPosition;
-	private Vector3 currentEndPosition;
+	private float lerpT;
+	private float currentT;
 
-	private float currentDistance;
-	private float distanceFromStart;
-	private float distancePercentage;
-
-	[HideInInspector]
-	public Rigidbody ownRigidbody;
+	private bool coroutineIsRunning = false;
+	private IEnumerator glideCoroutine;
 
 	void Start()
 	{
-		ownRigidbody = GetComponent<Rigidbody>();
+		firstPosition = positionOneTransform.position;
+		secondPosition = positionTwoTransform.position;
 
-		//SetupStartAndEndPositions();
-		startPosition = positionTwoTransform.position;
-		endPosition = positionOneTransform.position;
+		float distanceFirst = Vector3.Distance(transform.position, firstPosition);
+		float distanceFull = Vector3.Distance(firstPosition, secondPosition);
+	
+		currentT = distanceFirst / distanceFull;
+		lerpT = 0.0f;
+
+		glideCoroutine = GlideT(1);
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.A))
+		if (currentT != lerpT)
 		{
-			RaycastHit hit = new RaycastHit();
-			Vector3 direction = new Vector3(1.0f, 0.0f, 0.0f);
-			OnSwipe(hit, direction);
+			lerpT = currentT;
+			CalculatePosition();
 		}
+	}
 
-		if (ownRigidbody.velocity.magnitude > 0)
-		{
-			EvaluateDistances();
-			float lerpT = animationCurve.Evaluate(distancePercentage);
-			transform.position = new Vector3(transform.position.x, transform.position.y, GetLerpedPositionZ(lerpT));
-
-			/*if (distancePercentage > 1.0f - distanceAccuracy)
-			{
-				Vector3 temporary = startPosition;
-				startPosition = endPosition;
-				endPosition = temporary;
-			}*/
-		}
+	private void CalculatePosition()
+	{
+		Vector3 calculatedPosition;
+		calculatedPosition = Vector3.Lerp(firstPosition, secondPosition, lerpT);
+		//float z = animationCurve.Evaluate(lerpT);
+		//calculatedPosition.z += animationCurve.Evaluate(lerpT) * zScalar;
+		transform.position = calculatedPosition;
 	}
 
 	public override void OnSwipe(RaycastHit raycastHit, Vector3 direction)
@@ -69,48 +76,70 @@ public class FogCurtain : Swipeable
 		
 		float directionMagnitude = direction.magnitude;
 
-		if (dot > 0.0f)
+		if (!coroutineIsRunning)
 		{
-			ownRigidbody.AddForce(new Vector3(-1, 0, 0) * speedScalar * directionMagnitude);
-		} 
-		else if (dot < 0.0f)
-		{
-			ownRigidbody.AddForce(new Vector3(1, 0, 0) * speedScalar * directionMagnitude);
+			if (dot > 0.0f)
+			{
+				glideCoroutine = GlideT(-1);
+			}
+			else if (dot < 0.0f)
+			{
+				glideCoroutine = GlideT(1);
+			}
+
+			StartCoroutine(glideCoroutine);
 		}
 	}
 
-	private void EvaluateDistances()
+	IEnumerator GlideT(float directionScalar)
 	{
-		distanceFromStart = Vector3.Distance(startPosition, transform.position);
-		currentDistance = Vector3.Distance(transform.position, endPosition) + distanceFromStart;
-		distancePercentage = distanceFromStart / currentDistance;
-	}
+		coroutineIsRunning = true;
+		float addedSpeed = speed * directionScalar;
 
-	private float GetLerpedPositionZ(float t)
-	{
-		float result = 0.0f;
-		float startZ = startPosition.z;
-		float endZ = endPosition.z;
-
-		result = Mathf.Lerp(startZ, endZ, t);
-
-		return result;
-	}
-
-	private void SetupStartAndEndPositions()
-	{
-		float leftDistance = Vector3.Distance(transform.position, positionOneTransform.position);
-		float rightDistance = Vector3.Distance(transform.position, positionTwoTransform.position);
-
-		if (leftDistance < rightDistance)
+		while(addedSpeed != 0.0f)
 		{
-			startPosition = positionOneTransform.position;
-			endPosition = positionTwoTransform.position;
+			if (addedSpeed > 0.0f)
+			{
+				if (addedSpeed - dampening < 0.0f)
+				{
+					addedSpeed = 0.0f;
+					break;
+				}
+				else
+				{
+					addedSpeed -= dampening;
+					if (currentT + addedSpeed > 1.0f)
+					{
+						currentT = 1.0f;
+						break;
+					}
+
+					currentT += addedSpeed;
+				}
+			}
+			else if (addedSpeed < 0.0f)
+			{
+				if (addedSpeed + dampening > 0.0f)
+				{
+					addedSpeed = 0.0f;
+					break;
+				}
+				else
+				{
+					addedSpeed += dampening;
+					if (currentT - addedSpeed < 0.0f)
+					{
+						currentT = 0.0f;
+						break;
+					}
+		
+					currentT += addedSpeed;
+				}
+			}
+
+			yield return new WaitForSeconds(tickRate);
 		}
-		else
-		{
-			startPosition = positionTwoTransform.position;
-			endPosition = positionOneTransform.position;
-		}
+
+		coroutineIsRunning = false;
 	}
 }
