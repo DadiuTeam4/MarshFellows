@@ -16,7 +16,6 @@ public class ChangeSceneEmitter : MonoBehaviour {
     public string unlockableInThisScreen = "";
     private string emptyString = "";
     Collider m_ObjectCollider;
-    GameStateManager gameState = new GameStateManager();
     static int sceneIndex = 1;
     private bool addOnSceneIndex= true;
     private bool haveBeenTriggered = false;
@@ -26,6 +25,8 @@ public class ChangeSceneEmitter : MonoBehaviour {
 
         if(!haveBeenTriggered)
         {
+            GameStateManager gameState = new GameStateManager();
+            
             EventManager eventManager = EventManager.GetInstance(); 
     
             EventArgument argument = new EventArgument(); 
@@ -62,14 +63,16 @@ public class ChangeSceneEmitter : MonoBehaviour {
 
             if(unlockableInThisScreen != emptyString)
             {
-                ///NOT WORKING PROPERLY NEEDS FIX
-                //saves null instead of the list
-                gameState = GameStateManager.current;
-                if(GameStateManager.current == null)
+                
+                if(GameStateManager.current != null)
+                {
+                    gameState = GameStateManager.current;
+                }
+                if(gameState.unlockables == null)
                 {
                     gameState.unlockables = new List<string>();
                 }
-    //            gameState.unlockables.Add(argument.stringComponent);
+                gameState.unlockables.Add(unlockableInThisScreen);
                 GameStateManager.current = gameState;
             }
 
