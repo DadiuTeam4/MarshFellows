@@ -57,7 +57,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
             {
                 GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.AddComponent<MeshRenderer>();
                 cube.transform.parent=o.transform;
                 
                 cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z-1);
