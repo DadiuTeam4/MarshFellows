@@ -24,6 +24,6 @@ public class Shaman : MonoBehaviour {
 
     void Disrupted(EventArgument args)
     {
-        GetComponent<MeshRenderer>().material.color = Color.red;
+        GetComponentInChildren<MeshRenderer>().material.color = Color.red;
     }
 }
