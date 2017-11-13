@@ -88,17 +88,29 @@ public class AudioManager : Singleton<AudioManager> {
 	void ForeshadowPost(EventArgument argument)
 	{
 
-			if(argument.stringComponent == "RitualEvent")
+			if(argument.stringComponent == "Scena2")
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Shaman");
 			}
-			if(argument.stringComponent == "DeerEvent")
+			if(argument.stringComponent == "Scena3")
 			{
 				PlaySoundWC ("Play_Deer_FS"); 
 			}
-			if(argument.stringComponent == "BearEvent")
+			if(argument.stringComponent == "Scena4")
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Bear");
+			}
+			if(argument.stringComponent == "Scena1")
+			{
+			PlaySoundWC("Play_GG_SD_FSD_Bear");
+			}
+			if(argument.stringComponent == "Scena1A")
+			{
+			PlaySoundWC("Play_GG_SD_FSD_Bear");
+			}
+			if(argument.stringComponent == "Crossroad")
+			{
+			PlaySoundWC("Play_GG_SD_FSD_Bear");
 			}
 	}
 
