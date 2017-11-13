@@ -24,11 +24,9 @@ public class EventListenerZone : MonoBehaviour {
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        print("Hunters enter");
         huntersInZone = true;
         if (huntersInZone && !currentlyHidden)
         {
-            print("Hunters revealed");
             eventManager.CallEvent(CustomEvent.ScenarioInteracted);
         }
     }
@@ -36,15 +34,14 @@ public class EventListenerZone : MonoBehaviour {
     private void OnTriggerExit(Collider other)
     {
         huntersInZone = false;
-        print("Hunters exit");
     }
 
     private void FogReveal(EventArgument args)
     {
-        bool currentlyHidden = args.boolComponent;
+        currentlyHidden = args.boolComponent;
+        print(currentlyHidden);
         if (huntersInZone && !currentlyHidden)
         {
-            print("Hunters revealed");
             eventManager.CallEvent(CustomEvent.ScenarioInteracted);
         }
     }
