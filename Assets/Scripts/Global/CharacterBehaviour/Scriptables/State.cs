@@ -9,6 +9,7 @@ public class State : ScriptableObject
 {
 	public Action[] onStateEnterActions;
 	public Action[] actions;
+	public Action[] onStateExitActions;
 	public Transition[] transitions;
 
 	public void OnStateEnter(StateController controller)
@@ -18,7 +19,7 @@ public class State : ScriptableObject
 
 	private void DoOnStateEnterActions(StateController controller)
 	{
-		foreach(Action action in onStateEnterActions)
+		foreach (Action action in onStateEnterActions)
 		{
 			action.Act(controller);
 		}
@@ -54,6 +55,19 @@ public class State : ScriptableObject
 			{
 				controller.TransitionToState(transition.falseState);
 			}
+		}
+	}
+
+	public void OnStateExit(StateController controller)
+	{
+		DoOnStateExitActions(controller);
+	}
+
+	private void DoOnStateExitActions(StateController controller)
+	{
+		foreach (Action action in onStateExitActions)
+		{
+			action.Act(controller);
 		}
 	}
 }
