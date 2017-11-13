@@ -90,6 +90,7 @@ public class StateController : MonoBehaviour
 			previousState = currentState;
             OnExitState();
             currentState = nextState;
+			currentState.OnStateEnter(this);
 		}
 	}
 
