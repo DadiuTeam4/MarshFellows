@@ -52,14 +52,16 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     private void AddUnlockables(string whoToAdd)
     {
         GameObject o = GameObject.Find(whoToAdd);
-        
-        for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
+        if(GameStateManager.current != null)
         {
-            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            cube.AddComponent<MeshRenderer>();
-            cube.transform.parent=o.transform;
-            
-            cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z-1);
+            for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
+            {
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.AddComponent<MeshRenderer>();
+                cube.transform.parent=o.transform;
+                
+                cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z-1);
+            }
         }
     }
 
@@ -97,13 +99,16 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         {
             GameStateManager newRound = new GameStateManager();
 
-			newRound = GameStateManager.current;
+            if(GameStateManager.current != null)
+            {
+			    newRound = GameStateManager.current;
+            }
+
 			newRound.playedBefore = true;
 			newRound.roundsPlayed++;
 			GameStateManager.current = newRound;
 
             SaveLoadManager.Save();
-
             UnloadAllScenes();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
