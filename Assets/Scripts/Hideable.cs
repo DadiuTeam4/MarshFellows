@@ -8,7 +8,13 @@ using UnityEngine;
 using Events;
 public class Hideable : MonoBehaviour 
 {
-	//public FogCurtain hidingCurtain;
+	public float rayCastDistance = 5.0f;
+	[Tooltip("Positions where the hideable can be seen from")]
+	public Transform[] checkPositions;
+	private bool[] currentlyhidden;
+
+	public LayerMask layerMask;
+
 	[Tooltip("How often the object will check for whether its hidden. This is measured in how many frames so if 3 it will check every third frame")]
 	public int checkFrequency = 1;
 	public string falseMessage = "";
@@ -20,65 +26,90 @@ public class Hideable : MonoBehaviour
 	public bool extraEventIfSameAsHiddenBool = false;
 	public CustomEvent extraCall;
 
-	private bool currentlyhidden;
-	//private GameObject curtain;
 	private EventArgument argument = new EventArgument();
 
 	void Start()
 	{
-		//curtain = hidingCurtain.gameObject;
-		currentlyhidden = CheckIfHidden();
 		argument.gameObjectComponent = gameObject;
-		argument.boolComponent = currentlyhidden;
-		EventManager.GetInstance().CallEvent(CustomEvent.HiddenByFog, argument);
+
+		currentlyhidden = new bool[checkPositions.Length];
+		Setup();
 	}
 
 	void Update () 
 	{
 		if (Time.frameCount % checkFrequency == 0)
 		{
-			if(CheckIfHidden())
+			CheckIfHidden();
+		}
+	}
+
+	private void Setup()
+	{
+		RaycastHit hit;
+		
+		for (int i = 0; i < checkPositions.Length; i++)
+		{
+			Ray ray = new Ray(transform.position, checkPositions[i].position - transform.position);
+			
+			if (Physics.Raycast(ray, out hit, rayCastDistance, layerMask))
 			{
-				if(!currentlyhidden)
-				{
-					argument.boolComponent = true;
-					argument.stringComponent = trueMessage;
-					currentlyhidden = true;
-					EventManager.GetInstance().CallEvent(CustomEvent.HiddenByFog, argument);
-					
-					if(callsExtra && !extraEventIfSameAsHiddenBool)
-					{
-						EventManager.GetInstance().CallEvent(extraCall);
-					}
-				}
+				currentlyhidden[i] = true;
+				continue;
 			}
-			else if(currentlyhidden)
+
+			currentlyhidden[i] = false;
+		}
+	}
+
+	private void TriggerEvent(bool hidden, int index)
+	{
+		if(hidden)
+		{
+			if(!currentlyhidden[index])
 			{
-				argument.boolComponent = false;
-				argument.stringComponent = falseMessage;
-				currentlyhidden = false;
+				argument.boolComponent = true;
+				argument.stringComponent = trueMessage;
+				currentlyhidden[index] = true;
+				argument.vectorComponent = checkPositions[index].position;
 				EventManager.GetInstance().CallEvent(CustomEvent.HiddenByFog, argument);
 				
-				if(callsExtra && extraEventIfSameAsHiddenBool)
+				if(callsExtra && !extraEventIfSameAsHiddenBool)
 				{
 					EventManager.GetInstance().CallEvent(extraCall);
 				}
 			}
 		}
-	}
-
-	private bool CheckIfHidden()
-	{
-		RaycastHit hit;
-		Ray ray = new Ray(transform.position, Camera.main.transform.position - transform.position);
-		if (Physics.Raycast(ray, out hit))
+		else if(currentlyhidden[index])
 		{
-			if (hit.collider.gameObject.tag == "FogCurtain")
+			argument.boolComponent = false;
+			argument.stringComponent = falseMessage;
+			currentlyhidden[index] = false;
+			argument.vectorComponent = checkPositions[index].position;
+			EventManager.GetInstance().CallEvent(CustomEvent.HiddenByFog, argument);
+			
+			if(callsExtra && extraEventIfSameAsHiddenBool)
 			{
-				return true;
+				EventManager.GetInstance().CallEvent(extraCall);
 			}
 		}
+	}
 
-		return false;
+	private void CheckIfHidden()
+	{
+		RaycastHit hit;
+		
+		for (int i = 0; i < checkPositions.Length; i++)
+		{
+			Ray ray = new Ray(transform.position, checkPositions[i].position - transform.position);
+			
+			if (Physics.Raycast(ray, out hit, rayCastDistance, layerMask))
+			{
+				TriggerEvent(true, i);
+				continue;
+			}
+
+			TriggerEvent(false, i);
+		}
 	}
 }
