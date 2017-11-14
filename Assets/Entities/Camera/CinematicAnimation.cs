@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Camera/Cinematic Animation")]
 public class CinematicAnimation : ScriptableObject 
 {
+	public bool followP;
 	public AnimationCurve xPosition;
 	public bool trackHuntersX;
 	public float xDistanceMultiplier;

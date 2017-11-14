@@ -102,15 +102,15 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Scena1")
 			{
-			PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_SD_FSD_Bear");
 			}
 			if(argument.stringComponent == "Scena1A")
 			{
-			PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_SD_FSD_Bear");
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-			PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_SD_FSD_Bear");
 			}
 	}
 
