@@ -41,7 +41,6 @@ public class SceneTeleporter : MonoBehaviour
 
         Vector3 newPosition;
         teleportWaypoints.TryGetValue(argument.stringComponent, out newPosition);
-        Debug.Log(newPosition);
         
         foreach (GameObject hunter in hunters)
         {
