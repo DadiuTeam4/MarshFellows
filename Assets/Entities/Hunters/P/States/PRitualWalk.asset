@@ -9,17 +9,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
-  m_Name: ORitualFlee
+  m_Name: PRitualWalk
   m_EditorClassIdentifier: 
   onStateEnterActions:
-  - {fileID: 11400000, guid: 42e9df9ba74fe574b91580399b19f2d5, type: 2}
+  - {fileID: 11400000, guid: 9aa7f4dd0e81f7c45883ded557db6941, type: 2}
   actions:
   - {fileID: 11400000, guid: a592e3a1b654cde499624f2bdfe2f53d, type: 2}
-  - {fileID: 11400000, guid: 5f1c4fb23fea23747b926aefd6bfded3, type: 2}
   onStateExitActions:
-  - {fileID: 11400000, guid: 9773afed39bd4df4db19fb0e9a7458f3, type: 2}
+  - {fileID: 11400000, guid: 5f1c4fb23fea23747b926aefd6bfded3, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: 7fd04a8064650074aa9b9425dd6e674e, type: 2}
     returnToPreviousState: 0
-    trueState: {fileID: 11400000, guid: 58feafc9ca778144cba70b3c910ff517, type: 2}
+    trueState: {fileID: 11400000, guid: e008e31368147904f815bf8f48f44781, type: 2}
+    falseState: {fileID: 11400000}
+  - decision: {fileID: 11400000, guid: a584ca399611a9e438a5b8a706500210, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 7bc98417b481cae4da0c91e6be8416cf, type: 2}
     falseState: {fileID: 11400000}
