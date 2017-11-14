@@ -31,10 +31,12 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         EventArgument argument = new EventArgument(); 
-        argument.stringComponent = globalSceneName;
-        argument.intComponent = 0;
-        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        //argument.stringComponent = globalSceneName;
+       // argument.intComponent = 0;
+        //eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
+        LoadUnloadEverything();
+        //UnloadAllScenes(globalSceneName);
         argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
@@ -82,8 +84,8 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 			GameStateManager.current = newRound;
 
             SaveLoadManager.Save();
-            UnloadAllScenes();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            UnloadAllScenes("");
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
             return;
         }
 
@@ -93,7 +95,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
             if (!scene.isLoaded)
             {
-                SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(argument.stringComponent, LoadSceneMode.Additive);
             }
 
             foreach(string sceneToUnload in scenesToUnload)
@@ -111,13 +113,41 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
     }
 
-    void UnloadAllScenes() 
+    void UnloadAllScenes(string unloadGlobal) 
     {
         int c = SceneManager.sceneCount;
         for (int i = 0; i < c; i++) 
         {
-            Scene scene = SceneManager.GetSceneAt (i);       
-            SceneManager.UnloadSceneAsync (scene);
+            Scene scene = SceneManager.GetSceneAt (i);  
+            if(scene.name != unloadGlobal)
+            {
+                SceneManager.UnloadSceneAsync (scene);
+            }     
+        }
+    }
+
+    void LoadUnloadEverything()
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings ; i++)
+        {
+			if (i == 0) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
+			{
+				continue;
+			}
+            Scene scene = SceneManager.GetSceneByBuildIndex(i);
+            if (!scene.isLoaded || scene.name != globalSceneName)
+            {
+                if (Application.isPlaying)
+                {
+                	SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
+                }
+                else
+                {
+                //    SceneManager.LoadScene(EditorBuildSettings.scenes[i].path, LoadSceneMode.Additive);
+                }
+                SceneManager.UnloadSceneAsync (scene);
+
+            }
         }
     }
 
