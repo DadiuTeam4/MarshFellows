@@ -53,6 +53,7 @@ namespace CameraControl
             {
                 lookAtPos.x = currentAnimation.focusOnHuntersX ? deltaPosition.x : currentAnimation.center.x;
                 lookAtPos.y = currentAnimation.focusOnHuntersY ? deltaPosition.y : currentAnimation.center.y;
+                lookAtPos.z = currentAnimation.focusOnHuntersZ ? deltaPosition.z : currentAnimation.center.z;
             }
 
             transform.LookAt(lookAtPos);
