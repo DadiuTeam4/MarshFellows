@@ -12,10 +12,12 @@ namespace CameraControl
         protected Vector3 deltaPosition;
 		protected bool active = false;
 		protected CameraStateController controller;
+		protected Transform pTransform;
 
 		private void Start()
 		{
 			controller = CameraStateController.GetInstance();
+			pTransform = controller.targets[0].name.ToLower() == "p" ? controller.targets[0] : controller.targets[1].name.ToLower() == "p" ? controller.targets[1] : controller.targets[0];
 		}
 
 		private void LateUpdate() 
