@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
+
 using Events;
 
 public class SceneTeleporter : MonoBehaviour 
@@ -20,9 +22,18 @@ public class SceneTeleporter : MonoBehaviour
 	void Start()
 	{
 		eventManager = EventManager.GetInstance();
-		for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+		EditorBuildSettingsScene[] scenes = EditorBuildSettings.scenes;
+
+		string sceneName;
+		string[] splitName;
+		char[] seperator = {'/', '.'};
+
+		for (int i = 0; i < scenes.Length; i++)
 		{
-			dropdown.options.Add(new Dropdown.OptionData(SceneManager.GetSceneByBuildIndex(i).name));
+			sceneName = scenes[i].path;
+			splitName = sceneName.Split(seperator);
+			sceneName = splitName[splitName.Length-2];
+			dropdown.options.Add(new Dropdown.OptionData(sceneName));
 		}
 	}
 
