@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 
@@ -38,11 +39,15 @@ public class SceneTeleporter : MonoBehaviour
 		eventManager.CallEvent(CustomEvent.LoadScene, argument);
 		print(dropdown.options[dropdown.value].text + " loading.");
 
+        Vector3 newPosition;
+        teleportWaypoints.TryGetValue(argument.stringComponent, out newPosition);
+        Debug.Log(newPosition);
+        
         foreach (GameObject hunter in hunters)
         {
-            Vector3 position;
-            teleportWaypoints.TryGetValue(argument.stringComponent, out position);
-            hunter.transform.position = position;
+            hunter.GetComponent<NavMeshAgent>().enabled = false;
+            hunter.transform.position = newPosition;
+            hunter.GetComponent<NavMeshAgent>().enabled = true;
         }
 	}
 
@@ -69,7 +74,6 @@ public class SceneTeleporter : MonoBehaviour
         foreach (GameObject waypoint in waypoints)
         {
             teleportWaypoints.Add(waypoint.scene.name, waypoint.transform.position);
-            Debug.Log(waypoint.scene.name);
         }
 
         foreach (GameObject hunterObject in hunterObjects)
