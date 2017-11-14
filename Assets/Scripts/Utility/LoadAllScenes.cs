@@ -15,10 +15,6 @@ public class LoadAllScenes : Singleton<LoadAllScenes>
     {
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-			if (i == 0) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
-			{
-				continue;
-			}
             Scene scene = SceneManager.GetSceneByBuildIndex(i);
             if (!scene.isLoaded)
             {
