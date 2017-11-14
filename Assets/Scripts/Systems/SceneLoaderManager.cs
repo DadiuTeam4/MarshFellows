@@ -31,16 +31,18 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         EventArgument argument = new EventArgument(); 
-       // argument.stringComponent = globalSceneName;
-      //  argument.intComponent = 0;
+        //argument.stringComponent = globalSceneName;
+       // argument.intComponent = 0;
         //eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-        //argument.stringComponent = firstSceneToLoadName;
-       // argument.intComponent = 1;
-       // eventManager.CallEvent(CustomEvent.LoadScene,argument);
         LoadEverything();
 
-       // AddUnlockables(whoToAddTheUnlockables);
+        //argument.stringComponent = firstSceneToLoadName;
+        //argument.intComponent = 1;
+        //eventManager.CallEvent(CustomEvent.LoadScene,argument);
+
+
+        //AddUnlockables(whoToAddTheUnlockables);
 
         
     }
@@ -82,7 +84,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 			GameStateManager.current = newRound;
 
             SaveLoadManager.Save();
-            //UnloadAllScenes();
+            UnloadAllScenes();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             return;
         }
@@ -123,14 +125,14 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
     void LoadEverything()
     {
-        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings ; i++)
         {
 			if (i == 0) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
 			{
 				continue;
 			}
             Scene scene = SceneManager.GetSceneByBuildIndex(i);
-            if (!scene.isLoaded)
+            if (!scene.isLoaded || scene.name != globalSceneName)
             {
                 if (Application.isPlaying)
                 {
