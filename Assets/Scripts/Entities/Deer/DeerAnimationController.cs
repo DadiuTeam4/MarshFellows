@@ -71,7 +71,7 @@ public class DeerAnimationController : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		if (argument.gameObjectComponent == this.gameObject)
+		if (this != null && argument.gameObjectComponent == this.gameObject)
 		{
 			found = !argument.boolComponent;
 		}
