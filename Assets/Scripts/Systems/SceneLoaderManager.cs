@@ -40,7 +40,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
 
-        AddUnlockables(whoToAddTheUnlockables);
+        //AddUnlockables(whoToAddTheUnlockables);
 
         
     }
