@@ -7,7 +7,7 @@ using UnityEngine;
 public class SpawnDebugPanel : MonoBehaviour 
 {
 	public GameObject debugPanel;
-	public GameObject instance;
+	private GameObject instance;
 
 	public void SpawnPanel() 
 	{
