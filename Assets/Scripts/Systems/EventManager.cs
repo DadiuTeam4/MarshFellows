@@ -25,9 +25,15 @@ namespace Events
         ResetGame = 13,
         ScenarioInteracted = 14,
         HiddenByFog = 15,
-		UnlockedItem = 16,
+		ScareDeerEvent = 16,
         OReachedByP = 17,
-		SwipeEnded
+		SinkGround = 18,
+		SinkHasHappened = 19,
+		UnlockedItem = 20,
+		SwipeEnded = 21,
+		ForeshadowEventTriggered = 22,
+		GroundChecked = 23,
+        RitualDisrupted = 24
     }
 
 	public class EventArgument
@@ -80,6 +86,7 @@ namespace Events
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
 		{
+
             if (listeners.ContainsKey(eventName))
 			{
 				argument.eventComponent = eventName;

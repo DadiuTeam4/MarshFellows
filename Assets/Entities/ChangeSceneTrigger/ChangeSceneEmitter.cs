@@ -16,61 +16,72 @@ public class ChangeSceneEmitter : MonoBehaviour {
     public string unlockableInThisScreen = "";
     private string emptyString = "";
     Collider m_ObjectCollider;
-    GameStateManager gameState = new GameStateManager();
     static int sceneIndex = 1;
     private bool addOnSceneIndex= true;
+    private bool haveBeenTriggered = false;
 
     void OnTriggerEnter(Collider other)
     {
-        EventManager eventManager = EventManager.GetInstance(); 
- 
-    	EventArgument argument = new EventArgument(); 
 
-        foreach(string unloadSceneName in nextUnloads)
+        if(!haveBeenTriggered)
         {
-            if(unloadSceneName != emptyString)
-            {
-                argument.stringComponent = unloadSceneName;
-                argument.intComponent = 0;
-                eventManager.CallEvent(CustomEvent.LoadScene,argument);
-            }
-        }
-        int index = 0;
-        foreach(string loadScene in scenesToLoad)
-        {
-            index++;
-            if(loadScene != emptyString)
-            {
-                argument.stringComponent = loadScene;
-                argument.intComponent = index;
-                eventManager.CallEvent(CustomEvent.LoadScene,argument);
-            }
-        }
+            GameStateManager gameState = new GameStateManager();
+            
+            EventManager eventManager = EventManager.GetInstance(); 
     
-        if (addOnSceneIndex)
-        {
-            argument.stringComponent = SceneManager.GetSceneAt(sceneIndex).name;
-            argument.intComponent = -1;
-            eventManager.CallEvent(CustomEvent.LoadScene,argument);
-            sceneIndex++;
-            addOnSceneIndex = false;
-        }
+            EventArgument argument = new EventArgument(); 
 
-        if(unlockableInThisScreen != emptyString)
-        {
-            ///NOT WORKING PROPERLY NEEDS FIX
-            //saves null instead of the list
-            gameState = GameStateManager.current;
-            if(GameStateManager.current == null)
+            foreach(string unloadSceneName in nextUnloads)
             {
-                gameState.unlockables = new List<string>();
+                if(unloadSceneName != emptyString)
+                {
+                    argument.stringComponent = unloadSceneName;
+                    argument.intComponent = 0;
+                    eventManager.CallEvent(CustomEvent.LoadScene,argument);
+                }
             }
-//            gameState.unlockables.Add(argument.stringComponent);
-            GameStateManager.current = gameState;
-        }
+            int index = 0;
+            foreach(string loadScene in scenesToLoad)
+            {
+                index++;
+                if(loadScene != emptyString)
+                {
+                    argument.stringComponent = loadScene;
+                    argument.intComponent = index;
+                    eventManager.CallEvent(CustomEvent.LoadScene,argument);
+                }
+            }
+        
+            if (addOnSceneIndex)
+            {
+                argument.stringComponent = SceneManager.GetSceneAt(sceneIndex).name;
+                argument.intComponent = -1;
+                eventManager.CallEvent(CustomEvent.LoadScene,argument);
+                sceneIndex++;
+                addOnSceneIndex = false;
+            }
 
-        Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
-        Destroy(this.gameObject);
+            if(unlockableInThisScreen != emptyString)
+            {
+                
+                if(GameStateManager.current != null)
+                {
+                    gameState = GameStateManager.current;
+                }
+                if(gameState.unlockables == null)
+                {
+                    gameState.unlockables = new List<string>();
+                }
+                gameState.unlockables.Add(unlockableInThisScreen);
+                GameStateManager.current = gameState;
+            }
+
+            Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
+            Destroy(this.gameObject);
+
+            haveBeenTriggered = true;
+        }
+        
     }
 
 }

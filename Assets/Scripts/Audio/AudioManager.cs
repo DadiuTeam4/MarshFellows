@@ -23,6 +23,8 @@ public class AudioManager : Singleton<AudioManager> {
 		//If Scene is this...
 		groundLayer = "Swamp";
 		PlaySound ("Play_Music_1"); 
+		PlaySound("Play_GG_Ambience_Open_1"); 
+
 	}
 		
 	//Calls when ever listened event is triggered 
@@ -31,7 +33,8 @@ public class AudioManager : Singleton<AudioManager> {
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper;
 		EventDelegate changeScene = NewScene; 
-	
+		EventDelegate somethingSunk = SunkAction;
+		EventDelegate foreshadow = ForeshadowPost; 
 		// Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
@@ -39,7 +42,8 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
-
+		eventManager.AddListener(CustomEvent.SinkHasHappened, somethingSunk);
+		eventManager.AddListener (CustomEvent.ForeshadowEventTriggered, foreshadow); 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
 	}
@@ -63,6 +67,52 @@ public class AudioManager : Singleton<AudioManager> {
 			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
 		}	
 	}
+	void SunkAction(EventArgument argument)
+	{
+		//argument.gameObjectComponent;
+
+		if(argument.stringComponent == "Tree")
+		{
+		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
+		}
+		else if(argument.stringComponent == "Stone")
+		{
+
+		}
+		else if(argument.stringComponent == "SomethingElse")
+		{
+
+		}
+	}
+
+	void ForeshadowPost(EventArgument argument)
+	{
+
+			if(argument.stringComponent == "Scena2")
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Shaman");
+			}
+			if(argument.stringComponent == "Scena3")
+			{
+				PlaySoundWC ("Play_Deer_FS"); 
+			}
+			if(argument.stringComponent == "Scena4")
+			{
+				PlaySoundWC("Play_GG_SD_FSD_Bear");
+			}
+			if(argument.stringComponent == "Scena1")
+			{
+			PlaySoundWC("Play_GG_SD_FSD_Bear");
+			}
+			if(argument.stringComponent == "Scena1A")
+			{
+			PlaySoundWC("Play_GG_SD_FSD_Bear");
+			}
+			if(argument.stringComponent == "Crossroad")
+			{
+			PlaySoundWC("Play_GG_SD_FSD_Bear");
+			}
+	}
 
 	//Scene-loader 
 	void NewScene(EventArgument argument)
@@ -75,28 +125,34 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
 			//Do this
-			PlaySound("Play_GG_Ambience_Open_1"); 
-			print ("hey hey hey, I work"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Play overture 
+			//PlaySoundWC("Play_Overture"); 
+			//print ("OVERTURE"); 
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Mere spacey musik 
+			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
 		}
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//Musik, der udtrykker seperation/ensomhed/etc
 		}
 		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//PlaySoundWC("Play_GG_SD_FSD_Bear");
 		}
 		if (argument.stringComponent == "DeerEvent" && argument.intComponent == -1) 
 		{
@@ -105,6 +161,13 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "BeachEvent" && argument.intComponent == -1) 
 		{
 			//Do this
+			//End music 
+		}
+		if (argument.stringComponent == "Restart") 
+		{
+			//Do this
+			//Restart 
+			StopSound ("Stop_All"); 
 		}
 	}
 		
