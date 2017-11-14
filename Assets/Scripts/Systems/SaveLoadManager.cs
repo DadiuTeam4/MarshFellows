@@ -21,7 +21,7 @@ public static class SaveLoadManager {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/savedGames.gd", FileMode.Open);
         // Uncomment the line below to have the debugger print where your save/load file is located. Look for "savedGames.gd"
-		//Debug.Log("Saved file at: " + Application.persistentDataPath);
+		Debug.Log("Saved file at: " + Application.persistentDataPath);
 		SaveLoadManager.savedGame = (GameStateManager)bf.Deserialize(file);
 		GameStateManager.current = SaveLoadManager.savedGame;
         file.Close();

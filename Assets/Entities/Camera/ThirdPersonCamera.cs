@@ -11,7 +11,6 @@ namespace CameraControl
         public Vector3 ajustablePos;
         public float positionDamping = 1;
         public float rotationDamping = 1;
-        private Transform pTransform;
         private Transform oTransform;
         public bool isFollowingCenterBetweenPAndO = true;
         private Vector3 offset;
