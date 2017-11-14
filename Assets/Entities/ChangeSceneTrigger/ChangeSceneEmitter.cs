@@ -23,7 +23,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
 
-        if(!haveBeenTriggered)
+        if(!haveBeenTriggered && (other.gameObject.name == "O" || other.gameObject.name == "P" || other.gameObject.name =="ScenarioTrigger"))
         {
             GameStateManager gameState = new GameStateManager();
             
