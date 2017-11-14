@@ -18,7 +18,9 @@ public class WindGust : MonoBehaviour
 	private EventDelegate onSwipe;
 	private EventDelegate onSwipeEnd;
 
-	private Quaternion lookDirection;
+	private Vector3 previousPosition = Vector3.zero;
+	private Vector3 previousDirection = Vector3.zero;
+	private Vector3 currentDirection = Vector3.zero;
 
 	void Start () 
 	{	
@@ -33,10 +35,10 @@ public class WindGust : MonoBehaviour
 
 	public void DisableGust(EventArgument argument)
 	{
-		/*if (!windParticles.isStopped)
+		if (!windParticles.isStopped)
 		{
 			windParticles.Stop();
-		} */
+		}
 		windZone.windMain = 0;
 	}
 
@@ -47,14 +49,29 @@ public class WindGust : MonoBehaviour
 			windZone.windMain = windForce;
 		}
 
-		/*if(windParticles.isStopped)
-		{
-			windParticles.Play();
-		}*/
-
-		//Debug.DrawLine(transform.position, transform.position + argument.vectorComponent * 10, Color.red, 1.0f);
 		transform.rotation = Quaternion.LookRotation(argument.vectorComponent.normalized);
 
 		transform.position = argument.raycastComponent.point;
+		
+		if (previousPosition != Vector3.zero && (transform.position - previousPosition) != Vector3.zero)
+		{
+			previousDirection = currentDirection;
+			currentDirection = transform.position - previousPosition;
+			currentDirection += previousDirection;
+		}
+
+		if (currentDirection.magnitude != 0)
+		{
+			currentDirection.Normalize();
+
+			transform.rotation = Quaternion.LookRotation(currentDirection);
+		}
+
+		if(windParticles.isStopped)
+		{
+			windParticles.Play();
+		}
+
+		previousPosition = transform.transform.position;
 	}
 }
