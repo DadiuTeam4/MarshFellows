@@ -82,8 +82,6 @@ public class IkHandler : MonoBehaviour {
         anim.SetIKPosition(AvatarIKGoal.LeftFoot, lFpos + new Vector3(0,offsetY,0));
         anim.SetIKPosition(AvatarIKGoal.RightFoot, rFpos + new Vector3(0, offsetY, 0));
 
-        print(lFWeight);
-
         anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, lFWeight);
         anim.SetIKRotationWeight(AvatarIKGoal.RightFoot, rFWeight);
 
