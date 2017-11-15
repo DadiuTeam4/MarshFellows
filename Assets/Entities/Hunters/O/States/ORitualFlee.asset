@@ -11,11 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
   m_Name: ORitualFlee
   m_EditorClassIdentifier: 
+  onStateEnterActions:
+  - {fileID: 11400000, guid: 42e9df9ba74fe574b91580399b19f2d5, type: 2}
   actions:
   - {fileID: 11400000, guid: a592e3a1b654cde499624f2bdfe2f53d, type: 2}
   - {fileID: 11400000, guid: 5f1c4fb23fea23747b926aefd6bfded3, type: 2}
+  onStateExitActions:
+  - {fileID: 11400000, guid: 9773afed39bd4df4db19fb0e9a7458f3, type: 2}
   transitions:
-  - decision: {fileID: 11400000, guid: f1944ba02328a7242aa2350bb6894535, type: 2}
+  - decision: {fileID: 11400000, guid: 7fd04a8064650074aa9b9425dd6e674e, type: 2}
     returnToPreviousState: 0
     trueState: {fileID: 11400000, guid: 58feafc9ca778144cba70b3c910ff517, type: 2}
     falseState: {fileID: 11400000}

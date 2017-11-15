@@ -88,8 +88,10 @@ public class StateController : MonoBehaviour
 		if (nextState != currentState) 
 		{
 			previousState = currentState;
+			currentState.OnStateExit(this);
             OnExitState();
             currentState = nextState;
+			currentState.OnStateEnter(this);
 		}
 	}
 
@@ -145,6 +147,11 @@ public class StateController : MonoBehaviour
         animator.SetFloat("reactDirection", n);
 
 	}
+
+    public void SetAnimatorBool(string s, bool b)
+    {
+        animator.SetBool(s, b);
+    }
 
 	public void ResetLook()
 	{

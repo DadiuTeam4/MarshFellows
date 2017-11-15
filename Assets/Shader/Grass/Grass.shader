@@ -1,4 +1,6 @@
-﻿Shader "Custom/GrassTerrainShader" {
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Custom/GrassTerrainShader" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
@@ -47,7 +49,7 @@
 
 		void vert(inout appdata_full v)
 		{
-			
+			float3 worldPos =  mul(unity_ObjectToWorld, v.vertex);
 			_WindDir = normalize(_WindDir * float4(1,1,1,1));
 
 			v.vertex.xz += sin(_Time.w * _WindSpeed) * _WindStrength * (v.vertex.y + 0.5) * max(_WindDir.xz, float2(0.0001, 0.0001));

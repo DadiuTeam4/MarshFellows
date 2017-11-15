@@ -10,6 +10,8 @@ using Events;
 
 public class InputSystem : Singleton<InputSystem>
 {
+	public Camera testingCamera;
+
 	[TextArea(0, 10)]
 	public string header = "Handles all touch input. All objects inheriting from the Holdable and Swipable are called accordingly from this class.";
 	#region TOUCH_INPUT
@@ -20,6 +22,8 @@ public class InputSystem : Singleton<InputSystem>
 	private Holdable[] heldThisFrame = new Holdable[maxNumberTouches];
 	private RaycastHit?[] raycastHits = new RaycastHit?[maxNumberTouches];
 	private Dictionary<int, List<Vector3>> touchPositions = new Dictionary<int, List<Vector3>>();
+
+	private int swipeRegisterCount = 1;
 	#endregion
 
 	#region DEBUG
@@ -131,17 +135,16 @@ public class InputSystem : Singleton<InputSystem>
 		{
 			// Check if the touch hit a holdable
 			Holdable holdable = GetHoldable(raycastHits[touch.fingerId].Value);
-			if (holdable)
+			if (holdable) {
+				EventManager.GetInstance ().CallEvent (CustomEvent.HoldBegin);
+
+				holdable.OnTouchBegin (raycastHits [touch.fingerId].Value);
+				heldThisFrame [touch.fingerId] = holdable;
+
+			} else 
 			{
-				EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin);
-
-				holdable.OnTouchBegin(raycastHits[touch.fingerId].Value);
-				heldThisFrame[touch.fingerId] = holdable;
+				CheckSwipe (touch);
 			}
-
-			
-			CheckSwipe(touch);
-			
 		}
 	}
 
@@ -180,6 +183,9 @@ public class InputSystem : Singleton<InputSystem>
 			heldLastFrame[touch.fingerId].OnTouchReleased();
 			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
+
+		EventManager.GetInstance().CallEvent(CustomEvent.SwipeEnded);
+		
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
 	}
@@ -191,6 +197,7 @@ public class InputSystem : Singleton<InputSystem>
 			heldLastFrame[touch.fingerId].OnTouchReleased();
 			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
+
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
 	}
@@ -201,6 +208,7 @@ public class InputSystem : Singleton<InputSystem>
 		Ray ray = Camera.main.ScreenPointToRay(touch.position);
 		if (Physics.Raycast(ray, out hit)) 
 		{
+			Debug.Log(hit.transform.name);
 			raycastHits[touch.fingerId] = hit;
 			return true;
 		}
@@ -225,8 +233,8 @@ public class InputSystem : Singleton<InputSystem>
 		Vector3 firstPosition = touchPositions[touch.fingerId][0];
 		Vector3 lastPosition = touchPositions[touch.fingerId][touchPositions[touch.fingerId].Count-1];
 
-		Vector3 firstPoint = Camera.main.ScreenToWorldPoint(new Vector3(firstPosition.x, firstPosition.y, Camera.main.nearClipPlane));
-		Vector3 lastPoint = Camera.main.ScreenToWorldPoint(new Vector3(lastPosition.x, lastPosition.y, Camera.main.nearClipPlane));
+		Vector3 firstPoint = testingCamera.ScreenToWorldPoint(new Vector3(firstPosition.x, firstPosition.y, testingCamera.nearClipPlane));
+		Vector3 lastPoint = testingCamera.ScreenToWorldPoint(new Vector3(lastPosition.x, lastPosition.y, testingCamera.nearClipPlane));
 
 		Vector3 direction = lastPoint - firstPoint;
 		
@@ -241,11 +249,13 @@ public class InputSystem : Singleton<InputSystem>
 			touchPositions[touch.fingerId].Clear();
 			touchPositions[touch.fingerId].Add(touch.position);
 		}
-		
-		EventArgument argument = new EventArgument();
-		argument.vectorComponent = direction;
-		argument.raycastComponent = raycastHits[touch.fingerId].Value;
-		EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
+		if (touchPositions[touch.fingerId].Count > swipeRegisterCount)
+		{
+			EventArgument argument = new EventArgument();
+			argument.vectorComponent = direction;
+			argument.raycastComponent = raycastHits[touch.fingerId].Value;
+			EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
+		}
 	}
 
 	private Holdable GetHoldable(RaycastHit hit)

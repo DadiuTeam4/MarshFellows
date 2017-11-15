@@ -24,9 +24,11 @@ public class Navigator : MonoBehaviour
 	private bool destinationReached;
 
 
+    private float previousSpeed;
+
 	#region DEBUG
 	#if UNITY_EDITOR
-	private LineRenderer lineRenderer;
+	public LineRenderer lineRenderer;
 	#endif
 	#endregion
 
@@ -39,7 +41,7 @@ public class Navigator : MonoBehaviour
 	{
 		#region DEBUG
 		#if UNITY_EDITOR
-		lineRenderer = GetComponent<LineRenderer>();
+		//lineRenderer = GetComponent<LineRenderer>();
 		#endif
 		#endregion
 		navMeshAgent.autoRepath = autoRepath;
@@ -65,6 +67,11 @@ public class Navigator : MonoBehaviour
 		SetDestination(waypoint);
 	}
 
+    public void SetSplitWaypoint(Transform waypoint)
+    {
+        splitWaypoint = waypoint;
+    }
+
 	public void SetDestination(Transform destination) 
 	{
 		currentWaypoint = destination;
@@ -89,7 +96,18 @@ public class Navigator : MonoBehaviour
 		return navMeshAgent.velocity.magnitude;
 	}
 
-	public bool CheckDestinationReached() 
+    public void SetSpeed(float speed)
+    {
+        previousSpeed = navMeshAgent.speed;
+        navMeshAgent.speed = speed;
+    }
+
+    public void SetPreviousSpeed()
+    {
+        navMeshAgent.speed = previousSpeed;
+    }
+
+    public bool CheckDestinationReached() 
 	{
 		if (!navMeshAgent.pathPending)
 		{
