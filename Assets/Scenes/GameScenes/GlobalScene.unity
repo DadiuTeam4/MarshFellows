@@ -15,11 +15,11 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
   m_Fog: 1
-  m_FogColor: {r: 1, g: 1, b: 1, a: 1}
-  m_FogMode: 2
-  m_FogDensity: 0.03
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_FogColor: {r: 0.8718101, g: 0.9034572, b: 0.9191176, a: 1}
+  m_FogMode: 1
+  m_FogDensity: 0.02
+  m_LinearFogStart: 8.1
+  m_LinearFogEnd: 60.64
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -27,11 +27,11 @@ RenderSettings:
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 0
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
-  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_SpotCookie: {fileID: 2800000, guid: 17bf2b3e86be1a54dabdf103d6fc18d9, type: 3}
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
@@ -86,7 +86,7 @@ LightmapSettings:
     m_PVRFilteringAtrousColorSigma: 1
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
-  m_LightingDataAsset: {fileID: 112000036, guid: 3befcef96852f499a97486dc0e792c2c,
+  m_LightingDataAsset: {fileID: 112000006, guid: 3befcef96852f499a97486dc0e792c2c,
     type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -1365,6 +1365,91 @@ Prefab:
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 204327056}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: randomSeed
+      value: 138706622
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: ShapeModule.m_Rotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 13.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 182119383018458488, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: ShapeModule.m_Position.z
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: InitialModule.maxNumParticles
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.334
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: CollisionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: NoiseModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: ShapeModule.m_Position.y
+      value: -0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 182119383018458488, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: m_Radius
+      value: 2.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ccce21630800924ea55225d8dcbb909, type: 2}
   m_IsPrefabParent: 0
