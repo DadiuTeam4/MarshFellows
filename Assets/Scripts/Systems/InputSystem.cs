@@ -22,6 +22,8 @@ public class InputSystem : Singleton<InputSystem>
 	private Holdable[] heldThisFrame = new Holdable[maxNumberTouches];
 	private RaycastHit?[] raycastHits = new RaycastHit?[maxNumberTouches];
 	private Dictionary<int, List<Vector3>> touchPositions = new Dictionary<int, List<Vector3>>();
+
+	private int swipeRegisterCount = 1;
 	#endregion
 
 	#region DEBUG
@@ -133,17 +135,16 @@ public class InputSystem : Singleton<InputSystem>
 		{
 			// Check if the touch hit a holdable
 			Holdable holdable = GetHoldable(raycastHits[touch.fingerId].Value);
-			if (holdable)
+			if (holdable) {
+				EventManager.GetInstance ().CallEvent (CustomEvent.HoldBegin);
+
+				holdable.OnTouchBegin (raycastHits [touch.fingerId].Value);
+				heldThisFrame [touch.fingerId] = holdable;
+
+			} else 
 			{
-				EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin);
-
-				holdable.OnTouchBegin(raycastHits[touch.fingerId].Value);
-				heldThisFrame[touch.fingerId] = holdable;
+				CheckSwipe (touch);
 			}
-
-			
-			CheckSwipe(touch);
-			
 		}
 	}
 
@@ -196,6 +197,7 @@ public class InputSystem : Singleton<InputSystem>
 			heldLastFrame[touch.fingerId].OnTouchReleased();
 			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
+
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
 	}
@@ -247,11 +249,13 @@ public class InputSystem : Singleton<InputSystem>
 			touchPositions[touch.fingerId].Clear();
 			touchPositions[touch.fingerId].Add(touch.position);
 		}
-		
-		EventArgument argument = new EventArgument();
-		argument.vectorComponent = direction;
-		argument.raycastComponent = raycastHits[touch.fingerId].Value;
-		EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
+		if (touchPositions[touch.fingerId].Count > swipeRegisterCount)
+		{
+			EventArgument argument = new EventArgument();
+			argument.vectorComponent = direction;
+			argument.raycastComponent = raycastHits[touch.fingerId].Value;
+			EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
+		}
 	}
 
 	private Holdable GetHoldable(RaycastHit hit)

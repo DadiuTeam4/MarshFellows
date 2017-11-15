@@ -15,11 +15,11 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
   m_Fog: 1
-  m_FogColor: {r: 0.8718101, g: 0.9034572, b: 0.9191176, a: 1}
-  m_FogMode: 1
-  m_FogDensity: 0.02
-  m_LinearFogStart: 8.1
-  m_LinearFogEnd: 60.64
+  m_FogColor: {r: 0.8621324, g: 0.8718053, b: 0.875, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.03
+  m_LinearFogStart: 4.7
+  m_LinearFogEnd: 49.29
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1368,7 +1368,7 @@ Prefab:
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
       propertyPath: randomSeed
-      value: 138706622
+      value: 1736774928
       objectReference: {fileID: 0}
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
@@ -1383,7 +1383,7 @@ Prefab:
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
       propertyPath: ShapeModule.m_Scale.x
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
@@ -1393,7 +1393,7 @@ Prefab:
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
       propertyPath: ShapeModule.m_Scale.z
-      value: 13.08
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 182119383018458488, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
@@ -1408,7 +1408,7 @@ Prefab:
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
       propertyPath: ShapeModule.m_Position.z
-      value: 3.6
+      value: 6.51
       objectReference: {fileID: 0}
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
@@ -1418,7 +1418,7 @@ Prefab:
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.334
+      value: 0.459
       objectReference: {fileID: 0}
     - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
         type: 2}
@@ -1449,6 +1449,21 @@ Prefab:
         type: 2}
       propertyPath: m_Radius
       value: 2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8564014
+      objectReference: {fileID: 0}
+    - target: {fileID: 198520425229180540, guid: 6ccce21630800924ea55225d8dcbb909,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.8564014
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ccce21630800924ea55225d8dcbb909, type: 2}
@@ -1580,7 +1595,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 0.97281945, b: 0.7689655, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.67
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1588,7 +1603,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.737
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -1830,7 +1845,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1926392423}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300016, guid: 8edc92a2e0cda0442b30e5aceeff99fb, type: 3}
 --- !u!4 &1926392427
 Transform:
   m_ObjectHideFlags: 0
