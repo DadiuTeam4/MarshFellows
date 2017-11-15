@@ -91,13 +91,13 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		//argument.gameObjectComponent;
 
-		if(argument.stringComponent == "T	ree")
+		if(argument.stringComponent == "Tree")
 		{
 		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "Stone")
 		{
-			//
+			PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "SomethingElse")
 		{
@@ -107,7 +107,7 @@ public class AudioManager : Singleton<AudioManager> {
 
 	void ForeshadowPost(EventArgument argument)
 	{
-
+		//Travel of P 
 			if(argument.stringComponent == "Scena2")
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Shaman");
@@ -120,6 +120,8 @@ public class AudioManager : Singleton<AudioManager> {
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Bear");
 			}
+			
+		//Travel of O 
 			if(argument.stringComponent == "Scena1")
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Bear");
@@ -156,6 +158,15 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
+			AkSoundEngine.SetState("Music", "Crossroad"); 
+		}
+		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
+		{
+			AkSoundEngine.SetState("Music", "LiO1"); 
+		}
+		if (argument.stringComponent == "LiP1" && argument.intComponent == -1) 
+		{
+			AkSoundEngine.SetState("Music", "LiP1"); 
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{

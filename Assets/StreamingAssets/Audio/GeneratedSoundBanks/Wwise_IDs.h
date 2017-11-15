@@ -14,12 +14,14 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID MUTEALL = 2308878679U;
+        static const AkUniqueID PAUSE_MUSIC = 2735935537U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
         static const AkUniqueID PLAY_FS = 2262856515U;
         static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
+        static const AkUniqueID PLAY_GG_SD_CR_STINGER_1 = 2613785285U;
         static const AkUniqueID PLAY_GG_SD_FSD_BEAR = 4141043401U;
         static const AkUniqueID PLAY_GG_SD_FSD_SHAMAN = 2756361781U;
         static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
@@ -27,8 +29,10 @@ namespace AK
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
         static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
         static const AkUniqueID PLAY_GG_SD_SWIPE_1 = 3603427629U;
+        static const AkUniqueID PLAY_IMPACTEARTHROCK = 1419803467U;
         static const AkUniqueID PLAY_MUSIC_01 = 3709355747U;
         static const AkUniqueID PLAY_OVERTURE = 2127114922U;
+        static const AkUniqueID RESUME_MUSIC = 2940177080U;
         static const AkUniqueID STOP_ALL = 452547817U;
         static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
         static const AkUniqueID STOP_GG_SD_WIND = 104387825U;
@@ -45,6 +49,8 @@ namespace AK
             {
                 static const AkUniqueID CROSSROAD = 1606235185U;
                 static const AkUniqueID INTRO = 1125500713U;
+                static const AkUniqueID LIO1 = 153136492U;
+                static const AkUniqueID LIP1 = 169914049U;
                 static const AkUniqueID SC1A = 3639549469U;
                 static const AkUniqueID SC1B = 3639549470U;
                 static const AkUniqueID SC3A = 3673104835U;
