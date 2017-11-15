@@ -206,6 +206,7 @@ public class InputSystem : Singleton<InputSystem>
 		Ray ray = Camera.main.ScreenPointToRay(touch.position);
 		if (Physics.Raycast(ray, out hit)) 
 		{
+			Debug.Log(hit.transform.name);
 			raycastHits[touch.fingerId] = hit;
 			return true;
 		}
