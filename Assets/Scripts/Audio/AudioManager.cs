@@ -150,19 +150,15 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
-			//Do this
-			//Play overture 
 			//PlaySoundWC("Play_Overture"); 
 			//print ("OVERTURE"); 
 		}
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
-			//Do this
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
-			//Do this
 			//Mere spacey musik 
 			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
 		}
