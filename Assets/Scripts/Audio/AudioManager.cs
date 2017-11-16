@@ -129,7 +129,8 @@ public class AudioManager : Singleton<AudioManager> {
 			if(argument.stringComponent == "Crossroad")
 			{
 				//PlaySoundWC("Play_GG_SD_FSD_Bear");
-				//Maybe nothing should happen
+				//Maybe nothing should happen¨
+				PlaySoundWC("Play_GG_FSD_CR_1");
 			}
 	}
 
@@ -262,4 +263,13 @@ public class AudioManager : Singleton<AudioManager> {
             soundsBeingPlayed[soundEventName] = false;
         }
     }
+
+	public void MenuFadeSoundDown()
+	{
+		PlaySound ("Menu_FadeVolumeDown"); 	
+	}
+	public void MenuFadeSoundUp()
+	{
+		PlaySound ("Menu_FadeVolumeUp"); 	
+	}
 }
