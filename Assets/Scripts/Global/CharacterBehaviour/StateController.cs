@@ -58,6 +58,7 @@ public class StateController : MonoBehaviour
             eventManager.AddListener(e, action);
         }
         locationEventCallback = SetLocationToLookAt;
+        eventManager.AddListener(CustomEvent.BroadcastObjectLocation, locationEventCallback);
 	}
 
 
