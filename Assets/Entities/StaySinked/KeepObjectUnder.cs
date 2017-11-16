@@ -1,36 +1,40 @@
 ﻿//Author:Tilemachos
-//Co-author:
+//Co-author: You Wu
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
-public class KeepObjectUnder : MonoBehaviour {
+public class KeepObjectUnder : MonoBehaviour
+{
 
-private Collider parentCollider;
-private Collider myCollider;
+    private Collider parentCollider;
+    private Collider myCollider;
+    private List<GameObject> sinkedObjects = new List<GameObject>();
+    void OnTriggerEnter(Collider other)
+    {
+        if (!sinkedObjects.Contains(other.gameObject))
+        {
+            sinkedObjects.Add(other.gameObject);
+            Rigidbody rigidbody = other.GetComponent<Rigidbody>();
+            if (rigidbody)
+            {
+                rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            }
 
+            SinkableObjectType sinked = other.GetComponent<SinkableObjectType>();
 
-	void OnTriggerEnter(Collider other)
-	{
-		Rigidbody rigidbody = other.GetComponent<Rigidbody>();
-		if (rigidbody)
-		{
-			rigidbody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY |RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-		}
+            if (sinked)
+            {
+                EventManager eventManager = EventManager.GetInstance();
 
-		SinkableObjectType sinked = other.GetComponent<SinkableObjectType>();
+                EventArgument argument = new EventArgument();
 
-		if (sinked)
-		{		
-			EventManager eventManager = EventManager.GetInstance();
+                argument.stringComponent = sinked.typeOfSinkable;
 
-			EventArgument argument = new EventArgument();
+                argument.gameObjectComponent = other.gameObject;
 
-			argument.stringComponent = sinked.typeOfSinkable;
-
-			argument.gameObjectComponent = other.gameObject;
-
-			eventManager.CallEvent(CustomEvent.SinkHasHappened,argument);
-		}
-	}
+                eventManager.CallEvent(CustomEvent.SinkHasHappened, argument);
+            }
+        }
+    }
 }
