@@ -135,7 +135,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 				continue;
 			}
             Scene scene = SceneManager.GetSceneByBuildIndex(i);
-            if ((!scene.isLoaded || scene.name != globalSceneName)&& scene.IsValid())
+            if (!scene.isLoaded || scene.name != globalSceneName)
             {
                 if (Application.isPlaying)
                 {
