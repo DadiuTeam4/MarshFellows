@@ -76,7 +76,7 @@ public class Hideable : MonoBehaviour
 				
 				if(callsExtra && !extraEventIfSameAsHiddenBool)
 				{
-					EventManager.GetInstance().CallEvent(extraCall);
+					EventManager.GetInstance().CallEvent(extraCall,argument);
 				}
 			}
 		}
@@ -90,7 +90,7 @@ public class Hideable : MonoBehaviour
 			
 			if(callsExtra && extraEventIfSameAsHiddenBool)
 			{
-				EventManager.GetInstance().CallEvent(extraCall);
+				EventManager.GetInstance().CallEvent(extraCall,argument);
 			}
 		}
 	}
