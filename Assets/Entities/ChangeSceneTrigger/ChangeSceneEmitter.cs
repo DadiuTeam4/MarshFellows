@@ -27,8 +27,47 @@ public class ChangeSceneEmitter : MonoBehaviour {
 
         if(!haveBeenTriggered && other.gameObject.tag == "Player")
         {
+
+            
             GameStateManager gameState = new GameStateManager();
             
+            if(forPUnlockableInThisScene != emptyString)
+            {
+                
+                if(GameStateManager.current != null)
+                {
+                    gameState = GameStateManager.current;
+                }
+                if(gameState.forPUnlockables == null)
+                {
+                    gameState.forPUnlockables = new List<string>();
+                }
+                if(!GameStateManager.current.forPUnlockables.Contains(forPUnlockableInThisScene))
+                {
+                    gameState.forPUnlockables.Add(forPUnlockableInThisScene);
+                    GameStateManager.current = gameState;
+                }
+            }
+
+            if(forOUnlockableInThisScene != emptyString)
+            {
+                
+                if(GameStateManager.current != null)
+                {
+                    gameState = GameStateManager.current;
+                }
+                if(gameState.forOUnlockables == null)
+                {
+                    gameState.forOUnlockables = new List<string>();
+                }
+                
+                if(!GameStateManager.current.forOUnlockables.Contains(forOUnlockableInThisScene))
+                {
+                    gameState.forOUnlockables.Add(forOUnlockableInThisScene);
+                    GameStateManager.current = gameState;
+                }
+            }
+
             EventManager eventManager = EventManager.GetInstance(); 
     
             EventArgument argument = new EventArgument(); 
@@ -63,42 +102,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
                 addOnSceneIndex = false;
             }
 
-            if(forPUnlockableInThisScene != emptyString)
-            {
-                
-                if(GameStateManager.current != null)
-                {
-                    gameState = GameStateManager.current;
-                }
-                if(gameState.forPUnlockables == null)
-                {
-                    gameState.forPUnlockables = new List<string>();
-                }
-                if(GameStateManager.current.forPUnlockables.Contains(forPUnlockableInThisScene))
-                {
-                    gameState.forPUnlockables.Add(forPUnlockableInThisScene);
-                    GameStateManager.current = gameState;
-                }
-            }
 
-            if(forOUnlockableInThisScene != emptyString)
-            {
-                
-                if(GameStateManager.current != null)
-                {
-                    gameState = GameStateManager.current;
-                }
-                if(gameState.forOUnlockables == null)
-                {
-                    gameState.forOUnlockables = new List<string>();
-                }
-                
-                if(GameStateManager.current.forPUnlockables.Contains(forOUnlockableInThisScene))
-                {
-                    gameState.forOUnlockables.Add(forOUnlockableInThisScene);
-                    GameStateManager.current = gameState;
-                }
-            }
 
             Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
             Destroy(this.gameObject);

@@ -62,7 +62,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         GameObject o = GameObject.Find(OsName);
-        if(GameStateManager.current != null && GameStateManager.current.forPUnlockables != null)
+        if(GameStateManager.current != null && GameStateManager.current.forOUnlockables != null)
         {
             for(int i = 0; i<unlockableItems.Count; i++)
             {
