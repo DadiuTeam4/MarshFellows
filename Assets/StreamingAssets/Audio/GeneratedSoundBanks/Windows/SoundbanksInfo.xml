@@ -28,15 +28,16 @@
 			<IncludedEvents>
 				<Event Id="2308878679" Name="MuteAll" ObjectPath="\Events\Default Work Unit\Volume\MuteAll" MaxAttenuation="0.000000"/>
 				<Event Id="2735935537" Name="Pause_Music" ObjectPath="\Events\Default Work Unit\Music\Pause_Music" MaxAttenuation="0.000000"/>
-				<Event Id="1832895494" Name="Play_Bear_FS" ObjectPath="\Events\Default Work Unit\Play_Bear_FS" MaxAttenuation="100.000000"/>
-				<Event Id="675749344" Name="Play_Deer_FS" ObjectPath="\Events\Default Work Unit\Play_Deer_FS" MaxAttenuation="100.000000"/>
-				<Event Id="513156325" Name="Play_FallTree" ObjectPath="\Events\Default Work Unit\Play_FallTree"/>
-				<Event Id="2262856515" Name="Play_FS" ObjectPath="\Events\Default Work Unit\Play_FS"/>
-				<Event Id="1492968614" Name="Play_GG_Ambience_Open_1" ObjectPath="\Events\Default Work Unit\Play_GG_Ambience_Open_1"/>
-				<Event Id="564891350" Name="Play_GG_SD_Bonfire_1" ObjectPath="\Events\Default Work Unit\Play_GG_SD_Bonfire_1" MaxAttenuation="100.000000"/>
-				<Event Id="2613785285" Name="Play_GG_SD_CR_Stinger_1" ObjectPath="\Events\Default Work Unit\Play_GG_SD_CR_Stinger_1"/>
-				<Event Id="4141043401" Name="Play_GG_SD_FSD_Bear" ObjectPath="\Events\Default Work Unit\Play_GG_SD_FSD_Bear" MaxAttenuation="100.000000"/>
-				<Event Id="2756361781" Name="Play_GG_SD_FSD_Shaman" ObjectPath="\Events\Default Work Unit\Play_GG_SD_FSD_Shaman" MaxAttenuation="100.000000"/>
+				<Event Id="1832895494" Name="Play_Bear_FS" ObjectPath="\Events\Default Work Unit\Animals\Play_Bear_FS" MaxAttenuation="100.000000"/>
+				<Event Id="675749344" Name="Play_Deer_FS" ObjectPath="\Events\Default Work Unit\Animals\Play_Deer_FS" MaxAttenuation="100.000000"/>
+				<Event Id="513156325" Name="Play_FallTree" ObjectPath="\Events\Default Work Unit\Environment\Play_FallTree"/>
+				<Event Id="2262856515" Name="Play_FS" ObjectPath="\Events\Default Work Unit\O&amp;P\Play_FS"/>
+				<Event Id="1492968614" Name="Play_GG_Ambience_Open_1" ObjectPath="\Events\Default Work Unit\Environment\Play_GG_Ambience_Open_1"/>
+				<Event Id="1046603869" Name="Play_GG_FSD_2" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_2"/>
+				<Event Id="564891350" Name="Play_GG_SD_Bonfire_1" ObjectPath="\Events\Default Work Unit\Environment\Play_GG_SD_Bonfire_1" MaxAttenuation="100.000000"/>
+				<Event Id="2613785285" Name="Play_GG_SD_CR_Stinger_1" ObjectPath="\Events\Default Work Unit\Music\Play_GG_SD_CR_Stinger_1"/>
+				<Event Id="4141043401" Name="Play_GG_SD_FSD_Bear" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_SD_FSD_Bear" MaxAttenuation="100.000000"/>
+				<Event Id="2756361781" Name="Play_GG_SD_FSD_Shaman" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_SD_FSD_Shaman" MaxAttenuation="100.000000"/>
 				<Event Id="2246671041" Name="Play_GG_SD_Shake_1" ObjectPath="\Events\Default Work Unit\Play_GG_SD_Shake_1"/>
 				<Event Id="3932030894" Name="Play_GG_SD_Shaman_Drum_1" ObjectPath="\Events\Default Work Unit\Play_GG_SD_Shaman_Drum_1" MaxAttenuation="100.000000"/>
 				<Event Id="459538816" Name="Play_GG_SD_ShamanTransformation" ObjectPath="\Events\Default Work Unit\Play_GG_SD_ShamanTransformation"/>
@@ -63,17 +64,25 @@
 					<ShortName>GG_SD_Shake_1.wav</ShortName>
 					<Path>SFX/GG_SD_Shake_1_AD29F36A.wem</Path>
 				</File>
+				<File Id="29296021" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_9.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_9_F7D0E330.wem</Path>
+				</File>
 				<File Id="66411283" Language="SFX">
 					<ShortName>GG_SD_CR_Stinger_1.wav</ShortName>
 					<Path>SFX/GG_SD_CR_Stinger_1_AD29F36A.wem</Path>
+				</File>
+				<File Id="75537109" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_7.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_7_F7D0E330.wem</Path>
 				</File>
 				<File Id="77432509" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_12.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_12_F7D0E330.wem</Path>
 				</File>
-				<File Id="94630852" Language="SFX">
-					<ShortName>SS_FS_JUNGLE13.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE13_F7D0E330.wem</Path>
+				<File Id="89945375" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_12.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_12_F7D0E330.wem</Path>
 				</File>
 				<File Id="97217295" Language="SFX">
 					<ShortName>GG_Sinkmechanic_2_2.wav</ShortName>
@@ -87,25 +96,21 @@
 					<ShortName>MonsterBearGroan_S08AN.216.wav</ShortName>
 					<Path>SFX/MonsterBearGroan_S08AN.216_F7D0E330.wem</Path>
 				</File>
-				<File Id="118311113" Language="SFX">
-					<ShortName>SS_FS_JUNGLE2.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE2_F7D0E330.wem</Path>
-				</File>
-				<File Id="166912983" Language="SFX">
-					<ShortName>SS_FS_JUNGLE10.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE10_F7D0E330.wem</Path>
-				</File>
 				<File Id="177053591" Language="SFX">
 					<ShortName>GG_Wind_1_3.wav</ShortName>
 					<Path>SFX/GG_Wind_1_3_EBAE146A.wem</Path>
 				</File>
+				<File Id="217156754" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_5.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_5_F7D0E330.wem</Path>
+				</File>
+				<File Id="217971430" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_1.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_1_F7D0E330.wem</Path>
+				</File>
 				<File Id="248803150" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_3.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_3_F7D0E330.wem</Path>
-				</File>
-				<File Id="268898548" Language="SFX">
-					<ShortName>SS_FS_JUNGLE11.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE11_F7D0E330.wem</Path>
 				</File>
 				<File Id="286417238" Language="SFX">
 					<ShortName>CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_02_FAR.wav</ShortName>
@@ -127,9 +132,9 @@
 					<ShortName>GG_FS_SWAMP_WET_1_1.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_1_F7D0E330.wem</Path>
 				</File>
-				<File Id="349911452" Language="SFX">
-					<ShortName>SS_FS_JUNGLE9.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE9_F7D0E330.wem</Path>
+				<File Id="329189329" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_13.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_13_F7D0E330.wem</Path>
 				</File>
 				<File Id="352166662" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_8.wav</ShortName>
@@ -139,10 +144,6 @@
 					<ShortName>GG_FS_SWAMP_WET_1_10.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_10_F7D0E330.wem</Path>
 				</File>
-				<File Id="358192856" Language="SFX">
-					<ShortName>GG_MUSIC_INTRO_1.wav</ShortName>
-					<Path>SFX/GG_MUSIC_INTRO_1_AD29F36A.wem</Path>
-				</File>
 				<File Id="364456023" Language="SFX">
 					<ShortName>GG_Wind_1_2.wav</ShortName>
 					<Path>SFX/GG_Wind_1_2_8CE3A161.wem</Path>
@@ -151,13 +152,9 @@
 					<ShortName>GG_SD_Shaman_Drum_1.wav</ShortName>
 					<Path>SFX/GG_SD_Shaman_Drum_1_E2B9BA5D.wem</Path>
 				</File>
-				<File Id="376156739" Language="SFX">
-					<ShortName>SS_FS_JUNGLE14.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE14_F7D0E330.wem</Path>
-				</File>
-				<File Id="376624276" Language="SFX">
-					<ShortName>SS_FS_JUNGLE16.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE16_F7D0E330.wem</Path>
+				<File Id="429189614" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_6.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_6_F7D0E330.wem</Path>
 				</File>
 				<File Id="435724754" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_9.wav</ShortName>
@@ -171,6 +168,14 @@
 					<ShortName>GG_Sinkmechanic_2_3.wav</ShortName>
 					<Path>SFX/GG_Sinkmechanic_2_3_19568378.wem</Path>
 				</File>
+				<File Id="496682039" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_3.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_3_F7D0E330.wem</Path>
+				</File>
+				<File Id="508440220" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_15.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_15_F7D0E330.wem</Path>
+				</File>
 				<File Id="512604909" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_15.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_15_F7D0E330.wem</Path>
@@ -178,6 +183,18 @@
 				<File Id="515567550" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_13.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_13_F7D0E330.wem</Path>
+				</File>
+				<File Id="525323256" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_11.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_11_F7D0E330.wem</Path>
+				</File>
+				<File Id="533372779" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_14.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_14_F7D0E330.wem</Path>
+				</File>
+				<File Id="535746681" Language="SFX">
+					<ShortName>GG_FSD_2_1.wav</ShortName>
+					<Path>SFX/GG_FSD_2_1_F7D0E330.wem</Path>
 				</File>
 				<File Id="541555690" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_5.wav</ShortName>
@@ -195,25 +212,9 @@
 					<ShortName>CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_03_FAR.wav</ShortName>
 					<Path>SFX/CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_03_FAR_F7D0E330.wem</Path>
 				</File>
-				<File Id="631155704" Language="SFX">
-					<ShortName>SS_FS_JUNGLE4.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE4_F7D0E330.wem</Path>
-				</File>
 				<File Id="645548709" Language="SFX">
 					<ShortName>GG_MUSIC_ICE_B_1.wav</ShortName>
 					<Path>SFX/GG_MUSIC_ICE_B_1_AD29F36A.wem</Path>
-				</File>
-				<File Id="647458874" Language="SFX">
-					<ShortName>SS_FS_JUNGLE12.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE12_F7D0E330.wem</Path>
-				</File>
-				<File Id="663562708" Language="SFX">
-					<ShortName>SS_FS_JUNGLE3.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE3_F7D0E330.wem</Path>
-				</File>
-				<File Id="665062566" Language="SFX">
-					<ShortName>SS_FS_JUNGLE5.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE5_F7D0E330.wem</Path>
 				</File>
 				<File Id="667337525" Language="SFX">
 					<ShortName>BodyFallTree_BW.60474.wav</ShortName>
@@ -235,13 +236,25 @@
 					<ShortName>GG_FS_SWAMP_WET_1_14.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_14_F7D0E330.wem</Path>
 				</File>
+				<File Id="749229176" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_8.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_8_F7D0E330.wem</Path>
+				</File>
 				<File Id="756617827" Language="SFX">
 					<ShortName>GG_MUSIC_ICE_A_1.wav</ShortName>
 					<Path>SFX/GG_MUSIC_ICE_A_1_AD29F36A.wem</Path>
 				</File>
+				<File Id="777732199" Language="SFX">
+					<ShortName>GG_MUSIC_HUNT_1.wav</ShortName>
+					<Path>SFX/GG_MUSIC_HUNT_1_AD29F36A.wem</Path>
+				</File>
 				<File Id="788088289" Language="SFX">
 					<ShortName>GG_SD_Shaman_Drum_1.wav</ShortName>
 					<Path>SFX/GG_SD_Shaman_Drum_1_F7D0E330.wem</Path>
+				</File>
+				<File Id="808835204" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_4.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_4_F7D0E330.wem</Path>
 				</File>
 				<File Id="813405328" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_4.wav</ShortName>
@@ -287,33 +300,21 @@
 					<ShortName>GG_FS_SWAMP_WET_1_11.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_11_F7D0E330.wem</Path>
 				</File>
-				<File Id="989143106" Language="SFX">
-					<ShortName>SS_FS_JUNGLE6.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE6_F7D0E330.wem</Path>
-				</File>
-				<File Id="1006686284" Language="SFX">
-					<ShortName>SS_FS_JUNGLE1.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE1_F7D0E330.wem</Path>
+				<File Id="982748275" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_10.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_10_F7D0E330.wem</Path>
 				</File>
 				<File Id="1011062853" Language="SFX">
 					<ShortName>ImpactEarthRock_S08IM.293.wav</ShortName>
 					<Path>SFX/ImpactEarthRock_S08IM.293_EB81EE36.wem</Path>
 				</File>
-				<File Id="1027393831" Language="SFX">
-					<ShortName>SS_FS_JUNGLE7.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE7_F7D0E330.wem</Path>
-				</File>
-				<File Id="1057435611" Language="SFX">
-					<ShortName>SS_FS_JUNGLE8.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE8_F7D0E330.wem</Path>
-				</File>
 				<File Id="1066732813" Language="SFX">
 					<ShortName>GG_Wind_1_5.wav</ShortName>
 					<Path>SFX/GG_Wind_1_5_14DE49B5.wem</Path>
 				</File>
-				<File Id="1069943477" Language="SFX">
-					<ShortName>SS_FS_JUNGLE15.wav</ShortName>
-					<Path>SFX/SS_FS_JUNGLE15_F7D0E330.wem</Path>
+				<File Id="1067431233" Language="SFX">
+					<ShortName>GG_FS_SWAMP_DRY_1_2.wav</ShortName>
+					<Path>SFX/GG_FS_SWAMP_DRY_1_2_F7D0E330.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

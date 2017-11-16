@@ -110,7 +110,7 @@ public class AudioManager : Singleton<AudioManager> {
 		//Travel of P 
 			if(argument.stringComponent == "Scena2")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Shaman");
+				PlaySoundWC("Play_GG_FSD_2");
 			}
 			if(argument.stringComponent == "Scena3")
 			{
@@ -118,7 +118,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Scena4")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_FSD_4_1");
 			}
 			
 		//Travel of O 
