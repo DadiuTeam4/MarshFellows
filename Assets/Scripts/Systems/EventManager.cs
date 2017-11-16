@@ -33,7 +33,9 @@ namespace Events
 		SwipeEnded = 21,
 		ForeshadowEventTriggered = 22,
 		GroundChecked = 23,
-        RitualDisrupted = 24
+        RitualDisrupted = 24, 
+		DeerKilledEvent = 25,
+        BroadcastObjectLocation = 26 /* used to set location of objects for the hunters to look at, eg. shaman location */
     }
 
 	public class EventArgument

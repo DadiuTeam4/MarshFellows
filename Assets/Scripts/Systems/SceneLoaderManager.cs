@@ -17,7 +17,9 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     EventManager eventManager;
     public string globalSceneName = "GlobalScene";
     public string firstSceneToLoadName = "IntroLevel";
-    public string whoToAddTheUnlockables = "O";
+    public string PsName = "P";
+    public string OsName = "O";
+    
     void Start()
     {
         
@@ -31,30 +33,52 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         EventArgument argument = new EventArgument(); 
-        argument.stringComponent = globalSceneName;
-        argument.intComponent = 0;
-        eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
+        //LoadUnloadEverything();
+        //UnloadAllScenes(globalSceneName);
         argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-
-        //AddUnlockables(whoToAddTheUnlockables);
-
+        AddUnlockables();
         
     }
-    private void AddUnlockables(string whoToAdd)
+
+    private void AddUnlockables()
     {
-        GameObject o = GameObject.Find(whoToAdd);
-        if(GameStateManager.current != null)
+        GameObject p = GameObject.Find(PsName);
+        if(GameStateManager.current != null && GameStateManager.current.forPUnlockables != null)
         {
-            for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
+            for(int i = 0; i < GameStateManager.current.forPUnlockables.Count; i++)
             {
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.parent=o.transform;
-                
-                cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z-1);
+               try
+               {
+                    GameObject objectUnlocked = p.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
+                    objectUnlocked.SetActive(true);
+               }
+               catch
+               {
+                   Debug.Log("Wrong name path for unlockable " + GameStateManager.current.forPUnlockables[i]);
+               }
+            }
+        }
+
+
+        GameObject o = GameObject.Find(OsName);
+        if(GameStateManager.current != null && GameStateManager.current.forOUnlockables != null)
+        {
+            for(int i = 0; i<GameStateManager.current.forOUnlockables.Count; i++)
+            {
+                try
+               {
+                    GameObject objectUnlocked = o.transform.Find(GameStateManager.current.forOUnlockables[i]).gameObject;
+                    objectUnlocked.SetActive(true); 
+               }
+               catch
+               {
+                   Debug.Log("Wrong name path for unlockable " + GameStateManager.current.forOUnlockables[i]);
+               }
+           
             }
         }
     }
@@ -82,8 +106,8 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 			GameStateManager.current = newRound;
 
             SaveLoadManager.Save();
-            UnloadAllScenes();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            UnloadAllScenes("");
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
             return;
         }
 
@@ -93,7 +117,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
             if (!scene.isLoaded)
             {
-                SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(argument.stringComponent, LoadSceneMode.Additive);
             }
 
             foreach(string sceneToUnload in scenesToUnload)
@@ -111,13 +135,41 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
     }
 
-    void UnloadAllScenes() 
+    void UnloadAllScenes(string unloadGlobal) 
     {
         int c = SceneManager.sceneCount;
         for (int i = 0; i < c; i++) 
         {
-            Scene scene = SceneManager.GetSceneAt (i);       
-            SceneManager.UnloadSceneAsync (scene);
+            Scene scene = SceneManager.GetSceneAt (i);  
+            if(scene.name != unloadGlobal)
+            {
+                SceneManager.UnloadSceneAsync (scene);
+            }     
+        }
+    }
+
+    void LoadUnloadEverything()
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings ; i++)
+        {
+			if (i == 0) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
+			{
+				continue;
+			}
+            Scene scene = SceneManager.GetSceneByBuildIndex(i);
+            if (!scene.isLoaded || scene.name != globalSceneName)
+            {
+                if (Application.isPlaying)
+                {
+                	SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
+                }
+                else
+                {
+                //    SceneManager.LoadScene(EditorBuildSettings.scenes[i].path, LoadSceneMode.Additive);
+                }
+                SceneManager.UnloadSceneAsync (scene);
+
+            }
         }
     }
 

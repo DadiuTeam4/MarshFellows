@@ -10,9 +10,23 @@ using Events;
 
 public class SinkableGround : Holdable 
 {
+	[Header("Updating")]
+	[Tooltip("If true the points which are sunk will update when touch is moved, instead of staying at the same points.")]
+	public bool updateSinkPoints = true;
+
+	[Tooltip("The minimum distance between touch positions before a new set of vertices are found")]
+	public float minimumTouchDistance = 1.0f;
+	
 	[Tooltip("The rate of which the mesh is updated. If set to 5 then each fifth frame, etc.")]
 	public int updateRate = 10;
 	
+	[Header("Obstacles")]
+	[Tooltip("Whether there should be placed navmesh obstacles when sinking the ground or not")]
+	public bool placeObstacles = true;
+
+	[Tooltip("Controls the size of the obstacles")]
+	public float obstacleRadius = 2.0f;
+
 	[Header("Sinking")]
 	[Tooltip("The speed of which sinking happens")]
 	[Range(0.01f, 1.0f)]
@@ -30,6 +44,12 @@ public class SinkableGround : Holdable
 	[Tooltip("The amount of seconds before the ground will rise again")]
 	public float riseDelay = 2.0f;
 
+	[Header("Eventcalling")]
+	[Tooltip("If true the sinkable ground will call an extra event on touch")]
+	public bool callExtra;
+	[Tooltip("Which event is called, as an extra event")]
+	public CustomEvent extraEvent;
+
 	private MeshCollider meshCollider;
 	private MeshFilter meshFilter;
 	private Mesh mesh;
@@ -40,8 +60,7 @@ public class SinkableGround : Holdable
 	private bool verticesWaiting = false;
 	private bool madeChange = false;
 
-	public bool callExtra;
-	public CustomEvent extraEvent;
+	private Vector3 oldTouchPosition;
 
 	private List<Pair<int, float>> nearestPoints = new List<Pair<int, float>>();
 
@@ -71,62 +90,19 @@ public class SinkableGround : Holdable
 
 	public override void OnTouchBegin(RaycastHit hit) 
 	{
-		nearestPoints.Clear();
+		FindNearestPoints(hit);
 
-		Vector3 pointHit = hit.point;
-		pointHit = transform.InverseTransformPoint(pointHit);
-
-		mesh = meshFilter.mesh;
-		currentVertices = mesh.vertices;
-		Vector3[] normals = mesh.normals;
-
-		float distance;
-		for(int i = 0; i < currentVertices.Length; i++)
-		{
-			distance = Vector3.Distance(currentVertices[i], pointHit);
-			if (distance < radius)
-			{
-				Pair<int, float> newPoint = new Pair<int, float>(i, distance);
-				nearestPoints.Add(newPoint);
-			}
-		}
-
-		OrderPairList(ref nearestPoints);
-		Vector3 obstaclePosition = transform.TransformPoint(originalVerticePositions[nearestPoints[0].GetFirst()]);
-		verticeObstacles[nearestPoints[0].GetFirst()] = new Obstacle(obstaclePosition, radius);
-		verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform.GetChild(0));
-
-		argument.vectorComponent = pointHit;
 		EventManager.GetInstance().CallEvent(CustomEvent.SinkGround, argument);
 
 		if (callExtra)
 		{
-			EventManager.GetInstance().CallEvent(extraEvent);
+			EventManager.GetInstance().CallEvent(extraEvent,argument);
 		}
 	}
 	
 	public override void OnTouchHold(RaycastHit hit) 
 	{
-		if(Time.frameCount % updateRate == 0)
-		{
-			currentVertices = mesh.vertices;
-
-			if(Vector3.Distance(currentVertices[nearestPoints[0].GetFirst()], originalVerticePositions[nearestPoints[0].GetFirst()]) < depth)
-			{
-				foreach (Pair<int, float> pair in nearestPoints)
-				{
-					currentVertices[pair.GetFirst()].y -= sinkSpeed * ((radius - pair.GetSecond()) / radius);
-					verticeTimes[pair.GetFirst()] = Time.time + riseDelay;	
-
-					verticesWaiting = true;
-				}
-				
-				mesh.vertices = currentVertices;
-				mesh.RecalculateNormals();
-
-				meshCollider.sharedMesh = mesh;
-			}
-		}
+		SinkGround(hit);
 	}
 	
 	public override void OnTouchReleased() 
@@ -172,6 +148,117 @@ public class SinkableGround : Holdable
 		}
 	}
 
+
+	private void FindNearestPoints(RaycastHit hit)
+	{
+		nearestPoints.Clear();
+
+		Vector3 pointHit = hit.point;
+		oldTouchPosition = pointHit;
+		pointHit = transform.InverseTransformPoint(pointHit);
+
+		mesh = meshFilter.mesh;
+		currentVertices = mesh.vertices;
+		Vector3[] normals = mesh.normals;
+
+		float distance;
+		for(int i = 0; i < currentVertices.Length; i++)
+		{
+			distance = Vector3.Distance(currentVertices[i], pointHit);
+			if (distance < radius)
+			{
+				Pair<int, float> newPoint = new Pair<int, float>(i, distance);
+				nearestPoints.Add(newPoint);
+			}
+		}
+		if (placeObstacles)
+		{
+			MakeObstacle();
+		}
+
+		argument.vectorComponent = pointHit;
+	}
+
+	private void MakeObstacle()
+	{
+		OrderPairList(ref nearestPoints);
+		Vector3 obstaclePosition = transform.TransformPoint(originalVerticePositions[nearestPoints[0].GetFirst()]);
+		verticeObstacles[nearestPoints[0].GetFirst()] = new Obstacle(obstaclePosition, obstacleRadius);
+		verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform.GetChild(0));
+	}
+
+	private void SinkGround(RaycastHit hit)
+	{
+		if (updateSinkPoints && Vector3.Distance(hit.point, oldTouchPosition) > minimumTouchDistance)
+		{
+			FindNearestPoints(hit);
+		}
+
+		if (Time.frameCount % updateRate == 0)
+		{
+			currentVertices = mesh.vertices;
+
+			if(Vector3.Distance(currentVertices[nearestPoints[0].GetFirst()], originalVerticePositions[nearestPoints[0].GetFirst()]) < depth)
+			{
+				foreach (Pair<int, float> pair in nearestPoints)
+				{
+					currentVertices[pair.GetFirst()].y -= sinkSpeed * ((radius - pair.GetSecond()) / radius);
+					verticeTimes[pair.GetFirst()] = Time.time + riseDelay;	
+
+					verticesWaiting = true;
+				}
+				
+				mesh.vertices = currentVertices;
+				mesh.RecalculateNormals();
+
+				meshCollider.sharedMesh = mesh;
+			}
+		}
+	}
+
+	private void RiseGround()
+	{
+		verticesWaiting = false;
+		for (int i = 0; i < verticeTimes.Length; i++)
+		{
+			if (verticeTimes[i] != 0.0f)
+			{
+				verticesWaiting = true;
+
+				if (Time.time > verticeTimes[i])
+				{
+					if (currentVertices[i].y + riseSpeed < originalVerticePositions[i].y)
+					{
+						currentVertices[i].y += riseSpeed;
+					}
+					else
+					{
+						currentVertices[i] = originalVerticePositions[i];
+						verticeTimes[i] = 0.0f;
+
+						if (verticeObstacles[i] != null)
+						{
+							verticeObstacles[i].Remove();
+							verticeObstacles[i] = null;
+						}
+					}
+
+					madeChange = true;
+				}
+			}
+		}
+
+		if (madeChange)
+		{
+			mesh.vertices = currentVertices;
+			mesh.RecalculateNormals();
+
+			meshCollider.sharedMesh = mesh;
+
+			madeChange = false;
+		}
+	}
+	
 	private void OrderPairList(ref List<Pair<int, float>> pairList)
 	{
 		Pair<int, float> temporary;
@@ -223,49 +310,6 @@ public class SinkableGround : Holdable
 		public void Print()
 		{
 			Debug.Log("First: " + value1 + " - Second: " + value2);
-		}
-	}
-
-	private void RiseGround()
-	{
-		verticesWaiting = false;
-		for (int i = 0; i < verticeTimes.Length; i++)
-		{
-			if (verticeTimes[i] != 0.0f)
-			{
-				verticesWaiting = true;
-
-				if (Time.time > verticeTimes[i])
-				{
-					if (currentVertices[i].y + riseSpeed < originalVerticePositions[i].y)
-					{
-						currentVertices[i].y += riseSpeed;
-					}
-					else
-					{
-						currentVertices[i] = originalVerticePositions[i];
-						verticeTimes[i] = 0.0f;
-
-						if (verticeObstacles[i] != null)
-						{
-							verticeObstacles[i].Remove();
-							verticeObstacles[i] = null;
-						}
-					}
-
-					madeChange = true;
-				}
-			}
-		}
-
-		if (madeChange)
-		{
-			mesh.vertices = currentVertices;
-			mesh.RecalculateNormals();
-
-			meshCollider.sharedMesh = mesh;
-
-			madeChange = false;
 		}
 	}
 }
