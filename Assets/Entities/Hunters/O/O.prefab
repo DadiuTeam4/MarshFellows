@@ -1993,6 +1993,7 @@ GameObject:
   - component: {fileID: 4318484391501336}
   - component: {fileID: 95368817748949932}
   - component: {fileID: 114493448823777154}
+  - component: {fileID: 114332170207490496}
   m_Layer: 0
   m_Name: hunter_fqi01
   m_TagString: Untagged
@@ -5325,6 +5326,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114332170207490496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792167732928412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81f98756e2ecd9448834dc51eccf8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetY: 0
+  lookPos: {fileID: 0}
 --- !u!114 &114493448823777154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5672,7 +5686,7 @@ WindZone:
   m_GameObject: {fileID: 1382409028041390}
   m_Enabled: 1
   m_Mode: 1
-  m_Radius: 5
+  m_Radius: 2.6
   m_WindMain: -7
   m_WindTurbulence: 1
   m_WindPulseMagnitude: 0.5
@@ -5757,7 +5771,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1430145858
+  randomSeed: 1437935814
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5847,7 +5861,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.88235295, g: 0.8564014, b: 0.8564014, a: 0.459}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5909,7 +5923,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6153,7 +6167,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 200
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -6200,15 +6214,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 10
+    type: 5
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: -90, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Position: {x: 0, y: -0.43, z: 6.51}
+    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Scale: {x: 15, y: 0, z: 20}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -6317,7 +6331,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 70
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7281,7 +7295,7 @@ ParticleSystem:
     inWorldSpace: 0
     dampen: 1
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0

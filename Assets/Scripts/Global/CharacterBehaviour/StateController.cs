@@ -20,15 +20,19 @@ public class StateController : MonoBehaviour
     [HideInInspector] public EventManager eventManager;
     [HideInInspector] public EventArgument latestEventArgument;
 
+    private IkHandler ikHandler;
+    [HideInInspector] public Transform lookAtTarget; 
+
 	private State previousState;
 	private float stateTimeElapsed;
 	private int eventNumber;
 	private EventDelegate eventOccurredCallbacks;
-	
+    private EventDelegate locationEventCallback;
 
-	#region DEBUG
-	#if UNITY_EDITOR
-	public bool aiDebugging = false;
+
+    #region DEBUG
+#if UNITY_EDITOR
+    public bool aiDebugging = false;
 	[HideInInspector] public string debugInfo;
 	#endif
 	#endregion
@@ -37,6 +41,7 @@ public class StateController : MonoBehaviour
 	{ 
 		animator = GetComponentInChildren<Animator>();
 		navigator = GetComponent<Navigator>();
+        ikHandler = GetComponentInChildren<IkHandler>();
 	}
 
 	private void Start()
@@ -52,15 +57,10 @@ public class StateController : MonoBehaviour
             eventOccurredCallbacks += action;
             eventManager.AddListener(e, action);
         }
- /*       for (int i = 0; i < events.Length; i++) 
-		{
-			triggeredEvents.Add(events[i], false);
-
-			EventDelegate action = EventCallback;
-			eventOccurredCallbacks += action;
-			EventManager.GetInstance().AddListener(events[i], action);
-		} */
+        locationEventCallback = SetLocationToLookAt;
 	}
+
+
 
 	public bool CheckEventOccured(CustomEvent eventName) 
 	{
@@ -73,17 +73,16 @@ public class StateController : MonoBehaviour
 
 	private void EventCallback(EventArgument eventArgument)
 	{
-        //print("callback " + eventArgument.eventComponent);
         triggeredEvents[eventArgument.eventComponent] = true;
         eventArguments[eventArgument.eventComponent] = eventArgument;
-        foreach (KeyValuePair<CustomEvent, bool> kvp in triggeredEvents)
-        {
-            //textBox3.Text += ("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-            //Debug.Log("Key = " + kvp.Key + ", Value = " + kvp.Value);
-        }
     }
 
-	public void TransitionToState(State nextState)
+    private void SetLocationToLookAt(EventArgument eventArgument)
+    {
+        lookAtTarget = eventArgument.gameObjectComponent.transform;
+    }
+
+    public void TransitionToState(State nextState)
 	{
 		if (nextState != currentState) 
 		{
@@ -141,11 +140,18 @@ public class StateController : MonoBehaviour
 		return navigator.GetDestination();
 	}
 
-	public void LookAt(float n)
+	public void LookAt(bool lookForward)
 	{
         // TODO: Get look direction and convert to animation coordinates
-        animator.SetFloat("reactDirection", n);
-	}
+        //animator.SetFloat("reactDirection", n);
+        if (lookForward)
+        {
+            ikHandler.LookForward();
+        } else
+        {
+            ikHandler.LookAtTarget(lookAtTarget);
+        }
+    }
 
 	public void ResetLook()
 	{
