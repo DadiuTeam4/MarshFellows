@@ -11,11 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
   m_Name: PWalking
   m_EditorClassIdentifier: 
-  onStateEnterActions: []
+  onStateEnterActions:
+  - {fileID: 11400000, guid: 5f1c4fb23fea23747b926aefd6bfded3, type: 2}
   actions:
   - {fileID: 11400000, guid: aa02eab44c3f1bc41a7a345033cc05ae, type: 2}
-  - {fileID: 11400000, guid: 5f1c4fb23fea23747b926aefd6bfded3, type: 2}
-  - {fileID: 11400000, guid: 7b0690432b9d5d34b9426af09c2483a2, type: 2}
   onStateExitActions: []
   transitions:
   - decision: {fileID: 11400000, guid: 391fe3aa443d338428dc647f7b89849b, type: 2}
@@ -33,4 +32,8 @@ MonoBehaviour:
   - decision: {fileID: 11400000, guid: 0423aafe38736b34eb8b041107522433, type: 2}
     returnToPreviousState: 0
     trueState: {fileID: 11400000, guid: e782f0199318b444a8c0f48f14173276, type: 2}
+    falseState: {fileID: 11400000}
+  - decision: {fileID: 11400000, guid: 0eb26b864acd5104bab3eaf6f8b2ec1b, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: d6f2f2ac14ca0cc4ea0def65358b7bfb, type: 2}
     falseState: {fileID: 11400000}

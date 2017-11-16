@@ -8,7 +8,7 @@ using UnityEngine;
 public class LookAt : Action
 {
 
-    public float angle;
+    public bool lookForward;
 
 	public override void Act(StateController controller)
 	{
@@ -18,6 +18,6 @@ public class LookAt : Action
 	private void ReactToEvent(StateController controller) 
 	{
 
-		controller.LookAt(angle);
+		controller.LookAt(lookForward);
 	}
 }

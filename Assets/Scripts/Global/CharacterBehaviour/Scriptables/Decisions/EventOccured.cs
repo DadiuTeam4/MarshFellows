@@ -20,25 +20,22 @@ public class EventOccured : Decision
 		if (!eventOccured)
 		{
 			return false;
-		} 
+		}
 
-		if (chanceOfReacting == 1.0f)
+        controller.SetLatestEventArguments(controller.eventArguments[eventName]);
+
+        if (eventName == CustomEvent.HiddenByFog && !controller.latestEventArgument.boolComponent)
+        {
+            controller.lookAtTarget = controller.latestEventArgument.gameObjectComponent.transform;
+        } 
+
+        if (chanceOfReacting == 1.0f)
 		{
-            //controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 			return true;
 		}
 
 		float chance = 1 - chanceOfReacting;
 		float reactionRoll = Random.Range(0f, 1f);
-		if (reactionRoll > chance)
-		{
-			controller.SetLatestEventArguments(controller.eventArguments[eventName]);
-			return true;
-		}
-		else
-		{
-			eventOccured = false;
-			return false;
-		}
+        return reactionRoll > chance;
 	}
 }
