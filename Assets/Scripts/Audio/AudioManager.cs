@@ -206,7 +206,6 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
 		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
-		PlaySound ("Play_FS");
 	}
 
 	//Play-function with stop-callback to a specific event  
@@ -222,6 +221,7 @@ public class AudioManager : Singleton<AudioManager> {
         }
 	}
 
+	//Can add a gameobject
 	public void PlaySoundWCOtherScript(string soundEventName, GameObject thisthis)
 	{
 		soundEventName = string.Concat("", soundEventName, "");
@@ -233,6 +233,14 @@ public class AudioManager : Singleton<AudioManager> {
 			soundsBeingPlayed[soundEventName] = true;
 		}
 	}
+
+	//Play-function without stop-callback, can add a gameobject 
+	public void PlaySoundOtherScript(string soundName, GameObject thisthisthis)
+	{
+		soundName = string.Concat ("", soundName, ""); 
+		eventID = AkSoundEngine.PostEvent (soundName, thisthisthis); 
+	}
+
 		
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)
