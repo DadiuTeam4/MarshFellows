@@ -38,6 +38,7 @@ namespace Events
         BroadcastObjectLocation = 26, /* used to set location of objects for the hunters to look at, eg. shaman location */
         LocationReached = 27,
 		ScenarioTriggerEntered = 28,
+		GameStarted = 29 /* Called when the first fog curtain is swiped away */
 		FallHasHappend = 29
 	}
 
