@@ -9,7 +9,7 @@ public class Shaman : MonoBehaviour {
     private EventManager eventManager;
     private EventDelegate shamanDelegate;
     private EventDelegate locationDelegate;
-
+    public CustomEvent eventToBroadcastOn;
 
     // Use this for initialization
     void Start () {
@@ -17,7 +17,7 @@ public class Shaman : MonoBehaviour {
         shamanDelegate = Disrupted;
         locationDelegate = BroadCastLocation;
         eventManager.AddListener(CustomEvent.RitualDisrupted, shamanDelegate);
-        eventManager.AddListener(CustomEvent.RitualScenarioEntered, locationDelegate);
+        eventManager.AddListener(eventToBroadcastOn, locationDelegate);
     }
 
     void BroadCastLocation(EventArgument args) {
