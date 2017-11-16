@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Author: Troels
+//Contributer: Emil
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,10 +30,9 @@ public class IkHandler : MonoBehaviour {
 
     public Transform lookPos;
 
-	// Use this for initialization
 	void Start ()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
 
         leftFoot = anim.GetBoneTransform(HumanBodyBones.LeftFoot);
         rightFoot = anim.GetBoneTransform(HumanBodyBones.RightFoot);
@@ -41,7 +42,6 @@ public class IkHandler : MonoBehaviour {
 
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
 
@@ -61,17 +61,20 @@ public class IkHandler : MonoBehaviour {
             rFpos = rightHit.point;
             rFrot = Quaternion.FromToRotation(transform.up, rightHit.normal) * transform.rotation;
         }
+    }
 
-
+    void LookAtTarget(Transform other)
+    {
+        lookPos = other;
     }
 
     void OnAnimatorIK()
     {
+        if (lookPos)
+        {
+            anim.SetLookAtPosition(lookPos.position);
+        }
         anim.SetLookAtWeight(lookIKweight, bodyWeight,headWeight, clampWeight);
-        anim.SetLookAtPosition(lookPos.position);
-
-
-
 
         lFWeight = anim.GetFloat("LFoot");
         rFWeight = anim.GetFloat("RFoot");
@@ -82,7 +85,6 @@ public class IkHandler : MonoBehaviour {
         anim.SetIKPosition(AvatarIKGoal.LeftFoot, lFpos + new Vector3(0,offsetY,0));
         anim.SetIKPosition(AvatarIKGoal.RightFoot, rFpos + new Vector3(0, offsetY, 0));
 
-        print(lFWeight);
 
         anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, lFWeight);
         anim.SetIKRotationWeight(AvatarIKGoal.RightFoot, rFWeight);

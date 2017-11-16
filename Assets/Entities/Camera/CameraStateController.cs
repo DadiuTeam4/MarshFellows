@@ -90,5 +90,15 @@ namespace CameraControl
 			thirdPersonCamera.SetActive(currentState == CameraState.ThirdPerson);
 			cinematicCamera.SetActive(currentState == CameraState.Cinematic);
 		}
+
+		public void SetTrackedObject(Transform obj)
+        {
+            thirdPersonCamera.SetTrackedObject(obj);
+        }
+
+		public Transform GetTrackedObject()
+		{
+			return thirdPersonCamera.GetTrackedObject();
+		}
 	}
 }
