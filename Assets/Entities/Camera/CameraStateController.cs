@@ -38,6 +38,9 @@ namespace CameraControl
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
 			eventManager = EventManager.GetInstance();
 			eventManager.AddListener(CustomEvent.RitualScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.BearScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.DeerScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.SeparationScenarioEntered, eventDelegate);
 			eventManager.AddListener(CustomEvent.ScenarioEnded, eventDelegate);
 		}
 
@@ -86,6 +89,16 @@ namespace CameraControl
 		{
 			thirdPersonCamera.SetActive(currentState == CameraState.ThirdPerson);
 			cinematicCamera.SetActive(currentState == CameraState.Cinematic);
+		}
+
+		public void SetTrackedObject(Transform obj)
+        {
+            thirdPersonCamera.SetTrackedObject(obj);
+        }
+
+		public Transform GetTrackedObject()
+		{
+			return thirdPersonCamera.GetTrackedObject();
 		}
 	}
 }

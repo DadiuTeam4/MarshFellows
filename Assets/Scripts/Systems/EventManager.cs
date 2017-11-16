@@ -31,7 +31,10 @@ namespace Events
 		SinkHasHappened = 19,
 		UnlockedItem = 20,
 		SwipeEnded = 21,
-		GroundChecked
+		ForeshadowEventTriggered = 22,
+		GroundChecked = 23,
+        RitualDisrupted = 24, 
+		DeerKilledEvent = 25
     }
 
 	public class EventArgument
@@ -84,6 +87,7 @@ namespace Events
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
 		{
+
             if (listeners.ContainsKey(eventName))
 			{
 				argument.eventComponent = eventName;

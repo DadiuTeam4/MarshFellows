@@ -11,7 +11,18 @@ public class ResetButton : MonoBehaviour
 {
 	public void ResetScene()
 	{
-		EventManager.GetInstance ().CallEvent (CustomEvent.ResetGame); 
+		//EventManager.GetInstance ().CallEvent (CustomEvent.ResetGame); 
+		UnloadAllScenes();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+    void UnloadAllScenes() 
+    {
+		int c = SceneManager.sceneCount;
+		for (int i = 0; i < c; i++)
+		{
+        	Scene scene = SceneManager.GetSceneAt (i);       
+    	    SceneManager.UnloadSceneAsync (scene);
+		}
 	}
 }

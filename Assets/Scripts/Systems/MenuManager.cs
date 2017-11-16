@@ -19,7 +19,7 @@ public class MenuManager : MonoBehaviour
 	
 	void Update () 
 	{	
-		if (Input.deviceOrientation == DeviceOrientation.Portrait && !portrait)
+		if (IspPortraitOrPortraitUpsideDown() && !portrait)
 		{
 			portrait = true;
 			Time.timeScale = 0;
@@ -31,7 +31,7 @@ public class MenuManager : MonoBehaviour
 				}
 			}
 		}
-		else if(Input.deviceOrientation != DeviceOrientation.Portrait && portrait) 
+		else if(!IspPortraitOrPortraitUpsideDown() && portrait) 
 		{
 			portrait = false;
 			Time.timeScale = 1;
@@ -44,5 +44,10 @@ public class MenuManager : MonoBehaviour
 				}
 			}
 		}
+	}
+
+	private bool IspPortraitOrPortraitUpsideDown()
+	{
+		return (Input.deviceOrientation == DeviceOrientation.Portrait || Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown); 
 	}
 }
