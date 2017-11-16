@@ -9,17 +9,27 @@ using Events;
 
 public class CreditsButton : MonoBehaviour 
 {
-	public AudioManager audioManager; 
+	public AudioManager audioManager;
+	public GameObject creditsPanel;
+	private GameObject instance;
 
 	void Start() 
 	{
 		audioManager = AudioManager.GetInstance(); 	
 	}
-
-	public void RunCredits()
+	
+	public void SpawnPanel() 
 	{
-		Debug.Log("Thank you baby Jesus!");
-		audioManager.OnMenuClick (); 
+		if (!instance)
+		{
+			instance = Instantiate(creditsPanel);
+			audioManager.OnMenuClick ();
+		}
+		else 
+		{
+			instance.SetActive(!instance.active);
+			audioManager.OnMenuClick (); 
+		}
 	}
 }
 
