@@ -31,14 +31,16 @@ namespace CameraControl
 			float distanceFromEndToHunters = Vector3.Distance(deltaPosition, scenarioEndPosition);
 			float progress = distanceFromBeginningToHunters / (distanceFromBeginningToHunters + distanceFromEndToHunters);
 
-			Vector3 desiredPosition = currentAnimation.GetPosition(progress, deltaPosition);
+			Vector3 targetPosition = currentAnimation.followP ? pTransform.position : deltaPosition;
+			Vector3 desiredPosition = currentAnimation.GetPosition(progress, targetPosition);
 			Vector3 position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * damping);
 			transform.position = position;
 
 			Vector3 lookAtPos = new Vector3();
-			lookAtPos.x = currentAnimation.focusOnHuntersX ? deltaPosition.x : currentAnimation.center.x;
-			lookAtPos.y = currentAnimation.focusOnHuntersY ? deltaPosition.y : currentAnimation.center.y;
-			lookAtPos.z = currentAnimation.focusOnHuntersZ ? deltaPosition.z : currentAnimation.center.z;
+			lookAtPos.x = currentAnimation.focusOnHuntersX ? targetPosition.x : currentAnimation.center.x;
+			lookAtPos.y = currentAnimation.focusOnHuntersY ? targetPosition.y : currentAnimation.center.y;
+			lookAtPos.z = currentAnimation.focusOnHuntersZ ? targetPosition.z : currentAnimation.center.z;
+
 			transform.LookAt(lookAtPos);
 		}
 

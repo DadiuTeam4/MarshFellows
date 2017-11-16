@@ -7,6 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Camera/Cinematic Animation")]
 public class CinematicAnimation : ScriptableObject 
 {
+	public bool followP;
 	public AnimationCurve xPosition;
 	public bool trackHuntersX;
 	public float xDistanceMultiplier;
@@ -36,9 +37,9 @@ public class CinematicAnimation : ScriptableObject
 		float currentDistanceZ = zDistance.Evaluate(progress);
 		float multipliedDistanceZ = zDistanceMultiplier * currentDistanceZ;
 
-		float x = trackHuntersX ? targetPosition.x + multipliedDistanceX : center.x + xPosition.Evaluate(progress) * multipliedDistanceX;
-		float y = trackHuntersY ? targetPosition.y + multipliedDistanceY : center.y + yPosition.Evaluate(progress) * multipliedDistanceY;
-		float z = trackHuntersZ ? targetPosition.z + multipliedDistanceZ : center.z + zPosition.Evaluate(progress) * multipliedDistanceZ;  
+		float x = trackHuntersX ? targetPosition.x * multipliedDistanceX : center.x + xPosition.Evaluate(progress) * multipliedDistanceX;
+		float y = trackHuntersY ? targetPosition.y * multipliedDistanceY : center.y + yPosition.Evaluate(progress) * multipliedDistanceY;
+		float z = trackHuntersZ ? targetPosition.z * multipliedDistanceZ : center.z + zPosition.Evaluate(progress) * multipliedDistanceZ;  
 		
 		return new Vector3(x, y, z);
 	}

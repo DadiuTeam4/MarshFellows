@@ -53,7 +53,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4906897414437300}
   - component: {fileID: 114905927693067210}
-  - component: {fileID: 114462502431574886}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -125,7 +124,7 @@ GameObject:
   - component: {fileID: 114590403614093546}
   - component: {fileID: 114678717719539826}
   m_Layer: 0
-  m_Name: WwiseGlobal
+  m_Name: WwiseObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,19 +336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8c6c3f7c650f8469505d5cca58b45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114462502431574886
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1091244984204396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5774dd985dda4ec0bc1cbeee75512e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxTime: 15
-  minTime: 8
 --- !u!114 &114590403614093546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -397,7 +383,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1080302362546358}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e923543f77556dc4284dbb0453752003, type: 3}
   m_Name: 
@@ -408,13 +394,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1080302362546358}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6960c1bb9db7a01459f6e12f73df6131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   globalSceneName: GlobalScene
   firstSceneToLoadName: IntroLevel
+  whoToAddTheUnlockables: O
 --- !u!114 &114905927693067210
 MonoBehaviour:
   m_ObjectHideFlags: 1

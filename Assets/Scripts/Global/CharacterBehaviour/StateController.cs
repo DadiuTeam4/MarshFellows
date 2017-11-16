@@ -88,8 +88,10 @@ public class StateController : MonoBehaviour
 		if (nextState != currentState) 
 		{
 			previousState = currentState;
+			currentState.OnStateExit(this);
             OnExitState();
             currentState = nextState;
+			currentState.OnStateEnter(this);
 		}
 	}
 
