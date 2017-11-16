@@ -58,7 +58,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
                }
                catch
                {
-                   Debug.Log("Wrong name path for unlockable " + GameStateManager.current.forPUnlockables[i]);
+                   Debug.Log("For P Wrong name path for unlockable " + GameStateManager.current.forPUnlockables[i]+"|");
                }
             }
         }
@@ -76,12 +76,13 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
                }
                catch
                {
-                   Debug.Log("Wrong name path for unlockable " + GameStateManager.current.forOUnlockables[i]);
+                   Debug.Log("For O Wrong name path for unlockable " + GameStateManager.current.forOUnlockables[i]+"|");
                }
            
             }
         }
     }
+//hunter_fqi02/Hunter01/global01/bn_root/bn_pelvis/Flint_axe
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
     private void SceneLoader(EventArgument argument)
