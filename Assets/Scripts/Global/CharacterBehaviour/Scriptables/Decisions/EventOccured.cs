@@ -24,10 +24,10 @@ public class EventOccured : Decision
 
         controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 
-        if (eventName == CustomEvent.HiddenByFog && controller.latestEventArgument.boolComponent)
+        if (eventName == CustomEvent.HiddenByFog && !controller.latestEventArgument.boolComponent)
         {
-            return false;
-        }
+            controller.lookAtTarget = controller.latestEventArgument.gameObjectComponent.transform;
+        } 
 
         if (chanceOfReacting == 1.0f)
 		{

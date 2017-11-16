@@ -1,4 +1,4 @@
-﻿// Author: Kristian Riis 
+﻿	// Author: Kristian Riis 
 // Contributors: 
 
 using System.Collections;
@@ -112,10 +112,6 @@ public class AudioManager : Singleton<AudioManager> {
 			{
 				PlaySoundWC("Play_GG_FSD_2");
 			}
-			if(argument.stringComponent == "Scena3")
-			{
-				PlaySoundWC ("Play_Deer_FS"); 
-			}
 			if(argument.stringComponent == "Scena4")
 			{
 				PlaySoundWC("Play_GG_FSD_4_1");
@@ -124,15 +120,17 @@ public class AudioManager : Singleton<AudioManager> {
 		//Travel of O 
 			if(argument.stringComponent == "Scena1")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_FSD_1");
 			}
-			if(argument.stringComponent == "Scena1A")
+			if(argument.stringComponent == "Scena3")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC ("Play_FSD_3"); 
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				//PlaySoundWC("Play_GG_SD_FSD_Bear");
+				//Maybe nothing should happen¨
+				PlaySoundWC("Play_GG_FSD_CR_1");
 			}
 	}
 
@@ -265,4 +263,13 @@ public class AudioManager : Singleton<AudioManager> {
             soundsBeingPlayed[soundEventName] = false;
         }
     }
+
+	public void MenuFadeSoundDown()
+	{
+		PlaySound ("Menu_FadeVolumeDown"); 	
+	}
+	public void MenuFadeSoundUp()
+	{
+		PlaySound ("Menu_FadeVolumeUp"); 	
+	}
 }
