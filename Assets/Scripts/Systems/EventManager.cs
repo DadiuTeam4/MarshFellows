@@ -33,7 +33,8 @@ namespace Events
 		SwipeEnded = 21,
 		ForeshadowEventTriggered = 22,
 		GroundChecked = 23,
-        RitualDisrupted = 24
+        RitualDisrupted = 24, 
+		DeerKilledEvent = 25
     }
 
 	public class EventArgument

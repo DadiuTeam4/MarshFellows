@@ -101,7 +101,7 @@ public class SinkableGround : Holdable
 
 		if (callExtra)
 		{
-			EventManager.GetInstance().CallEvent(extraEvent);
+			EventManager.GetInstance().CallEvent(extraEvent,argument);
 		}
 	}
 	
