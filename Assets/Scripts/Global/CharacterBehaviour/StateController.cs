@@ -145,7 +145,11 @@ public class StateController : MonoBehaviour
 	{
         // TODO: Get look direction and convert to animation coordinates
         animator.SetFloat("reactDirection", n);
+	}
 
+	public void ResetLook()
+	{
+		// TODO: Reset animation to origin
 	}
 
     public void SetAnimatorBool(string s, bool b)
@@ -153,12 +157,7 @@ public class StateController : MonoBehaviour
         animator.SetBool(s, b);
     }
 
-	public void ResetLook()
-	{
-		// TODO: Reset animation to origin
-	}
-
-	public void SetLatestEventArguments(EventArgument eventArgument)
+    public void SetLatestEventArguments(EventArgument eventArgument)
 	{
 		latestEventArgument = eventArgument;
 	}
