@@ -19,7 +19,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     public string firstSceneToLoadName = "IntroLevel";
     public string PsName = "P";
     public string OsName = "O";
-    public List<GameObject> unlockableItems;
     
     void Start()
     {
@@ -52,8 +51,15 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         {
             for(int i = 0; i < GameStateManager.current.forPUnlockables.Count; i++)
             {
-                GameObject objectUnlocked = p.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
-                objectUnlocked.SetActive(true);
+               try
+               {
+                    GameObject objectUnlocked = p.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
+                    objectUnlocked.SetActive(true);
+               }
+               catch
+               {
+                   Debug.Log("Wrong name path for unlockable " + GameStateManager.current.forPUnlockables[i]);
+               }
             }
         }
 
@@ -63,8 +69,16 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         {
             for(int i = 0; i<GameStateManager.current.forOUnlockables.Count; i++)
             {
-                GameObject objectUnlocked = o.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
-                objectUnlocked.SetActive(true);            
+                try
+               {
+                    GameObject objectUnlocked = o.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
+                    objectUnlocked.SetActive(true); 
+               }
+               catch
+               {
+                   Debug.Log("Wrong name path for unlockable " + GameStateManager.current.forPUnlockables[i]);
+               }
+           
             }
         }
     }

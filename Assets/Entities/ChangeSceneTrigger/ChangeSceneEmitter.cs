@@ -42,7 +42,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
                 {
                     gameState.forPUnlockables = new List<string>();
                 }
-                if(!GameStateManager.current.forPUnlockables.Contains(forPUnlockableInThisScene))
+                if(GameStateManager.current != null && gameState.forPUnlockables != null && !GameStateManager.current.forPUnlockables.Contains(forPUnlockableInThisScene))
                 {
                     gameState.forPUnlockables.Add(forPUnlockableInThisScene);
                     GameStateManager.current = gameState;
@@ -61,7 +61,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
                     gameState.forOUnlockables = new List<string>();
                 }
                 
-                if(!GameStateManager.current.forOUnlockables.Contains(forOUnlockableInThisScene))
+                if(GameStateManager.current != null && gameState.forPUnlockables != null && !GameStateManager.current.forOUnlockables.Contains(forOUnlockableInThisScene))
                 {
                     gameState.forOUnlockables.Add(forOUnlockableInThisScene);
                     GameStateManager.current = gameState;
