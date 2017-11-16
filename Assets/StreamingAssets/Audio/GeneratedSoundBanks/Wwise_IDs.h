@@ -21,6 +21,7 @@ namespace AK
         static const AkUniqueID PLAY_FS = 2262856515U;
         static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
         static const AkUniqueID PLAY_GG_FSD_2 = 1046603869U;
+        static const AkUniqueID PLAY_GG_FSD_4_1 = 1855550475U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
         static const AkUniqueID PLAY_GG_SD_CR_STINGER_1 = 2613785285U;
         static const AkUniqueID PLAY_GG_SD_FSD_BEAR = 4141043401U;
