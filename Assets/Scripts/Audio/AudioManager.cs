@@ -264,6 +264,7 @@ public class AudioManager : Singleton<AudioManager> {
         }
     }
 
+	//MENU functions 
 	public void MenuFadeSoundDown()
 	{
 		PlaySound ("Menu_FadeVolumeDown"); 	
@@ -271,5 +272,9 @@ public class AudioManager : Singleton<AudioManager> {
 	public void MenuFadeSoundUp()
 	{
 		PlaySound ("Menu_FadeVolumeUp"); 	
+	}
+	public void OnMenuClick()
+	{
+		PlaySound("Play_GG_Menu_Click"); 
 	}
 }

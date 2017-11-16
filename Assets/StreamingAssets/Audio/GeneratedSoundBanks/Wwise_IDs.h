@@ -27,6 +27,7 @@ namespace AK
         static const AkUniqueID PLAY_GG_FSD_3 = 1046603868U;
         static const AkUniqueID PLAY_GG_FSD_4_1 = 1855550475U;
         static const AkUniqueID PLAY_GG_FSD_CR_1 = 3841368822U;
+        static const AkUniqueID PLAY_GG_MENU_CLICK = 3668079463U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
         static const AkUniqueID PLAY_GG_SD_CR_STINGER_1 = 2613785285U;
         static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
@@ -104,6 +105,7 @@ namespace AK
     namespace BUSSES
     {
         static const AkUniqueID AMBIENCE = 85412153U;
+        static const AkUniqueID AUXS = 3368497452U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MASTER_SECONDARY_BUS = 805203703U;
         static const AkUniqueID MECHANICS = 2566767142U;
