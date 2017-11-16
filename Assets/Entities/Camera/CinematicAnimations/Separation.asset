@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1933ed9f7ea767b49868d13d899a230e, type: 3}
   m_Name: Separation
   m_EditorClassIdentifier: 
-  followP: 1
+  followP: 0
   xPosition:
     serializedVersion: 2
     m_Curve:
@@ -30,8 +30,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  trackHuntersX: 1
-  xDistanceMultiplier: 20
+  stickToHuntersX: 0
+  xDistanceMultiplier: 0
   xDistance:
     serializedVersion: 2
     m_Curve:
@@ -68,8 +68,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  trackHuntersY: 0
-  yDistanceMultiplier: 20
+  stickToHuntersY: 0
+  yDistanceMultiplier: 10
   yDistance:
     serializedVersion: 2
     m_Curve:
@@ -112,8 +112,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  trackHuntersZ: 1
-  zDistanceMultiplier: -10
+  stickToHuntersZ: 0
+  zDistanceMultiplier: 0
   zDistance:
     serializedVersion: 2
     m_Curve:
@@ -134,5 +134,12 @@ MonoBehaviour:
     m_RotationOrder: 0
   center: {x: 0, y: 0, z: 0}
   focusOnHuntersX: 1
-  focusOnHuntersY: 0
+  focusOnHuntersY: 1
   focusOnHuntersZ: 1
+  maxFieldOfView: 90
+  fieldOfViewCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
