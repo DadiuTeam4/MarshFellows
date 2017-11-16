@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
   m_Name: OWalking
   m_EditorClassIdentifier: 
+  onStateEnterActions:
+  - {fileID: 11400000, guid: 5f1c4fb23fea23747b926aefd6bfded3, type: 2}
   actions:
   - {fileID: 11400000, guid: a592e3a1b654cde499624f2bdfe2f53d, type: 2}
-  - {fileID: 11400000, guid: 5f1c4fb23fea23747b926aefd6bfded3, type: 2}
-  - {fileID: 11400000, guid: 7b0690432b9d5d34b9426af09c2483a2, type: 2}
+  onStateExitActions: []
   transitions:
   - decision: {fileID: 11400000, guid: 391fe3aa443d338428dc647f7b89849b, type: 2}
     returnToPreviousState: 0
