@@ -71,12 +71,12 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             {
                 try
                {
-                    GameObject objectUnlocked = o.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
+                    GameObject objectUnlocked = o.transform.Find(GameStateManager.current.forOUnlockables[i]).gameObject;
                     objectUnlocked.SetActive(true); 
                }
                catch
                {
-                   Debug.Log("Wrong name path for unlockable " + GameStateManager.current.forPUnlockables[i]);
+                   Debug.Log("Wrong name path for unlockable " + GameStateManager.current.forOUnlockables[i]);
                }
            
             }
