@@ -12,7 +12,7 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 	private EventDelegate scareEvent;
 	// Use this for initialization
 	Animator anim;
-	Rigidbody rigidbody;
+	new Rigidbody rigidbody;
 	float currentTime;
 	int reactHash = Animator.StringToHash("deerReact");
 	int RunHash = Animator.StringToHash("deerSpeed");
