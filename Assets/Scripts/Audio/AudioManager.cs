@@ -272,4 +272,8 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		PlaySound ("Menu_FadeVolumeUp"); 	
 	}
+	public void OnMenuClick()
+	{
+		PlaySound("Play_GG_Menu_Click"); 
+	}
 }
