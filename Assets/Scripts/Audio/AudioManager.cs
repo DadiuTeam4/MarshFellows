@@ -91,13 +91,13 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		//argument.gameObjectComponent;
 
-		if(argument.stringComponent == "T	ree")
+		if(argument.stringComponent == "Tree")
 		{
 		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "Stone")
 		{
-			//
+			PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "SomethingElse")
 		{
@@ -107,10 +107,10 @@ public class AudioManager : Singleton<AudioManager> {
 
 	void ForeshadowPost(EventArgument argument)
 	{
-
+		//Travel of P 
 			if(argument.stringComponent == "Scena2")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Shaman");
+				PlaySoundWC("Play_GG_FSD_2");
 			}
 			if(argument.stringComponent == "Scena3")
 			{
@@ -118,8 +118,10 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Scena4")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_FSD_4_1");
 			}
+			
+		//Travel of O 
 			if(argument.stringComponent == "Scena1")
 			{
 				PlaySoundWC("Play_GG_SD_FSD_Bear");
@@ -156,6 +158,15 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
+			AkSoundEngine.SetState("Music", "Crossroad"); 
+		}
+		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
+		{
+			AkSoundEngine.SetState("Music", "LiO1"); 
+		}
+		if (argument.stringComponent == "LiP1" && argument.intComponent == -1) 
+		{
+			AkSoundEngine.SetState("Music", "LiP1"); 
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
@@ -195,7 +206,6 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
 		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
-		PlaySound ("Play_FS");
 	}
 
 	//Play-function with stop-callback to a specific event  
@@ -211,6 +221,7 @@ public class AudioManager : Singleton<AudioManager> {
         }
 	}
 
+	//Can add a gameobject
 	public void PlaySoundWCOtherScript(string soundEventName, GameObject thisthis)
 	{
 		soundEventName = string.Concat("", soundEventName, "");
@@ -222,6 +233,14 @@ public class AudioManager : Singleton<AudioManager> {
 			soundsBeingPlayed[soundEventName] = true;
 		}
 	}
+
+	//Play-function without stop-callback, can add a gameobject 
+	public void PlaySoundOtherScript(string soundName, GameObject thisthisthis)
+	{
+		soundName = string.Concat ("", soundName, ""); 
+		eventID = AkSoundEngine.PostEvent (soundName, thisthisthis); 
+	}
+
 		
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)

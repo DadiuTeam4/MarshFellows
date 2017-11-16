@@ -17,16 +17,16 @@ public class AudioHolder : MonoBehaviour {
 
 	void FS()
 	{
-		audioManager.Footstep (); 
+		audioManager.PlaySoundOtherScript("Play_FS", gameObject);
 	}
 
 	void DeerFS()
 	{
-		audioManager.PlaySoundWCOtherScript ("Play_Deer_FS", gameObject); 
+		audioManager.PlaySoundOtherScript ("Play_Deer_FS", gameObject); 
 	}
 
 	void BearFS()
 	{
-		audioManager.PlaySoundWCOtherScript ("Play_Bear_FS", gameObject); 
+		audioManager.PlaySoundOtherScript ("Play_Bear_FS", gameObject); 
 	}
 }
