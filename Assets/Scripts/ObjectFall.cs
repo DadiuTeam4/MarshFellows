@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 public class ObjectFall : MonoBehaviour
 {
@@ -27,16 +28,14 @@ public class ObjectFall : MonoBehaviour
     private void CheckIfFall()
     {
         Quaternion currentRotation = transform.rotation;
-        if (Mathf.Abs(currentRotation.eulerAngles.x - initialRotation.eulerAngles.x) > 180 )
+        if (Mathf.Abs(currentRotation.eulerAngles.x - initialRotation.eulerAngles.x) > 180)
         {
-			Debug.Log( initialRotation.eulerAngles.x);
-			Debug.Log( currentRotation.eulerAngles.x);
-			
-			Debug.Log(Mathf.Abs(currentRotation.eulerAngles.x - initialRotation.eulerAngles.x));
-            Debug.Log(gameObject.name + " Fall");
-			//Debug.Log(Mathf.Abs(currentRotation.eulerAngles.z - initialRotation.eulerAngles.z));
-			
             hasFall = true;
+            EventManager eventManager = EventManager.GetInstance();
+
+            EventArgument argument = new EventArgument();
+
+            eventManager.CallEvent(CustomEvent.FallHasHappend, argument);
         }
     }
 }
