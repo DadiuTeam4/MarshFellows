@@ -34,7 +34,8 @@ namespace Events
 		ForeshadowEventTriggered = 22,
 		GroundChecked = 23,
         RitualDisrupted = 24, 
-		DeerKilledEvent = 25
+		DeerKilledEvent = 25,
+		ScenarioTriggerEntered
     }
 
 	public class EventArgument
