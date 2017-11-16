@@ -1,6 +1,7 @@
 ﻿// Author: Mathias Dam Hedelund
 // Contributors: Itai Yavin
 
+#if UNITY_DEBUG
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,3 +82,4 @@ public class SceneTeleporter : MonoBehaviour
         }
     }
 }
+#endif
