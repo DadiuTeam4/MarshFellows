@@ -1,5 +1,5 @@
 ﻿// Author: Itai Yavin
-// Contributors: 
+// Contributors: Kristian Riis
 
 using System.Collections;
 using System.Collections.Generic;
@@ -8,9 +8,11 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour 
 {
 	private bool portrait;
+	public AudioManager audioManager; 
 
 	void Start () 
 	{	
+		audioManager = AudioManager.GetInstance(); 	
 		if (Input.deviceOrientation == DeviceOrientation.Portrait)
 		{
 			portrait = true;
@@ -19,7 +21,7 @@ public class MenuManager : MonoBehaviour
 	
 	void Update () 
 	{	
-		if (Input.deviceOrientation == DeviceOrientation.Portrait && !portrait)
+		if (IspPortraitOrPortraitUpsideDown() && !portrait)
 		{
 			portrait = true;
 			Time.timeScale = 0;
@@ -28,10 +30,11 @@ public class MenuManager : MonoBehaviour
 				if (!transform.GetChild(i).gameObject.activeSelf)
 				{
 					transform.GetChild(i).gameObject.SetActive(true);
+					audioManager.MenuFadeSoundDown (); 
 				}
 			}
 		}
-		else if(Input.deviceOrientation != DeviceOrientation.Portrait && portrait) 
+		else if(!IspPortraitOrPortraitUpsideDown() && portrait) 
 		{
 			portrait = false;
 			Time.timeScale = 1;
@@ -41,8 +44,14 @@ public class MenuManager : MonoBehaviour
 				if(transform.GetChild(i).gameObject.activeSelf)
 				{
 					transform.GetChild(i).gameObject.SetActive(false);
+					audioManager.MenuFadeSoundUp (); 
 				}
 			}
 		}
+	}
+
+	private bool IspPortraitOrPortraitUpsideDown()
+	{
+		return (Input.deviceOrientation == DeviceOrientation.Portrait || Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown); 
 	}
 }

@@ -7,9 +7,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Character Behaviour/Actions/Walk")]
 public class Walk : Action
 {
-    public bool walkToWaypoint = true;
-    public bool walkInDirection;
-    public Vector3 direction;
+
     public bool changePath;
 
     public override void Act(StateController controller)
@@ -19,20 +17,15 @@ public class Walk : Action
 
     private void WalkTowards(StateController controller)
     {
+        controller.navigator.ResumeMovement();
 
-        if (walkToWaypoint)
+        if (!changePath)
         {
-            if (!changePath)
-            {
-                controller.navigator.SetDestination();
-            } else
-            {
-                controller.navigator.SetSplitPath();
-            }
-        }
-        if (walkInDirection)
+            controller.navigator.SetDestination();
+        } else
         {
-            controller.navigator.Move(direction);
+            controller.navigator.SetSplitPath();
         }
+
     }
 }

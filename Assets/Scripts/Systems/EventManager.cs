@@ -25,11 +25,21 @@ namespace Events
         ResetGame = 13,
         ScenarioInteracted = 14,
         HiddenByFog = 15,
-		UnlockedItem = 16,
+		ScareDeerEvent = 16,
         OReachedByP = 17,
-		SwipeEnded = 18,
+		SinkGround = 18,
 		SinkHasHappened = 19,
-    }
+		UnlockedItem = 20,
+		SwipeEnded = 21,
+		ForeshadowEventTriggered = 22,
+		GroundChecked = 23,
+        RitualDisrupted = 24, 
+		DeerKilledEvent = 25,
+        BroadcastObjectLocation = 26, /* used to set location of objects for the hunters to look at, eg. shaman location */
+        LocationReached = 27,
+		ScenarioTriggerEntered = 28,
+		FallHasHappend = 29
+	}
 
 	public class EventArgument
 	{
@@ -81,6 +91,7 @@ namespace Events
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
 		{
+
             if (listeners.ContainsKey(eventName))
 			{
 				argument.eventComponent = eventName;

@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 using Events;
 
-//2 events - 1 that signals what scenes to load and one that signals my current scene
-
 public class SceneLoaderManager : Singleton<SceneLoaderManager> 
 {
 
@@ -16,15 +14,15 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     // Variables to keep track of scenes to load and unload.
     List<string> scenesToUnload;
     
-    // Clusters of scenes to be loaded at certain points.
-   // string[] gameStart = {"GameOpener", "GlobalScene", "IntroLevel", "CrossRoad1" };
-   // string[] gameEnd = { "EndScene", "Credits" };
     EventManager eventManager;
     public string globalSceneName = "GlobalScene";
     public string firstSceneToLoadName = "IntroLevel";
+    public string PsName = "P";
+    public string OsName = "O";
+    
     void Start()
     {
-        //SceneClusterLoader(gameStart);
+        
         scenesToUnload = new List<string>();
         
         eventManager = EventManager.GetInstance();
@@ -35,16 +33,56 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         EventArgument argument = new EventArgument(); 
-        argument.stringComponent = globalSceneName;
-        argument.intComponent = 0;
-        eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
+        //LoadUnloadEverything();
+        //UnloadAllScenes(globalSceneName);
         argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
-        
 
+        AddUnlockables();
+        
     }
+
+    private void AddUnlockables()
+    {
+        GameObject p = GameObject.Find(PsName);
+        if(GameStateManager.current != null && GameStateManager.current.forPUnlockables != null)
+        {
+            for(int i = 0; i < GameStateManager.current.forPUnlockables.Count; i++)
+            {
+               try
+               {
+                    GameObject objectUnlocked = p.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
+                    objectUnlocked.SetActive(true);
+               }
+               catch
+               {
+                   Debug.Log("For P Wrong name path for unlockable " + GameStateManager.current.forPUnlockables[i]+"|");
+               }
+            }
+        }
+
+
+        GameObject o = GameObject.Find(OsName);
+        if(GameStateManager.current != null && GameStateManager.current.forOUnlockables != null)
+        {
+            for(int i = 0; i<GameStateManager.current.forOUnlockables.Count; i++)
+            {
+                try
+               {
+                    GameObject objectUnlocked = o.transform.Find(GameStateManager.current.forOUnlockables[i]).gameObject;
+                    objectUnlocked.SetActive(true); 
+               }
+               catch
+               {
+                   Debug.Log("For O Wrong name path for unlockable " + GameStateManager.current.forOUnlockables[i]+"|");
+               }
+           
+            }
+        }
+    }
+//hunter_fqi02/Hunter01/global01/bn_root/bn_pelvis/Flint_axe
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
     private void SceneLoader(EventArgument argument)
@@ -54,13 +92,33 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             scenesToUnload.Add(argument.stringComponent);
             return;
         }
+
+        if(argument.stringComponent == "restart" || argument.stringComponent == "Restart")
+        {
+            GameStateManager newRound = new GameStateManager();
+
+            if(GameStateManager.current != null)
+            {
+			    newRound = GameStateManager.current;
+            }
+
+			newRound.playedBefore = true;
+			newRound.roundsPlayed++;
+			GameStateManager.current = newRound;
+
+            SaveLoadManager.Save();
+            UnloadAllScenes("");
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            return;
+        }
+
         if(argument.intComponent > 0)
         {
             //if you sent a new scene to load
             Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
             if (!scene.isLoaded)
             {
-                SceneManager.LoadScene(argument.stringComponent, LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync(argument.stringComponent, LoadSceneMode.Additive);
             }
 
             foreach(string sceneToUnload in scenesToUnload)
@@ -76,13 +134,44 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             }
 
         }
-        
-        if(argument.intComponent < 0)
+    }
+
+    void UnloadAllScenes(string unloadGlobal) 
+    {
+        int c = SceneManager.sceneCount;
+        for (int i = 0; i < c; i++) 
         {
-            print("Name of the scene is:" + argument.stringComponent + " Time for new Music" + argument.intComponent);
+            Scene scene = SceneManager.GetSceneAt (i);  
+            if(scene.name != unloadGlobal)
+            {
+                SceneManager.UnloadSceneAsync (scene);
+            }     
         }
+    }
 
+    void LoadUnloadEverything()
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings ; i++)
+        {
+			if (i == 0) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
+			{
+				continue;
+			}
+            Scene scene = SceneManager.GetSceneByBuildIndex(i);
+            if (!scene.isLoaded || scene.name != globalSceneName)
+            {
+                if (Application.isPlaying)
+                {
+                	SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
+                }
+                else
+                {
+                //    SceneManager.LoadScene(EditorBuildSettings.scenes[i].path, LoadSceneMode.Additive);
+                }
+                SceneManager.UnloadSceneAsync (scene);
 
+            }
+        }
     }
 
 }

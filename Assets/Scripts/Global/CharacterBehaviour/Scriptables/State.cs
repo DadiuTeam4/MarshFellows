@@ -7,16 +7,29 @@ using UnityEngine;
 [CreateAssetMenu (menuName = "Character Behaviour/State")]
 public class State : ScriptableObject
 {
+	public Action[] onStateEnterActions;
 	public Action[] actions;
+	public Action[] onStateExitActions;
 	public Transition[] transitions;
+
+	public void OnStateEnter(StateController controller)
+	{
+		DoOnStateEnterActions(controller);
+	}
+
+	private void DoOnStateEnterActions(StateController controller)
+	{
+		foreach (Action action in onStateEnterActions)
+		{
+			action.Act(controller);
+		}
+	}
 
 	public void UpdateState(StateController controller)
 	{
 		DoActions(controller);
 		CheckTransitions(controller);
     }
-
-
 
 	private void DoActions(StateController controller)
 	{
@@ -42,6 +55,19 @@ public class State : ScriptableObject
 			{
 				controller.TransitionToState(transition.falseState);
 			}
+		}
+	}
+
+	public void OnStateExit(StateController controller)
+	{
+		DoOnStateExitActions(controller);
+	}
+
+	private void DoOnStateExitActions(StateController controller)
+	{
+		foreach (Action action in onStateExitActions)
+		{
+			action.Act(controller);
 		}
 	}
 }
