@@ -13,7 +13,9 @@ public class ChangeSceneEmitter : MonoBehaviour {
     public int offsetForCreatingObstacle = 10;
     public List<string> nextUnloads;
     public List<string> scenesToLoad;
-    public string unlockableInThisScreen = "";
+    public string forPUnlockableInThisScene = "";
+    public string forOUnlockableInThisScene = "";
+    
     private string emptyString = "";
     Collider m_ObjectCollider;
     static int sceneIndex = 1;
@@ -61,19 +63,41 @@ public class ChangeSceneEmitter : MonoBehaviour {
                 addOnSceneIndex = false;
             }
 
-            if(unlockableInThisScreen != emptyString)
+            if(forPUnlockableInThisScene != emptyString)
             {
                 
                 if(GameStateManager.current != null)
                 {
                     gameState = GameStateManager.current;
                 }
-                if(gameState.unlockables == null)
+                if(gameState.forPUnlockables == null)
                 {
-                    gameState.unlockables = new List<string>();
+                    gameState.forPUnlockables = new List<string>();
                 }
-                gameState.unlockables.Add(unlockableInThisScreen);
-                GameStateManager.current = gameState;
+                if(GameStateManager.current.forPUnlockables.Contains(forPUnlockableInThisScene))
+                {
+                    gameState.forPUnlockables.Add(forPUnlockableInThisScene);
+                    GameStateManager.current = gameState;
+                }
+            }
+
+            if(forOUnlockableInThisScene != emptyString)
+            {
+                
+                if(GameStateManager.current != null)
+                {
+                    gameState = GameStateManager.current;
+                }
+                if(gameState.forOUnlockables == null)
+                {
+                    gameState.forOUnlockables = new List<string>();
+                }
+                
+                if(GameStateManager.current.forPUnlockables.Contains(forOUnlockableInThisScene))
+                {
+                    gameState.forOUnlockables.Add(forOUnlockableInThisScene);
+                    GameStateManager.current = gameState;
+                }
             }
 
             Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);

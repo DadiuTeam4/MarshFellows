@@ -17,7 +17,10 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     EventManager eventManager;
     public string globalSceneName = "GlobalScene";
     public string firstSceneToLoadName = "IntroLevel";
-    public string whoToAddTheUnlockables = "O";
+    public string PsName = "P";
+    public string OsName = "O";
+    public List<GameObject> unlockableItems;
+    
     void Start()
     {
         
@@ -31,32 +34,42 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         EventArgument argument = new EventArgument(); 
-        //argument.stringComponent = globalSceneName;
-       // argument.intComponent = 0;
-        //eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-        LoadUnloadEverything();
+        //LoadUnloadEverything();
         //UnloadAllScenes(globalSceneName);
         argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-
-        //AddUnlockables(whoToAddTheUnlockables);
-
+        AddUnlockables();
         
     }
-    private void AddUnlockables(string whoToAdd)
+
+    private void AddUnlockables()
     {
-        GameObject o = GameObject.Find(whoToAdd);
-        if(GameStateManager.current != null)
+        GameObject p = GameObject.Find(PsName);
+        if(GameStateManager.current != null && GameStateManager.current.forPUnlockables != null)
         {
-            for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
+            for(int i = 0; i<unlockableItems.Count; i++)
             {
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.parent=o.transform;
-                
-                cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z-1);
+                if(GameStateManager.current.forPUnlockables.Contains(unlockableItems[i].name))
+                {
+                    GameObject newUnlock = Instantiate(unlockableItems[i], p.transform);
+
+                }
+            }
+        }
+
+
+        GameObject o = GameObject.Find(OsName);
+        if(GameStateManager.current != null && GameStateManager.current.forPUnlockables != null)
+        {
+            for(int i = 0; i<unlockableItems.Count; i++)
+            {
+                if(GameStateManager.current.forOUnlockables.Contains(unlockableItems[i].name))
+                {
+                    GameObject newUnlock = Instantiate(unlockableItems[i], o.transform);
+                }
             }
         }
     }
