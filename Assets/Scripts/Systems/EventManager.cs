@@ -37,7 +37,8 @@ namespace Events
 		DeerKilledEvent = 25,
         BroadcastObjectLocation = 26, /* used to set location of objects for the hunters to look at, eg. shaman location */
         LocationReached = 27,
-		ScenarioTriggerEntered = 28
+		ScenarioTriggerEntered = 28,
+		FallHasHappend = 29
 	}
 
 	public class EventArgument
