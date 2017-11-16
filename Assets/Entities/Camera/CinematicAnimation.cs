@@ -69,7 +69,6 @@ public class CinematicAnimation : ScriptableObject
 
 	public float GetFOV(float progress)
 	{
-		Debug.Log(fieldOfViewCurve.Evaluate(progress));
 		return Mathf.Lerp(minFieldOfView, maxFieldOfView, fieldOfViewCurve.Evaluate(progress));
 	}
 }
