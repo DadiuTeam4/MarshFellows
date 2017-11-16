@@ -8,18 +8,24 @@ public class Shaman : MonoBehaviour {
 
     private EventManager eventManager;
     private EventDelegate shamanDelegate;
+    private EventDelegate locationDelegate;
 
 
     // Use this for initialization
     void Start () {
         eventManager = EventManager.GetInstance();
         shamanDelegate = Disrupted;
+        locationDelegate = BroadCastLocation;
         eventManager.AddListener(CustomEvent.RitualDisrupted, shamanDelegate);
+        eventManager.AddListener(CustomEvent.RitualScenarioEntered, locationDelegate);
     }
 
-    // Update is called once per frame
-    void Update () {
-		
+    void BroadCastLocation(EventArgument args) {
+        EventArgument outArgs = new EventArgument
+        {
+            gameObjectComponent = this.gameObject
+        };
+        eventManager.CallEvent(CustomEvent.BroadcastObjectLocation, outArgs);
 	}
 
     void Disrupted(EventArgument args)

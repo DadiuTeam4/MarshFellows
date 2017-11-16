@@ -1993,6 +1993,7 @@ GameObject:
   - component: {fileID: 4318484391501336}
   - component: {fileID: 95368817748949932}
   - component: {fileID: 114493448823777154}
+  - component: {fileID: 114347533058622256}
   m_Layer: 0
   m_Name: hunter_fqi01
   m_TagString: Untagged
@@ -5325,6 +5326,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114347533058622256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792167732928412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81f98756e2ecd9448834dc51eccf8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetY: 0
+  lookPos: {fileID: 0}
 --- !u!114 &114493448823777154
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5371,6 +5385,7 @@ MonoBehaviour:
   navigator: {fileID: 0}
   animator: {fileID: 0}
   eventManager: {fileID: 0}
+  lookAtTarget: {fileID: 0}
   aiDebugging: 0
   debugInfo: 
 --- !u!135 &135563557530055892
