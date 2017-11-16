@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
+  m_Name: BearWaiting
+  m_EditorClassIdentifier: 
+  onStateEnterActions: []
+  actions:
+  - {fileID: 11400000, guid: 5232afb661bcffd4da3c5d0a5612f975, type: 2}
+  - {fileID: 11400000, guid: 0808a2ae23f90c0469552b48ff5671ec, type: 2}
+  onStateExitActions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: 777a3170c6db50247877cdde9307639a, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 7e98f3fb0418b834cb52567566cd7d9b, type: 2}
+    falseState: {fileID: 11400000}
+  - decision: {fileID: 11400000, guid: ea47b07fbdbb56a4882dceae0e01d7b6, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 7e98f3fb0418b834cb52567566cd7d9b, type: 2}
+    falseState: {fileID: 11400000}
+  - decision: {fileID: 11400000, guid: 634b5a7f924049c43a94718da8f5f2ee, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 84f58fe9144deab46a07eba7cc3cd816, type: 2}
+    falseState: {fileID: 11400000}
