@@ -26,27 +26,29 @@
 			<ShortName>Soundbank1</ShortName>
 			<Path>Soundbank1.bnk</Path>
 			<IncludedEvents>
+				<Event Id="854919495" Name="Menu_FadeVolumeDown" ObjectPath="\Events\Default Work Unit\Menu_FadeVolumeDown" MaxAttenuation="0.000000"/>
+				<Event Id="2472021264" Name="Menu_FadeVolumeUp" ObjectPath="\Events\Default Work Unit\Menu_FadeVolumeUp" MaxAttenuation="0.000000"/>
 				<Event Id="2308878679" Name="MuteAll" ObjectPath="\Events\Default Work Unit\Volume\MuteAll" MaxAttenuation="0.000000"/>
 				<Event Id="2735935537" Name="Pause_Music" ObjectPath="\Events\Default Work Unit\Music\Pause_Music" MaxAttenuation="0.000000"/>
 				<Event Id="1832895494" Name="Play_Bear_FS" ObjectPath="\Events\Default Work Unit\Animals\Play_Bear_FS" MaxAttenuation="100.000000"/>
 				<Event Id="675749344" Name="Play_Deer_FS" ObjectPath="\Events\Default Work Unit\Animals\Play_Deer_FS" MaxAttenuation="100.000000"/>
-				<Event Id="513156325" Name="Play_FallTree" ObjectPath="\Events\Default Work Unit\Environment\Play_FallTree"/>
+				<Event Id="513156325" Name="Play_FallTree" ObjectPath="\Events\Default Work Unit\Environment\Play_FallTree" MaxAttenuation="100.000000"/>
 				<Event Id="2262856515" Name="Play_FS" ObjectPath="\Events\Default Work Unit\O&amp;P\Play_FS"/>
 				<Event Id="1492968614" Name="Play_GG_Ambience_Open_1" ObjectPath="\Events\Default Work Unit\Environment\Play_GG_Ambience_Open_1"/>
+				<Event Id="1046603870" Name="Play_GG_FSD_1" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_1"/>
 				<Event Id="1046603869" Name="Play_GG_FSD_2" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_2"/>
-				<Event Id="1855550475" Name="Play_GG_FSD_4_1" ObjectPath="\Events\Default Work Unit\Play_GG_FSD_4_1"/>
+				<Event Id="1046603868" Name="Play_GG_FSD_3" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_3" MaxAttenuation="100.000000"/>
+				<Event Id="1855550475" Name="Play_GG_FSD_4_1" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_4_1"/>
+				<Event Id="3841368822" Name="Play_GG_FSD_CR_1" ObjectPath="\Events\Default Work Unit\Play_GG_FSD_CR_1"/>
 				<Event Id="564891350" Name="Play_GG_SD_Bonfire_1" ObjectPath="\Events\Default Work Unit\Environment\Play_GG_SD_Bonfire_1" MaxAttenuation="100.000000"/>
 				<Event Id="2613785285" Name="Play_GG_SD_CR_Stinger_1" ObjectPath="\Events\Default Work Unit\Music\Play_GG_SD_CR_Stinger_1"/>
-				<Event Id="4141043401" Name="Play_GG_SD_FSD_Bear" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_SD_FSD_Bear" MaxAttenuation="100.000000"/>
-				<Event Id="2756361781" Name="Play_GG_SD_FSD_Shaman" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_SD_FSD_Shaman" MaxAttenuation="100.000000"/>
 				<Event Id="2246671041" Name="Play_GG_SD_Shake_1" ObjectPath="\Events\Default Work Unit\Play_GG_SD_Shake_1"/>
 				<Event Id="3932030894" Name="Play_GG_SD_Shaman_Drum_1" ObjectPath="\Events\Default Work Unit\Play_GG_SD_Shaman_Drum_1" MaxAttenuation="100.000000"/>
 				<Event Id="459538816" Name="Play_GG_SD_ShamanTransformation" ObjectPath="\Events\Default Work Unit\Play_GG_SD_ShamanTransformation"/>
 				<Event Id="316087560" Name="Play_GG_SD_Sink_1" ObjectPath="\Events\Default Work Unit\Mechanic\Play_GG_SD_Sink_1"/>
 				<Event Id="3603427629" Name="Play_GG_SD_Swipe_1" ObjectPath="\Events\Default Work Unit\Mechanic\Play_GG_SD_Swipe_1"/>
-				<Event Id="1419803467" Name="Play_ImpactEarthRock" ObjectPath="\Events\Default Work Unit\Play_ImpactEarthRock"/>
+				<Event Id="1419803467" Name="Play_ImpactEarthRock" ObjectPath="\Events\Default Work Unit\Play_ImpactEarthRock" MaxAttenuation="100.000000"/>
 				<Event Id="3709355747" Name="Play_Music_01" ObjectPath="\Events\Default Work Unit\Music\Play_Music_01"/>
-				<Event Id="2127114922" Name="Play_Overture" ObjectPath="\Events\Default Work Unit\Play_Overture"/>
 				<Event Id="2940177080" Name="Resume_Music" ObjectPath="\Events\Default Work Unit\Music\Resume_Music" MaxAttenuation="0.000000"/>
 				<Event Id="452547817" Name="Stop_All" ObjectPath="\Events\Default Work Unit\Stop_All" MaxAttenuation="0.000000"/>
 				<Event Id="3148331554" Name="Stop_GG_SD_Sink_1" ObjectPath="\Events\Default Work Unit\Mechanic\Stop_GG_SD_Sink_1" MaxAttenuation="0.000000"/>
@@ -87,15 +89,11 @@
 				</File>
 				<File Id="97217295" Language="SFX">
 					<ShortName>GG_Sinkmechanic_2_2.wav</ShortName>
-					<Path>SFX/GG_Sinkmechanic_2_2_E3E752DB.wem</Path>
+					<Path>SFX/GG_Sinkmechanic_2_2_FE183CC4.wem</Path>
 				</File>
 				<File Id="106012703" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_6.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_6_F7D0E330.wem</Path>
-				</File>
-				<File Id="106070163" Language="SFX">
-					<ShortName>MonsterBearGroan_S08AN.216.wav</ShortName>
-					<Path>SFX/MonsterBearGroan_S08AN.216_F7D0E330.wem</Path>
 				</File>
 				<File Id="177053591" Language="SFX">
 					<ShortName>GG_Wind_1_3.wav</ShortName>
@@ -127,7 +125,7 @@
 				</File>
 				<File Id="306108445" Language="SFX">
 					<ShortName>GG_Sinkmechanic_2_1.wav</ShortName>
-					<Path>SFX/GG_Sinkmechanic_2_1_46A63003.wem</Path>
+					<Path>SFX/GG_Sinkmechanic_2_1_242B6E11.wem</Path>
 				</File>
 				<File Id="319384612" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_1.wav</ShortName>
@@ -149,9 +147,9 @@
 					<ShortName>GG_Wind_1_2.wav</ShortName>
 					<Path>SFX/GG_Wind_1_2_8CE3A161.wem</Path>
 				</File>
-				<File Id="371642989" Language="SFX">
-					<ShortName>GG_SD_Shaman_Drum_1.wav</ShortName>
-					<Path>SFX/GG_SD_Shaman_Drum_1_E2B9BA5D.wem</Path>
+				<File Id="373287259" Language="SFX">
+					<ShortName>GG_SD_JavelinWoosh.wav</ShortName>
+					<Path>SFX/GG_SD_JavelinWoosh_F7D0E330.wem</Path>
 				</File>
 				<File Id="429189614" Language="SFX">
 					<ShortName>GG_FS_SWAMP_DRY_1_6.wav</ShortName>
@@ -171,7 +169,11 @@
 				</File>
 				<File Id="487492339" Language="SFX">
 					<ShortName>GG_Sinkmechanic_2_3.wav</ShortName>
-					<Path>SFX/GG_Sinkmechanic_2_3_19568378.wem</Path>
+					<Path>SFX/GG_Sinkmechanic_2_3_A427523D.wem</Path>
+				</File>
+				<File Id="492480787" Language="SFX">
+					<ShortName>GG_FSD_CR_1.wav</ShortName>
+					<Path>SFX/GG_FSD_CR_1_F7D0E330.wem</Path>
 				</File>
 				<File Id="496682039" Language="SFX">
 					<ShortName>GG_FS_SWAMP_DRY_1_3.wav</ShortName>
@@ -204,6 +206,10 @@
 				<File Id="541555690" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_5.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_5_F7D0E330.wem</Path>
+				</File>
+				<File Id="557800051" Language="SFX">
+					<ShortName>BirdSandpiper_S08AN.33.wav</ShortName>
+					<Path>SFX/BirdSandpiper_S08AN.33_F7D0E330.wem</Path>
 				</File>
 				<File Id="560528524" Language="SFX">
 					<ShortName>GG_Wind_1_1.wav</ShortName>
@@ -253,10 +259,6 @@
 					<ShortName>GG_MUSIC_HUNT_1.wav</ShortName>
 					<Path>SFX/GG_MUSIC_HUNT_1_AD29F36A.wem</Path>
 				</File>
-				<File Id="788088289" Language="SFX">
-					<ShortName>GG_SD_Shaman_Drum_1.wav</ShortName>
-					<Path>SFX/GG_SD_Shaman_Drum_1_F7D0E330.wem</Path>
-				</File>
 				<File Id="808835204" Language="SFX">
 					<ShortName>GG_FS_SWAMP_DRY_1_4.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_DRY_1_4_F7D0E330.wem</Path>
@@ -272,10 +274,6 @@
 				<File Id="833957249" Language="SFX">
 					<ShortName>LEATHER_SHOE_ASPHALT_EXT_2_12.wav</ShortName>
 					<Path>SFX/LEATHER_SHOE_ASPHALT_EXT_2_12_F7D0E330.wem</Path>
-				</File>
-				<File Id="846055911" Language="SFX">
-					<ShortName>GG_SD_SingingIce_1.wav</ShortName>
-					<Path>SFX/GG_SD_SingingIce_1_F7D0E330.wem</Path>
 				</File>
 				<File Id="854311196" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_2.wav</ShortName>
