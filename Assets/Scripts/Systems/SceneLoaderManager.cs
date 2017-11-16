@@ -50,13 +50,10 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         GameObject p = GameObject.Find(PsName);
         if(GameStateManager.current != null && GameStateManager.current.forPUnlockables != null)
         {
-            for(int i = 0; i<unlockableItems.Count; i++)
+            for(int i = 0; i < GameStateManager.current.forPUnlockables.Count; i++)
             {
-                if(GameStateManager.current.forPUnlockables.Contains(unlockableItems[i].name))
-                {
-                    GameObject newUnlock = Instantiate(unlockableItems[i], p.transform);
-
-                }
+                GameObject objectUnlocked = p.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
+                objectUnlocked.SetActive(true);
             }
         }
 
@@ -64,12 +61,10 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         GameObject o = GameObject.Find(OsName);
         if(GameStateManager.current != null && GameStateManager.current.forOUnlockables != null)
         {
-            for(int i = 0; i<unlockableItems.Count; i++)
+            for(int i = 0; i<GameStateManager.current.forOUnlockables.Count; i++)
             {
-                if(GameStateManager.current.forOUnlockables.Contains(unlockableItems[i].name))
-                {
-                    GameObject newUnlock = Instantiate(unlockableItems[i], o.transform);
-                }
+                GameObject objectUnlocked = o.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
+                objectUnlocked.SetActive(true);            
             }
         }
     }
