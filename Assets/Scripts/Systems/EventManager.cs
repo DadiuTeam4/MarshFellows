@@ -35,8 +35,9 @@ namespace Events
 		GroundChecked = 23,
         RitualDisrupted = 24, 
 		DeerKilledEvent = 25,
-        BroadcastObjectLocation = 26 /* used to set location of objects for the hunters to look at, eg. shaman location */
-    }
+        BroadcastObjectLocation = 26,
+		ScenarioTriggerEntered
+	}
 
 	public class EventArgument
 	{
