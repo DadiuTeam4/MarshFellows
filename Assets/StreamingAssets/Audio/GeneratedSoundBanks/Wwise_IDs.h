@@ -53,6 +53,7 @@ namespace AK
             {
                 static const AkUniqueID CROSSROAD = 1606235185U;
                 static const AkUniqueID INTRO = 1125500713U;
+                static const AkUniqueID INTROCUTSCENE = 435005117U;
                 static const AkUniqueID LIO1 = 153136492U;
                 static const AkUniqueID LIP1 = 169914049U;
                 static const AkUniqueID SC1A = 3639549469U;

@@ -158,6 +158,13 @@ public class AudioManager : Singleton<AudioManager> {
 			//Do this
 			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
 		}
+		if (argument.stringComponent == "IntroCutscene" && argument.intComponent == -1) 
+		{
+			//Do this
+			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
+			AkSoundEngine.SetState("Music", "IntroCutscene"); 
+
+		}
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
 			//Do this
