@@ -120,9 +120,7 @@ public class AudioManager : Singleton<AudioManager> {
 			//Play_GG_SD_Sink_PH
 		}
 	}
-
-
-
+		
 	void ForeshadowPost(EventArgument argument)
 	{
 		//Travel of P 
