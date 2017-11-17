@@ -17,9 +17,6 @@ public class Navigator : MonoBehaviour
 	public bool autoRepath;
 	public bool drawPath;
 
-    private EventManager eventManager;
-    private EventDelegate eventDelegate;
-
     private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
 
@@ -47,8 +44,6 @@ public class Navigator : MonoBehaviour
 		navMeshAgent.autoRepath = autoRepath;
         SetDestination();
 
-        eventManager = EventManager.GetInstance();
-        //eventDelegate += EventCallback;
     }
 
 

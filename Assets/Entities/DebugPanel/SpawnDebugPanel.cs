@@ -17,7 +17,7 @@ public class SpawnDebugPanel : MonoBehaviour
 		}
 		else 
 		{
-			instance.SetActive(!instance.active);
+			instance.SetActive(!instance.activeSelf);
 		}
 	}
 }
