@@ -8,16 +8,15 @@ using Events;
 public class ObjectFall : MonoBehaviour
 {
     private Quaternion initialRotation;
-    //private Vector3 initialPosition;
     private Vector3 objectSize;
     private bool hasFall;
     public bool checkRotation = true;
     public bool checkPosition = true;
+    public string typeOfObject;
 
     void Start()
     {
         initialRotation = transform.rotation;
-       // initialPosition = transform.position;
         hasFall = false;
         objectSize = GetComponent<Collider>().bounds.size;
     }
@@ -58,16 +57,17 @@ public class ObjectFall : MonoBehaviour
         Vector3 currentPosition = transform.position;
         if(transform.position.y < objectSize.y + 0.5)
         {
-            Debug.Log("Fall");
             CallFallEvent();
         }
     }
 
     private void CallFallEvent()
     {
+        Debug.Log("Fall");
         hasFall = true;
         EventManager eventManager = EventManager.GetInstance();
         EventArgument argument = new EventArgument();
+        argument.stringComponent = typeOfObject;
         eventManager.CallEvent(CustomEvent.FallHasHappend, argument);
         //Stop Update
         enabled = false;
