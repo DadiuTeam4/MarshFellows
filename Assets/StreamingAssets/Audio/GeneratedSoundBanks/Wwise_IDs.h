@@ -32,6 +32,7 @@ namespace AK
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
         static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
+        static const AkUniqueID PLAY_GG_SD_SINK_PH = 4053997955U;
         static const AkUniqueID PLAY_GG_SD_SWIPE_1 = 3603427629U;
         static const AkUniqueID PLAY_IMPACTEARTHROCK = 1419803467U;
         static const AkUniqueID PLAY_MUSIC_01 = 3709355747U;
