@@ -7,28 +7,34 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Camera/Cinematic Animation")]
 public class CinematicAnimation : ScriptableObject 
 {
+	[Header("Position")]
 	public bool followP;
 	public AnimationCurve xPosition;
-	public bool trackHuntersX;
+	public bool stickToHuntersX;
 	public float xDistanceMultiplier;
 	public AnimationCurve xDistance;
 	[Space(10)]
 	public AnimationCurve yPosition;
-	public bool trackHuntersY;
+	public bool stickToHuntersY;
 	public float yDistanceMultiplier;
 	public AnimationCurve yDistance;
 	[Space(10)]
 	public AnimationCurve zPosition;
-	public bool trackHuntersZ;
+	public bool stickToHuntersZ;
 	public float zDistanceMultiplier;
 	public AnimationCurve zDistance;
 	[Space(10)]
+	[Header("Rotation")]
 	public Vector3 center;
 	public bool focusOnHuntersX;
 	public bool focusOnHuntersY;
 	public bool focusOnHuntersZ;
+	[Header("Field Of View")]
+	public float minFieldOfView = 45;
+	public float maxFieldOfView = 20;
+	public AnimationCurve fieldOfViewCurve;
 
-	public Vector3 GetPosition(float progress, Vector3 targetPosition)
+	public Vector3 GetPosition(float progress, Vector3 targetPosition, Transform cameraRig)
 	{
 		float currentDistanceX = xDistance.Evaluate(progress);
 		float multipliedDistanceX = xDistanceMultiplier * currentDistanceX;
@@ -37,10 +43,32 @@ public class CinematicAnimation : ScriptableObject
 		float currentDistanceZ = zDistance.Evaluate(progress);
 		float multipliedDistanceZ = zDistanceMultiplier * currentDistanceZ;
 
-		float x = trackHuntersX ? targetPosition.x * multipliedDistanceX : center.x + xPosition.Evaluate(progress) * multipliedDistanceX;
-		float y = trackHuntersY ? targetPosition.y * multipliedDistanceY : center.y + yPosition.Evaluate(progress) * multipliedDistanceY;
-		float z = trackHuntersZ ? targetPosition.z * multipliedDistanceZ : center.z + zPosition.Evaluate(progress) * multipliedDistanceZ;  
+		Vector3 updatedPosition = targetPosition;
+		if (stickToHuntersX)
+		{
+			updatedPosition.x = xPosition.Evaluate(progress) * multipliedDistanceX;
+		}
+
+		if (stickToHuntersY)
+		{
+			updatedPosition.y = yPosition.Evaluate(progress) * multipliedDistanceY;
+		}
+
+		if (stickToHuntersZ)
+		{
+			updatedPosition.z = zPosition.Evaluate(progress) * multipliedDistanceZ;
+		}
+		cameraRig.localPosition = updatedPosition;
+		
+		float x = stickToHuntersX ? cameraRig.position.x + xPosition.Evaluate(progress) * multipliedDistanceX : center.x + xPosition.Evaluate(progress) * multipliedDistanceX;
+		float y = stickToHuntersY ? cameraRig.position.y + yPosition.Evaluate(progress) * multipliedDistanceY : center.y + yPosition.Evaluate(progress) * multipliedDistanceY;
+		float z = stickToHuntersZ ? cameraRig.position.z + zPosition.Evaluate(progress) * multipliedDistanceZ : center.z + zPosition.Evaluate(progress) * multipliedDistanceZ;  
 		
 		return new Vector3(x, y, z);
+	}
+
+	public float GetFOV(float progress)
+	{
+		return Mathf.Lerp(minFieldOfView, maxFieldOfView, fieldOfViewCurve.Evaluate(progress));
 	}
 }

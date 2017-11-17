@@ -1,4 +1,4 @@
-﻿// Author: Kristian Riis 
+﻿	// Author: Kristian Riis 
 // Contributors: 
 
 using System.Collections;
@@ -11,7 +11,10 @@ public class AudioManager : Singleton<AudioManager> {
 	public EventManager eventManager;
     public Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
 	public uint eventID; 
-	public string groundLayer; 
+	public string groundLayer;
+	public float sfxVolume = 100; 
+	public float musicVolume = 100; 
+
 
 	void Awake()
 	{
@@ -24,6 +27,19 @@ public class AudioManager : Singleton<AudioManager> {
 		groundLayer = "Swamp";
 		PlaySound("Play_GG_Ambience_Open_1"); 
 	}
+
+	//SFX
+    public void SetSFXVolume(float newVolumn)
+    {
+        AkSoundEngine.SetRTPCValue("SFX_Volume", newVolumn * 100);
+    }
+
+	//Volume
+    public void SetMusicVolume(float newVolumn)
+    {
+        AkSoundEngine.SetRTPCValue("Music_Volume", newVolumn * 100);
+    }
+
 		
 	//Calls when ever listened event is triggered 
 	void OnEnable () 
@@ -91,46 +107,46 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		//argument.gameObjectComponent;
 
-		if(argument.stringComponent == "T	ree")
+		if(argument.stringComponent == "Tree")
 		{
 		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "Stone")
 		{
-			//
+			PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "SomethingElse")
 		{
-			//
+			//Play_GG_SD_Sink_PH
 		}
 	}
-
+		
 	void ForeshadowPost(EventArgument argument)
 	{
-
+		//Travel of P 
 			if(argument.stringComponent == "Scena2")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Shaman");
-			}
-			if(argument.stringComponent == "Scena3")
-			{
-				PlaySoundWC ("Play_Deer_FS"); 
+				PlaySoundWC("Play_GG_FSD_2");
 			}
 			if(argument.stringComponent == "Scena4")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_FSD_4_1");
 			}
+			
+		//Travel of O 
 			if(argument.stringComponent == "Scena1")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_FSD_1");
 			}
-			if(argument.stringComponent == "Scena1A")
+			if(argument.stringComponent == "Scena3")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC ("Play_FSD_3"); 
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				//PlaySoundWC("Play_GG_SD_FSD_Bear");
+				//Maybe nothing should happen¨
+				PlaySoundWC("Play_GG_FSD_CR_1");
 			}
 	}
 
@@ -156,6 +172,15 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
 		{
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
+			AkSoundEngine.SetState("Music", "Crossroad"); 
+		}
+		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
+		{
+			AkSoundEngine.SetState("Music", "LiO1"); 
+		}
+		if (argument.stringComponent == "LiP1" && argument.intComponent == -1) 
+		{
+			AkSoundEngine.SetState("Music", "LiP1"); 
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
@@ -195,7 +220,6 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
 		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
-		PlaySound ("Play_FS");
 	}
 
 	//Play-function with stop-callback to a specific event  
@@ -211,6 +235,7 @@ public class AudioManager : Singleton<AudioManager> {
         }
 	}
 
+	//Can add a gameobject
 	public void PlaySoundWCOtherScript(string soundEventName, GameObject thisthis)
 	{
 		soundEventName = string.Concat("", soundEventName, "");
@@ -222,6 +247,14 @@ public class AudioManager : Singleton<AudioManager> {
 			soundsBeingPlayed[soundEventName] = true;
 		}
 	}
+
+	//Play-function without stop-callback, can add a gameobject 
+	public void PlaySoundOtherScript(string soundName, GameObject thisthisthis)
+	{
+		soundName = string.Concat ("", soundName, ""); 
+		eventID = AkSoundEngine.PostEvent (soundName, thisthisthis); 
+	}
+
 		
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)
@@ -246,4 +279,18 @@ public class AudioManager : Singleton<AudioManager> {
             soundsBeingPlayed[soundEventName] = false;
         }
     }
+
+	//MENU functions 
+	public void MenuFadeSoundDown()
+	{
+		PlaySound ("Menu_FadeVolumeDown"); 	
+	}
+	public void MenuFadeSoundUp()
+	{
+		PlaySound ("Menu_FadeVolumeUp"); 	
+	}
+	public void OnMenuClick()
+	{
+		PlaySound("Play_GG_Menu_Click"); 
+	}
 }

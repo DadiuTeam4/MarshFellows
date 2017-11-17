@@ -22,6 +22,9 @@ namespace CameraControl
 
 		// Variables
 		public Transform[] targets;
+		public Transform cameraRig;
+		[HideInInspector]
+		public Camera cameraComponent;
 		[SerializeField]
 		private CameraState currentState;
 		private ThirdPersonCamera thirdPersonCamera;
@@ -33,6 +36,7 @@ namespace CameraControl
 			// Get references
 			thirdPersonCamera = GetComponent<ThirdPersonCamera>();
 			cinematicCamera = GetComponent<CinematicCamera>();
+			cameraComponent = GetComponentInChildren<Camera>();
 
 			// Add event listeners
 			EventDelegate eventDelegate = ScenarioTriggerCallback;

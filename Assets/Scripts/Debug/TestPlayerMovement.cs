@@ -10,12 +10,6 @@ public class TestPlayerMovement : MonoBehaviour
     private bool isWalking = false;
     Vector3 destination;
 
-    private Rigidbody playerRd;
-
-    void Awake()
-    {
-        playerRd = GetComponent<Rigidbody>();
-    }
     
     void Start()
     {
