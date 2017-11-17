@@ -37,6 +37,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
         EventArgument argument = new EventArgument(); 
 
+        //load different level if it is a replay
         if(GameStateManager.current.playedBefore)
         {
             argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
@@ -63,6 +64,8 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             {
                try
                {
+                   //example
+                   //hunter_fqi02/Hunter01/global01/bn_root/bn_pelvis/Flint_axe
                     GameObject objectUnlocked = p.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
                     objectUnlocked.SetActive(true);
                }
@@ -92,7 +95,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             }
         }
     }
-//hunter_fqi02/Hunter01/global01/bn_root/bn_pelvis/Flint_axe
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
     private void SceneLoader(EventArgument argument)
