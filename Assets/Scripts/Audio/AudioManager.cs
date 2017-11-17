@@ -11,7 +11,10 @@ public class AudioManager : Singleton<AudioManager> {
 	public EventManager eventManager;
     public Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
 	public uint eventID; 
-	public string groundLayer; 
+	public string groundLayer;
+	public float sfxVolume = 100; 
+	public float musicVolume = 100; 
+
 
 	void Awake()
 	{
@@ -24,6 +27,13 @@ public class AudioManager : Singleton<AudioManager> {
 		groundLayer = "Swamp";
 		PlaySound("Play_GG_Ambience_Open_1"); 
 	}
+
+	void Update()
+	{
+		AkSoundEngine.SetRTPCValue ("SFX_Volume", sfxVolume); 
+		AkSoundEngine.SetRTPCValue ("Music_Volume", sfxVolume); 
+	}
+
 		
 	//Calls when ever listened event is triggered 
 	void OnEnable () 
