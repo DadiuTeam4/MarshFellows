@@ -23,7 +23,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     public string OsName = "O";
     public string cameraAndPOname = "OPandCamera";
     public GameObject fogOnRestart;
-    public int offsetForCreatingFog = 10;
+    public int offsetForCreatingFog = -55;
     void Start()
     {
         
@@ -43,14 +43,16 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         {
             argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
             GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
-            if(respawnPosition != null)
+            if(respawnPosition != null && cpo != null)
             {
                 cpo.transform.position = respawnPosition;                
             }
-            if(fogOnRestart != null)
+            if(fogOnRestart != null && cpo != null)
             {
-                Instantiate(fogOnRestart, cpo.transform.position + (cpo.transform.forward*offsetForCreatingFog), this.gameObject.transform.rotation);
+                Instantiate(fogOnRestart, new Vector3(cpo.transform.position.x,cpo.transform.position.y,cpo.transform.position.z+offsetForCreatingFog), cpo.transform.rotation);
             }
+
+            
         }
         else
         {
