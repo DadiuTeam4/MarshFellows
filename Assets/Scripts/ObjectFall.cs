@@ -57,13 +57,13 @@ public class ObjectFall : MonoBehaviour
         Vector3 currentPosition = transform.position;
         if(transform.position.y < objectSize.y + 0.5)
         {
-            Debug.Log("Fall");
             CallFallEvent();
         }
     }
 
     private void CallFallEvent()
     {
+        Debug.Log("Fall");
         hasFall = true;
         EventManager eventManager = EventManager.GetInstance();
         EventArgument argument = new EventArgument();
