@@ -20,7 +20,7 @@ namespace CameraControl
 		public CinematicAnimation[] scenarioAnimations;
 		public float damping = 1;
 
-		private Scenario currentScenario;
+		//private Scenario currentScenario;
 		private CinematicAnimation currentAnimation;
 		private Vector3 scenarioStartPosition;
 		private Vector3 scenarioEndPosition;
@@ -52,7 +52,7 @@ namespace CameraControl
 
 		public void SetScenario(Scenario scenario, Vector3 scenarioStartPosition, Vector3 scenarioEndPosition)
 		{
-			currentScenario = scenario;
+			//currentScenario = scenario;
 			currentAnimation = scenarioAnimations[(int) scenario];
 
 			this.scenarioStartPosition = scenarioStartPosition;

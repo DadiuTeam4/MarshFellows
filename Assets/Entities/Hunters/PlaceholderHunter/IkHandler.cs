@@ -83,11 +83,13 @@ public class IkHandler : MonoBehaviour {
         if (lookPos)
         {
             anim.SetLookAtPosition(lookPos.position);
-        }
+        } 
         anim.SetLookAtWeight(lookAtWeight, bodyWeight,headWeight, 0, clampWeight);
 
-      /*lFWeight = anim.GetFloat("LFoot");
-        rFWeight = anim.GetFloat("RFoot");
+        //lFWeight = anim.GetFloat("LFoot");
+        //rFWeight = anim.GetFloat("RFoot");
+        lFWeight = 0;
+        rFWeight = 0;
 
         anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, lFWeight);
         anim.SetIKPositionWeight(AvatarIKGoal.RightFoot, rFWeight);    
@@ -97,7 +99,7 @@ public class IkHandler : MonoBehaviour {
         anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, lFWeight);
         anim.SetIKRotationWeight(AvatarIKGoal.RightFoot, rFWeight);
         anim.SetIKRotation(AvatarIKGoal.LeftFoot, lFrot);
-        anim.SetIKRotation(AvatarIKGoal.RightFoot, rFrot); */
+        anim.SetIKRotation(AvatarIKGoal.RightFoot, rFrot);
     }
 
 

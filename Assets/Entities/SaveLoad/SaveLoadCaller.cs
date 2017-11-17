@@ -7,8 +7,6 @@ using Events;
 
 public class SaveLoadCaller : MonoBehaviour {
 
-GameStateManager gameState = new GameStateManager();
-
     void OnApplicationQuit()
     {
 		  SaveLoadManager.Save();
