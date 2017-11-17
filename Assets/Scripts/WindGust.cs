@@ -13,7 +13,7 @@ public class WindGust : MonoBehaviour
 	public float windForce = -1.0f;
 
 	private WindZone windZone;
-	private ParticleSystem windParticles;
+	//private ParticleSystem windParticles;
 
 	private EventDelegate onSwipe;
 	private EventDelegate onSwipeEnd;
@@ -23,7 +23,7 @@ public class WindGust : MonoBehaviour
 	void Start () 
 	{	
 		windZone = GetComponent<WindZone>();
-		windParticles = GetComponent<ParticleSystem>();
+		//windParticles = GetComponent<ParticleSystem>();
 
 		onSwipe = PlaceGust;
 		onSwipeEnd = DisableGust;

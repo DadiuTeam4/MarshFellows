@@ -15,7 +15,6 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 	new Rigidbody rigidbody;
 	float currentTime;
 	int reactHash = Animator.StringToHash("deerReact");
-	int RunHash = Animator.StringToHash("deerSpeed");
 
 	[SerializeField]
 	private bool found;
@@ -41,7 +40,7 @@ public class DeerAnimationControllerWaitBeforeRun : MonoBehaviour
 		fogEvent = HiddenTest;
 		scareEvent = ScaredTest;
 		EventManager.GetInstance().AddListener(CustomEvent.HiddenByFog, fogEvent);
-		EventManager.GetInstance().AddListener(CustomEvent.HoldEnd, ScaredTest);
+		EventManager.GetInstance().AddListener(CustomEvent.HoldEnd, scareEvent);
 	}
 	
 	// Update is called once per frame

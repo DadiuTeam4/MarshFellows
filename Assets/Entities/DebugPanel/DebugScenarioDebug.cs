@@ -11,11 +11,11 @@ public class DebugScenarioDebug : MonoBehaviour
 
 	void Start()
 	{
-		eventManager = EventManager.GetInstance();
+		eventManager = EventManager.GetInstance(); 
 	}
 	
 	public void CallScenarioInteracted()
 	{
-		EventManager.GetInstance().CallEvent(CustomEvent.ScenarioInteracted);
+		eventManager.CallEvent(CustomEvent.ScenarioInteracted);
 	}
 }
