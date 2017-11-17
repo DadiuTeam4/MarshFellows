@@ -8,7 +8,7 @@ using UnityEngine;
 public class FogImageEffect : MonoBehaviour {
 
 	[SerializeField]
-	private Camera camera;
+	private new Camera camera;
 	public Material effectMaterial;
 
 	// Use this for initialization

@@ -17,9 +17,6 @@ public class Navigator : MonoBehaviour
 	public bool autoRepath;
 	public bool drawPath;
 
-    private EventManager eventManager;
-    private EventDelegate eventDelegate;
-
     private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
 
@@ -28,7 +25,7 @@ public class Navigator : MonoBehaviour
 
 	#region DEBUG
 	#if UNITY_EDITOR
-	public LineRenderer lineRenderer;
+	private LineRenderer lineRenderer;
 	#endif
 	#endregion
 
@@ -41,14 +38,12 @@ public class Navigator : MonoBehaviour
 	{
 		#region DEBUG
 		#if UNITY_EDITOR
-		//lineRenderer = GetComponent<LineRenderer>();
+		lineRenderer = GetComponent<LineRenderer>();
 		#endif
 		#endregion
 		navMeshAgent.autoRepath = autoRepath;
         SetDestination();
 
-        eventManager = EventManager.GetInstance();
-        //eventDelegate += EventCallback;
     }
 
 
