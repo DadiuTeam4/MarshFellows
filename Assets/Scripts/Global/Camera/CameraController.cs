@@ -21,19 +21,14 @@ public class CameraController : MonoBehaviour
 
     private const float COEFFICIENT_FROM_MAGNITUDE_TO_INTENSITY = 0.00005f;
     public bool isShaking = false;
-    private Transform cameraTransform;
-    public float CameraSpeed = 0.1f;
 
-    void Awake()
-    {
-        cameraTransform = GetComponent<Transform>();
-    }
+    public float CameraSpeed = 0.1f;
 
     void Start()
     {
         offset = transform.position - playerTransform.position;
 
-        EventDelegate eventDelegate = OnCameraSpecialEvent;
+        // EventDelegate eventDelegate = OnCameraSpecialEvent;
         // EventManager.GetInstance().AddListener(CustomEvent.CameraMoving, eventDelegate);
 
     }

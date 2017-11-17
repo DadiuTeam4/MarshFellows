@@ -18,8 +18,8 @@ public float timer = waitTime;
 private ParticleSystem[] leftFog;
 private ParticleSystem[] rightFog;
 private static float waitTime = 3;
-private float defaultEmissionRate = 10;
-private float changedEmissionRate = 1;
+//private float defaultEmissionRate = 10;
+//private float changedEmissionRate = 1;
 
 private bool leftSwipeHasHappened = false;
 private bool rightSwipeHasHappened = false;

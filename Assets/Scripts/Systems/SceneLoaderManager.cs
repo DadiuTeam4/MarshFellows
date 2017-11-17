@@ -15,11 +15,15 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     List<string> scenesToUnload;
     
     EventManager eventManager;
-    public string globalSceneName = "GlobalScene";
-    public string firstSceneToLoadName = "IntroLevel";
+    public string globalSceneName = "GlobalScene";  
+    public string initialSceneName = "IntroLevel";
+    public string nameOfSceneToLoadAfterFirstRound = "IntroLevel";
+    public Vector3 respawnPosition;
     public string PsName = "P";
     public string OsName = "O";
-    
+    public string cameraAndPOname = "OPandCamera";
+    public GameObject fogOnRestart;
+    public int offsetForCreatingFog = -55;
     void Start()
     {
         
@@ -34,9 +38,26 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
         EventArgument argument = new EventArgument(); 
 
-        //LoadUnloadEverything();
-        //UnloadAllScenes(globalSceneName);
-        argument.stringComponent = firstSceneToLoadName;
+        //load different level if it is a replay
+        if(GameStateManager.current.playedBefore)
+        {
+            argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
+            GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
+            if(respawnPosition != null && cpo != null)
+            {
+                cpo.transform.position = respawnPosition;                
+            }
+            if(fogOnRestart != null && cpo != null)
+            {
+                Instantiate(fogOnRestart, new Vector3(cpo.transform.position.x,cpo.transform.position.y,cpo.transform.position.z+offsetForCreatingFog), cpo.transform.rotation);
+            }
+
+            
+        }
+        else
+        {
+            argument.stringComponent = initialSceneName;
+        }
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
@@ -53,6 +74,8 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             {
                try
                {
+                   //example
+                   //hunter_fqi02/Hunter01/global01/bn_root/bn_pelvis/Flint_axe
                     GameObject objectUnlocked = p.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
                     objectUnlocked.SetActive(true);
                }
@@ -82,7 +105,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             }
         }
     }
-//hunter_fqi02/Hunter01/global01/bn_root/bn_pelvis/Flint_axe
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
     private void SceneLoader(EventArgument argument)

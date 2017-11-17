@@ -1,25 +1,27 @@
 ﻿// Author: Jonathan
-// Contributers: Kristian 
+// Contributers: Kristian ,You Wu
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Events; 
+using Events;
 
-public class CreditsButton : MonoBehaviour 
+public class CreditsButton : MonoBehaviour
 {
-	public AudioManager audioManager; 
+    public AudioManager audioManager;
+    public Transform creditsPanel;
 
-	void Start() 
-	{
-		audioManager = AudioManager.GetInstance(); 	
-	}
+    void Start()
+    {
+        audioManager = AudioManager.GetInstance();
+    }
 
-	public void RunCredits()
-	{
-		Debug.Log("Thank you baby Jesus!");
-		audioManager.OnMenuClick (); 
-	}
+    public void RunCredits()
+    {
+		creditsPanel.gameObject.SetActive(true);
+		transform.parent.gameObject.SetActive(false);
+        audioManager.OnMenuClick();
+    }
 }
 
