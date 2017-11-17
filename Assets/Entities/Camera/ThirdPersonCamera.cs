@@ -8,20 +8,23 @@ namespace CameraControl
 {
     public class ThirdPersonCamera : BaseCamera
     {
-        private Transform oTransform;
-        private Transform trackedObject;
-        private Vector3 offset;
-        public Vector3 ajustablePos;
+        public Vector3 adjustableOffset;
         public float positionDamping = 1;
         public float rotationDamping = 1;
         public bool isFollowingCenter = true;
         public float fieldOfView = 45;
+
+        private Transform oTransform;
+        private Transform trackedObject;
+        private Vector3 offset;
+        private Vector3 startRotation;
 
         private void Start()
         {
             controller = CameraStateController.GetInstance();
             InitTargets();
             offset = transform.position - oTransform.position + (0.5f * (pTransform.position - oTransform.position));
+            startRotation = transform.eulerAngles;
         }
 
         private void InitTargets()
@@ -39,13 +42,14 @@ namespace CameraControl
 
         protected override void UpdatePosition()
         {
+            //controller.cameraRig.localPosition = adjustableOffset;
             Quaternion rotation = Quaternion.identity;
             if (!trackedObject)
             {
                 float currentAngle = transform.eulerAngles.y;
                 float desiredAngle = pTransform.eulerAngles.y;
                 float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
-                rotation = Quaternion.Euler(transform.eulerAngles.x, angle, 0);
+                rotation = Quaternion.Euler(startRotation.x, angle, startRotation.z);
             }
             else
             {
@@ -55,7 +59,7 @@ namespace CameraControl
             }
             transform.rotation = rotation;
 
-            Vector3 position = Vector3.Lerp(transform.position, getDesiredPosition(transform.rotation), Time.deltaTime * positionDamping);
+            Vector3 position = Vector3.Lerp(transform.position, GetDesiredPosition(transform.eulerAngles.y), Time.deltaTime * positionDamping);
 
             transform.position = position;
             if (controller.cameraComponent.fieldOfView != fieldOfView)
@@ -64,15 +68,16 @@ namespace CameraControl
             }
         }
 
-        private Vector3 getDesiredPosition(Quaternion currentRotation)
+        private Vector3 GetDesiredPosition(float yRotation)
         {
+            Quaternion currentRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             if (isFollowingCenter)
             {
-                return deltaPosition - (currentRotation * Vector3.forward * offset.magnitude) + ajustablePos;
+                return deltaPosition + (currentRotation * adjustableOffset);
             }
             else
             {
-                return pTransform.position - (currentRotation * Vector3.forward * offset.magnitude) + ajustablePos;
+                return pTransform.position + (currentRotation * adjustableOffset);
             }
         }
 

@@ -18,35 +18,26 @@ public class EventTrigger : MonoBehaviour
 
 	void Update()
 	{
+        EventArgument argument = new EventArgument();
         if (Input.GetKeyDown("d"))
         {
-            EventArgument argument = new EventArgument();
-
-            EventManager.GetInstance().CallEvent(CustomEvent.DeerScenarioEntered, argument);
+            eventManager.CallEvent(CustomEvent.DeerScenarioEntered, argument);
         }
         if (Input.GetKeyDown("j"))
 		{
-			EventArgument argument = new EventArgument();
-
-			EventManager.GetInstance().CallEvent(CustomEvent.RitualScenarioEntered, argument);
+			eventManager.CallEvent(CustomEvent.RitualScenarioEntered, argument);
 		}
         if (Input.GetKeyDown("b"))
-        {
-            EventArgument argument = new EventArgument();
- 
-            EventManager.GetInstance().CallEvent(CustomEvent.BearScenarioEntered, argument);
+        { 
+            eventManager.CallEvent(CustomEvent.BearScenarioEntered, argument);
         }
         if (Input.GetKeyDown("s"))
         {
-            EventArgument argument = new EventArgument();
-
-            EventManager.GetInstance().CallEvent(CustomEvent.SeparationScenarioEntered, argument);
+            eventManager.CallEvent(CustomEvent.SeparationScenarioEntered, argument);
         }
         if (Input.GetKeyDown("i"))
         {
-            EventArgument argument = new EventArgument();
-
-            EventManager.GetInstance().CallEvent(CustomEvent.ScenarioInteracted, argument);
+            eventManager.CallEvent(CustomEvent.ScenarioInteracted, argument);
         }
 
     }
