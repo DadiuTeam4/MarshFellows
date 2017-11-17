@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 public class SinkableObjectType : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class SinkableObjectType : MonoBehaviour
             if (transform.position.y < groundTransform.position.y)
             {
                 //Here are objects that are sunk at start
-				Debug.Log(gameObject.name + " has sunk at start!");
+                Debug.Log(gameObject.name + " has sunk at start!");
                 hasSunk = true;
                 enabled = false;
             }
@@ -64,7 +65,10 @@ public class SinkableObjectType : MonoBehaviour
     private void CallSunkEvent()
     {
         hasSunk = true;
-        enabled = false;
+        EventArgument argument = new EventArgument();
+        argument.stringComponent = typeOfSinkable;
+        EventManager.GetInstance().CallEvent(CustomEvent.SinkHasHappened, argument);
         Debug.Log(typeOfSinkable + " has sunk " + gameObject.name);
+        enabled = false;
     }
 }
