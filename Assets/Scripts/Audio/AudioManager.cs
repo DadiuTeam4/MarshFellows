@@ -28,13 +28,17 @@ public class AudioManager : Singleton<AudioManager> {
 		PlaySound("Play_GG_Ambience_Open_1"); 
 	}
 
-	void Update()
-	{
-		//SFX
-		AkSoundEngine.SetRTPCValue ("SFX_Volume", sfxVolume); 
-		//Volume
-		AkSoundEngine.SetRTPCValue ("Music_Volume", musicVolume); 
-	}
+	//SFX
+    public void SetSFXVolume(float newVolumn)
+    {
+        AkSoundEngine.SetRTPCValue("SFX_Volume", newVolumn * 100);
+    }
+
+	//Volume
+    public void SetMusicVolume(float newVolumn)
+    {
+        AkSoundEngine.SetRTPCValue("Music_Volume", newVolumn * 100);
+    }
 
 		
 	//Calls when ever listened event is triggered 
