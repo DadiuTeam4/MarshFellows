@@ -61,7 +61,7 @@ public class TeachFog : MonoBehaviour
 			float posY = transform.position.y;
 			if (translateYAxis)
 			{
-				float posY = yCurve.Evaluate(progress);
+				posY = yCurve.Evaluate(progress);
 			}
 			transform.position = new Vector3(posX, transform.position.y, transform.position.z);
 			yield return null;
