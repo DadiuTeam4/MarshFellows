@@ -2791,7 +2791,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382409028041390}
   m_LocalRotation: {x: -0.19994448, y: 0.0070397374, z: -0.0014502597, w: 0.9797809}
-  m_LocalPosition: {x: -0.089254744, y: -0.82841086, z: 6.6045628}
+  m_LocalPosition: {x: -0.05, y: 0.08, z: 7.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4318484391501336}
@@ -5988,7 +5988,7 @@ WindZone:
   m_GameObject: {fileID: 1382409028041390}
   m_Enabled: 1
   m_Mode: 1
-  m_Radius: 2.6
+  m_Radius: 2
   m_WindMain: -7
   m_WindTurbulence: 1
   m_WindPulseMagnitude: 0.5
@@ -6073,7 +6073,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1371868569
+  randomSeed: -316344704
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6121,7 +6121,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -6469,13 +6469,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 200
+    maxNumParticles: 500
     size3D: 0
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -6516,15 +6516,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 5
+    type: 10
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: -0.43, z: 6.51}
-    m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 15, y: 0, z: 20}
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 90, y: 0, z: 0}
+    m_Scale: {x: 3, y: 3, z: 1}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -6538,7 +6538,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 17.67737
+      value: 6.171679
       mode: 0
       spread: 0
       speed:
@@ -7422,7 +7422,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    inWorldSpace: 0
+    inWorldSpace: 1
     randomizePerFrame: 0
   ExternalForcesModule:
     enabled: 1
@@ -8337,7 +8337,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 0
     collisionMode: 0

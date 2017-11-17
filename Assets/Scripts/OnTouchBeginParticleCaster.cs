@@ -13,7 +13,7 @@ public class OnTouchBeginParticleCaster : MonoBehaviour
 	void Start () 
 	{
 		placeParticle = PlaceParticleSystem;
-		EventManager.GetInstance().AddListener(CustomEvent.TouchBegan, placeParticle);
+		//EventManager.GetInstance().AddListener(CustomEvent.TouchBegan, placeParticle);
 	}
 	
 	private void PlaceParticleSystem(EventArgument argument)
