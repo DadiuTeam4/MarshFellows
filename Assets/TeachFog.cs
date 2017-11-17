@@ -15,6 +15,7 @@ public class TeachFog : MonoBehaviour
 	public AnimationCurve speedCurve;
 	[Space(10)]
 	public bool translateYAxis;
+	public float maxHeight = 3f;
 	public AnimationCurve yCurve;
 	[Space(10)]
 	public float timeBetweenJumps;
