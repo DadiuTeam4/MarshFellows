@@ -65,7 +65,6 @@ public class FogCurtain : Swipeable
 	{
 		Vector3 calculatedPosition;
 		calculatedPosition = Vector3.Lerp(firstPosition, secondPosition, lerpT);
-		float z = animationCurve.Evaluate(lerpT);
 		calculatedPosition.z += animationCurve.Evaluate(lerpT) * zScalar;
 		transform.position = calculatedPosition;
 	}
