@@ -8,16 +8,15 @@ using Events;
 public class ObjectFall : MonoBehaviour
 {
     private Quaternion initialRotation;
-    //private Vector3 initialPosition;
     private Vector3 objectSize;
     private bool hasFall;
     public bool checkRotation = true;
     public bool checkPosition = true;
+    public string typeOfObject;
 
     void Start()
     {
         initialRotation = transform.rotation;
-       // initialPosition = transform.position;
         hasFall = false;
         objectSize = GetComponent<Collider>().bounds.size;
     }
@@ -68,6 +67,7 @@ public class ObjectFall : MonoBehaviour
         hasFall = true;
         EventManager eventManager = EventManager.GetInstance();
         EventArgument argument = new EventArgument();
+        argument.stringComponent = typeOfObject;
         eventManager.CallEvent(CustomEvent.FallHasHappend, argument);
         //Stop Update
         enabled = false;
