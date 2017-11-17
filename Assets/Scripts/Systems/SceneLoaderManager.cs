@@ -18,8 +18,10 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     public string globalSceneName = "GlobalScene";  
     public string initialSceneName = "IntroLevel";
     public string nameOfSceneToLoadAfterFirstRound = "IntroLevel";
+    public Vector3 respawnPosition;
     public string PsName = "P";
     public string OsName = "O";
+    public string cameraAndPOname = "OPandCamera";
     
     void Start()
     {
@@ -38,6 +40,8 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         if(GameStateManager.current.playedBefore)
         {
             argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
+            GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
+            //cpo.transform.position = respawnPosition;
         }
         else
         {
