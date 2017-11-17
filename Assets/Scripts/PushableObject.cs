@@ -8,7 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PushableObject : MonoBehaviour 
 {
-	Rigidbody rigidbody;
+	new Rigidbody rigidbody;
 
 	void Start()
 	{
