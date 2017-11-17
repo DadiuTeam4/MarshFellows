@@ -14,6 +14,7 @@ public class AudioManager : Singleton<AudioManager> {
 	public string groundLayer;
 	public float sfxVolume = 100; 
 	public float musicVolume = 100; 
+	public float swipePower; 
 
 
 	void Awake()
@@ -71,13 +72,16 @@ public class AudioManager : Singleton<AudioManager> {
 		//Swipe
 		if (argument.eventComponent == CustomEvent.Swipe) 
 		{
+			//Debug.Log (argument.vectorComponent); 
+			swipePower = argument.vectorComponent.magnitude * 100; 
+			Debug.Log (swipePower); 
+			AkSoundEngine.SetRTPCValue ("SwipePower", swipePower); 	
 			PlaySoundWC ("Play_GG_SD_Swipe_1"); 
 		}
 		//Hold begin
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
 		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
-			//argument.vectorComponent(
 		}
 		//Apple 
 		if (argument.eventComponent == CustomEvent.AppleFall) 

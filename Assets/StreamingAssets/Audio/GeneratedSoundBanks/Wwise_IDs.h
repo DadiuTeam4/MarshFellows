@@ -96,6 +96,7 @@ namespace AK
         static const AkUniqueID SS_AIR_STORM = 3715662592U;
         static const AkUniqueID SS_AIR_TIMEOFDAY = 3203397129U;
         static const AkUniqueID SS_AIR_TURBULENCE = 4160247818U;
+        static const AkUniqueID SWIPEPOWER = 1248482656U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS
