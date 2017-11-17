@@ -9,10 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
-  m_Name: OSeparationSplittedWalk
+  m_Name: OSeparationWaitForP
   m_EditorClassIdentifier: 
-  actions:
-  - {fileID: 11400000, guid: a3bd0d6fe07a66348ad62ccfd545f767, type: 2}
+  onStateEnterActions:
+  - {fileID: 11400000, guid: 5232afb661bcffd4da3c5d0a5612f975, type: 2}
+  actions: []
+  onStateExitActions: []
   transitions:
   - decision: {fileID: 11400000, guid: c4eb9e892bec1a846914f4ae44028d3a, type: 2}
     returnToPreviousState: 0
