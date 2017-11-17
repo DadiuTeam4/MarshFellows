@@ -11,9 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
   m_Name: OSeparationWalk
   m_EditorClassIdentifier: 
+  onStateEnterActions:
+  - {fileID: 11400000, guid: a3bd0d6fe07a66348ad62ccfd545f767, type: 2}
   actions: []
+  onStateExitActions: []
   transitions:
-  - decision: {fileID: 11400000, guid: a584ca399611a9e438a5b8a706500210, type: 2}
+  - decision: {fileID: 11400000, guid: c4eb9e892bec1a846914f4ae44028d3a, type: 2}
     returnToPreviousState: 0
-    trueState: {fileID: 11400000, guid: d5a8c7b2ec2d8d74ca5dfc7335489c78, type: 2}
+    trueState: {fileID: 11400000, guid: 58feafc9ca778144cba70b3c910ff517, type: 2}
     falseState: {fileID: 11400000}

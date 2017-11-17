@@ -17,7 +17,9 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     EventManager eventManager;
     public string globalSceneName = "GlobalScene";
     public string firstSceneToLoadName = "IntroLevel";
-    public string whoToAddTheUnlockables = "O";
+    public string PsName = "P";
+    public string OsName = "O";
+    
     void Start()
     {
         
@@ -31,35 +33,56 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
 
         EventArgument argument = new EventArgument(); 
-        //argument.stringComponent = globalSceneName;
-       // argument.intComponent = 0;
-        //eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-        LoadUnloadEverything();
+        //LoadUnloadEverything();
         //UnloadAllScenes(globalSceneName);
         argument.stringComponent = firstSceneToLoadName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
-
-        //AddUnlockables(whoToAddTheUnlockables);
-
+        AddUnlockables();
         
     }
-    private void AddUnlockables(string whoToAdd)
+
+    private void AddUnlockables()
     {
-        GameObject o = GameObject.Find(whoToAdd);
-        if(GameStateManager.current != null)
+        GameObject p = GameObject.Find(PsName);
+        if(GameStateManager.current != null && GameStateManager.current.forPUnlockables != null)
         {
-            for(int i = 0; i<GameStateManager.current.roundsPlayed;i++)
+            for(int i = 0; i < GameStateManager.current.forPUnlockables.Count; i++)
             {
-                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.parent=o.transform;
-                
-                cube.transform.position = new Vector3(cube.transform.parent.position.x,cube.transform.parent.position.y+i,cube.transform.parent.position.z-1);
+               try
+               {
+                    GameObject objectUnlocked = p.transform.Find(GameStateManager.current.forPUnlockables[i]).gameObject;
+                    objectUnlocked.SetActive(true);
+               }
+               catch
+               {
+                   Debug.Log("For P Wrong name path for unlockable " + GameStateManager.current.forPUnlockables[i]+"|");
+               }
+            }
+        }
+
+
+        GameObject o = GameObject.Find(OsName);
+        if(GameStateManager.current != null && GameStateManager.current.forOUnlockables != null)
+        {
+            for(int i = 0; i<GameStateManager.current.forOUnlockables.Count; i++)
+            {
+                try
+               {
+                    GameObject objectUnlocked = o.transform.Find(GameStateManager.current.forOUnlockables[i]).gameObject;
+                    objectUnlocked.SetActive(true); 
+               }
+               catch
+               {
+                   Debug.Log("For O Wrong name path for unlockable " + GameStateManager.current.forOUnlockables[i]+"|");
+               }
+           
             }
         }
     }
+//hunter_fqi02/Hunter01/global01/bn_root/bn_pelvis/Flint_axe
 
     // The main scene changing function. Updates scene trackers and loads and unloads scenes.
     private void SceneLoader(EventArgument argument)

@@ -1,5 +1,5 @@
 ﻿// Author: Mathias Dam Hedelund
-// Contributors: 
+// Contributors: Itai Yavin
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -106,6 +106,22 @@ public class Navigator : MonoBehaviour
     {
         navMeshAgent.speed = previousSpeed;
     }
+
+	public void StopMovement()
+	{
+		if (!navMeshAgent.isStopped)
+		{
+			navMeshAgent.isStopped = true;
+		}
+	}
+
+	public void ResumeMovement()
+	{
+		if (navMeshAgent.isStopped)
+		{
+			navMeshAgent.isStopped = false;
+		}
+	}
 
     public bool CheckDestinationReached() 
 	{

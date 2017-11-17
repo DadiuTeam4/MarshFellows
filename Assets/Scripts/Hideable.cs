@@ -102,7 +102,7 @@ public class Hideable : MonoBehaviour
 		for (int i = 0; i < checkPositions.Length; i++)
 		{
 			Ray ray = new Ray(transform.position, checkPositions[i].position - transform.position);
-			
+
 			if (Physics.Raycast(ray, out hit, rayCastDistance, layerMask))
 			{
 				TriggerEvent(true, i);

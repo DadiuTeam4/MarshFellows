@@ -17,14 +17,15 @@ public class Walk : Action
 
     private void WalkTowards(StateController controller)
     {
+        controller.navigator.ResumeMovement();
 
-            if (!changePath)
-            {
-                controller.navigator.SetDestination();
-            } else
-            {
-                controller.navigator.SetSplitPath();
-            }
+        if (!changePath)
+        {
+            controller.navigator.SetDestination();
+        } else
+        {
+            controller.navigator.SetSplitPath();
+        }
 
     }
 }
