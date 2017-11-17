@@ -30,7 +30,9 @@ public class AudioManager : Singleton<AudioManager> {
 
 	void Update()
 	{
+		//SFX
 		AkSoundEngine.SetRTPCValue ("SFX_Volume", sfxVolume); 
+		//Volume
 		AkSoundEngine.SetRTPCValue ("Music_Volume", sfxVolume); 
 	}
 
