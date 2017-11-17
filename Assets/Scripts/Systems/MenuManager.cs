@@ -34,7 +34,7 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
-        else if (!IspPortraitOrPortraitUpsideDown() && portrait)
+        else if (IsLandscape() && portrait)
         {
             portrait = false;
             Time.timeScale = 1;
@@ -52,7 +52,12 @@ public class MenuManager : MonoBehaviour
 
     private bool IspPortraitOrPortraitUpsideDown()
     {
-        return (Input.deviceOrientation == DeviceOrientation.Portrait || Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown 
-				|| Input.deviceOrientation == DeviceOrientation.FaceDown || Input.deviceOrientation == DeviceOrientation.FaceUp);
+        return (Input.deviceOrientation == DeviceOrientation.Portrait || Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown);
+    }
+
+	
+    private bool IsLandscape()
+    {
+        return (Input.deviceOrientation == DeviceOrientation.LandscapeLeft || Input.deviceOrientation == DeviceOrientation.LandscapeRight);
     }
 }
