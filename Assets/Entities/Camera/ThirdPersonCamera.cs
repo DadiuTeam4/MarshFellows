@@ -42,6 +42,7 @@ namespace CameraControl
 
         protected override void UpdatePosition()
         {
+            //controller.cameraRig.localPosition = adjustableOffset;
             Quaternion rotation = Quaternion.identity;
             if (!trackedObject)
             {
@@ -58,7 +59,7 @@ namespace CameraControl
             }
             transform.rotation = rotation;
 
-            Vector3 position = Vector3.Lerp(transform.position, GetDesiredPosition(transform.rotation), Time.deltaTime * positionDamping);
+            Vector3 position = Vector3.Lerp(transform.position, GetDesiredPosition(transform.eulerAngles.y), Time.deltaTime * positionDamping);
 
             transform.position = position;
             if (controller.cameraComponent.fieldOfView != fieldOfView)
@@ -67,8 +68,9 @@ namespace CameraControl
             }
         }
 
-        private Vector3 GetDesiredPosition(Quaternion currentRotation)
+        private Vector3 GetDesiredPosition(float yRotation)
         {
+            Quaternion currentRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
             if (isFollowingCenter)
             {
                 return deltaPosition + (currentRotation * adjustableOffset);
