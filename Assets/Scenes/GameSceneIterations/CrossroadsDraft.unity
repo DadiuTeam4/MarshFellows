@@ -108,7 +108,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: 32a21abdc7d4f4956aedda3c207e055e, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a78af378a9e1e4286b2519f8d8677089, type: 2}
 --- !u!1 &24809015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,9 +2533,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalSceneName: GlobalScene
-  firstSceneToLoadName: IntroDraft
+  initialSceneName: IntroLevel
+  nameOfSceneToLoadAfterFirstRound: IntroLevel
+  respawnPosition: {x: 0, y: 0, z: 0}
   PsName: P
   OsName: O
+  cameraAndPOname: OPandCamera
+  fogOnRestart: {fileID: 0}
+  offsetForCreatingFog: -55
 --- !u!1001 &758526372
 Prefab:
   m_ObjectHideFlags: 0
@@ -4492,6 +4497,8 @@ MonoBehaviour:
   eventManager: {fileID: 0}
   eventID: 0
   groundLayer: 
+  sfxVolume: 100
+  musicVolume: 100
 --- !u!1001 &1464920865
 Prefab:
   m_ObjectHideFlags: 0
