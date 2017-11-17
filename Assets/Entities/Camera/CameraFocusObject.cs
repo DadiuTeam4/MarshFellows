@@ -18,7 +18,6 @@ public class CameraFocusObject : MonoBehaviour
 	{
 		if (other.gameObject.tag == "Player" && mainCamera.GetTrackedObject() == null)
 		{
-			print("hey hey hey");
 			mainCamera.SetTrackedObject(transform);
 		}
 	}
@@ -27,7 +26,6 @@ public class CameraFocusObject : MonoBehaviour
 	{
 		if (other.gameObject.tag == "Player" && mainCamera.GetTrackedObject() == transform)
 		{
-			print("bye");
 			mainCamera.SetTrackedObject(null);
 		}
 	}

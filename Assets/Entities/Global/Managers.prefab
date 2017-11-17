@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 20606248474637422}
   - component: {fileID: 124270927566780450}
   - component: {fileID: 92085999342770012}
-  - component: {fileID: 81142217839566586}
   - component: {fileID: 114004718759463934}
   m_Layer: 0
   m_Name: swipeCamera
@@ -263,13 +262,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &81142217839566586
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1336765340111510}
-  m_Enabled: 1
 --- !u!92 &92085999342770012
 Behaviour:
   m_ObjectHideFlags: 1
@@ -347,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207d08540b7af4159b875ab9895dc70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basePath: Audio/GeneratedSoundBanks
+  basePath: Audio\GeneratedSoundBanks
   language: English(US)
   defaultPoolSize: 4096
   lowerPoolSize: 2048
@@ -400,8 +392,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalSceneName: GlobalScene
-  firstSceneToLoadName: IntroLevel
-  whoToAddTheUnlockables: O
+  firstSceneToLoadName: IntroDraft
+  PsName: P
+  OsName: O
 --- !u!114 &114905927693067210
 MonoBehaviour:
   m_ObjectHideFlags: 1

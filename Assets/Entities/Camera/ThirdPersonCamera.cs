@@ -11,10 +11,11 @@ namespace CameraControl
         private Transform oTransform;
         private Transform trackedObject;
         private Vector3 offset;
-        public Vector3 ajustablePos;
+        public Vector3 adjustableOffset;
         public float positionDamping = 1;
         public float rotationDamping = 1;
         public bool isFollowingCenter = true;
+        public float fieldOfView = 45;
 
         private void Start()
         {
@@ -54,20 +55,24 @@ namespace CameraControl
             }
             transform.rotation = rotation;
 
-            Vector3 position = Vector3.Lerp(transform.position, getDesiredPosition(transform.rotation), Time.deltaTime * positionDamping);
+            Vector3 position = Vector3.Lerp(transform.position, GetDesiredPosition(transform.rotation), Time.deltaTime * positionDamping);
 
             transform.position = position;
+            if (controller.cameraComponent.fieldOfView != fieldOfView)
+            {
+                controller.cameraComponent.fieldOfView = Mathf.Lerp(controller.cameraComponent.fieldOfView, fieldOfView, Time.deltaTime);
+            }
         }
 
-        private Vector3 getDesiredPosition(Quaternion currentRotation)
+        private Vector3 GetDesiredPosition(Quaternion currentRotation)
         {
             if (isFollowingCenter)
             {
-                return deltaPosition - (currentRotation * Vector3.forward * offset.magnitude) + ajustablePos;
+                return deltaPosition - (currentRotation * Vector3.forward * offset.magnitude) + adjustableOffset;
             }
             else
             {
-                return pTransform.position - (currentRotation * Vector3.forward * offset.magnitude) + ajustablePos;
+                return pTransform.position - (currentRotation * Vector3.forward * offset.magnitude) + adjustableOffset;
             }
         }
 

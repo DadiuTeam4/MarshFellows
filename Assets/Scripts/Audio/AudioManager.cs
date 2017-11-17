@@ -1,4 +1,4 @@
-﻿// Author: Kristian Riis 
+﻿	// Author: Kristian Riis 
 // Contributors: 
 
 using System.Collections;
@@ -11,7 +11,10 @@ public class AudioManager : Singleton<AudioManager> {
 	public EventManager eventManager;
     public Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
 	public uint eventID; 
-	public string groundLayer; 
+	public string groundLayer;
+	public float sfxVolume = 100; 
+	public float musicVolume = 100; 
+
 
 	void Awake()
 	{
@@ -24,6 +27,15 @@ public class AudioManager : Singleton<AudioManager> {
 		groundLayer = "Swamp";
 		PlaySound("Play_GG_Ambience_Open_1"); 
 	}
+
+	void Update()
+	{
+		//SFX
+		AkSoundEngine.SetRTPCValue ("SFX_Volume", sfxVolume); 
+		//Volume
+		AkSoundEngine.SetRTPCValue ("Music_Volume", musicVolume); 
+	}
+
 		
 	//Calls when ever listened event is triggered 
 	void OnEnable () 
@@ -101,20 +113,16 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		else if(argument.stringComponent == "SomethingElse")
 		{
-			//
+			//Play_GG_SD_Sink_PH
 		}
 	}
-
+		
 	void ForeshadowPost(EventArgument argument)
 	{
 		//Travel of P 
 			if(argument.stringComponent == "Scena2")
 			{
 				PlaySoundWC("Play_GG_FSD_2");
-			}
-			if(argument.stringComponent == "Scena3")
-			{
-				PlaySoundWC ("Play_Deer_FS"); 
 			}
 			if(argument.stringComponent == "Scena4")
 			{
@@ -124,15 +132,17 @@ public class AudioManager : Singleton<AudioManager> {
 		//Travel of O 
 			if(argument.stringComponent == "Scena1")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC("Play_GG_FSD_1");
 			}
-			if(argument.stringComponent == "Scena1A")
+			if(argument.stringComponent == "Scena3")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				PlaySoundWC ("Play_FSD_3"); 
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-				PlaySoundWC("Play_GG_SD_FSD_Bear");
+				//PlaySoundWC("Play_GG_SD_FSD_Bear");
+				//Maybe nothing should happen¨
+				PlaySoundWC("Play_GG_FSD_CR_1");
 			}
 	}
 
@@ -265,4 +275,18 @@ public class AudioManager : Singleton<AudioManager> {
             soundsBeingPlayed[soundEventName] = false;
         }
     }
+
+	//MENU functions 
+	public void MenuFadeSoundDown()
+	{
+		PlaySound ("Menu_FadeVolumeDown"); 	
+	}
+	public void MenuFadeSoundUp()
+	{
+		PlaySound ("Menu_FadeVolumeUp"); 	
+	}
+	public void OnMenuClick()
+	{
+		PlaySound("Play_GG_Menu_Click"); 
+	}
 }
