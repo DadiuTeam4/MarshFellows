@@ -28,7 +28,7 @@ public class Navigator : MonoBehaviour
 
 	#region DEBUG
 	#if UNITY_EDITOR
-	public LineRenderer lineRenderer;
+	private LineRenderer lineRenderer;
 	#endif
 	#endregion
 
@@ -41,7 +41,7 @@ public class Navigator : MonoBehaviour
 	{
 		#region DEBUG
 		#if UNITY_EDITOR
-		//lineRenderer = GetComponent<LineRenderer>();
+		lineRenderer = GetComponent<LineRenderer>();
 		#endif
 		#endregion
 		navMeshAgent.autoRepath = autoRepath;
