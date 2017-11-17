@@ -15,8 +15,9 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     List<string> scenesToUnload;
     
     EventManager eventManager;
-    public string globalSceneName = "GlobalScene";
-    public string firstSceneToLoadName = "IntroLevel";
+    public string globalSceneName = "GlobalScene";  
+    public string initialSceneName = "IntroLevel";
+    public string nameOfSceneToLoadAfterFirstRound = "IntroLevel";
     public string PsName = "P";
     public string OsName = "O";
     
@@ -34,9 +35,14 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
         EventArgument argument = new EventArgument(); 
 
-        //LoadUnloadEverything();
-        //UnloadAllScenes(globalSceneName);
-        argument.stringComponent = firstSceneToLoadName;
+        if(GameStateManager.current.playedBefore)
+        {
+            argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
+        }
+        else
+        {
+            argument.stringComponent = initialSceneName;
+        }
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
