@@ -11,10 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
   m_Name: PSlide
   m_EditorClassIdentifier: 
-  actions:
+  onStateEnterActions:
   - {fileID: 11400000, guid: 2b583d3344acf8943934dd20fd8719ad, type: 2}
+  actions: []
+  onStateExitActions:
+  - {fileID: 11400000, guid: e8fa5b2008591c74bb48407d0504a9b6, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: f1944ba02328a7242aa2350bb6894535, type: 2}
     returnToPreviousState: 0
-    trueState: {fileID: 11400000, guid: b7aa03a176429a54f80ad348c498b06c, type: 2}
+    trueState: {fileID: 11400000, guid: 55acbd52fc381374d90cf9955c8e01eb, type: 2}
     falseState: {fileID: 11400000}
