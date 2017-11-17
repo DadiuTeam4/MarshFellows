@@ -22,6 +22,9 @@ namespace CameraControl
 
 		// Variables
 		public Transform[] targets;
+		public Transform cameraRig;
+		[HideInInspector]
+		public Camera cameraComponent;
 		[SerializeField]
 		private CameraState currentState;
 		private ThirdPersonCamera thirdPersonCamera;
@@ -33,11 +36,15 @@ namespace CameraControl
 			// Get references
 			thirdPersonCamera = GetComponent<ThirdPersonCamera>();
 			cinematicCamera = GetComponent<CinematicCamera>();
+			cameraComponent = GetComponentInChildren<Camera>();
 
 			// Add event listeners
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
 			eventManager = EventManager.GetInstance();
-			eventManager.AddListener(CustomEvent.RitualScenarioTriggered, eventDelegate);
+			eventManager.AddListener(CustomEvent.RitualScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.BearScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.DeerScenarioEntered, eventDelegate);
+			eventManager.AddListener (CustomEvent.SeparationScenarioEntered, eventDelegate);
 			eventManager.AddListener(CustomEvent.ScenarioEnded, eventDelegate);
 		}
 
@@ -50,25 +57,25 @@ namespace CameraControl
 		{
 			switch (argument.eventComponent)
 			{
-				case (CustomEvent.SeparationScenarioTriggered):
+				case (CustomEvent.SeparationScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;
 					cinematicCamera.SetScenario(Scenario.Separation, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
 					break;
 				}
-				case (CustomEvent.RitualScenarioTriggered):
+				case (CustomEvent.RitualScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;
 					cinematicCamera.SetScenario(Scenario.Ritual, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
 					break;
 				}
-				case (CustomEvent.DeerScenarioTriggered):
+				case (CustomEvent.DeerScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;
 					cinematicCamera.SetScenario(Scenario.Deer, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
 					break;
 				}
-				case (CustomEvent.BearScenarioTriggered):
+				case (CustomEvent.BearScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;
 					cinematicCamera.SetScenario(Scenario.Bear, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
@@ -86,6 +93,16 @@ namespace CameraControl
 		{
 			thirdPersonCamera.SetActive(currentState == CameraState.ThirdPerson);
 			cinematicCamera.SetActive(currentState == CameraState.Cinematic);
+		}
+
+		public void SetTrackedObject(Transform obj)
+        {
+            thirdPersonCamera.SetTrackedObject(obj);
+        }
+
+		public Transform GetTrackedObject()
+		{
+			return thirdPersonCamera.GetTrackedObject();
 		}
 	}
 }

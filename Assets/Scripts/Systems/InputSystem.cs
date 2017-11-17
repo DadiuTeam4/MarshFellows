@@ -10,44 +10,20 @@ using Events;
 
 public class InputSystem : Singleton<InputSystem>
 {
+	public Camera testingCamera;
+
 	[TextArea(0, 10)]
-	public string header = "Handles all touch input and accelerometer input. All objects inheriting from the Holdable, Swipable and Shakable classes are called accordingly from this class.";
+	public string header = "Handles all touch input. All objects inheriting from the Holdable and Swipable are called accordingly from this class.";
 	#region TOUCH_INPUT
 	public static List<Vector3> swipeDirections;
-	[Tooltip("The maximum length of each raycast")]
-	public float rayLength = 100.0f;
 
 	private static readonly int maxNumberTouches = 20;
 	private Holdable[] heldLastFrame = new Holdable[maxNumberTouches];
 	private Holdable[] heldThisFrame = new Holdable[maxNumberTouches];
-	private RaycastHit[][] raycastHits = new RaycastHit[maxNumberTouches][];
+	private RaycastHit?[] raycastHits = new RaycastHit?[maxNumberTouches];
 	private Dictionary<int, List<Vector3>> touchPositions = new Dictionary<int, List<Vector3>>();
-	#endregion
 
-	#region ACCELEROMETER_INPUT
-	[Header("Shake input")]
-	[Tooltip("Force multiplication to compensate for delta time.")]
-	public float forceMultiplier = 100f;
-	[Tooltip("Shakes under this threshold are ignored by the input system.")]
-	public float lowerShakeTreshold = 3.5f;
-	[Tooltip("This number represents how fast the cumulative magnitude drops when the tablet is not shaken.")]
-	public float magnitudeDropRate = 0.2f;
-	[Tooltip("The limit for how fast the cumulative magnitude can rise and fall.")]
-	public float terminalVelocity = 50f;
-	[Tooltip("A cumulative magnitude under this threshold is ignored.")]
-	public float lowerMagnitudeThreshold = 200f;
-	[Tooltip("The upper limit for the cumulative magnitude.")]
-	public float maxCumulativeMagnitude = 10000f;
-
-	private float magnitudeVelocity;
-	private float cumulativeMagnitude;
-
-	private bool shookLastFrame = false;
-	private bool shookThisFrame = false;
-
-	private float compensatedDeltaTime;
-
-	private Shakeable[] shakeables;
+	private int swipeRegisterCount = 1;
 	#endregion
 
 	#region DEBUG
@@ -68,90 +44,12 @@ public class InputSystem : Singleton<InputSystem>
 
 		// Initialize swipe list
 		swipeDirections = new List<Vector3>();
-
-		// Initialize shake values
-		magnitudeVelocity = 0;
-		cumulativeMagnitude = 0;
-
-		// Get all shakeable objects
-		shakeables = GetAllShakeables();
 	}
 
 	#region UPDATE_LOOP
 	private void Update()
 	{
-		HandleAccelerometerInput();
 		HandleTouchInput();
-	}
-	#endregion
-
-	#region ACCELEROMETER_INPUT
-	private void HandleAccelerometerInput()
-	{
-		compensatedDeltaTime = Time.deltaTime * forceMultiplier;
-		UpdateMagnitudeVelocity();
-		UpdateCumulativeMagnitude();
-
-		EventArgument eventArgument = new EventArgument();
-		eventArgument.floatComponent = cumulativeMagnitude;
-		if (!shookLastFrame && shookThisFrame)
-		{
-			EventManager.GetInstance().CallEvent(CustomEvent.ShakeBegin, eventArgument);
-		}
-		if (shookLastFrame && !shookThisFrame)
-		{
-			EventManager.GetInstance().CallEvent(CustomEvent.ShakeEnd, eventArgument);
-		}
-
-		CallShakeables();
-		shookLastFrame = shookThisFrame;
-		shookThisFrame = false;
-	}
-
-	private void UpdateMagnitudeVelocity()
-	{
-		Vector3 accelerationInput = Input.acceleration;
-		float magnitude = accelerationInput.magnitude * compensatedDeltaTime;
-		if (magnitude > lowerShakeTreshold)
-		{
-			magnitudeVelocity += magnitude;
-		}
-		magnitudeVelocity -= magnitudeDropRate * compensatedDeltaTime;
-		magnitudeVelocity = Mathf.Clamp(magnitudeVelocity, -terminalVelocity, terminalVelocity);
-	}
-
-	private void UpdateCumulativeMagnitude()
-	{
-		cumulativeMagnitude = Mathf.Clamp(cumulativeMagnitude + magnitudeVelocity, 0.0f, maxCumulativeMagnitude);
-		shookThisFrame = cumulativeMagnitude > lowerMagnitudeThreshold;
-	}
-
-	private void CallShakeables()
-	{
-		if (shookThisFrame || shookLastFrame)
-		{		
-			foreach (Shakeable shakeable in shakeables)
-			{
-				if (shookThisFrame)
-				{
-					if(!shookLastFrame)
-					{
-						shakeable.OnShakeBegin(cumulativeMagnitude);				
-					}
-
-					shakeable.OnShake(cumulativeMagnitude);
-				}
-				else
-				{
-					shakeable.OnShakeEnd();
-				}
-			}
-		}	
-	}
-
-	private Shakeable[] GetAllShakeables()
-	{
-		return FindObjectsOfType<Shakeable>();
 	}
 	#endregion
 
@@ -235,19 +133,17 @@ public class InputSystem : Singleton<InputSystem>
 	{
 		if (CastRayFromTouch(touch))
 		{
-			for (int i = 0; i < raycastHits[touch.fingerId].Length; i++)
-			{
-				// Check if the touch hit a holdable
-				Holdable holdable = GetHoldable(raycastHits[touch.fingerId][i]);
-				if (holdable)
-				{
-					EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin);
+			// Check if the touch hit a holdable
+			Holdable holdable = GetHoldable(raycastHits[touch.fingerId].Value);
+			if (holdable) {
+				EventManager.GetInstance ().CallEvent (CustomEvent.HoldBegin);
 
-					holdable.OnTouchBegin(raycastHits[touch.fingerId][i]);
-					heldThisFrame[touch.fingerId] = holdable;
-				}
-				
-				CheckSwipe(touch);
+				holdable.OnTouchBegin (raycastHits [touch.fingerId].Value);
+				heldThisFrame [touch.fingerId] = holdable;
+
+			} else 
+			{
+				CheckSwipe (touch);
 			}
 		}
 	}
@@ -261,20 +157,17 @@ public class InputSystem : Singleton<InputSystem>
 	{
 		if (CastRayFromTouch(touch))
 		{
-			for(int i = 0; i < raycastHits[touch.fingerId].Length; i++)
+			// Check if the touch hit a holdable
+			Holdable holdable = GetHoldable(raycastHits[touch.fingerId].Value);
+			if (holdable)
 			{
-				// Check if the touch hit a holdable
-				Holdable holdable = GetHoldable(raycastHits[touch.fingerId][i]);
-				if (holdable)
+				heldThisFrame[touch.fingerId] = holdable;
+				if (heldThisFrame[touch.fingerId] != heldLastFrame[touch.fingerId])
 				{
-					heldThisFrame[touch.fingerId] = holdable;
-					if (heldThisFrame[touch.fingerId] != heldLastFrame[touch.fingerId])
-					{
-						heldThisFrame[touch.fingerId].OnTouchBegin(raycastHits[touch.fingerId][i]);
-					}
+					heldThisFrame[touch.fingerId].OnTouchBegin(raycastHits[touch.fingerId].Value);
 				}
-				CheckSwipe(touch);
 			}
+			CheckSwipe(touch);
 		}
 		if (heldLastFrame[touch.fingerId] && heldLastFrame[touch.fingerId] != heldThisFrame[touch.fingerId])
 		{
@@ -290,6 +183,9 @@ public class InputSystem : Singleton<InputSystem>
 			heldLastFrame[touch.fingerId].OnTouchReleased();
 			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
+
+		EventManager.GetInstance().CallEvent(CustomEvent.SwipeEnded);
+		
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
 	}
@@ -301,21 +197,19 @@ public class InputSystem : Singleton<InputSystem>
 			heldLastFrame[touch.fingerId].OnTouchReleased();
 			EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 		}
+
 		touchPositions[touch.fingerId].Clear();
 		raycastHits[touch.fingerId] = null;
 	}
 
 	private bool CastRayFromTouch(Touch touch)
 	{
+		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(touch.position);
-		RaycastHit[] hits = Physics.RaycastAll(ray, rayLength);
-		if (hits.Length > 0) 
+		if (Physics.Raycast(ray, out hit)) 
 		{
-			for(int i = 0; i < hits.Length; i++)
-			{
-				raycastHits[touch.fingerId] = hits;	
-			}
-
+			Debug.Log(hit.transform.name);
+			raycastHits[touch.fingerId] = hit;
 			return true;
 		}
 		raycastHits[touch.fingerId] = null;
@@ -339,28 +233,29 @@ public class InputSystem : Singleton<InputSystem>
 		Vector3 firstPosition = touchPositions[touch.fingerId][0];
 		Vector3 lastPosition = touchPositions[touch.fingerId][touchPositions[touch.fingerId].Count-1];
 
-		Vector3 firstPoint = Camera.main.ScreenToWorldPoint(new Vector3(firstPosition.x, firstPosition.y, Camera.main.nearClipPlane));
-		Vector3 lastPoint = Camera.main.ScreenToWorldPoint(new Vector3(lastPosition.x, lastPosition.y, Camera.main.nearClipPlane));
+		Vector3 firstPoint = testingCamera.ScreenToWorldPoint(new Vector3(firstPosition.x, firstPosition.y, testingCamera.nearClipPlane));
+		Vector3 lastPoint = testingCamera.ScreenToWorldPoint(new Vector3(lastPosition.x, lastPosition.y, testingCamera.nearClipPlane));
 
 		Vector3 direction = lastPoint - firstPoint;
 		
 		swipeDirections.Add(direction);
 
-		for (int i = 0; i < raycastHits[touch.fingerId].Length; i++)
+		Swipeable swipeable = GetSwipeable(raycastHits[touch.fingerId].Value);
+
+		// Check if the touch hit a swipable	
+		if (swipeable)
 		{
-			Swipeable swipeable = GetSwipeable(raycastHits[touch.fingerId][i]);
-			// Check if the touch hit a swipable	
-			if (swipeable)
-			{
-				swipeable.OnSwipe(raycastHits[touch.fingerId][i], direction);
-				touchPositions[touch.fingerId].Clear();
-				touchPositions[touch.fingerId].Add(touch.position);
-			}
+			swipeable.OnSwipe(raycastHits[touch.fingerId].Value, direction);
+			touchPositions[touch.fingerId].Clear();
+			touchPositions[touch.fingerId].Add(touch.position);
 		}
-		
-		EventArgument argument = new EventArgument();
-		argument.vectorComponent = direction;
-		EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
+		if (touchPositions[touch.fingerId].Count > swipeRegisterCount)
+		{
+			EventArgument argument = new EventArgument();
+			argument.vectorComponent = direction;
+			argument.raycastComponent = raycastHits[touch.fingerId].Value;
+			EventManager.GetInstance().CallEvent(CustomEvent.Swipe, argument);
+		}
 	}
 
 	private Holdable GetHoldable(RaycastHit hit)
@@ -380,22 +275,14 @@ public class InputSystem : Singleton<InputSystem>
 		{
 			if (heldThisFrame[touch.fingerId])
 			{
-				for(int i = 0; i < raycastHits[touch.fingerId].Length; i++)
+				if (heldThisFrame[touch.fingerId] == heldLastFrame[touch.fingerId])
 				{
-					if(!GetHoldable(raycastHits[touch.fingerId][i]))
-					{
-						continue;
-					}
-
-					if (heldThisFrame[touch.fingerId] == heldLastFrame[touch.fingerId])
-					{
-						heldThisFrame[touch.fingerId].timeHeld += Time.deltaTime;
-						heldThisFrame[touch.fingerId].OnTouchHold(raycastHits[touch.fingerId][i]);
-					}
-					else
-					{
-						heldThisFrame[touch.fingerId].timeHeld = 0;
-					}
+					heldThisFrame[touch.fingerId].timeHeld += Time.deltaTime;
+					heldThisFrame[touch.fingerId].OnTouchHold(raycastHits[touch.fingerId].Value);
+				}
+				else
+				{
+					heldThisFrame[touch.fingerId].timeHeld = 0;
 				}
 			}
 		}
@@ -417,17 +304,14 @@ public class InputSystem : Singleton<InputSystem>
 	{
 		if (heldThisFrame[0])
 		{
-			for(int i = 0; i < raycastHits[0].Length; i++)
+			if (heldLastFrame[0] == heldLastFrame[0])
 			{
-				if (heldLastFrame[0] == heldLastFrame[0])
-				{
-					heldThisFrame[0].timeHeld += Time.deltaTime;
-					heldThisFrame[0].OnTouchHold(raycastHits[0][i]);
-				}
-				else
-				{
-					heldThisFrame[0].timeHeld = 0;
-				}
+				heldThisFrame[0].timeHeld += Time.deltaTime;
+				heldThisFrame[0].OnTouchHold(raycastHits[0].Value);
+			}
+			else
+			{
+				heldThisFrame[0].timeHeld = 0;
 			}
 		}
 	}
@@ -437,26 +321,23 @@ public class InputSystem : Singleton<InputSystem>
 		Vector2 mousePos = Input.mousePosition;
 		if (CastRayFromMousePos(mousePos))
 		{
-			for(int i = 0; i < raycastHits[0].Length; i++)
+			// Check if the ray hit a holdable
+			Holdable holdable = GetHoldable(raycastHits[0].Value);
+			if (holdable)
 			{
-				// Check if the ray hit a holdable
-				Holdable holdable = GetHoldable(raycastHits[0][i]);
-				if (holdable)
+				heldThisFrame[0] = holdable;
+				if (Input.GetMouseButtonDown(0))
 				{
-					heldThisFrame[0] = holdable;
-					if (Input.GetMouseButtonDown(0))
-					{
-						holdable.OnTouchBegin(raycastHits[0][i]);
-						EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin);
-					}
+					holdable.OnTouchBegin(raycastHits[0].Value);
+					EventManager.GetInstance().CallEvent(CustomEvent.HoldBegin);
+				}
 
-					foreach (Holdable lastFrameHoldable in heldLastFrame)
+				foreach (Holdable lastFrameHoldable in heldLastFrame)
+				{
+					if (lastFrameHoldable && !lastFrameHoldable.Equals(holdable))
 					{
-						if (lastFrameHoldable && !lastFrameHoldable.Equals(holdable))
-						{
-							lastFrameHoldable.OnTouchReleased();
-							EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
-						}
+						lastFrameHoldable.OnTouchReleased();
+						EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 					}
 				}
 			}
@@ -480,25 +361,22 @@ public class InputSystem : Singleton<InputSystem>
 		if (CastRayFromMousePos(mousePos))
 		{
 			// Check if the ray hit a holdable
-			for(int i = 0; i < raycastHits[0].Length; i++)
+			Holdable holdable = GetHoldable(raycastHits[0].Value);
+			if (holdable)
 			{
-				Holdable holdable = GetHoldable(raycastHits[0][i]);
-				if (holdable)
-				{
-					holdable.OnTouchReleased();
-					EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
-				}		
+				holdable.OnTouchReleased();
+				EventManager.GetInstance().CallEvent(CustomEvent.HoldEnd);
 			}
 		}
 	}
 
 	private bool CastRayFromMousePos(Vector2 pos) 
 	{
+		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(pos);
-		RaycastHit[] hits = Physics.RaycastAll(ray, rayLength);
-		if (hits.Length > 0)
+		if (Physics.Raycast(ray, out hit))
 		{
-			raycastHits[0] = hits;
+			raycastHits[0] = hit;
 			return true;
 		}
 		raycastHits[0] = null;

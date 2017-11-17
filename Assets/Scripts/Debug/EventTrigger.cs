@@ -1,5 +1,5 @@
 ﻿// Author: Mathias Dam Hedelund
-// Contributors: 
+// Contributors: Emil
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,26 +7,39 @@ using Events;
 
 public class EventTrigger : MonoBehaviour 
 {
-	public Transform startTrigger;
-	public Transform endTrigger;
 
 	private EventManager eventManager;
-	
-	void OnEnable()
+
+
+    void OnEnable()
 	{
 		eventManager = EventManager.GetInstance();
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown("j"))
+        EventArgument argument = new EventArgument();
+        if (Input.GetKeyDown("d"))
+        {
+            eventManager.CallEvent(CustomEvent.DeerScenarioEntered, argument);
+        }
+        if (Input.GetKeyDown("j"))
 		{
-			EventArgument argument = new EventArgument();
-			argument.vectorArrayComponent = new Vector3[2];
-			argument.vectorArrayComponent[0] = startTrigger.position;
-			argument.vectorArrayComponent[1] = endTrigger.position;
-			EventManager.GetInstance().CallEvent(CustomEvent.RitualScenarioTriggered, argument);
+			eventManager.CallEvent(CustomEvent.RitualScenarioEntered, argument);
 		}
-	}
+        if (Input.GetKeyDown("b"))
+        { 
+            eventManager.CallEvent(CustomEvent.BearScenarioEntered, argument);
+        }
+        if (Input.GetKeyDown("s"))
+        {
+            eventManager.CallEvent(CustomEvent.SeparationScenarioEntered, argument);
+        }
+        if (Input.GetKeyDown("i"))
+        {
+            eventManager.CallEvent(CustomEvent.ScenarioInteracted, argument);
+        }
 
+    }
 }
+

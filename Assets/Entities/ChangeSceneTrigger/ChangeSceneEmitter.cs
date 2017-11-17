@@ -4,41 +4,112 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
+using UnityEngine.SceneManagement;
 
 //0 for sending current scene , 1 for sending next in order to load, 2 for sending another one
 public class ChangeSceneEmitter : MonoBehaviour {
 
-    public string currentScene = "";
-    public string basicSceneToLoad="";
-    public string secondarySceneToLoad="";
+    public GameObject blocker;
+    public int offsetForCreatingObstacle = 10;
+    public List<string> nextUnloads;
+    public List<string> scenesToLoad;
+    public string forPUnlockableInThisScene = "";
+    public string forOUnlockableInThisScene = "";
+    
     private string emptyString = "";
+    Collider m_ObjectCollider;
+    static int sceneIndex = 1;
+    private bool addOnSceneIndex= true;
+    private bool haveBeenTriggered = false;
+
     void OnTriggerEnter(Collider other)
     {
-        EventManager eventManager = EventManager.GetInstance(); 
- 
-    	EventArgument argument = new EventArgument(); 
 
-        if(currentScene != emptyString)
+        if(!haveBeenTriggered && other.gameObject.tag == "Player")
         {
-            argument.stringComponent = currentScene;
-            argument.intComponent = 0;
-            eventManager.CallEvent(CustomEvent.LoadScene,argument);
-        }
 
-        if(basicSceneToLoad != emptyString)
-        {
-            argument.stringComponent = basicSceneToLoad;
-            argument.intComponent = 1;
-            eventManager.CallEvent(CustomEvent.LoadScene,argument);
-        }
+            
+            GameStateManager gameState = new GameStateManager();
+            
+            if(forPUnlockableInThisScene != emptyString)
+            {
+                
+                if(GameStateManager.current != null)
+                {
+                    gameState = GameStateManager.current;
+                }
+                if(gameState.forPUnlockables == null)
+                {
+                    gameState.forPUnlockables = new List<string>();
+                }
+                if(GameStateManager.current != null && gameState.forPUnlockables != null && !GameStateManager.current.forPUnlockables.Contains(forPUnlockableInThisScene))
+                {
+                    gameState.forPUnlockables.Add(forPUnlockableInThisScene);
+                    GameStateManager.current = gameState;
+                }
+            }
 
-        if(secondarySceneToLoad != emptyString)
-        {
-            argument.stringComponent = secondarySceneToLoad;
-            argument.intComponent = 2;           
-            eventManager.CallEvent(CustomEvent.LoadScene,argument);
+            if(forOUnlockableInThisScene != emptyString)
+            {
+                
+                if(GameStateManager.current != null)
+                {
+                    gameState = GameStateManager.current;
+                }
+                if(gameState.forOUnlockables == null)
+                {
+                    gameState.forOUnlockables = new List<string>();
+                }
+                
+                if(GameStateManager.current != null && gameState.forPUnlockables != null && !GameStateManager.current.forOUnlockables.Contains(forOUnlockableInThisScene))
+                {
+                    gameState.forOUnlockables.Add(forOUnlockableInThisScene);
+                    GameStateManager.current = gameState;
+                }
+            }
+
+            EventManager eventManager = EventManager.GetInstance(); 
+    
+            EventArgument argument = new EventArgument(); 
+
+            foreach(string unloadSceneName in nextUnloads)
+            {
+                if(unloadSceneName != emptyString)
+                {
+                    argument.stringComponent = unloadSceneName;
+                    argument.intComponent = 0;
+                    eventManager.CallEvent(CustomEvent.LoadScene,argument);
+                }
+            }
+            int index = 0;
+            foreach(string loadScene in scenesToLoad)
+            {
+                index++;
+                if(loadScene != emptyString)
+                {
+                    argument.stringComponent = loadScene;
+                    argument.intComponent = index;
+                    eventManager.CallEvent(CustomEvent.LoadScene,argument);
+                }
+            }
+        
+            if (addOnSceneIndex)
+            {
+                argument.stringComponent = SceneManager.GetSceneAt(sceneIndex).name;
+                argument.intComponent = -1;
+                eventManager.CallEvent(CustomEvent.LoadScene,argument);
+                sceneIndex++;
+                addOnSceneIndex = false;
+            }
+
+
+
+            Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
+            Destroy(this.gameObject);
+
+            haveBeenTriggered = true;
         }
-        Destroy(this.gameObject);
+        
     }
 
 }

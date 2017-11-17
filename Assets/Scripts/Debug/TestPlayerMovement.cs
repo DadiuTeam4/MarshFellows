@@ -1,21 +1,15 @@
 ﻿// Author: You Wu
-// Contributors: 
+// Contributors:
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestPlayerMovement : Shakeable
+public class TestPlayerMovement : MonoBehaviour
 {
     private Camera cam;
     private bool isWalking = false;
     Vector3 destination;
 
-    private Rigidbody playerRd;
-
-    void Awake()
-    {
-        playerRd = GetComponent<Rigidbody>();
-    }
     
     void Start()
     {
@@ -45,16 +39,6 @@ public class TestPlayerMovement : Shakeable
             }
         }
 
-    }
-
-    public override void OnShakeBegin(float magnitude)
-    {
-        playerRd.AddForce(GetShakeForceOnShakebleObject(magnitude));
-    }
-
-    public override void OnShake(float magnitude)
-    {
-        playerRd.AddForce(GetShakeForceOnShakebleObject(magnitude));
     }
 
 }

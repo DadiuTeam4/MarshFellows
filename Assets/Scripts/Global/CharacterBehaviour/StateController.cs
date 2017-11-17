@@ -17,69 +17,81 @@ public class StateController : MonoBehaviour
 	[HideInInspector] public Animator animator;
 	[HideInInspector] public Dictionary<CustomEvent, bool> triggeredEvents;
 	[HideInInspector] public Dictionary<CustomEvent, EventArgument> eventArguments;
-	[HideInInspector] public EventArgument latestEventArgument;
+    [HideInInspector] public EventManager eventManager;
+    [HideInInspector] public EventArgument latestEventArgument;
+
+    private IkHandler ikHandler;
+    [HideInInspector] public Transform lookAtTarget; 
 
 	private State previousState;
 	private float stateTimeElapsed;
 	private int eventNumber;
 	private EventDelegate eventOccurredCallbacks;
-	
+    private EventDelegate locationEventCallback;
 
-	#region DEBUG
-	#if UNITY_EDITOR
-	public bool aiDebugging = false;
+
+    #region DEBUG
+#if UNITY_EDITOR
+    public bool aiDebugging = false;
 	[HideInInspector] public string debugInfo;
 	#endif
 	#endregion
 
 	private void Awake()
 	{ 
-		animator = GetComponent<Animator>();
+		animator = GetComponentInChildren<Animator>();
 		navigator = GetComponent<Navigator>();
+        ikHandler = GetComponentInChildren<IkHandler>();
 	}
 
 	private void Start()
 	{
-		triggeredEvents = new Dictionary<CustomEvent, bool>();
+        eventManager = EventManager.GetInstance();
+        triggeredEvents = new Dictionary<CustomEvent, bool>();
 		eventArguments = new Dictionary<CustomEvent, EventArgument>();
-		for (int i = 0; i < events.Length; i++) 
-		{
-			triggeredEvents.Add(events[i], false);
+        foreach (CustomEvent e in System.Enum.GetValues(typeof(CustomEvent)))
+        {
+            triggeredEvents.Add(e, false);
 
-			EventDelegate action = EventCallback;
-			eventOccurredCallbacks += action;
-			EventManager.GetInstance().AddListener(events[i], action);
-		}
+            EventDelegate action = EventCallback;
+            eventOccurredCallbacks += action;
+            eventManager.AddListener(e, action);
+        }
+        locationEventCallback = SetLocationToLookAt;
+        eventManager.AddListener(CustomEvent.BroadcastObjectLocation, locationEventCallback);
 	}
+
+
 
 	public bool CheckEventOccured(CustomEvent eventName) 
 	{
-		bool eventOccured = triggeredEvents[eventName];
+        bool eventOccured;
+        triggeredEvents.TryGetValue(eventName, out eventOccured);
+
 		triggeredEvents[eventName] = false;
 		return eventOccured;
 	}
 
 	private void EventCallback(EventArgument eventArgument)
 	{
-		bool eventValue;
-		if (triggeredEvents.TryGetValue(eventArgument.eventComponent, out eventValue)) 
-		{
-			triggeredEvents[eventArgument.eventComponent] = true;
-			eventArguments[eventArgument.eventComponent] = eventArgument;
-		}
-		else
-		{
-			print("Event " + eventArgument.eventComponent + " does not exist");
-		}
-	}
+        triggeredEvents[eventArgument.eventComponent] = true;
+        eventArguments[eventArgument.eventComponent] = eventArgument;
+    }
 
-	public void TransitionToState(State nextState)
+    private void SetLocationToLookAt(EventArgument eventArgument)
+    {
+        lookAtTarget = eventArgument.gameObjectComponent.transform;
+    }
+
+    public void TransitionToState(State nextState)
 	{
 		if (nextState != currentState) 
 		{
 			previousState = currentState;
-			currentState = nextState;
-			OnExitState();
+			currentState.OnStateExit(this);
+            OnExitState();
+            currentState = nextState;
+			currentState.OnStateEnter(this);
 		}
 	}
 
@@ -90,7 +102,8 @@ public class StateController : MonoBehaviour
 
 	private void Update()
 	{
-		if (!active) 
+        stateTimeElapsed += Time.deltaTime;
+        if (!active) 
 		{
 			return;
 		}
@@ -101,15 +114,15 @@ public class StateController : MonoBehaviour
 			debugInfo = "";
 			UpdateDebugInfo();
 		}
-		#endif
-		#endregion
-		//animator.SetFloat("speed", navigator.GetSpeed());
+#endif
+        #endregion
+        //animator.SetFloat("speed", navigator.GetSpeed());
+
 		currentState.UpdateState(this);
 	}
 
 	public bool CheckIfCountDownElapsed(float duration)
 	{
-		stateTimeElapsed += Time.deltaTime;
 		return stateTimeElapsed >= duration;
 	}
 
@@ -128,17 +141,30 @@ public class StateController : MonoBehaviour
 		return navigator.GetDestination();
 	}
 
-	public void LookAt(Vector3 position)
+	public void LookAt(bool lookForward)
 	{
-		// TODO: Get look direction and convert to animation coordinates
-	}
+        // TODO: Get look direction and convert to animation coordinates
+        //animator.SetFloat("reactDirection", n);
+        if (lookForward)
+        {
+            ikHandler.LookForward();
+        } else
+        {
+            ikHandler.LookAtTarget(lookAtTarget);
+        }
+    }
 
 	public void ResetLook()
 	{
 		// TODO: Reset animation to origin
 	}
 
-	public void SetLatestEventArguments(EventArgument eventArgument)
+    public void SetAnimatorBool(string s, bool b)
+    {
+        animator.SetBool(s, b);
+    }
+
+    public void SetLatestEventArguments(EventArgument eventArgument)
 	{
 		latestEventArgument = eventArgument;
 	}
@@ -148,7 +174,7 @@ public class StateController : MonoBehaviour
 	private void UpdateDebugInfo()
 	{
 		debugInfo += ("State time elapsed:\t" + stateTimeElapsed + "\n");
-		debugInfo += ("Current state:\t" + currentState.name + "\n");
+		debugInfo += ("Current state:\t" + currentState + "\n");
 		debugInfo += ("Current waypoint:\t" + navigator.GetDestination() + "\n");
 		debugInfo += ("\nTriggered events:\n");
 		foreach (CustomEvent eventName in events)

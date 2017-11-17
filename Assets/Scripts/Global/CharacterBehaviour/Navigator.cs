@@ -1,9 +1,10 @@
 ﻿// Author: Mathias Dam Hedelund
-// Contributors: 
+// Contributors: Itai Yavin
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
@@ -12,11 +13,15 @@ public class Navigator : MonoBehaviour
 	[HideInInspector] public Transform currentWaypoint; 
 
 	public Transform waypoint;
+    public Transform splitWaypoint;
 	public bool autoRepath;
 	public bool drawPath;
 
-	private NavMeshAgent navMeshAgent;
+    private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
+
+
+    private float previousSpeed;
 
 	#region DEBUG
 	#if UNITY_EDITOR
@@ -37,11 +42,14 @@ public class Navigator : MonoBehaviour
 		#endif
 		#endregion
 		navMeshAgent.autoRepath = autoRepath;
-	}
+        SetDestination();
 
-	public void SetRandomDestination(StateController controller)
+    }
+
+
+    public void SetSplitPath()
 	{
-		
+        SetDestination(splitWaypoint.transform);
 	}
 
 	public void Move(Vector3 direction)
@@ -53,6 +61,11 @@ public class Navigator : MonoBehaviour
 	{
 		SetDestination(waypoint);
 	}
+
+    public void SetSplitWaypoint(Transform waypoint)
+    {
+        splitWaypoint = waypoint;
+    }
 
 	public void SetDestination(Transform destination) 
 	{
@@ -78,7 +91,34 @@ public class Navigator : MonoBehaviour
 		return navMeshAgent.velocity.magnitude;
 	}
 
-	public bool CheckDestinationReached() 
+    public void SetSpeed(float speed)
+    {
+        previousSpeed = navMeshAgent.speed;
+        navMeshAgent.speed = speed;
+    }
+
+    public void SetPreviousSpeed()
+    {
+        navMeshAgent.speed = previousSpeed;
+    }
+
+	public void StopMovement()
+	{
+		if (!navMeshAgent.isStopped)
+		{
+			navMeshAgent.isStopped = true;
+		}
+	}
+
+	public void ResumeMovement()
+	{
+		if (navMeshAgent.isStopped)
+		{
+			navMeshAgent.isStopped = false;
+		}
+	}
+
+    public bool CheckDestinationReached() 
 	{
 		if (!navMeshAgent.pathPending)
 		{
