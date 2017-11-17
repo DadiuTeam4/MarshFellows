@@ -39,7 +39,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         EventArgument argument = new EventArgument(); 
 
         //load different level if it is a replay
-        if(GameStateManager.current.playedBefore)
+        if(GameStateManager.current !=null && GameStateManager.current.playedBefore)
         {
             argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
             GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
