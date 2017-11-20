@@ -61,7 +61,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
                     gameState.forOUnlockables = new List<string>();
                 }
                 
-                if(GameStateManager.current != null && gameState.forPUnlockables != null && !GameStateManager.current.forOUnlockables.Contains(forOUnlockableInThisScene))
+                if(GameStateManager.current != null && gameState.forOUnlockables != null && !GameStateManager.current.forOUnlockables.Contains(forOUnlockableInThisScene))
                 {
                     gameState.forOUnlockables.Add(forOUnlockableInThisScene);
                     GameStateManager.current = gameState;
