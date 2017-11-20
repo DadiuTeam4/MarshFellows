@@ -43,7 +43,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         {
             argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
             GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
-            if(respawnPosition != null && cpo != null)
+            if(respawnPosition != null && respawnPosition.magnitude != 0.0f && cpo != null)
             {
                 cpo.transform.position = respawnPosition;
             }
