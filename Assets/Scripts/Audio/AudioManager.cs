@@ -206,11 +206,11 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
 		{
-			AkSoundEngine.SetState("Music", "LiO1"); 
+			AkSoundEngine.SetState("Music", "O"); 
 		}
 		if (argument.stringComponent == "LiP1" && argument.intComponent == -1) 
 		{
-			AkSoundEngine.SetState("Music", "LiP1"); 
+			AkSoundEngine.SetState("Music", "P"); 
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
@@ -220,7 +220,7 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
 			//Do this
-			AkSoundEngine.SetState("Music", "SC1A"); 
+			//AkSoundEngine.SetState("Music", "SC1A"); 
 
 			//Musik, der udtrykker seperation/ensomhed/etc
 		}
