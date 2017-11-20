@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 public class TitleScreenStart : MonoBehaviour 
 {
-	public string CutsceneScene = "IntroCutScene"; 
+	//public string CutsceneScene = "IntroCutScene"; 
 	public bool firstPlay;
 	public GameObject fogDeer;
 	TeachFog tF;
@@ -55,7 +55,7 @@ public class TitleScreenStart : MonoBehaviour
 			fogDeer.SetActive(true);
 			tF.enabled = true;
 			firstPlay = false;
-			SceneManager.UnloadSceneAsync (CutsceneScene);
+			//SceneManager.UnloadSceneAsync (CutsceneScene);
 			camera.enabled = true;
 			FogCurtain.GetComponent<FogCurtain>().enabled = true;
 			
