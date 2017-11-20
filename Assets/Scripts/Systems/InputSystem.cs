@@ -249,7 +249,7 @@ public class InputSystem : Singleton<InputSystem>
 			touchPositions[touch.fingerId].Clear();
 			touchPositions[touch.fingerId].Add(touch.position);
 		}
-		if (touchPositions[touch.fingerId].Count > swipeRegisterCount)
+		if (touchPositions[touch.fingerId].Count > 0)
 		{
 			EventArgument argument = new EventArgument();
 			argument.vectorComponent = direction;
