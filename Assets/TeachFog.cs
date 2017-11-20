@@ -7,6 +7,8 @@ using Events;
 
 public class TeachFog : MonoBehaviour 
 {
+	public float fadeTime = 0.3f;
+	[Space(10)]
 	public float startPosX;
 	public float endPosX;
 	[Space(10)]
@@ -15,14 +17,17 @@ public class TeachFog : MonoBehaviour
 	public AnimationCurve speedCurve;
 	[Space(10)]
 	public bool translateYAxis;
+	public float maxHeight = 3f;
 	public AnimationCurve yCurve;
 	[Space(10)]
 	public float timeBetweenJumps;
 
+	private Animator animator;
 	private EventManager eventManager;
 	private EventDelegate eventDelegate;
 	private bool jumping;
 	private Vector3 startPosition;
+	private SkinnedMeshRenderer renderer;
 
 	// private void Awake()
 	// {
@@ -37,6 +42,8 @@ public class TeachFog : MonoBehaviour
 
 	private void Start()
 	{
+		renderer = GetComponentInChildren<SkinnedMeshRenderer>();
+		animator = GetComponentInChildren<Animator>();
 		startPosition = transform.position;
 	}
 
@@ -46,11 +53,13 @@ public class TeachFog : MonoBehaviour
 		{
 			jumping = true;
 			StartCoroutine(Jump());
+			StartCoroutine(FadeIn());
 		}
 	}
 
 	private IEnumerator Jump()
 	{
+		animator.SetBool("spiritLongJump", true);
 		float timeElapsed = 0f;
 		float progress = 0f;
 		while (timeElapsed < jumpTime)
@@ -69,8 +78,43 @@ public class TeachFog : MonoBehaviour
 		StartCoroutine(Cooldown());
 	}
 
+	private IEnumerator FadeIn()
+	{
+		renderer.enabled = true;
+		Color fadedColor = renderer.material.color; 
+		float timeElapsed = 0f;
+		float progress = 0f;
+		while (timeElapsed < fadeTime)
+		{
+			timeElapsed += Time.deltaTime;
+			progress = timeElapsed / fadeTime;
+			fadedColor.a = progress;
+			renderer.material.color = fadedColor;
+			yield return null;
+		}
+
+	}
+
+	private IEnumerator FadeOut()
+	{
+		Color fadedColor = renderer.material.color; 
+		float timeElapsed = 0f;
+		float progress = 0f;
+		while (timeElapsed < fadeTime)
+		{
+			timeElapsed += Time.deltaTime;
+			progress = timeElapsed / fadeTime;
+			fadedColor.a = 1 - progress;
+			renderer.material.color = fadedColor;
+			yield return null;
+		}
+		renderer.enabled = false;
+	}
+
 	private IEnumerator Cooldown()
 	{
+		animator.SetBool("spiritLongJump", false);
+		StartCoroutine(FadeOut());
 		yield return new WaitForSeconds(timeBetweenJumps);
 		jumping = false;
 	}
