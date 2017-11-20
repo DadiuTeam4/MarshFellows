@@ -11,7 +11,6 @@ public class SinkableObjectType : MonoBehaviour
     private Vector3 initialPosition;
     public string typeOfSinkable = "tree";
     private bool hasSunk;
-    public Transform groundTransform;
 
 
     void Start()
@@ -22,30 +21,24 @@ public class SinkableObjectType : MonoBehaviour
 
     private void InitStatusOfSink()
     {
-        if (groundTransform == null)
+
+        if (transform.position.y < 0)
         {
+            //Here are objects that are sunk at start
+            Debug.Log(gameObject.name + " has sunk at start!");
+            hasSunk = true;
             enabled = false;
         }
         else
         {
-            if (transform.position.y < groundTransform.position.y)
-            {
-                //Here are objects that are sunk at start
-                Debug.Log(gameObject.name + " has sunk at start!");
-                hasSunk = true;
-                enabled = false;
-            }
-            else
-            {
-                hasSunk = false;
-            }
+            hasSunk = false;
         }
 
     }
 
     void Update()
     {
-        if (!hasSunk && groundTransform != null)
+        if (!hasSunk)
         {
             CheckIfSunk();
         }
@@ -61,7 +54,7 @@ public class SinkableObjectType : MonoBehaviour
 
     private bool IsSunk()
     {
-        return transform.position.y < initialPosition.y && transform.position.y < groundTransform.position.y;
+        return transform.position.y < initialPosition.y && transform.position.y < 0;
     }
 
     private void CallSunkEvent()
