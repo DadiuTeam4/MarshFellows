@@ -25,7 +25,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
 
-        if(!haveBeenTriggered && other.gameObject.tag == "O")
+        if(!haveBeenTriggered && (other.gameObject.tag == "O" || other.gameObject.tag == "P") || other.gameObject.tag == "ScenarioTrigger")
         {
 
             
