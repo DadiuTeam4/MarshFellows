@@ -53,12 +53,8 @@ namespace AK
             {
                 static const AkUniqueID CROSSROAD = 1606235185U;
                 static const AkUniqueID INTRO = 1125500713U;
-                static const AkUniqueID LIO1 = 153136492U;
-                static const AkUniqueID LIP1 = 169914049U;
-                static const AkUniqueID SC1A = 3639549469U;
-                static const AkUniqueID SC1B = 3639549470U;
-                static const AkUniqueID SC3A = 3673104835U;
-                static const AkUniqueID SC3B = 3673104832U;
+                static const AkUniqueID O = 84696432U;
+                static const AkUniqueID P = 84696431U;
             } // namespace STATE
         } // namespace MUSIC
 
@@ -95,6 +91,7 @@ namespace AK
         static const AkUniqueID SS_AIR_STORM = 3715662592U;
         static const AkUniqueID SS_AIR_TIMEOFDAY = 3203397129U;
         static const AkUniqueID SS_AIR_TURBULENCE = 4160247818U;
+        static const AkUniqueID SWIPEPOWER = 1248482656U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS

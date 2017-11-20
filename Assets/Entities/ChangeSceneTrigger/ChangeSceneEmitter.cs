@@ -25,7 +25,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
 
-        if(!haveBeenTriggered && other.gameObject.tag == "Player")
+        if(!haveBeenTriggered && (other.gameObject.tag == "O" || other.gameObject.tag == "P" || other.gameObject.tag == "ScenarioTrigger"))
         {
 
             
@@ -42,7 +42,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
                 {
                     gameState.forPUnlockables = new List<string>();
                 }
-                if(GameStateManager.current != null && gameState.forPUnlockables != null && !GameStateManager.current.forPUnlockables.Contains(forPUnlockableInThisScene))
+                if(gameState != null && gameState.forPUnlockables != null && !gameState.forPUnlockables.Contains(forPUnlockableInThisScene))
                 {
                     gameState.forPUnlockables.Add(forPUnlockableInThisScene);
                     GameStateManager.current = gameState;
@@ -61,7 +61,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
                     gameState.forOUnlockables = new List<string>();
                 }
                 
-                if(GameStateManager.current != null && gameState.forPUnlockables != null && !GameStateManager.current.forOUnlockables.Contains(forOUnlockableInThisScene))
+                if(gameState != null && gameState.forOUnlockables != null && !gameState.forOUnlockables.Contains(forOUnlockableInThisScene))
                 {
                     gameState.forOUnlockables.Add(forOUnlockableInThisScene);
                     GameStateManager.current = gameState;

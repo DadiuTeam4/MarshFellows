@@ -14,8 +14,9 @@ public class Hideable : MonoBehaviour
 	private bool[] currentlyhidden;
 
 	public LayerMask layerMask;
+    public bool drawDebugRays;
 
-	[Tooltip("How often the object will check for whether its hidden. This is measured in how many frames so if 3 it will check every third frame")]
+    [Tooltip("How often the object will check for whether its hidden. This is measured in how many frames so if 3 it will check every third frame")]
 	public int checkFrequency = 1;
 	public string falseMessage = "";
 	public string trueMessage = "";
@@ -25,6 +26,7 @@ public class Hideable : MonoBehaviour
 	[Tooltip("Extra event is called only if currentlyhidden bool is same as this")]
 	public bool extraEventIfSameAsHiddenBool = false;
 	public CustomEvent extraCall;
+
 
 	private EventArgument argument = new EventArgument();
 
@@ -76,7 +78,7 @@ public class Hideable : MonoBehaviour
 				
 				if(callsExtra && !extraEventIfSameAsHiddenBool)
 				{
-					EventManager.GetInstance().CallEvent(extraCall,argument);
+                    EventManager.GetInstance().CallEvent(extraCall,argument);
 				}
 			}
 		}
@@ -90,7 +92,7 @@ public class Hideable : MonoBehaviour
 			
 			if(callsExtra && extraEventIfSameAsHiddenBool)
 			{
-				EventManager.GetInstance().CallEvent(extraCall,argument);
+                EventManager.GetInstance().CallEvent(extraCall,argument);
 			}
 		}
 	}
@@ -105,11 +107,18 @@ public class Hideable : MonoBehaviour
 
 			if (Physics.Raycast(ray, out hit, rayCastDistance, layerMask))
 			{
-				TriggerEvent(true, i);
+                if (drawDebugRays)
+                {
+                    Debug.DrawLine(transform.position, hit.point, Color.green);
+                }
+                TriggerEvent(true, i);
 				continue;
 			}
-
-			TriggerEvent(false, i);
+            if (drawDebugRays)
+            {
+                Debug.DrawLine(transform.position, checkPositions[i].position, Color.red);
+            }
+            TriggerEvent(false, i);
 		}
 	}
 }

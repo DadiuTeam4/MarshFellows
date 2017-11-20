@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 
+[RequireComponent(typeof(Collider))]
 public class ObjectFall : MonoBehaviour
 {
     private Quaternion initialRotation;
@@ -63,11 +64,11 @@ public class ObjectFall : MonoBehaviour
 
     private void CallFallEvent()
     {
-        Debug.Log("Fall");
         hasFall = true;
         EventManager eventManager = EventManager.GetInstance();
         EventArgument argument = new EventArgument();
         argument.stringComponent = typeOfObject;
+        argument.gameObjectComponent = gameObject;
         eventManager.CallEvent(CustomEvent.FallHasHappend, argument);
         //Stop Update
         enabled = false;

@@ -17,6 +17,7 @@ public class DeerAnimationController : MonoBehaviour
 	private bool found; 
 	private bool run;
 
+	public float secondsAfterRunningBeforeDeath = 10f;
 	[SerializeField]
 	private float runDelay = 3.0f;
 
@@ -59,6 +60,7 @@ public class DeerAnimationController : MonoBehaviour
 			rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
 			rb.AddForce(v3Force);
 			anim.SetFloat("deerSpeed", rb.velocity.magnitude);
+			Destroy(gameObject, secondsAfterRunningBeforeDeath);
 		}
 		
 		if ((transform.position - targetPoint).magnitude < 10)
