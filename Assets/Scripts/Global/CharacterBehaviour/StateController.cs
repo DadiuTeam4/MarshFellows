@@ -68,6 +68,11 @@ public class StateController : MonoBehaviour
         bool eventOccured;
         triggeredEvents.TryGetValue(eventName, out eventOccured);
 
+        //if(eventOccured)
+        //{
+        //    Debug.Log("Checking " + eventName + " to be true, in current state: " + currentState);
+        //}
+
 		triggeredEvents[eventName] = false;
 		return eventOccured;
 	}
@@ -177,10 +182,13 @@ public class StateController : MonoBehaviour
 		debugInfo += ("Current state:\t" + currentState + "\n");
 		debugInfo += ("Current waypoint:\t" + navigator.GetDestination() + "\n");
 		debugInfo += ("\nTriggered events:\n");
-		foreach (CustomEvent eventName in events)
+		foreach (CustomEvent eventName in System.Enum.GetValues(typeof(CustomEvent)))
 		{
-			debugInfo += eventName + ": " + triggeredEvents[eventName] + "\n";
-		}
+            if (triggeredEvents[eventName])
+            {
+                debugInfo += eventName + ": " + triggeredEvents[eventName] + "\n";
+            }
+        }
 	}
 
 	void OnGUI()
