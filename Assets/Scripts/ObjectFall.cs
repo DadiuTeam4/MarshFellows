@@ -68,6 +68,7 @@ public class ObjectFall : MonoBehaviour
         EventManager eventManager = EventManager.GetInstance();
         EventArgument argument = new EventArgument();
         argument.stringComponent = typeOfObject;
+        argument.gameObjectComponent = gameObject;
         eventManager.CallEvent(CustomEvent.FallHasHappend, argument);
         //Stop Update
         enabled = false;
