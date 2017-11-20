@@ -64,7 +64,6 @@ public class ObjectFall : MonoBehaviour
 
     private void CallFallEvent()
     {
-        Debug.Log(gameObject.name + "Fall");
         hasFall = true;
         EventManager eventManager = EventManager.GetInstance();
         EventArgument argument = new EventArgument();
