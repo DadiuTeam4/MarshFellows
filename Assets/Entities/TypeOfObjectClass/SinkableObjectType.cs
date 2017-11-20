@@ -9,7 +9,7 @@ public class SinkableObjectType : MonoBehaviour
 {
 
     private Vector3 initialPosition;
-    public string typeOfSinkable = "tree";
+    public string typeOfSinkable = "Tree";
     private bool hasSunk;
 
 
@@ -62,6 +62,7 @@ public class SinkableObjectType : MonoBehaviour
         hasSunk = true;
         EventArgument argument = new EventArgument();
         argument.stringComponent = typeOfSinkable;
+        argument.gameObjectComponent = gameObject;
         EventManager.GetInstance().CallEvent(CustomEvent.SinkHasHappened, argument);
         Debug.Log(typeOfSinkable + " has sunk " + gameObject.name);
         enabled = false;
