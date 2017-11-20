@@ -10,10 +10,13 @@ public static class SaveLoadManager {
     public static GameStateManager savedGame = new GameStateManager();
 	public static void Save() {
 		savedGame = GameStateManager.current;
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Create (Application.persistentDataPath + "/savedGames.gd");
-		bf.Serialize(file, SaveLoadManager.savedGame);
-		file.Close();
+		if(savedGame != null)
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Create (Application.persistentDataPath + "/savedGames.gd");
+			bf.Serialize(file, SaveLoadManager.savedGame);
+			file.Close();
+		}
 	}
 
 	public static void Load() {
