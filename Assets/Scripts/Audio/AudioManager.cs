@@ -8,13 +8,13 @@ using Events;
 
 public class AudioManager : Singleton<AudioManager> {
 
-	public EventManager eventManager;
-    public Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
-	public uint eventID; 
+	private EventManager eventManager;
+	private Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
+	private uint eventID; 
 	public string groundLayer;
 	public float sfxVolume = 100; 
 	public float musicVolume = 100; 
-	public float swipePower; 
+	private float swipePower; 
 
 
 	void Awake()
