@@ -55,13 +55,11 @@ public class DeerScenerio : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 		if(found && !kill && !run){
-			print("deer found");
 			anim.SetTrigger(reactHash);
 		}
 
 		if (run && !kill)
 		{
-			print("deer run");
 			Vector3 relativePos = targetPoint.transform.position - transform.position;
 			Quaternion rotation = Quaternion.LookRotation(relativePos);
 			Vector3 v3Force = runSpeed * transform.forward;
