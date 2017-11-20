@@ -12,6 +12,7 @@ public static class SaveLoadManager {
 		savedGame = GameStateManager.current;
 		if(savedGame != null)
 		{
+			savedGame.playedBefore = true;
 			BinaryFormatter bf = new BinaryFormatter();
 			FileStream file = File.Create (Application.persistentDataPath + "/savedGames.gd");
 			bf.Serialize(file, SaveLoadManager.savedGame);
