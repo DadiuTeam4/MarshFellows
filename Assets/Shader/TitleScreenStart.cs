@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Events;
+using UnityEngine.AI;
 
 public class TitleScreenStart : MonoBehaviour 
 {
@@ -15,16 +16,24 @@ public class TitleScreenStart : MonoBehaviour
 	public float delay;
 	float timer;
 	public Camera camera;
+	public GameObject GlobalCam;
 	EventManager eventManager;
 	private EventDelegate eventDelegate;
 
+	public GameObject FogCurtain;
+
+	private NavMeshAgent navMeshO;
+	private NavMeshAgent navMeshP;
+	private float speedAfterZone = 1.6f;
 
 	
 	// Use this for initialization
 	void Start () {
 	eventManager = EventManager.GetInstance();
-	eventDelegate = Restarted;
-	eventManager.AddListener(CustomEvent.ResetGame, eventDelegate);
+	eventManager.AddListener(CustomEvent.ResetGame, Restarted);
+	eventManager.AddListener(CustomEvent.HiddenByFog, HiddenTest);
+	GlobalCam = GameObject.Find("CameraController");
+	FogCurtain.GetComponent<FogCurtain>().enabled = false;
 	
 	tF = fogDeer.GetComponent<TeachFog>();
 	
@@ -33,6 +42,7 @@ public class TitleScreenStart : MonoBehaviour
 	fogDeer.SetActive(false);
 	tF.enabled = false;
 	camera.enabled = false;
+	GlobalCam.SetActive(false);
 	}
 
 	timer = 0.0f;
@@ -47,6 +57,8 @@ public class TitleScreenStart : MonoBehaviour
 			firstPlay = false;
 			SceneManager.UnloadSceneAsync (CutsceneScene);
 			camera.enabled = true;
+			FogCurtain.GetComponent<FogCurtain>().enabled = true;
+			
 
 		}
 		timer += Time.deltaTime;
@@ -55,5 +67,18 @@ public class TitleScreenStart : MonoBehaviour
 	public void Restarted(EventArgument argument)
 	{
 		firstPlay = false;
+	}
+
+
+	public void HiddenTest(EventArgument argument)
+	{
+		camera.enabled = false;
+		GlobalCam.SetActive(true);
+		navMeshO = GameObject.Find("O").GetComponent<NavMeshAgent>();
+		navMeshP = GameObject.Find("P").GetComponent<NavMeshAgent>();
+
+		navMeshO.speed = speedAfterZone;
+		navMeshP.speed = speedAfterZone;
+						
 	}
 }
