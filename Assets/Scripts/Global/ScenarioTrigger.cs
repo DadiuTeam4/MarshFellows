@@ -11,11 +11,13 @@ public class ScenarioTrigger : MonoBehaviour
 	public CustomEvent scenarioEvent;
 	public Transform otherTriggerZone;
 
+    public string triggerTag = "ScenarioTrigger";
+
     private bool hasBeenTriggered = false;
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("ScenarioTrigger") && !hasBeenTriggered)
+		if (other.gameObject.CompareTag(triggerTag) && !hasBeenTriggered)
 		{
 			EventArgument argument = new EventArgument();
 			argument.vectorArrayComponent = new Vector3[2];
