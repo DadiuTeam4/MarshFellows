@@ -115,15 +115,15 @@ public class AudioManager : Singleton<AudioManager> {
 
 		if(argument.stringComponent == "Tree")
 		{
-		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
+			PlaySoundWCOtherScript ("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "Rock")
 		{
-			PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
+			PlaySoundWCOtherScript("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "SomethingElse")
 		{
-			//Play_GG_SD_Sink_PH
+			//Play_GG_SD_Sink_PH Play_GG_SD_Mud_Sink
 		}
 	}
 
@@ -131,11 +131,11 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 				if(argument.stringComponent == "Tree")
 			{
-				PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
+			PlaySoundWCOtherScript ("Play_GG_SD_Tree_Fall", argument.gameObjectComponent); 
 			}
 			else if(argument.stringComponent == "Rock")
 			{
-				PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
+			PlaySoundWCOtherScript("Play_GG_SD_Stone_Fall", argument.gameObjectComponent); 
 			}
 			else if(argument.stringComponent == "SomethingElse")
 			{
