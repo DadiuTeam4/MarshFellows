@@ -491,6 +491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4538093940675938}
   - component: {fileID: 95330181939751670}
+  - component: {fileID: 114856451554534022}
   m_Layer: 0
   m_Name: deerSpirit
   m_TagString: Untagged
@@ -976,7 +977,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1742505763886472}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1179,7 +1180,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1577816688877592}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1188,7 +1189,7 @@ Transform:
   - {fileID: 4785145569349172}
   m_Father: {fileID: 4657424756097022}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4577500998492442
 Transform:
   m_ObjectHideFlags: 1
@@ -1670,6 +1671,54 @@ MonoBehaviour:
     m_RotationOrder: 0
   positionOneTransform: {fileID: 4530186589566816}
   positionTwoTransform: {fileID: 4188606249532994}
+--- !u!114 &114856451554534022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1577816688877592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56af613dbdbaec448993d97c0bffb37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeTime: 0.5
+  startPosX: -5
+  endPosX: 5
+  jumpTime: 1.5
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 1.4298556
+      outSlope: 1.4298556
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.06354277
+      value: 0.051741518
+      inSlope: 1.4270097
+      outSlope: 1.4270097
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0.08668837
+      outSlope: 0.08668837
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  translateYAxis: 0
+  maxHeight: 3
+  yCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeBetweenJumps: 3
 --- !u!137 &137965004337986496
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
