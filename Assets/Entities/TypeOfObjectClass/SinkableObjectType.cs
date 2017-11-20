@@ -12,6 +12,8 @@ public class SinkableObjectType : MonoBehaviour
     public string typeOfSinkable = "tree";
     private bool hasSunk;
     public Transform groundTransform;
+
+
     void Start()
     {
         initialPosition = transform.position;
@@ -70,5 +72,7 @@ public class SinkableObjectType : MonoBehaviour
         EventManager.GetInstance().CallEvent(CustomEvent.SinkHasHappened, argument);
         Debug.Log(typeOfSinkable + " has sunk " + gameObject.name);
         enabled = false;
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
     }
 }
