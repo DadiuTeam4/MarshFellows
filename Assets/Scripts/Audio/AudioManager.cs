@@ -49,6 +49,7 @@ public class AudioManager : Singleton<AudioManager> {
 		EventDelegate stopEvent = Stopper;
 		EventDelegate changeScene = NewScene; 
 		EventDelegate somethingSunk = SunkAction;
+		EventDelegate somethingFall = FallAction; 
 		EventDelegate foreshadow = ForeshadowPost; 
 		// Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
@@ -61,6 +62,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
 		// Events triggered 
 		eventManager.AddListener (CustomEvent.SinkHasHappened, somethingSunk);
+		eventManager.AddListener (CustomEvent.FallHasHappend, somethingFall); 
 		eventManager.AddListener (CustomEvent.ForeshadowEventTriggered, foreshadow); 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
@@ -74,7 +76,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Debug.Log (argument.vectorComponent); 
 			swipePower = argument.vectorComponent.magnitude * 100; 
-			Debug.Log (swipePower); 
+			//Debug.Log (swipePower); 
 			AkSoundEngine.SetRTPCValue ("SwipePower", swipePower); 	
 			PlaySoundWC ("Play_GG_SD_Swipe_1"); 
 		}
@@ -124,6 +126,23 @@ public class AudioManager : Singleton<AudioManager> {
 			//Play_GG_SD_Sink_PH
 		}
 	}
+
+		void FallAction(EventArgument argument)
+		{
+				if(argument.stringComponent == "Tree")
+			{
+				PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
+			}
+			else if(argument.stringComponent == "Stone")
+			{
+				PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
+			}
+			else if(argument.stringComponent == "SomethingElse")
+			{
+				//Play_GG_SD_Sink_PH
+			}
+		}
+
 		
 	void ForeshadowPost(EventArgument argument)
 	{
