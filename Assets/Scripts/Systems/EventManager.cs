@@ -92,7 +92,6 @@ namespace Events
 
 		public bool CallEvent(CustomEvent eventName, EventArgument argument)
 		{
-
             if (listeners.ContainsKey(eventName))
 			{
 				argument.eventComponent = eventName;

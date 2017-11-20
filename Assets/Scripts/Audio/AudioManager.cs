@@ -8,12 +8,13 @@ using Events;
 
 public class AudioManager : Singleton<AudioManager> {
 
-	public EventManager eventManager;
-    public Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
-	public uint eventID; 
+	private EventManager eventManager;
+	private Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
+	private uint eventID; 
 	public string groundLayer;
 	public float sfxVolume = 100; 
 	public float musicVolume = 100; 
+	private float swipePower; 
 
 
 	void Awake()
@@ -48,6 +49,7 @@ public class AudioManager : Singleton<AudioManager> {
 		EventDelegate stopEvent = Stopper;
 		EventDelegate changeScene = NewScene; 
 		EventDelegate somethingSunk = SunkAction;
+		EventDelegate somethingFall = FallAction; 
 		EventDelegate foreshadow = ForeshadowPost; 
 		// Mechanics
 		eventManager.AddListener (CustomEvent.Swipe, postEvent); 
@@ -60,6 +62,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
 		// Events triggered 
 		eventManager.AddListener (CustomEvent.SinkHasHappened, somethingSunk);
+		eventManager.AddListener (CustomEvent.FallHasHappend, somethingFall); 
 		eventManager.AddListener (CustomEvent.ForeshadowEventTriggered, foreshadow); 
 		//Ritual events
 		//eventManager.AddListener (CustomEvent.AppleFall, actionEvent);
@@ -71,13 +74,16 @@ public class AudioManager : Singleton<AudioManager> {
 		//Swipe
 		if (argument.eventComponent == CustomEvent.Swipe) 
 		{
+			//Debug.Log (argument.vectorComponent); 
+			swipePower = argument.vectorComponent.magnitude * 100; 
+			//Debug.Log (swipePower); 
+			AkSoundEngine.SetRTPCValue ("SwipePower", swipePower); 	
 			PlaySoundWC ("Play_GG_SD_Swipe_1"); 
 		}
 		//Hold begin
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
 		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
-			//argument.vectorComponent(
 		}
 		//Apple 
 		if (argument.eventComponent == CustomEvent.AppleFall) 
@@ -111,7 +117,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
 		}
-		else if(argument.stringComponent == "Stone")
+		else if(argument.stringComponent == "Rock")
 		{
 			PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
 		}
@@ -120,6 +126,23 @@ public class AudioManager : Singleton<AudioManager> {
 			//Play_GG_SD_Sink_PH
 		}
 	}
+
+		void FallAction(EventArgument argument)
+		{
+				if(argument.stringComponent == "Tree")
+			{
+				PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
+			}
+			else if(argument.stringComponent == "Rock")
+			{
+				PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
+			}
+			else if(argument.stringComponent == "SomethingElse")
+			{
+				//Play_GG_SD_Sink_PH
+			}
+		}
+
 		
 	void ForeshadowPost(EventArgument argument)
 	{
@@ -158,6 +181,13 @@ public class AudioManager : Singleton<AudioManager> {
 			//Do this
 			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
 		}
+		if (argument.stringComponent == "IntroCutscene" && argument.intComponent == -1) 
+		{
+			//Do this
+			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
+			AkSoundEngine.SetState("Music", "IntroCutscene"); 
+
+		}
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
 			//Do this
@@ -176,11 +206,11 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
 		{
-			AkSoundEngine.SetState("Music", "LiO1"); 
+			AkSoundEngine.SetState("Music", "O"); 
 		}
 		if (argument.stringComponent == "LiP1" && argument.intComponent == -1) 
 		{
-			AkSoundEngine.SetState("Music", "LiP1"); 
+			AkSoundEngine.SetState("Music", "P"); 
 		}
 		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
 		{
@@ -190,7 +220,7 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
 			//Do this
-			AkSoundEngine.SetState("Music", "SC1A"); 
+			//AkSoundEngine.SetState("Music", "SC1A"); 
 
 			//Musik, der udtrykker seperation/ensomhed/etc
 		}
