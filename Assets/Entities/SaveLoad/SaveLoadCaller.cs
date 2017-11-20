@@ -9,13 +9,13 @@ public class SaveLoadCaller : MonoBehaviour {
 
     void OnApplicationQuit()
     {
-		  SaveLoadManager.Save();
+		SaveLoadManager.Save();
     }
 
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void OnBeforeSceneLoadRuntimeMethod()
     {
-		  SaveLoadManager.Load();
+		SaveLoadManager.Load();
     }
 
 
