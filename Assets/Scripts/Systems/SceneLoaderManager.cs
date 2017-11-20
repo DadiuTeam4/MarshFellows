@@ -39,25 +39,25 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         EventArgument argument = new EventArgument(); 
 
         //load different level if it is a replay
-        if(GameStateManager.current !=null && GameStateManager.current.playedBefore)
+        if(GameStateManager.current != null && GameStateManager.current.playedBefore)
         {
             argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
             GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
             if(respawnPosition != null && cpo != null)
             {
-                cpo.transform.position = respawnPosition;                
+                cpo.transform.position = respawnPosition;
             }
             if(fogOnRestart != null && cpo != null)
             {
                 Instantiate(fogOnRestart, new Vector3(cpo.transform.position.x,cpo.transform.position.y,cpo.transform.position.z+offsetForCreatingFog), cpo.transform.rotation);
-            }
-
-            
+            }            
         }
         else
         {
             argument.stringComponent = initialSceneName;
         }
+
+        //loading first scene
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
@@ -111,7 +111,11 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         if(argument.intComponent == 0)
         {
-            scenesToUnload.Add(argument.stringComponent);
+            Scene unloadScene = SceneManager.GetSceneByName(argument.stringComponent);
+            if (unloadScene.isLoaded)
+            {
+                SceneManager.UnloadSceneAsync(argument.stringComponent);
+            }            
             return;
         }
 
@@ -143,18 +147,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
                 SceneManager.LoadSceneAsync(argument.stringComponent, LoadSceneMode.Additive);
             }
 
-            foreach(string sceneToUnload in scenesToUnload)
-            {
-                if(sceneToUnload != emptyString && sceneToUnload != globalSceneName)
-                {
-                    Scene unloadScene = SceneManager.GetSceneByName(sceneToUnload);
-                    if (unloadScene.isLoaded)
-                    {
-                        SceneManager.UnloadSceneAsync(sceneToUnload);
-                    }
-                }
-            }
-
         }
     }
 
@@ -168,31 +160,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             {
                 SceneManager.UnloadSceneAsync (scene);
             }     
-        }
-    }
-
-    void LoadUnloadEverything()
-    {
-        for (int i = 0; i < SceneManager.sceneCountInBuildSettings ; i++)
-        {
-			if (i == 0) // HARDCODED SO TITLESCREEN ISNT LOADED WITH THIS, THIS IS ONLY TO GET FPP IN TIME!!!
-			{
-				continue;
-			}
-            Scene scene = SceneManager.GetSceneByBuildIndex(i);
-            if (!scene.isLoaded || scene.name != globalSceneName)
-            {
-                if (Application.isPlaying)
-                {
-                	SceneManager.LoadSceneAsync(i, LoadSceneMode.Additive);
-                }
-                else
-                {
-                //    SceneManager.LoadScene(EditorBuildSettings.scenes[i].path, LoadSceneMode.Additive);
-                }
-                SceneManager.UnloadSceneAsync (scene);
-
-            }
         }
     }
 
