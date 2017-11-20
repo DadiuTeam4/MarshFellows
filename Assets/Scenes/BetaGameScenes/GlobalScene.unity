@@ -98,8 +98,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.7
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 60
+    agentClimb: 0.75
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -108,7 +108,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: 72ce82a853c53d341877b9e4620849f6, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &14385312
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,15 +202,15 @@ Prefab:
       objectReference: {fileID: 1394298869}
     - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 342.31
+      value: 64.64
       objectReference: {fileID: 0}
     - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 361.78
+      value: 29.86
       objectReference: {fileID: 0}
     - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.85
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
@@ -237,7 +237,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 204327054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 282.4, y: 1, z: 63.4}
+  m_LocalPosition: {x: 27.8, y: 0, z: -65.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1931883719}
@@ -483,7 +483,8 @@ Prefab:
       propertyPath: m_TagString
       value: P
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 95673555979143998, guid: d75fbd8790ae53047a5eaa0024f4a241, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d75fbd8790ae53047a5eaa0024f4a241, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &755387533
@@ -593,6 +594,10 @@ Prefab:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 583383107}
+    - target: {fileID: 1528650266968174, guid: 9c1faf5a8c98ed140ac8a5c1ac5a51fe, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c1faf5a8c98ed140ac8a5c1ac5a51fe, type: 2}
   m_IsPrefabParent: 0
@@ -871,7 +876,12 @@ Prefab:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4480007071825008, guid: 6ccce21630800924ea55225d8dcbb909, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 95064102792562568, guid: 6ccce21630800924ea55225d8dcbb909, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6ccce21630800924ea55225d8dcbb909, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1321185160
