@@ -117,7 +117,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 		PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
 		}
-		else if(argument.stringComponent == "Stone")
+		else if(argument.stringComponent == "Rock")
 		{
 			PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
 		}
@@ -133,7 +133,7 @@ public class AudioManager : Singleton<AudioManager> {
 			{
 				PlaySoundWCOtherScript ("Play_FallTree", argument.gameObjectComponent); 
 			}
-			else if(argument.stringComponent == "Stone")
+			else if(argument.stringComponent == "Rock")
 			{
 				PlaySoundWCOtherScript("Play_ImpactEarthRock", argument.gameObjectComponent); 
 			}
