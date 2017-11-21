@@ -23,7 +23,7 @@ public class ForeshadowTriggerZone : MonoBehaviour
 			EventArgument argument = new EventArgument();
 
 			argument.stringComponent = current.ToString();
-			Debug.Log (argument.stringComponent);
+			//Debug.Log (argument.stringComponent);
 			eventManager.CallEvent(CustomEvent.ForeshadowEventTriggered,
 									argument);
 
