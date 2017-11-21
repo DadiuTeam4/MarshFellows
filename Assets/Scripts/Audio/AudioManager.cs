@@ -163,6 +163,7 @@ public class AudioManager : Singleton<AudioManager> {
 			if(argument.stringComponent == "Crossroad")
 			{
 				PlaySoundWC("Play_GG_FSD_2");
+				print ("Foreshadow event"); 
 			}
 	}
 
@@ -208,6 +209,8 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Mere spacey musik 
 			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
+			PlaySoundWC("Play_GG_FSD_2"); 
+
 		}
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
