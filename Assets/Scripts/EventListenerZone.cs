@@ -7,8 +7,8 @@ using Events;
 public class EventListenerZone : MonoBehaviour {
 
 
-    private bool huntersInZone = false;
-    private bool currentlyHidden = true;
+    public bool huntersInZone = false;
+    public bool currentlyHidden = true;
 
 
     private EventManager eventManager;
@@ -48,7 +48,10 @@ public class EventListenerZone : MonoBehaviour {
 
     private void FogReveal(EventArgument args)
     {
-        currentlyHidden = args.boolComponent;
+        if (args.stringComponent == "shaman")
+        {
+            currentlyHidden = args.boolComponent;
+        }
         if (huntersInZone && !currentlyHidden)
         {
 
