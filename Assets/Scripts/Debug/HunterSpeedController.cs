@@ -12,7 +12,9 @@ public class HunterSpeedController : MonoBehaviour
 
 	void Start()
 	{
-		GameObject[] hunterGameObjects = GameObject.FindGameObjectsWithTag("Player");
+		GameObject[] hunterGameObjects = new GameObject[2];
+		hunterGameObjects[0] = GameObject.FindGameObjectWithTag("P");
+		hunterGameObjects[1] = GameObject.FindGameObjectWithTag("O");
 		
 		for (int i = 0; i < hunterGameObjects.Length; i++)
 		{

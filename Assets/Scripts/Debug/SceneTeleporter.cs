@@ -69,7 +69,9 @@ public class SceneTeleporter : MonoBehaviour
 		}
 
         GameObject[] waypoints = GameObject.FindGameObjectsWithTag("DebuggingWaypoint");
-        GameObject[] hunterObjects = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] hunterObjects = new GameObject[2];
+		hunterObjects[0] = GameObject.FindGameObjectWithTag("P");
+		hunterObjects[1] = GameObject.FindGameObjectWithTag("O");
 
         foreach (GameObject waypoint in waypoints)
         {
