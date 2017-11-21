@@ -27,8 +27,7 @@ public class ForeshadowTriggerZone : MonoBehaviour
 			eventManager.CallEvent(CustomEvent.ForeshadowEventTriggered,
 									argument);
 
-			Instantiate(foreshadowObject, transform.position,
-						transform.rotation);
+			foreshadowObject.SetActive(true);
 		}
 	}
 }
