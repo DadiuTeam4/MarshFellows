@@ -26,6 +26,8 @@ public class TitleScreenStart : MonoBehaviour
 	private NavMeshAgent navMeshP;
 	private float speedAfterZone = 1.6f;
 
+	public GameObject hideable;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -35,7 +37,7 @@ public class TitleScreenStart : MonoBehaviour
 	FogCurtain.GetComponent<FogCurtain>().enabled = false;
 	tF = fogDeer.GetComponent<TeachFog>();
 
-	firstPlay = GameStateManager.current.playedBefore;
+	firstPlay = false; //GameStateManager.current.playedBefore;
 	
 	if(!firstPlay)
 	{
@@ -43,12 +45,18 @@ public class TitleScreenStart : MonoBehaviour
 		argument.stringComponent="IntroLevel";
 		argument.intComponent=1;
 		eventManager.CallEvent(CustomEvent.LoadScene, argument);
+		navMeshO = GameObject.Find("O").GetComponent<NavMeshAgent>();
+		navMeshP = GameObject.Find("P").GetComponent<NavMeshAgent>();
+
+		navMeshO.speed = 0;
+		navMeshP.speed = 0;
 	}
 
 	if(firstPlay)
 	{
 	fogDeer.SetActive(false);
 	tF.enabled = false;
+
 	}
 
 	timer = 0.0f;
@@ -77,7 +85,7 @@ public class TitleScreenStart : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		
+		if(argument.gameObjectComponent == hideable){
 		eventManager.CallEvent(CustomEvent.ScenarioEnded);
 
 		navMeshO = GameObject.Find("O").GetComponent<NavMeshAgent>();
@@ -85,6 +93,7 @@ public class TitleScreenStart : MonoBehaviour
 
 		navMeshO.speed = speedAfterZone;
 		navMeshP.speed = speedAfterZone;
+		}
 						
 	}
 }
