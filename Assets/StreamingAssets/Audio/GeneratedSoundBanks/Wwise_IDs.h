@@ -22,12 +22,14 @@ namespace AK
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
         static const AkUniqueID PLAY_FS = 2262856515U;
         static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
+        static const AkUniqueID PLAY_GG_AMBIENCE_WATER = 3361606695U;
         static const AkUniqueID PLAY_GG_FSD_1 = 1046603870U;
         static const AkUniqueID PLAY_GG_FSD_2 = 1046603869U;
         static const AkUniqueID PLAY_GG_FSD_3 = 1046603868U;
         static const AkUniqueID PLAY_GG_FSD_4_1 = 1855550475U;
         static const AkUniqueID PLAY_GG_MENU_CLICK = 3668079463U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
+        static const AkUniqueID PLAY_GG_SD_CHOIR = 53999030U;
         static const AkUniqueID PLAY_GG_SD_MUD_SINK = 1993353133U;
         static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;

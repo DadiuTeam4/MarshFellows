@@ -162,8 +162,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-				PlaySoundWC("Play_GG_FSD_2");
-				print ("Foreshadow event"); 
+			//crossroad 
 			}
 	}
 
@@ -175,6 +174,10 @@ public class AudioManager : Singleton<AudioManager> {
 			//Do this
 			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
 		}
+		if (argument.stringComponent == "IntroCutScene" && argument.intComponent == -1) 
+		{
+			//Do this 
+		}
 		if (argument.stringComponent == "IntroCutscene" && argument.intComponent == -1) 
 		{
 			AkSoundEngine.SetState("Music", "IntroCutscene"); 
@@ -184,18 +187,17 @@ public class AudioManager : Singleton<AudioManager> {
 			//Do this
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
-			print ("current scene: introoooo"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
 			//PlaySoundWC("Play_Overture"); 
 			//print ("OVERTURE"); 
 		}
-		if (argument.stringComponent == "Crossroad" && argument.intComponent == -1) 
+		if (argument.stringComponent == "Crossroads" && argument.intComponent == -1) 
 		{
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 			AkSoundEngine.SetState("Music", "Crossroad"); 
-			print ("Crossroad is current"); 
+			//print ("Crossroad is current"); 
 		}
 		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
 		{
@@ -209,7 +211,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Mere spacey musik 
 			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
-			PlaySoundWC("Play_GG_FSD_2"); 
+			//PlaySoundWC("Play_GG_FSD_2"); 
 
 		}
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
