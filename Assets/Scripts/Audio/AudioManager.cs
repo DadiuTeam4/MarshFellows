@@ -16,7 +16,6 @@ public class AudioManager : Singleton<AudioManager> {
 	public float musicVolume = 100; 
 	private float swipePower; 
 
-
 	void Awake()
 	{
 		eventManager = EventManager.GetInstance();
@@ -40,7 +39,6 @@ public class AudioManager : Singleton<AudioManager> {
     {
         AkSoundEngine.SetRTPCValue("Music_Volume", newVolumn * 100);
     }
-
 		
 	//Calls when ever listened event is triggered 
 	void OnEnable () 
@@ -164,7 +162,8 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-				PlaySoundWC("Play_GG_FSD_CR_1");
+				PlaySoundWC("Play_GG_FSD_2");
+				print ("Foreshadow event"); 
 			}
 	}
 
@@ -178,15 +177,14 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "IntroCutscene" && argument.intComponent == -1) 
 		{
-
 			AkSoundEngine.SetState("Music", "IntroCutscene"); 
-
 		}
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
 			//Do this
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
+			print ("current scene: introoooo"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
@@ -197,6 +195,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 			AkSoundEngine.SetState("Music", "Crossroad"); 
+			print ("Crossroad is current"); 
 		}
 		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
 		{
@@ -210,6 +209,8 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Mere spacey musik 
 			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
+			PlaySoundWC("Play_GG_FSD_2"); 
+
 		}
 		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
 		{
