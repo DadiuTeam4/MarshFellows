@@ -25,7 +25,6 @@ public class SinkableObjectType : MonoBehaviour
         if (transform.position.y < 0)
         {
             //Here are objects that are sunk at start
-            Debug.Log(gameObject.name + " has sunk at start!");
             hasSunk = true;
             enabled = false;
         }
