@@ -13,6 +13,7 @@ namespace CameraControl
         public float rotationDamping = 1;
         public bool isFollowingCenter = true;
         public float fieldOfView = 45;
+        public float xRotation = 25;
 
         private Transform oTransform;
         private Transform trackedObject;
@@ -49,7 +50,7 @@ namespace CameraControl
                 float currentAngle = transform.eulerAngles.y;
                 float desiredAngle = pTransform.eulerAngles.y;
                 float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
-                rotation = Quaternion.Euler(startRotation.x, angle, startRotation.z);
+                rotation = Quaternion.Euler(xRotation, angle, startRotation.z);
             }
             else
             {
