@@ -34,10 +34,13 @@ public class GrassRenderRandomLoaction : MonoBehaviour {
 	        RaycastHit hit;
 	        if (Physics.Raycast(ray, out hit))
 	        {
+				if(hit.transform.gameObject.tag != "FogCurtain")
+				{
 	            origin = hit.point;
 	            origin.y += grassOffset - (1.0f-randomScale)/2.0f;
 
 	            materices.Add(Matrix4x4.TRS(origin, Quaternion.identity, grassSize * randomScale));
+				}
 	        }
 	    }
 	}

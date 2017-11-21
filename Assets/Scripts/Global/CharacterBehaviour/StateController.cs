@@ -169,6 +169,11 @@ public class StateController : MonoBehaviour
         animator.SetBool(s, b);
     }
 
+    public void SetAnimatorFloat(string s, float f)
+    {
+        animator.SetFloat(s, f);
+    }
+
     public void SetLatestEventArguments(EventArgument eventArgument)
 	{
 		latestEventArgument = eventArgument;
