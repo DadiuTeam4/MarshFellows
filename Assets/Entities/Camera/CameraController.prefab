@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 124467497336096740}
   - component: {fileID: 114979985813446960}
   - component: {fileID: 114752424066072750}
-  - component: {fileID: 114734311626539964}
+  - component: {fileID: 111357288763663662}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114313186149476864}
   - component: {fileID: 114508073869146244}
   - component: {fileID: 114899580856298840}
+  - component: {fileID: 114265290855175092}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -57,14 +58,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1231771373250040}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.2164396, y: 0, z: 0, w: 0.97629607}
+  m_LocalPosition: {x: 0, y: 4, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4741189232141906}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
 --- !u!4 &4741189232141906
 Transform:
   m_ObjectHideFlags: 1
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1129979754975818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 53.200005, z: 114.200005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4475208132761748}
@@ -96,7 +97,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 45
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -121,6 +122,34 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1129979754975818}
   m_Enabled: 1
+--- !u!111 &111357288763663662
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1129979754975818}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a2abcf055cde68349bc2e33bf1c256f8, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a2abcf055cde68349bc2e33bf1c256f8, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &114265290855175092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231771373250040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6666da85b314c17488dc98ab2d165dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fixedPosition: {x: 27.8, y: 2, z: -125}
+  fixedCamera: 1
 --- !u!114 &114278694878781156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,23 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5aeb77a7d20964697bc5e0405b805f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adjustableOffset: {x: 0, y: 3, z: 0}
+  adjustableOffset: {x: 0, y: 4, z: -3}
   positionDamping: 1
   rotationDamping: 1
   isFollowingCenter: 1
   fieldOfView: 45
---- !u!114 &114734311626539964
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1129979754975818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2be5337a5802b764c8b13f15768740d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectMaterial: {fileID: 2100000, guid: cbc64cdfb2acecf42af2a187364763a5, type: 2}
 --- !u!114 &114752424066072750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,7 +223,7 @@ MonoBehaviour:
   - {fileID: 0}
   cameraRig: {fileID: 0}
   cameraComponent: {fileID: 0}
-  currentState: 0
+  currentState: 2
 --- !u!114 &114979985813446960
 MonoBehaviour:
   m_ObjectHideFlags: 1
