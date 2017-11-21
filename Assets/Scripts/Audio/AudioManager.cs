@@ -162,7 +162,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-				PlaySoundWC("Play_GG_FSD_CR_1");
+				PlaySoundWC("Play_GG_FSD_2");
 			}
 	}
 
