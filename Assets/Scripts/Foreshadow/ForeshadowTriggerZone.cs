@@ -11,7 +11,7 @@ public enum ForeshadowEvents {Scena1,Scena2,Scena3,Scena4,Crossroad}
 
 public class ForeshadowTriggerZone : MonoBehaviour
 {
-	public ForeshadowEvents current;
+	public ForeshadowEvents soundToPlay;
 
 	public GameObject foreshadowObject;
 	
@@ -22,8 +22,8 @@ public class ForeshadowTriggerZone : MonoBehaviour
 			EventManager eventManager = EventManager.GetInstance();
 			EventArgument argument = new EventArgument();
 
-			argument.stringComponent = current.ToString();
-			//Debug.Log (argument.stringComponent);
+			argument.stringComponent = soundToPlay.ToString();
+			Debug.Log (argument.stringComponent);
 			eventManager.CallEvent(CustomEvent.ForeshadowEventTriggered,
 									argument);
 
