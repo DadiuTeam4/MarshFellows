@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 65260497620667702}
   - component: {fileID: 114175003518489502}
   - component: {fileID: 54568815893074112}
+  - component: {fileID: 208795887432021514}
   m_Layer: 9
   m_Name: FogCollider
   m_TagString: FogCurtain
@@ -112,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347928675786234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.71, z: -1.08}
+  m_LocalPosition: {x: 1.83, y: 0.71, z: -1.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4986007665040758}
@@ -125,8 +126,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1879967805694822}
-  m_LocalRotation: {x: -0, y: 0.22909383, z: -0, w: 0.97340435}
-  m_LocalPosition: {x: 5.3141017, y: 0.35, z: -46.628365}
+  m_LocalRotation: {x: -0, y: 0.659946, z: -0, w: 0.7513131}
+  m_LocalPosition: {x: 255.42, y: 1.08, z: 61.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4156955124635660}
@@ -134,7 +135,7 @@ Transform:
   - {fileID: 4536152955879938}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -67.331, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 82.592, z: 0}
 --- !u!4 &4891061798742572
 Transform:
   m_ObjectHideFlags: 1
@@ -155,7 +156,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1853988035359740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: -1.173, z: -1.15}
+  m_LocalPosition: {x: -0.04, y: -1.173, z: 0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4536152955879938}
@@ -289,7 +290,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 787519245
+  randomSeed: -153459303
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -379,7 +380,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9084126, g: 0.9117647, b: 0.9050605, a: 0.878}
+      maxColor: {r: 1, g: 0.86815417, b: 0.52205884, a: 0.878}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1191,8 +1192,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.49803922}
-        key1: {r: 1, g: 1, b: 1, a: 0.75686276}
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0.8862745}
         key3: {r: 0, g: 0, b: 0, a: 0.3372549}
         key4: {r: 0, g: 0, b: 0, a: 0.3372549}
@@ -1208,7 +1209,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 13493
+        atime1: 65535
         atime2: 55512
         atime3: 65535
         atime4: 65535
@@ -1217,7 +1218,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3535,7 +3536,7 @@ ParticleSystemRenderer:
   m_LengthScale: 2
   m_SortingFudge: 0
   m_NormalDirection: 1
-  m_RenderAlignment: 1
+  m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
@@ -3544,3 +3545,18 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!208 &208795887432021514
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347928675786234}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.87, y: 1.41, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
