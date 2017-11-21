@@ -11,7 +11,6 @@ namespace CameraControl
 	[RequireComponent(typeof(ThirdPersonCamera))]
 	[RequireComponent(typeof(CinematicCamera))]
 	[RequireComponent(typeof(AnimatedCamera))]
-	[RequireComponent(typeof(CameraShake))]
 	public class CameraStateController : Singleton<CameraStateController> 
 	{
 		// State definition
