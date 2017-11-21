@@ -18,7 +18,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
     
     private string emptyString = "";
     Collider m_ObjectCollider;
-    static int sceneIndex = 1;
+    public static int sceneIndex = 1;
     private bool addOnSceneIndex= true;
     private bool haveBeenTriggered = false;
 
@@ -91,6 +91,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
                     argument.intComponent = index;
                     eventManager.CallEvent(CustomEvent.LoadScene,argument);
                 }
+
             }
         
             if (addOnSceneIndex)

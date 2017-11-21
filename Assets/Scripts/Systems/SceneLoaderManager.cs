@@ -122,7 +122,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         if(argument.stringComponent == "restart" || argument.stringComponent == "Restart")
         {
             GameStateManager newRound = new GameStateManager();
-
+            ChangeSceneEmitter.sceneIndex = 1;
             if(GameStateManager.current != null)
             {
 			    newRound = GameStateManager.current;
