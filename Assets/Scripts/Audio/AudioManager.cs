@@ -16,7 +16,6 @@ public class AudioManager : Singleton<AudioManager> {
 	public float musicVolume = 100; 
 	private float swipePower; 
 
-
 	void Awake()
 	{
 		eventManager = EventManager.GetInstance();
@@ -40,7 +39,6 @@ public class AudioManager : Singleton<AudioManager> {
     {
         AkSoundEngine.SetRTPCValue("Music_Volume", newVolumn * 100);
     }
-
 		
 	//Calls when ever listened event is triggered 
 	void OnEnable () 
@@ -178,9 +176,7 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "IntroCutscene" && argument.intComponent == -1) 
 		{
-
 			AkSoundEngine.SetState("Music", "IntroCutscene"); 
-
 		}
 		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
 		{
@@ -197,6 +193,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 			AkSoundEngine.SetState("Music", "Crossroad"); 
+			print ("Crossroad bliver loadet"); 
 		}
 		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
 		{
