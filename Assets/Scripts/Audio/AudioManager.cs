@@ -74,11 +74,9 @@ public class AudioManager : Singleton<AudioManager> {
 		//Swipe
 		if (argument.eventComponent == CustomEvent.Swipe) 
 		{
-			//Debug.Log (argument.vectorComponent); 
-			swipePower = argument.vectorComponent.magnitude * 100; 
-			//Debug.Log (swipePower); 
-			AkSoundEngine.SetRTPCValue ("SwipePower", swipePower); 	
-			PlaySoundWC ("Play_GG_SD_Swipe_1"); 
+		swipePower = argument.vectorComponent.magnitude * 100; 
+		AkSoundEngine.SetRTPCValue ("SwipePower", swipePower); 	
+		PlaySoundWC ("Play_GG_SD_Swipe_1"); 
 		}
 		//Hold begin
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
@@ -142,7 +140,6 @@ public class AudioManager : Singleton<AudioManager> {
 				//Play_GG_SD_Sink_PH
 			}
 		}
-
 		
 	void ForeshadowPost(EventArgument argument)
 	{
@@ -167,8 +164,6 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-				//PlaySoundWC("Play_GG_SD_FSD_Bear");
-				//Maybe nothing should happen¨
 				PlaySoundWC("Play_GG_FSD_CR_1");
 			}
 	}
@@ -183,8 +178,7 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "IntroCutscene" && argument.intComponent == -1) 
 		{
-			//Do this
-			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
+
 			AkSoundEngine.SetState("Music", "IntroCutscene"); 
 
 		}
