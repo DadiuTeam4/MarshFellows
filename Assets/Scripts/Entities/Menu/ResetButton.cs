@@ -26,6 +26,7 @@ public class ResetButton : MonoBehaviour
 
     void UnloadAllScenes() 
     {
+		ChangeSceneEmitter.sceneIndex = 1;
 		int c = SceneManager.sceneCount;
 		for (int i = 0; i < c; i++)
 		{

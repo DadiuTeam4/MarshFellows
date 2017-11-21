@@ -28,6 +28,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
   m_IsActive: 1
+--- !u!1 &1178272833140914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4044298929794338}
+  m_Layer: 0
+  m_Name: ViewPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1367393392817352
 GameObject:
   m_ObjectHideFlags: 0
@@ -37,6 +52,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4671327688614898}
   - component: {fileID: 114966563948572644}
+  - component: {fileID: 95194141499579946}
+  - component: {fileID: 114678021483723528}
   m_Layer: 0
   m_Name: Shaman
   m_TagString: Untagged
@@ -59,6 +76,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 18
   m_IsActive: 1
+--- !u!4 &4044298929794338
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1178272833140914}
+  m_LocalRotation: {x: -0, y: 0.9977831, z: -0, w: 0.06654977}
+  m_LocalPosition: {x: 10.12, y: -2.083333, z: 10.07}
+  m_LocalScale: {x: 0.8333334, y: 0.83333325, z: 0.8333334}
+  m_Children: []
+  m_Father: {fileID: 4671327688614898}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4414155483293162
 Transform:
   m_ObjectHideFlags: 1
@@ -71,7 +101,7 @@ Transform:
   m_Children:
   - {fileID: 4933660879837028}
   m_Father: {fileID: 4671327688614898}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -178.57101, z: 0}
 --- !u!4 &4671327688614898
 Transform:
@@ -80,9 +110,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1367393392817352}
   m_LocalRotation: {x: -0, y: -0.9977831, z: -0, w: 0.06654977}
-  m_LocalPosition: {x: -1.83, y: 0.36, z: 1.7}
+  m_LocalPosition: {x: -0.56, y: 1.58, z: 4.16}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
+  - {fileID: 4044298929794338}
   - {fileID: 4414155483293162}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -113,7 +144,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 27a7da14948cfb84dbc472181b72666e, type: 2}
+  - {fileID: 2100000, guid: 6e68e47c85da81c42a681db4a7224f27, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,6 +170,47 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1139937560713260}
   m_Mesh: {fileID: 4300000, guid: 35aea271153556749b507d55c8d089a2, type: 3}
+--- !u!95 &95194141499579946
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1367393392817352}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: e6ef129d330f5ad47b95fc7386775a7a, type: 3}
+  m_Controller: {fileID: 9100000, guid: d6345807064479040a0defbab97a2d72, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114678021483723528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1367393392817352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f692385f76888f14da8038abaee0a626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayCastDistance: 40
+  checkPositions:
+  - {fileID: 4044298929794338}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  drawDebugRays: 1
+  checkFrequency: 1
+  falseMessage: shaman
+  trueMessage: shaman
+  callsExtra: 0
+  extraEventIfSameAsHiddenBool: 0
+  extraCall: 0
 --- !u!114 &114966563948572644
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,3 +222,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6053d5fd1dec36740acac357f1ec3da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventToBroadcastOn: 8
