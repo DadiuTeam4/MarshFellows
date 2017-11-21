@@ -183,6 +183,7 @@ public class AudioManager : Singleton<AudioManager> {
 			//Do this
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
+			print ("current scene: introoooo"); 
 		}
 		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
 		{
@@ -193,7 +194,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 			AkSoundEngine.SetState("Music", "Crossroad"); 
-			print ("Crossroad bliver loadet"); 
+			print ("Crossroad is current"); 
 		}
 		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
 		{
