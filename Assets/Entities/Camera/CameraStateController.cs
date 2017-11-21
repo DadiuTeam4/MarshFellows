@@ -1,5 +1,5 @@
 ﻿// Author: Mathias Dam Hedelund
-// Contributors: 
+// Contributors: Peter Jæger
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +10,7 @@ namespace CameraControl
 	// Dependencies
 	[RequireComponent(typeof(ThirdPersonCamera))]
 	[RequireComponent(typeof(CinematicCamera))]
+	[RequireComponent(typeof(AnimatedCamera))]
 	[RequireComponent(typeof(CameraShake))]
 	public class CameraStateController : Singleton<CameraStateController> 
 	{
@@ -17,7 +18,8 @@ namespace CameraControl
 		private enum CameraState
 		{
 			ThirdPerson,
-			Cinematic
+			Cinematic,
+			Animated
 		}
 
 		// Variables
@@ -29,6 +31,7 @@ namespace CameraControl
 		private CameraState currentState;
 		private ThirdPersonCamera thirdPersonCamera;
 		private CinematicCamera cinematicCamera;
+		private AnimatedCamera animatedCamera;
 		private EventManager eventManager;
 
 		void Awake()
@@ -37,6 +40,8 @@ namespace CameraControl
 			thirdPersonCamera = GetComponent<ThirdPersonCamera>();
 			cinematicCamera = GetComponent<CinematicCamera>();
 			cameraComponent = GetComponentInChildren<Camera>();
+			animatedCamera = GetComponent<AnimatedCamera>();
+
 
 			// Add event listeners
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
@@ -93,6 +98,7 @@ namespace CameraControl
 		{
 			thirdPersonCamera.SetActive(currentState == CameraState.ThirdPerson);
 			cinematicCamera.SetActive(currentState == CameraState.Cinematic);
+			animatedCamera.SetActive(currentState == CameraState.Animated);
 		}
 
 		public void SetTrackedObject(Transform obj)

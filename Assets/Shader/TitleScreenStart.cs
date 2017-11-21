@@ -32,17 +32,23 @@ public class TitleScreenStart : MonoBehaviour
 	eventManager = EventManager.GetInstance();
 	eventManager.AddListener(CustomEvent.ResetGame, Restarted);
 	eventManager.AddListener(CustomEvent.HiddenByFog, HiddenTest);
-	GlobalCam = GameObject.Find("CameraController");
 	FogCurtain.GetComponent<FogCurtain>().enabled = false;
-	
 	tF = fogDeer.GetComponent<TeachFog>();
+
+	firstPlay = GameStateManager.current.playedBefore;
 	
+	if(!firstPlay)
+	{
+		EventArgument argument = new EventArgument();
+		argument.stringComponent="IntroLevel";
+		argument.intComponent=1;
+		eventManager.CallEvent(CustomEvent.LoadScene, argument);
+	}
+
 	if(firstPlay)
 	{
 	fogDeer.SetActive(false);
 	tF.enabled = false;
-	camera.enabled = false;
-	GlobalCam.SetActive(false);
 	}
 
 	timer = 0.0f;
@@ -55,8 +61,7 @@ public class TitleScreenStart : MonoBehaviour
 			fogDeer.SetActive(true);
 			tF.enabled = true;
 			firstPlay = false;
-			//SceneManager.UnloadSceneAsync (CutsceneScene);
-			camera.enabled = true;
+
 			FogCurtain.GetComponent<FogCurtain>().enabled = true;
 			
 
@@ -72,8 +77,9 @@ public class TitleScreenStart : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		camera.enabled = false;
-		GlobalCam.SetActive(true);
+		
+		eventManager.CallEvent(CustomEvent.ScenarioEnded);
+
 		navMeshO = GameObject.Find("O").GetComponent<NavMeshAgent>();
 		navMeshP = GameObject.Find("P").GetComponent<NavMeshAgent>();
 
