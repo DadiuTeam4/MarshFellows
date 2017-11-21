@@ -799,6 +799,9 @@ GameObject:
   - component: {fileID: 4371829787374200}
   - component: {fileID: 114154318846445876}
   - component: {fileID: 114052568921735594}
+  - component: {fileID: 114062643019136808}
+  - component: {fileID: 114910973196278348}
+  - component: {fileID: 114246064457428016}
   m_Layer: 0
   m_Name: Shaman
   m_TagString: Untagged
@@ -5244,6 +5247,26 @@ MonoBehaviour:
   callsExtra: 0
   extraEventIfSameAsHiddenBool: 0
   extraCall: 0
+--- !u!114 &114062643019136808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1342423647084442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cd35d6f71c345509dc6bb009dbd51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_positionOffsetData:
+    positionOffset: {x: 0, y: 0, z: 0}
+    KeepMe: 0
+  isEnvironmentAware: 1
+  isStaticObject: 1
+  m_listeners:
+    initialListenerList: []
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!114 &114154318846445876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5256,6 +5279,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventToBroadcastOn: 8
+--- !u!114 &114246064457428016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1342423647084442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4464af31172401cab29a3b8ec9b987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  valueGuid: f3c5e7d9f437c54b9bc5fc13977b74e0
+  eventID: -362936402
+  soundEmitterObject: {fileID: 0}
+  enableActionOnEvent: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  transitionDuration: 0
+  m_callbackData: {fileID: 0}
+  playingId: 0
+--- !u!114 &114910973196278348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1342423647084442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4464af31172401cab29a3b8ec9b987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  valueGuid: 2730fb442cabd940bffcef7430b6783b
+  eventID: 53999030
+  soundEmitterObject: {fileID: 0}
+  enableActionOnEvent: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  transitionDuration: 0
+  m_callbackData: {fileID: 0}
+  playingId: 0
 --- !u!137 &137391516451731456
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
