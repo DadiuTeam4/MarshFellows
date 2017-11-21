@@ -22,10 +22,10 @@ public class IkHandler : MonoBehaviour {
 
     public float offsetY;
 
-    private float lookAtWeight;
-    private float headWeight;
-    private float bodyWeight;
-    private float clampWeight;
+    public float lookAtWeight;
+    public float headWeight;
+    public float bodyWeight;
+    public float clampWeight;
 
     public Transform lookPos;
 
@@ -80,6 +80,7 @@ public class IkHandler : MonoBehaviour {
 
     void OnAnimatorIK()
     {
+
         if (lookPos)
         {
             anim.SetLookAtPosition(lookPos.position);

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ce25d83894f12154d823246625e7f32d
-timeCreated: 1510217495
+guid: 947d70c39cf9a324192cd158e46c7a70
+timeCreated: 1510940727
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -110,15 +110,15 @@ ModelImporter:
     100204: bn_root
     100206: bn_spineA1
     100208: bn_spineB1
-    100210: global01
-    100212: //RootNode
+    100210: //RootNode
+    100212: global01
     100214: jDRV_l_foot
     100216: jDRV_l_heel
     100218: jDRV_l_toe
     100220: jDRV_r_foot
     100222: jDRV_r_heel
     100224: jDRV_r_toe
-    100226: Hunter01
+    100226: hunter01
     400000: anim_chest
     400002: anim_COG
     400004: anim_head
@@ -224,16 +224,16 @@ ModelImporter:
     400204: bn_root
     400206: bn_spineA1
     400208: bn_spineB1
-    400210: global01
-    400212: //RootNode
+    400210: //RootNode
+    400212: global01
     400214: jDRV_l_foot
     400216: jDRV_l_heel
     400218: jDRV_l_toe
     400220: jDRV_r_foot
     400222: jDRV_r_heel
     400224: jDRV_r_toe
-    400226: Hunter01
-    7400000: walk2
+    400226: hunter01
+    7400000: followerSit
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -248,13 +248,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'bn_pelvis' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 3
+    animationCompression: 0
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -263,10 +260,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: walk2
+      name: followerSit
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 30
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -275,12 +272,12 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 0
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
