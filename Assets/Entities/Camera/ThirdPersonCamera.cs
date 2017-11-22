@@ -85,14 +85,7 @@ namespace CameraControl
             if (obj != null)
             {
                 Debug.Log("Track " + obj.name);
-                if (trackedObject == null)
-                {
-                    trackedObject = obj;
-                }
-                else if (trackedObject != obj)
-                {
-                    trackedObject = obj;
-                }
+                trackedObject = obj;
             }
             else
             {
