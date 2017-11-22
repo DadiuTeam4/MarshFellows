@@ -24,7 +24,7 @@ public class CameraFocusObject : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.tag == "O" && mainCamera.GetTrackedObject() == transform)
+		if (other.gameObject.tag == "O")
 		{
 			mainCamera.SetTrackedObject(null);
 		}
