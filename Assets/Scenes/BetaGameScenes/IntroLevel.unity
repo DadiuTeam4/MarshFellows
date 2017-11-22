@@ -6885,8 +6885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeTime: 0.3
-  startPosX: 35
-  endPosX: 23
+  startPosX: 23
+  endPosX: 35
   jumpTime: 1.5
   speedCurve:
     serializedVersion: 2
@@ -6906,7 +6906,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  translateYAxis: 1
+  translateYAxis: 0
   maxHeight: 3
   yCurve:
     serializedVersion: 2
@@ -6926,7 +6926,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  timeBetweenJumps: 3
+  timeBetweenJumps: 2
 --- !u!1001 &182313345
 Prefab:
   m_ObjectHideFlags: 0
@@ -46881,13 +46881,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1192351427}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 1.72, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.6, y: 1.72, z: 0.397}
   m_LocalScale: {x: 0.6708594, y: 0.8137219, z: 0.8137219}
   m_Children: []
   m_Father: {fileID: 180576742}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!102 &1192351429
 TextMesh:
   serializedVersion: 3
@@ -46904,7 +46904,7 @@ TextMesh:
   m_TabSize: 4
   m_FontSize: 0
   m_FontStyle: 0
-  m_RichText: 1
+  m_RichText: 0
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
@@ -48531,14 +48531,14 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1015863553
+  randomSeed: -1407754693
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.8
       minScalar: 2
       maxCurve:
         serializedVersion: 2
@@ -48683,7 +48683,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 14
+      scalar: 4
       minScalar: 3
       maxCurve:
         serializedVersion: 2
@@ -48982,7 +48982,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 2, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 6, y: 4, z: 0}
+    m_Scale: {x: 4, y: 2, z: 0}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -60888,19 +60888,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4223305506890146, guid: a85e239f9b5d77740ab7bb521e86dcbd, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4223305506890146, guid: a85e239f9b5d77740ab7bb521e86dcbd, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4223305506890146, guid: a85e239f9b5d77740ab7bb521e86dcbd, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4223305506890146, guid: a85e239f9b5d77740ab7bb521e86dcbd, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4223305506890146, guid: a85e239f9b5d77740ab7bb521e86dcbd, type: 2}
       propertyPath: m_RootOrder
@@ -60965,6 +60965,10 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223305506890146, guid: a85e239f9b5d77740ab7bb521e86dcbd, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114757702703070324, guid: a85e239f9b5d77740ab7bb521e86dcbd, type: 2}
