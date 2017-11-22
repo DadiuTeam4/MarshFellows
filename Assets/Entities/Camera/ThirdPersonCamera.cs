@@ -81,11 +81,29 @@ namespace CameraControl
 
         public void SetTrackedObject(Transform obj)
         {
-            trackedObject = obj;
+
+            if (obj != null)
+            {
+                Debug.Log("Track " + obj.name);
+                if (trackedObject == null)
+                {
+                    trackedObject = obj;
+                }
+                else if (trackedObject != obj)
+                {
+                    trackedObject = obj;
+                }
+            }
+            else
+            {
+                trackedObject = null;
+                Debug.Log("Untrack!");
+            }
+
         }
 
         public Transform GetTrackedObject()
-		{
+        {
             return trackedObject;
         }
     }
