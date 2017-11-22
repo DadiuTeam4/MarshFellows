@@ -28,11 +28,12 @@ namespace AK
         static const AkUniqueID PLAY_GG_FSD_2 = 1046603869U;
         static const AkUniqueID PLAY_GG_FSD_3 = 1046603868U;
         static const AkUniqueID PLAY_GG_FSD_4_1 = 1855550475U;
+        static const AkUniqueID PLAY_GG_FSD_CHOIR = 4018210138U;
+        static const AkUniqueID PLAY_GG_FSD_SHAMAN_DRUM = 2322861418U;
         static const AkUniqueID PLAY_GG_MENU_CLICK = 3668079463U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
         static const AkUniqueID PLAY_GG_SD_CHOIR = 53999030U;
         static const AkUniqueID PLAY_GG_SD_MUD_SINK = 1993353133U;
-        static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
         static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
@@ -136,6 +137,7 @@ namespace AK
     {
         static const AkUniqueID DELAY = 357718954U;
         static const AkUniqueID EVIL = 4254973567U;
+        static const AkUniqueID OUTDOORDELAY = 642728512U;
         static const AkUniqueID REVERB = 348963605U;
     } // namespace AUX_BUSSES
 
