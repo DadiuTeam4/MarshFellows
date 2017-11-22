@@ -92,13 +92,27 @@ public class StateController : MonoBehaviour
 	{
 		if (nextState != currentState) 
 		{
-			previousState = currentState;
+            ClearEventState();
+            previousState = currentState;
 			currentState.OnStateExit(this);
             OnExitState();
             currentState = nextState;
 			currentState.OnStateEnter(this);
 		}
 	}
+
+    private void ClearEventState()
+    {
+        List<CustomEvent> keys = new List<CustomEvent>();
+        foreach(var item in triggeredEvents)
+        {
+            keys.Add(item.Key);
+        }
+        for(int i = 0; i < keys.Count; i++)
+        {
+            triggeredEvents[keys[i]] = false;
+        }
+    }
 
 	public void ReturnToPreviousState() 
 	{
