@@ -12,12 +12,17 @@ namespace CameraControl
 		public Vector3 fixedPosition;
 		public bool fixedCamera;
 		private Camera camera;
+
+		private Vector3 CurrentCameraPos;
 		// Use this for initialization
 		void Start () 
 		{
 			controller = CameraStateController.GetInstance();
 			animation = GetComponentInChildren<Animation>();
 			camera = GetComponentInChildren<Camera>();
+
+			CurrentCameraPos = camera.transform.localPosition;
+
 
 		}
 		
@@ -35,6 +40,10 @@ namespace CameraControl
 					camera.transform.position = fixedPosition;
 				}
 
+			}
+			else 
+			{
+				camera.transform.localPosition = CurrentCameraPos;
 			}
 		}
 
