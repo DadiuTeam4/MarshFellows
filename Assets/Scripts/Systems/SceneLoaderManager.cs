@@ -55,8 +55,8 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
         else
         {
-            argument.stringComponent = cutsceneName;
-             
+            argument.stringComponent = initialSceneName;
+
         }
 
         //loading first scene
