@@ -16,6 +16,7 @@ namespace CameraControl
         public float xRotation = 25;
 
         private Transform oTransform;
+        [SerializeField]
         private Transform trackedObject;
         private Vector3 startRotation;
         private float fogDensity = 0.07f;
