@@ -48,6 +48,9 @@ namespace CameraControl
 			// Field of view
 			float desiredFov = currentAnimation.GetFOV(progress);
 			controller.cameraComponent.fieldOfView = Mathf.Lerp(controller.cameraComponent.fieldOfView, desiredFov, Time.deltaTime * damping);
+
+			// Fog
+			RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, currentAnimation.fogDensity, Time.deltaTime * damping);
 		}
 
 		public void SetScenario(Scenario scenario, Vector3 scenarioStartPosition, Vector3 scenarioEndPosition)
