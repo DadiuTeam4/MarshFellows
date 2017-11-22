@@ -11,14 +11,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1933ed9f7ea767b49868d13d899a230e, type: 3}
   m_Name: Bear
   m_EditorClassIdentifier: 
+  followP: 0
   xPosition:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
-  trackHuntersX: 1
-  xDistanceMultiplier: -5
+    m_RotationOrder: 0
+  stickToHuntersX: 0
+  xDistanceMultiplier: 0
   xDistance:
     serializedVersion: 2
     m_Curve:
@@ -39,14 +52,6 @@ MonoBehaviour:
     m_RotationOrder: 0
   yPosition:
     serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  trackHuntersY: 1
-  yDistanceMultiplier: 6
-  yDistance:
-    serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
@@ -55,23 +60,17 @@ MonoBehaviour:
       outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 1.0040894
-      value: 0.8606262
+      time: 1
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  zPosition:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  trackHuntersZ: 1
-  zDistanceMultiplier: 30
-  zDistance:
+  stickToHuntersY: 0
+  yDistanceMultiplier: 1
+  yDistance:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
@@ -89,7 +88,53 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  center: {x: 0, y: 0, z: 0}
+  zPosition:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  stickToHuntersZ: 0
+  zDistanceMultiplier: 16
+  zDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.008711267
+      value: 1.4924545
+      inSlope: -2.6196096
+      outSlope: -2.6196096
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.98605347
+      value: 0.20336151
+      inSlope: -1.9612163
+      outSlope: -1.9612163
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  center: {x: 460, y: 30, z: -80}
   focusOnHuntersX: 1
   focusOnHuntersY: 1
   focusOnHuntersZ: 1
+  minFieldOfView: 25
+  maxFieldOfView: 25
+  fieldOfViewCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

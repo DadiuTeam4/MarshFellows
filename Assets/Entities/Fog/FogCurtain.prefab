@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1347928675786234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.71, z: -1.08}
+  m_LocalPosition: {x: 0, y: 0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4986007665040758}
@@ -125,8 +125,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1879967805694822}
-  m_LocalRotation: {x: -0, y: 0.22909383, z: -0, w: 0.97340435}
-  m_LocalPosition: {x: 5.3141017, y: 0.35, z: -46.628365}
+  m_LocalRotation: {x: -0, y: -0.6189655, z: -0, w: 0.78541815}
+  m_LocalPosition: {x: 42.77, y: -0.81000006, z: 30.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4156955124635660}
@@ -134,7 +134,7 @@ Transform:
   - {fileID: 4536152955879938}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -67.331, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -76.481, z: 0}
 --- !u!4 &4891061798742572
 Transform:
   m_ObjectHideFlags: 1
@@ -154,13 +154,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1853988035359740}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: -1.173, z: -1.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: -0.39703554, z: 0, w: 0.9178033}
+  m_LocalPosition: {x: -0.04, y: -1.173, z: 0.62}
+  m_LocalScale: {x: 0.5829131, y: 0.5829134, z: 1.1660966}
   m_Children: []
   m_Father: {fileID: 4536152955879938}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -46.786003, z: 0}
 --- !u!33 &33440274591435958
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -289,7 +289,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 787519245
+  randomSeed: -1541648714
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -379,7 +379,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.9084126, g: 0.9117647, b: 0.9050605, a: 0.878}
+      maxColor: {r: 1, g: 0.86815417, b: 0.52205884, a: 0.878}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1191,8 +1191,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 0.49803922}
-        key1: {r: 1, g: 1, b: 1, a: 0.75686276}
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0.8862745}
         key3: {r: 0, g: 0, b: 0, a: 0.3372549}
         key4: {r: 0, g: 0, b: 0, a: 0.3372549}
@@ -1208,7 +1208,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 13493
+        atime1: 65535
         atime2: 55512
         atime3: 65535
         atime4: 65535
@@ -1217,7 +1217,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 4
+        m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -3535,7 +3535,7 @@ ParticleSystemRenderer:
   m_LengthScale: 2
   m_SortingFudge: 0
   m_NormalDirection: 1
-  m_RenderAlignment: 1
+  m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304

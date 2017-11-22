@@ -26,26 +26,39 @@ public class TitleScreenStart : MonoBehaviour
 	private NavMeshAgent navMeshP;
 	private float speedAfterZone = 1.6f;
 
+	public GameObject hideable;
+
 	
 	// Use this for initialization
-	void Start () {
-	eventManager = EventManager.GetInstance();
-	eventManager.AddListener(CustomEvent.ResetGame, Restarted);
-	eventManager.AddListener(CustomEvent.HiddenByFog, HiddenTest);
-	GlobalCam = GameObject.Find("CameraController");
-	FogCurtain.GetComponent<FogCurtain>().enabled = false;
-	
-	tF = fogDeer.GetComponent<TeachFog>();
-	
-	if(firstPlay)
+	void Start () 
 	{
-	fogDeer.SetActive(false);
-	tF.enabled = false;
-	camera.enabled = false;
-	GlobalCam.SetActive(false);
-	}
+		eventManager = EventManager.GetInstance();
+		eventManager.AddListener(CustomEvent.ResetGame, Restarted);
+		eventManager.AddListener(CustomEvent.HiddenByFog, HiddenTest);
+		FogCurtain.GetComponent<FogCurtain>().enabled = false;
+		tF = fogDeer.GetComponentInChildren<TeachFog>();
+		navMeshO = GameObject.Find("O").GetComponent<NavMeshAgent>();
+		navMeshP = GameObject.Find("P").GetComponent<NavMeshAgent>();
+		navMeshO.speed = 0;
+		navMeshP.speed = 0;
 
-	timer = 0.0f;
+		firstPlay = true; //GameStateManager.current.playedBefore;
+		
+		if(!firstPlay)
+		{
+			EventArgument argument = new EventArgument();
+			argument.stringComponent="IntroLevel";
+			argument.intComponent=1;
+			eventManager.CallEvent(CustomEvent.LoadScene, argument);
+		}
+
+		if(firstPlay)
+		{
+			fogDeer.SetActive(false);
+			tF.enabled = false;
+		}
+
+		timer = 0.0f;
 	}
 	
 	// Update is called once per frame
@@ -55,8 +68,7 @@ public class TitleScreenStart : MonoBehaviour
 			fogDeer.SetActive(true);
 			tF.enabled = true;
 			firstPlay = false;
-			//SceneManager.UnloadSceneAsync (CutsceneScene);
-			camera.enabled = true;
+
 			FogCurtain.GetComponent<FogCurtain>().enabled = true;
 			
 
@@ -72,13 +84,15 @@ public class TitleScreenStart : MonoBehaviour
 
 	public void HiddenTest(EventArgument argument)
 	{
-		camera.enabled = false;
-		GlobalCam.SetActive(true);
+		if(argument.gameObjectComponent == hideable){
+		eventManager.CallEvent(CustomEvent.ScenarioEnded);
+
 		navMeshO = GameObject.Find("O").GetComponent<NavMeshAgent>();
 		navMeshP = GameObject.Find("P").GetComponent<NavMeshAgent>();
 
 		navMeshO.speed = speedAfterZone;
 		navMeshP.speed = speedAfterZone;
+		}
 						
 	}
 }

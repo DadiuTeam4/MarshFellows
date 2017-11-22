@@ -17,7 +17,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     EventManager eventManager;
     public string globalSceneName = "GlobalScene";  
     public string initialSceneName = "IntroLevel";
-    public string nameOfSceneToLoadAfterFirstRound = "IntroLevel";
+    public string cutsceneName = "IntroCutScene";
     public Vector3 respawnPosition;
     public string PsName = "P";
     public string OsName = "O";
@@ -41,26 +41,28 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         //load different level if it is a replay
         if(GameStateManager.current != null && GameStateManager.current.playedBefore)
         {
-            argument.stringComponent = nameOfSceneToLoadAfterFirstRound;
+            argument.stringComponent =  initialSceneName;
             GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
             if(respawnPosition != null && respawnPosition.magnitude != 0.0f && cpo != null)
             {
                 cpo.transform.position = respawnPosition;
+                Debug.Log("move");
             }
             if(fogOnRestart != null && cpo != null)
             {
                 Instantiate(fogOnRestart, new Vector3(cpo.transform.position.x,cpo.transform.position.y,cpo.transform.position.z+offsetForCreatingFog), cpo.transform.rotation);
-            }            
+            }  
         }
         else
         {
             argument.stringComponent = initialSceneName;
+
         }
 
         //loading first scene
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
-
+        Debug.Log(argument.stringComponent);
         AddUnlockables();
         
     }

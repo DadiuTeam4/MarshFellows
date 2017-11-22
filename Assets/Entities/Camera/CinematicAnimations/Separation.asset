@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1933ed9f7ea767b49868d13d899a230e, type: 3}
   m_Name: Separation
   m_EditorClassIdentifier: 
-  followP: 0
+  followP: 1
   xPosition:
     serializedVersion: 2
     m_Curve:
@@ -30,22 +30,58 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  stickToHuntersX: 0
-  xDistanceMultiplier: 0
+  stickToHuntersX: 1
+  xDistanceMultiplier: 5
   xDistance:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0.017421722
-      value: 0.27630615
-      inSlope: 2.713458
-      outSlope: 2.713458
+      time: 0
+      value: 0.9954834
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.9930088
-      value: 0.31842026
-      inSlope: -0.10796029
-      outSlope: -0.10796029
+      time: 0.20227093
+      value: 0.37303802
+      inSlope: -6.938716
+      outSlope: -6.938716
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.30812624
+      value: -0.82117945
+      inSlope: -1.5599039
+      outSlope: -1.5599039
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.49948278
+      value: -0.84096974
+      inSlope: 0.45921326
+      outSlope: 0.45921326
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.5773988
+      value: 0.15740173
+      inSlope: -0.987262
+      outSlope: -0.987262
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6894829
+      value: -0.84609246
+      inSlope: -2.750831
+      outSlope: -2.750831
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.80253035
+      value: 0.12474954
+      inSlope: -0.0059604645
+      outSlope: -0.0059604645
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: -1.0045166
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -54,10 +90,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0.004108429
-      value: 0.21603394
-      inSlope: 2
-      outSlope: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
       time: 1
@@ -68,28 +104,46 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  stickToHuntersY: 0
-  yDistanceMultiplier: 10
+  stickToHuntersY: 1
+  yDistanceMultiplier: 2.5
   yDistance:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: -0.09039577
-      value: 1.0254517
-      inSlope: -5.2226143
-      outSlope: -5.2226143
+      time: 0
+      value: 0.9998703
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.28602362
-      value: 1.2286875
-      inSlope: 2.7576306
-      outSlope: 2.7576306
+      time: 0.29752007
+      value: 1.0018451
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.90571594
-      value: 0.16724396
-      inSlope: -4.823752
-      outSlope: -4.823752
+      time: 0.4788588
+      value: 0.35944256
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.59283227
+      value: 0.41345626
+      inSlope: 1.1629663
+      outSlope: 1.1629663
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.6707989
+      value: 0.9998703
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0.9998703
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -112,13 +166,31 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  stickToHuntersZ: 0
-  zDistanceMultiplier: 0
+  stickToHuntersZ: 1
+  zDistanceMultiplier: -5
   zDistance:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.3939394
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.49406478
+      value: 0.36734128
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.58953166
       value: 1
       inSlope: 0
       outSlope: 0
@@ -136,6 +208,7 @@ MonoBehaviour:
   focusOnHuntersX: 1
   focusOnHuntersY: 1
   focusOnHuntersZ: 1
+  minFieldOfView: 45
   maxFieldOfView: 90
   fieldOfViewCurve:
     serializedVersion: 2
