@@ -177,6 +177,7 @@ public class AudioManager : Singleton<AudioManager> {
 	//Scene-loader 
 	void NewScene(EventArgument argument)
 	{
+        //Debug.Log(argument.stringComponent);
 		if (argument.stringComponent == "TittleScreen") 
 		{
 			//Do this

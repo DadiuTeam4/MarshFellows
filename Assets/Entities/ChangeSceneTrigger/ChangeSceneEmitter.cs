@@ -98,7 +98,7 @@ public class ChangeSceneEmitter : MonoBehaviour {
             {
                 stringComponent = gameObject.scene.name
             };
-            eventManager.CallEvent(CustomEvent.CurrentScene, argument);
+            eventManager.CallEvent(CustomEvent.CurrentScene, currentSceneArg);
             
             // Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
             Destroy(this.gameObject);
