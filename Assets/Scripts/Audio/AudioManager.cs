@@ -57,7 +57,7 @@ public class AudioManager : Singleton<AudioManager> {
 		// Scene-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
-		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
+		eventManager.AddListener (CustomEvent.CurrentScene, changeScene);
 		// Events triggered 
 		eventManager.AddListener (CustomEvent.SinkHasHappened, somethingSunk);
 		eventManager.AddListener (CustomEvent.FallHasHappend, somethingFall); 
@@ -177,68 +177,68 @@ public class AudioManager : Singleton<AudioManager> {
 	//Scene-loader 
 	void NewScene(EventArgument argument)
 	{
-		if (argument.stringComponent == "TittleScreen" && argument.intComponent == -1) 
+		if (argument.stringComponent == "TittleScreen") 
 		{
 			//Do this
 			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
 		}
-		if (argument.stringComponent == "IntroCutScene" && argument.intComponent == -1) 
+		if (argument.stringComponent == "IntroCutScene") 
 		{
 			//Do this 
 		}
-		if (argument.stringComponent == "IntroCutscene" && argument.intComponent == -1) 
+		if (argument.stringComponent == "IntroCutscene") 
 		{
 			AkSoundEngine.SetState("Music", "IntroCutscene"); 
 		}
-		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
+		if (argument.stringComponent == "IntroLevel") 
 		{
 			//Do this
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
 		}
-		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
+		if (argument.stringComponent == "Overture") 
 		{
 			//PlaySoundWC("Play_Overture"); 
 			//print ("OVERTURE"); 
 		}
-		if (argument.stringComponent == "Crossroads" && argument.intComponent == -1) 
+		if (argument.stringComponent == "Crossroads") 
 		{
 			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 			AkSoundEngine.SetState("Music", "Crossroad"); 
 			//print ("Crossroad is current"); 
 		}
-		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
+		if (argument.stringComponent == "LiO1") 
 		{
 			AkSoundEngine.SetState("Music", "O"); 
 		}
-		if (argument.stringComponent == "LiP1" && argument.intComponent == -1) 
+		if (argument.stringComponent == "LiP1") 
 		{
 			AkSoundEngine.SetState("Music", "P"); 
 		}
-		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "RitualEvent") 
 		{
 			//Mere spacey musik 
 			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
 			//PlaySoundWC("Play_GG_FSD_2"); 
 
 		}
-		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "SeperationEvent") 
 		{
 			//Do this
 			//AkSoundEngine.SetState("Music", "SC1A"); 
 
 			//Musik, der udtrykker seperation/ensomhed/etc
 		}
-		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "BearEvent") 
 		{
 			//Do this
 			//PlaySoundWC("Play_GG_SD_FSD_Bear");
 		}
-		if (argument.stringComponent == "DeerEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "DeerEvent") 
 		{
 			//Do this
 		}
-		if (argument.stringComponent == "BeachEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "BeachEvent") 
 		{
 			//Do this
 			//End music 
