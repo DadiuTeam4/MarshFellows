@@ -61,7 +61,7 @@ public class DeerAnimationController : MonoBehaviour
                 Vector3 v3Force = runSpeed * transform.forward;
                 rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
                 rb.AddForce(v3Force);
-                anim.SetFloat("deerSpeed", rb.velocity.magnitude);
+                anim.SetFloat("deerSpeed", 2);
                 Destroy(gameObject, secondsAfterRunningBeforeDeath);
             }
 
