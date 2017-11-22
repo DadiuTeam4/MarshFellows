@@ -21,7 +21,6 @@ public class EventOccured : Decision
 		{
 			return false;
 		}
-
         controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 
         if (eventName == CustomEvent.HiddenByFog && !controller.latestEventArgument.boolComponent)
