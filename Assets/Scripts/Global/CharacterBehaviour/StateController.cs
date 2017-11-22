@@ -93,6 +93,7 @@ public class StateController : MonoBehaviour
 		if (nextState != currentState) 
 		{
             ClearEventState();
+            ResetStateTimer();
             previousState = currentState;
 			currentState.OnStateExit(this);
             OnExitState();

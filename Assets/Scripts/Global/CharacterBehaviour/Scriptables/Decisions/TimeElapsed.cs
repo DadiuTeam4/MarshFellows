@@ -31,7 +31,6 @@ public class TimeElapsed : Decision
 		}
 		else 
 		{
-			controller.ResetStateTimer();
 			return false;
 		}
 	}
