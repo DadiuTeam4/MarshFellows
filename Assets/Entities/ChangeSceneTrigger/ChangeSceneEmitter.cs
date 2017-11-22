@@ -94,18 +94,19 @@ public class ChangeSceneEmitter : MonoBehaviour {
 
             }
         
-            if (addOnSceneIndex)
+            /* if (addOnSceneIndex)
             {
                 argument.stringComponent = SceneManager.GetSceneAt(sceneIndex).name;
+                print("B: Loading scene: " + argument.stringComponent);
                 argument.intComponent = -1;
                 eventManager.CallEvent(CustomEvent.LoadScene,argument);
                 sceneIndex++;
                 addOnSceneIndex = false;
-            }
+            } */
 
 
 
-            Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
+            // Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
             Destroy(this.gameObject);
 
             haveBeenTriggered = true;
