@@ -18,6 +18,7 @@ namespace CameraControl
         private Transform oTransform;
         private Transform trackedObject;
         private Vector3 startRotation;
+        private float fogDensity = 0.07f;
 
         private void Start()
         {
@@ -64,6 +65,9 @@ namespace CameraControl
             {
                 controller.cameraComponent.fieldOfView = Mathf.Lerp(controller.cameraComponent.fieldOfView, fieldOfView, Time.deltaTime);
             }
+
+            // Fog
+            RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDensity, Time.deltaTime);
         }
 
         private Vector3 GetDesiredPosition(float yRotation)
