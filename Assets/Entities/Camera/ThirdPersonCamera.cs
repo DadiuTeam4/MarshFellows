@@ -17,14 +17,12 @@ namespace CameraControl
 
         private Transform oTransform;
         private Transform trackedObject;
-        private Vector3 offset;
         private Vector3 startRotation;
 
         private void Start()
         {
             controller = CameraStateController.GetInstance();
             InitTargets();
-            offset = transform.position - oTransform.position + (0.5f * (pTransform.position - oTransform.position));
             startRotation = transform.eulerAngles;
         }
 
@@ -43,7 +41,6 @@ namespace CameraControl
 
         protected override void UpdatePosition()
         {
-            //controller.cameraRig.localPosition = adjustableOffset;
             Quaternion rotation = Quaternion.identity;
             if (!trackedObject)
             {
