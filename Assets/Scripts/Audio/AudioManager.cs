@@ -164,6 +164,14 @@ public class AudioManager : Singleton<AudioManager> {
 			{
 			//crossroad 
 			}
+			if(argument.stringComponent == "Missout1")
+			{
+			PlaySoundWC ("Play_GG_FSD_Choir"); 
+			}
+			if(argument.stringComponent == "Missout2")
+			{
+			PlaySoundWC ("Play_GG_FSD_Shaman_Drum"); 
+			}
 	}
 
 	//Scene-loader 
