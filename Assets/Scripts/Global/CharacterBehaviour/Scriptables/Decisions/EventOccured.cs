@@ -17,7 +17,7 @@ public class EventOccured : Decision
 	{
 		eventOccured = controller.CheckEventOccured(eventName);
 
-		if (!eventOccured)
+        if (!eventOccured)
 		{
 			return false;
 		}
