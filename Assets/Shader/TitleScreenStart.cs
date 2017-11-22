@@ -15,8 +15,6 @@ public class TitleScreenStart : MonoBehaviour
 	TeachFog tF;
 	public float delay;
 	float timer;
-	public Camera camera;
-	public GameObject GlobalCam;
 	EventManager eventManager;
 	private EventDelegate eventDelegate;
 
