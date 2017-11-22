@@ -17,6 +17,7 @@ namespace AK
         static const AkUniqueID MENU_FADEVOLUMEUP = 2472021264U;
         static const AkUniqueID MUTEALL = 2308878679U;
         static const AkUniqueID PAUSE_MUSIC = 2735935537U;
+        static const AkUniqueID PLAY_AMBIENCE = 278617630U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
@@ -50,6 +51,19 @@ namespace AK
 
     namespace STATES
     {
+        namespace AMBIENCE
+        {
+            static const AkUniqueID GROUP = 85412153U;
+
+            namespace STATE
+            {
+                static const AkUniqueID BETWEENFORREST = 2244990470U;
+                static const AkUniqueID BYWATER = 1689379159U;
+                static const AkUniqueID FORREST = 760316600U;
+                static const AkUniqueID MEDIUMOPEN = 2581413256U;
+            } // namespace STATE
+        } // namespace AMBIENCE
+
         namespace MUSIC
         {
             static const AkUniqueID GROUP = 3991942870U;
