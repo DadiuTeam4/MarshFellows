@@ -8,36 +8,32 @@ namespace CameraControl
 {
 	public class AnimatedCamera : BaseCamera
 	{
-		Animation animation;
+		
 		public Vector3 fixedPosition;
 		public bool fixedCamera;
-		private Camera camera;
-		// Use this for initialization
+
+		private Animation animation;
+		private Vector3 CurrentCameraPos;
+
 		void Start () 
 		{
 			controller = CameraStateController.GetInstance();
 			animation = GetComponentInChildren<Animation>();
-			camera = GetComponentInChildren<Camera>();
-
 		}
 		
-		// Update is called once per frame
-		void Update () 
+		void LateUpdate()
 		{
 			if(active)
 			{
 				if(!fixedCamera)
 				{
-				animation.Play();
+					animation.Play();
 				}
 				if(fixedCamera)
 				{
-					camera.transform.position = fixedPosition;
+					transform.position = fixedPosition;
 				}
-
 			}
 		}
-
-
 	}
 }

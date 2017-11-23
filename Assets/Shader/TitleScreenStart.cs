@@ -15,8 +15,6 @@ public class TitleScreenStart : MonoBehaviour
 	TeachFog tF;
 	public float delay;
 	float timer;
-	public Camera camera;
-	public GameObject GlobalCam;
 	EventManager eventManager;
 	private EventDelegate eventDelegate;
 
@@ -30,36 +28,35 @@ public class TitleScreenStart : MonoBehaviour
 
 	
 	// Use this for initialization
-	void Start () {
-	eventManager = EventManager.GetInstance();
-	eventManager.AddListener(CustomEvent.ResetGame, Restarted);
-	eventManager.AddListener(CustomEvent.HiddenByFog, HiddenTest);
-	FogCurtain.GetComponent<FogCurtain>().enabled = false;
-	tF = fogDeer.GetComponent<TeachFog>();
-
-	firstPlay = false; //GameStateManager.current.playedBefore;
-	
-	if(!firstPlay)
+	void Start () 
 	{
-		EventArgument argument = new EventArgument();
-		argument.stringComponent="IntroLevel";
-		argument.intComponent=1;
-		eventManager.CallEvent(CustomEvent.LoadScene, argument);
+		eventManager = EventManager.GetInstance();
+		eventManager.AddListener(CustomEvent.ResetGame, Restarted);
+		eventManager.AddListener(CustomEvent.HiddenByFog, HiddenTest);
+		FogCurtain.GetComponent<FogCurtain>().enabled = false;
+		tF = fogDeer.GetComponentInChildren<TeachFog>();
 		navMeshO = GameObject.Find("O").GetComponent<NavMeshAgent>();
 		navMeshP = GameObject.Find("P").GetComponent<NavMeshAgent>();
-
 		navMeshO.speed = 0;
 		navMeshP.speed = 0;
-	}
 
-	if(firstPlay)
-	{
-	fogDeer.SetActive(false);
-	tF.enabled = false;
+		firstPlay = true; //GameStateManager.current.playedBefore;
+		
+		if(!firstPlay)
+		{
+			EventArgument argument = new EventArgument();
+			argument.stringComponent="IntroLevel";
+			argument.intComponent=1;
+			eventManager.CallEvent(CustomEvent.LoadScene, argument);
+		}
 
-	}
+		if(firstPlay)
+		{
+			fogDeer.SetActive(false);
+			tF.enabled = false;
+		}
 
-	timer = 0.0f;
+		timer = 0.0f;
 	}
 	
 	// Update is called once per frame

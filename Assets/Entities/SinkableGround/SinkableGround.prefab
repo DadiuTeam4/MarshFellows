@@ -29,7 +29,7 @@ GameObject:
   m_Name: SinkableGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 26
   m_IsActive: 1
 --- !u!1 &1811112409532174
@@ -45,7 +45,7 @@ GameObject:
   m_Name: MeshCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 26
   m_IsActive: 1
 --- !u!4 &4368338215624784
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1811112409532174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4391696502395542}
@@ -67,14 +67,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1480272107485858}
-  m_LocalRotation: {x: -0, y: 0.7086271, z: -0, w: 0.7055833}
-  m_LocalPosition: {x: 32.13, y: 0, z: -52.21}
-  m_LocalScale: {x: 1.6350001, y: 1.6349982, z: 1.6349984}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.88, y: 0.22, z: 16.76}
+  m_LocalScale: {x: 1.9718716, y: 1.929505, z: 2.0449088}
   m_Children:
   - {fileID: 4368338215624784}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90.247, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -81.37701, z: 0}
 --- !u!23 &23060603152995176
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -155,14 +155,14 @@ MonoBehaviour:
   updateSinkPoints: 1
   minimumTouchDistance: 1
   updateRate: 1
-  placeObstacles: 1
+  placeObstacles: 0
   obstacleRadius: 2
-  sinkSpeed: 0.02
+  sinkSpeed: 0.175
   sinkDelay: 0
-  radius: 2
+  radius: 1.5
   depth: 10
   riseSpeed: 0.02
-  riseDelay: 60
+  riseDelay: 30
   callExtra: 0
   extraEvent: 0
 --- !u!198 &198064261773117398
@@ -224,7 +224,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 134795863
+  randomSeed: 223703935
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -314,7 +314,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.8352941, b: 0.54509807, a: 0.8784314}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
