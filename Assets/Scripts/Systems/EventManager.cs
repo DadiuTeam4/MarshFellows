@@ -40,6 +40,7 @@ namespace Events
 		ScenarioTriggerEntered = 28,
 		GameStarted = 29, /* Called when the first fog curtain is swiped away */
 		FallHasHappend = 30,
+		AudioTrigger = 31,
         CurrentScene = 100,
         BearScared = 200
 	}
