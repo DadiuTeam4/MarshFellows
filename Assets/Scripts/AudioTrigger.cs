@@ -19,6 +19,7 @@ public class AudioTrigger : MonoBehaviour {
 			argument.stringComponent = locationOFTrigger;
 			
 			eventManager.CallEvent(CustomEvent.AudioTrigger,argument);
+			haveBeenTriggered =true;
 
 		}
 	}
