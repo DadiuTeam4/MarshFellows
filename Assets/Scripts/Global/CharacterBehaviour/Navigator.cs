@@ -71,7 +71,7 @@ public class Navigator : MonoBehaviour
 	{
 		if (destination == null)
 		{
-			Debug.LogError("Destination(transform) is null!");
+			return;
 		}
 		else
 		{
