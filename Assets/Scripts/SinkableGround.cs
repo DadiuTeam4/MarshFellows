@@ -182,10 +182,18 @@ public class SinkableGround : Holdable
 	private void MakeObstacle()
 	{
 		OrderPairList(ref nearestPoints);
-		Vector3 obstaclePosition = transform.TransformPoint(originalVerticePositions[nearestPoints[0].GetFirst()]);
-		if (verticeObstacles[nearestPoints[0].GetFirst()] == null){
-			verticeObstacles[nearestPoints[0].GetFirst()] = new Obstacle(obstaclePosition, obstacleRadius);
-			verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform.GetChild(0));
+		if (nearestPoints.Count == 0)
+        { 
+			return;
+		}
+		else
+		{
+			Vector3 obstaclePosition = transform.TransformPoint(originalVerticePositions[nearestPoints[0].GetFirst()]);
+			if (verticeObstacles[nearestPoints[0].GetFirst()] == null)
+			{
+				verticeObstacles[nearestPoints[0].GetFirst()] = new Obstacle(obstaclePosition, obstacleRadius);
+				verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform.GetChild(0));
+			}
 		}
 	}
 
