@@ -45,7 +45,7 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper;
-		EventDelegate changeScene = NewScene; 
+		EventDelegate audioTriggered = PlacementTrigger; 
 		EventDelegate somethingSunk = SunkAction;
 		EventDelegate somethingFall = FallAction; 
 		EventDelegate foreshadow = ForeshadowPost; 
@@ -56,7 +56,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		// Scene-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
-		eventManager.AddListener (CustomEvent.AudioTrigger, changeScene); 
+		eventManager.AddListener (CustomEvent.AudioTrigger, audioTriggered); 
 		// Events triggered 
 		eventManager.AddListener (CustomEvent.SinkHasHappened, somethingSunk);
 		eventManager.AddListener (CustomEvent.FallHasHappend, somethingFall); 
@@ -170,13 +170,12 @@ public class AudioManager : Singleton<AudioManager> {
 	}
 
 	//Scene-loader 
-	void NewScene(EventArgument argument)
+	void PlacementTrigger(EventArgument argument)
 	{
         //Debug.Log(argument.stringComponent);
 		if (argument.stringComponent == "TittleScreen") 
 		{
-			//Do this
-			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
+			//
 		}
 		if (argument.stringComponent == "IntroCutScene") 
 		{
@@ -188,20 +187,16 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "IntroLevel") 
 		{
-			//Do this
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
 		}
 		if (argument.stringComponent == "Overture") 
 		{
-			//PlaySoundWC("Play_Overture"); 
-			//print ("OVERTURE"); 
+			//
 		}
 		if (argument.stringComponent == "Crossroads") 
 		{
-			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 			AkSoundEngine.SetState("Music", "Crossroad"); 
-			//print ("Crossroad is current"); 
 		}
 		if (argument.stringComponent == "LiO1") 
 		{
@@ -213,35 +208,27 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "RitualEvent") 
 		{
-			//Mere spacey musik 
-			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
-			//PlaySoundWC("Play_GG_FSD_2"); 
-
+			//
 		}
 		if (argument.stringComponent == "SeperationEvent") 
 		{
-			//Do this
-			//AkSoundEngine.SetState("Music", "SC1A"); 
-			//Musik, der udtrykker seperation/ensomhed/etc
+			//
 		}
 		if (argument.stringComponent == "BearEvent") 
 		{
-			//Do this
-			//PlaySoundWC("Play_GG_SD_FSD_Bear");
+			//
 		}
 		if (argument.stringComponent == "DeerEvent") 
 		{
-			//Do this
+			//
 		}
 		if (argument.stringComponent == "BeachEvent") 
 		{
-			//Do this
-			//End music 
+			//
 		}
 		if (argument.stringComponent == "Restart") 
 		{
-			//Do this
-			//Restart 
+			//Restart
 			StopSound ("Stop_All"); 
 		}
 	}
