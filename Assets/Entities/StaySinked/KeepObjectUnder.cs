@@ -29,7 +29,7 @@ public class KeepObjectUnder : MonoBehaviour
 
                 EventArgument argument = new EventArgument();
 
-                argument.stringComponent = sinked.typeOfSinkable;
+                argument.stringComponent = sinked.GetTypeStringValue(sinked.objectType);
 
                 argument.gameObjectComponent = other.gameObject;
 
