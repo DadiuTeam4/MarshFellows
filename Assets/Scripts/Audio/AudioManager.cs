@@ -23,9 +23,9 @@ public class AudioManager : Singleton<AudioManager> {
 
 	void Start()
 	{
-		//If Scene is this...
 		groundLayer = "Swamp";
-		PlaySound("Play_GG_Ambience_Open_1"); 
+		AkSoundEngine.SetState ("Ambience", "MediumOpen"); 
+		PlaySound("Play_Ambience"); 
 	}
 
 	//SFX
@@ -81,11 +81,6 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
-		//Apple 
-		if (argument.eventComponent == CustomEvent.AppleFall) 
-		{
-			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
-		}	
 	}
 
 	//Event stopper 
@@ -105,10 +100,9 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 	}
 
+	//Sinked objects 
 	void SunkAction(EventArgument argument)
 	{
-		//argument.gameObjectComponent;
-
 		if(argument.stringComponent == "Tree")
 		{
 			PlaySoundWCOtherScript ("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
@@ -123,9 +117,10 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 	}
 
+		//Fallen objects
 		void FallAction(EventArgument argument)
 		{
-				if(argument.stringComponent == "Tree")
+			if(argument.stringComponent == "Tree")
 			{
 			PlaySoundWCOtherScript ("Play_GG_SD_Tree_Fall", argument.gameObjectComponent); 
 			}
@@ -139,6 +134,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 		}
 		
+	//Foreshadowing
 	void ForeshadowPost(EventArgument argument)
 	{
 		//Travel of P 
@@ -227,7 +223,6 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Do this
 			//AkSoundEngine.SetState("Music", "SC1A"); 
-
 			//Musik, der udtrykker seperation/ensomhed/etc
 		}
 		if (argument.stringComponent == "BearEvent") 
@@ -252,6 +247,7 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 	}
 
+	//Footsteps + layer
 	public void Footstep()
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
@@ -290,7 +286,6 @@ public class AudioManager : Singleton<AudioManager> {
 		soundName = string.Concat ("", soundName, ""); 
 		eventID = AkSoundEngine.PostEvent (soundName, thisthisthis); 
 	}
-
 		
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)
