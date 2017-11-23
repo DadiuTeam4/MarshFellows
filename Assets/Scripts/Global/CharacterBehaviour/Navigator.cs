@@ -69,8 +69,16 @@ public class Navigator : MonoBehaviour
 
 	public void SetDestination(Transform destination) 
 	{
-		currentWaypoint = destination;
-		navMeshAgent.SetDestination(destination.position);
+		if (destination == null)
+		{
+			Debug.LogError("Destination(transform) is null!");
+		}
+		else
+		{
+			currentWaypoint = destination;
+			navMeshAgent.SetDestination(destination.position);
+		}
+		
 		#region DEBUG
 		#if UNITY_EDITOR
 		if (drawPath)

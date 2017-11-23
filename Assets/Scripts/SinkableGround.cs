@@ -199,8 +199,11 @@ public class SinkableGround : Holdable
 		if (Time.frameCount % updateRate == 0)
 		{
 			currentVertices = mesh.vertices;
-
-			if(Vector3.Distance(currentVertices[nearestPoints[0].GetFirst()], originalVerticePositions[nearestPoints[0].GetFirst()]) < depth)
+			if (nearestPoints.Count == 0)
+            { 
+				return;
+			}
+			else if(Vector3.Distance(currentVertices[nearestPoints[0].GetFirst()], originalVerticePositions[nearestPoints[0].GetFirst()]) < depth)
 			{
 				foreach (Pair<int, float> pair in nearestPoints)
 				{
