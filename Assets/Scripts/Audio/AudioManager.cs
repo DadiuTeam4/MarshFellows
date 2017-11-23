@@ -56,8 +56,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
 		// Scene-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
-		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
-		eventManager.AddListener (CustomEvent.CurrentScene, changeScene);
+		eventManager.AddListener (CustomEvent.AudioTrigger, changeScene); 
 		// Events triggered 
 		eventManager.AddListener (CustomEvent.SinkHasHappened, somethingSunk);
 		eventManager.AddListener (CustomEvent.FallHasHappend, somethingFall); 

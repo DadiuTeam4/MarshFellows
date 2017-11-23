@@ -16,6 +16,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     
     EventManager eventManager;
     public string globalSceneName = "GlobalScene";  
+    public string audioSceneName = "AudioScene";
     public string initialSceneName = "IntroLevel";
     public string cutsceneName = "IntroCutScene";
     public Vector3 respawnPosition;
@@ -62,7 +63,12 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         //loading first scene
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
-        Debug.Log(argument.stringComponent);
+
+
+        argument.stringComponent = audioSceneName;
+        argument.intComponent = 1;
+        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+
         AddUnlockables();
         
     }
