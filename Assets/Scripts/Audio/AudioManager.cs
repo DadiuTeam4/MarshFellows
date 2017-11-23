@@ -8,16 +8,21 @@ using Events;
 
 public class AudioManager : Singleton<AudioManager> {
 
+	private GlobalConstantsManager constantsManager;
 	private EventManager eventManager;
 	private Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
 	private uint eventID; 
 	public string groundLayer;
-	public float sfxVolume = 100; 
-	public float musicVolume = 100; 
+	public float sfxVolume; 
+	public float musicVolume; 
 	private float swipePower; 
 
 	void Awake()
 	{
+		constantsManager = GlobalConstantsManager.GetInstance();
+		sfxVolume = constantsManager.constants.sfxVolume; 
+		musicVolume = constantsManager.constants.musicVolume;
+
 		eventManager = EventManager.GetInstance();
 	}
 
