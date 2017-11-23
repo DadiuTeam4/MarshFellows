@@ -41,13 +41,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         //load different level if it is a replay
         if(GameStateManager.current != null && GameStateManager.current.playedBefore)
         {
-            argument.stringComponent = cutsceneName;
-         
-        }
-        else
-        {
-            argument.stringComponent = initialSceneName;
-            
+            argument.stringComponent =  initialSceneName;
             GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
             if(respawnPosition != null && respawnPosition.magnitude != 0.0f && cpo != null)
             {
@@ -57,7 +51,12 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             if(fogOnRestart != null && cpo != null)
             {
                 Instantiate(fogOnRestart, new Vector3(cpo.transform.position.x,cpo.transform.position.y,cpo.transform.position.z+offsetForCreatingFog), cpo.transform.rotation);
-            }   
+            }  
+        }
+        else
+        {
+            argument.stringComponent = initialSceneName;
+
         }
 
         //loading first scene
@@ -125,7 +124,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         if(argument.stringComponent == "restart" || argument.stringComponent == "Restart")
         {
             GameStateManager newRound = new GameStateManager();
-            ChangeSceneEmitter.sceneIndex = 1;
             if(GameStateManager.current != null)
             {
 			    newRound = GameStateManager.current;
@@ -137,6 +135,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
             SaveLoadManager.Save();
             UnloadAllScenes("");
+            eventManager.CallEvent(CustomEvent.ResetGame);
             SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
             return;
         }

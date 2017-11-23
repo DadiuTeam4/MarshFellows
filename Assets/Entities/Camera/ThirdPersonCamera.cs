@@ -13,17 +13,18 @@ namespace CameraControl
         public float rotationDamping = 1;
         public bool isFollowingCenter = true;
         public float fieldOfView = 45;
+        public float xRotation = 25;
 
         private Transform oTransform;
+        [SerializeField]
         private Transform trackedObject;
-        private Vector3 offset;
         private Vector3 startRotation;
+        private float fogDensity = 0.07f;
 
         private void Start()
         {
             controller = CameraStateController.GetInstance();
             InitTargets();
-            offset = transform.position - oTransform.position + (0.5f * (pTransform.position - oTransform.position));
             startRotation = transform.eulerAngles;
         }
 
@@ -42,14 +43,13 @@ namespace CameraControl
 
         protected override void UpdatePosition()
         {
-            //controller.cameraRig.localPosition = adjustableOffset;
             Quaternion rotation = Quaternion.identity;
             if (!trackedObject)
             {
                 float currentAngle = transform.eulerAngles.y;
                 float desiredAngle = pTransform.eulerAngles.y;
                 float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
-                rotation = Quaternion.Euler(startRotation.x, angle, startRotation.z);
+                rotation = Quaternion.Euler(xRotation, angle, startRotation.z);
             }
             else
             {
@@ -66,6 +66,9 @@ namespace CameraControl
             {
                 controller.cameraComponent.fieldOfView = Mathf.Lerp(controller.cameraComponent.fieldOfView, fieldOfView, Time.deltaTime);
             }
+
+            // Fog
+            RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDensity, Time.deltaTime);
         }
 
         private Vector3 GetDesiredPosition(float yRotation)

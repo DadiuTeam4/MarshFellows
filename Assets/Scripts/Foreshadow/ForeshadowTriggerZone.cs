@@ -7,7 +7,7 @@ using UnityEngine;
 
 using Events;
 
-public enum ForeshadowEvents {Scena1,Scena2,Scena3,Scena4,Crossroad}
+public enum ForeshadowEvents {Scena1,Scena2,Scena3,Scena4,Crossroad,Missout1,Missout2}
 
 public class ForeshadowTriggerZone : MonoBehaviour
 {

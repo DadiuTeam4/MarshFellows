@@ -17,6 +17,7 @@ namespace AK
         static const AkUniqueID MENU_FADEVOLUMEUP = 2472021264U;
         static const AkUniqueID MUTEALL = 2308878679U;
         static const AkUniqueID PAUSE_MUSIC = 2735935537U;
+        static const AkUniqueID PLAY_AMBIENCE = 278617630U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
@@ -27,11 +28,12 @@ namespace AK
         static const AkUniqueID PLAY_GG_FSD_2 = 1046603869U;
         static const AkUniqueID PLAY_GG_FSD_3 = 1046603868U;
         static const AkUniqueID PLAY_GG_FSD_4_1 = 1855550475U;
+        static const AkUniqueID PLAY_GG_FSD_CHOIR = 4018210138U;
+        static const AkUniqueID PLAY_GG_FSD_SHAMAN_DRUM = 2322861418U;
         static const AkUniqueID PLAY_GG_MENU_CLICK = 3668079463U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
         static const AkUniqueID PLAY_GG_SD_CHOIR = 53999030U;
         static const AkUniqueID PLAY_GG_SD_MUD_SINK = 1993353133U;
-        static const AkUniqueID PLAY_GG_SD_SHAKE_1 = 2246671041U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
         static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
@@ -50,6 +52,19 @@ namespace AK
 
     namespace STATES
     {
+        namespace AMBIENCE
+        {
+            static const AkUniqueID GROUP = 85412153U;
+
+            namespace STATE
+            {
+                static const AkUniqueID BETWEENFORREST = 2244990470U;
+                static const AkUniqueID BYWATER = 1689379159U;
+                static const AkUniqueID FORREST = 760316600U;
+                static const AkUniqueID MEDIUMOPEN = 2581413256U;
+            } // namespace STATE
+        } // namespace AMBIENCE
+
         namespace MUSIC
         {
             static const AkUniqueID GROUP = 3991942870U;
@@ -122,6 +137,7 @@ namespace AK
     {
         static const AkUniqueID DELAY = 357718954U;
         static const AkUniqueID EVIL = 4254973567U;
+        static const AkUniqueID OUTDOORDELAY = 642728512U;
         static const AkUniqueID REVERB = 348963605U;
     } // namespace AUX_BUSSES
 
