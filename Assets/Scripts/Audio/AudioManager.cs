@@ -158,7 +158,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Scena3")
 			{
-				PlaySoundWC ("Play_FSD_3"); 
+				PlaySoundWC ("Play_GG_FSD_3"); 
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
