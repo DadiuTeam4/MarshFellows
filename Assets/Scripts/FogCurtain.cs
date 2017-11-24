@@ -79,12 +79,10 @@ public class FogCurtain : Swipeable
 			{
 				if (dot > 0.0f)
 				{
-					Debug.Log("Left " + dot + " - " + direction);
 					glideCoroutine = GlideT(-1);
 				}
 				else if (dot < 0.0f)
 				{
-					Debug.Log("Right " + dot + " - " + direction);
 					glideCoroutine = GlideT(1);
 				}
 				
