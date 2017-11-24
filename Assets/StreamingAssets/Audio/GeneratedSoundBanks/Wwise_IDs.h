@@ -22,7 +22,6 @@ namespace AK
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
         static const AkUniqueID PLAY_FS = 2262856515U;
-        static const AkUniqueID PLAY_GG_AMBIENCE_OPEN_1 = 1492968614U;
         static const AkUniqueID PLAY_GG_AMBIENCE_WATER = 3361606695U;
         static const AkUniqueID PLAY_GG_FSD_1 = 1046603870U;
         static const AkUniqueID PLAY_GG_FSD_2 = 1046603869U;

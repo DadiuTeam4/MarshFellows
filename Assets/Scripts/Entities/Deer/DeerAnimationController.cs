@@ -30,6 +30,7 @@ public class DeerAnimationController : MonoBehaviour
     [SerializeField]
     private float runSpeed = 100.0f;
 
+    private IkHandlerGeneric ikDeer;
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -37,6 +38,8 @@ public class DeerAnimationController : MonoBehaviour
 
         eventDelegate = HiddenTest;
         EventManager.GetInstance().AddListener(CustomEvent.HiddenByFog, eventDelegate);
+        anim.SetFloat("deerSpeed", 0);
+        ikDeer = GetComponent<IkHandlerGeneric>();
     }
 
     // Update is called once per frame
@@ -52,6 +55,10 @@ public class DeerAnimationController : MonoBehaviour
                 currentTime = Time.time;
                 found = false;
                 run = true;
+                if (ikDeer)
+                {
+                    ikDeer.LookAtHunters();
+                }
             }
 
             if ((currentTime + stateInfo.length + runDelay) < Time.time && run)
@@ -62,6 +69,10 @@ public class DeerAnimationController : MonoBehaviour
                 rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
                 rb.AddForce(v3Force);
                 anim.SetFloat("deerSpeed", 2);
+                if (ikDeer)
+                {
+                    ikDeer.LookForward();
+                }
                 Destroy(gameObject, secondsAfterRunningBeforeDeath);
             }
 
