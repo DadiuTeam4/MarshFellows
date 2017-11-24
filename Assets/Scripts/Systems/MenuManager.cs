@@ -1,5 +1,5 @@
 ﻿// Author: Itai Yavin
-// Contributors: Kristian Riis
+// Contributors: Kristian Riis,Tilemachos
 
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +13,9 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         audioManager = AudioManager.GetInstance();
-        Debug.Log(Input.deviceOrientation);
+        
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        
         if (IspPortraitOrPortraitUpsideDown())
         {
             showMenuAndPauseGame();
@@ -28,6 +30,8 @@ public class MenuManager : MonoBehaviour
         }
         else if (IsLandscape() && portrait)
         {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+            
             portrait = false;
             Time.timeScale = 1;
 
@@ -44,6 +48,8 @@ public class MenuManager : MonoBehaviour
 
     private void showMenuAndPauseGame()
     {
+        Screen.orientation = ScreenOrientation.Portrait; 
+        
         portrait = true;
         Time.timeScale = 0;
         for (int i = 0; i < transform.childCount; i++)
