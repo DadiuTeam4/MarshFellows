@@ -9,12 +9,17 @@ using UnityEngine.AI;
 public class HunterSpeedControlZone : MonoBehaviour
 {
 	public float speedZoneSpeed;
-	private float speedAfterZone = 1.6f;
+	private float speedAfterZone;
 	private bool speedAfterZoneSat;
 
 	private NavMeshAgent navMeshO;
 	private NavMeshAgent navMeshP;
 	
+	void Start()
+	{
+		speedAfterZone = GlobalConstantsManager.GetInstance().constants.speed;
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (string.Compare(other.transform.name, "O") == 0 && !speedAfterZoneSat)

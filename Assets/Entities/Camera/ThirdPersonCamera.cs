@@ -19,10 +19,14 @@ namespace CameraControl
         [SerializeField]
         private Transform trackedObject;
         private Vector3 startRotation;
-        private float fogDensity = 0.07f;
+
+        private float fogDensity;
+        private float acceptableFogOffset = 0.01f;
 
         private void Start()
         {
+            fogDensity = GlobalConstantsManager.GetInstance().constants.fogDensity;
+
             controller = CameraStateController.GetInstance();
             InitTargets();
             startRotation = transform.eulerAngles;
@@ -67,8 +71,11 @@ namespace CameraControl
                 controller.cameraComponent.fieldOfView = Mathf.Lerp(controller.cameraComponent.fieldOfView, fieldOfView, Time.deltaTime);
             }
 
-            // Fog
-            RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDensity, Time.deltaTime);
+            float renderFogDifference = Mathf.Abs(RenderSettings.fogDensity - fogDensity);
+            if(renderFogDifference > acceptableFogOffset)
+            {
+                RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDensity, Time.deltaTime);
+            }
         }
 
         private Vector3 GetDesiredPosition(float yRotation)
