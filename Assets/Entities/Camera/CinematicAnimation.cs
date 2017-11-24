@@ -38,6 +38,7 @@ public class CinematicAnimation : ScriptableObject
 
 	public Vector3 GetPosition(float progress, Vector3 targetPosition, Transform cameraRig)
 	{
+		fogDensity = 0.01f;
 		float currentDistanceX = xDistance.Evaluate(progress);
 		float multipliedDistanceX = xDistanceMultiplier * currentDistanceX;
 		float currentDistanceY = yDistance.Evaluate(progress);
