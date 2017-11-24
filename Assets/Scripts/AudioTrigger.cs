@@ -20,9 +20,6 @@ public class AudioTrigger : MonoBehaviour {
 			
 			eventManager.CallEvent(CustomEvent.AudioTrigger,argument);
 			haveBeenTriggered =true;
-
 		}
 	}
-
-
 }
