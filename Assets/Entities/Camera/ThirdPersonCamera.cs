@@ -15,7 +15,6 @@ namespace CameraControl
         public float fieldOfView = 45;
         public float xRotation = 25;
 
-        private Transform oTransform;
         [SerializeField]
         private Transform trackedObject;
         private Vector3 startRotation;
@@ -41,7 +40,6 @@ namespace CameraControl
             else
             {
                 pTransform = controller.targets[0];
-                oTransform = controller.targets[1];
             }
         }
 
