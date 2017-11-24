@@ -27,16 +27,27 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     public int offsetForCreatingFog = -55;
     void Start()
     {
+        AddListenerForLoadingScene();        
+
+
+        LoadInitialLevels();
+
+
+        AddUnlockables();
         
-        scenesToUnload = new List<string>();
-        
+    }
+
+    private void AddListenerForLoadingScene()
+    {
         eventManager = EventManager.GetInstance();
 
     	EventDelegate sceneLoader = SceneLoader;
 
 		eventManager.AddListener(CustomEvent.LoadScene, sceneLoader);
+    }
 
-
+    private void LoadInitialLevels()
+    {
         EventArgument argument = new EventArgument(); 
 
         //load different level if it is a replay
@@ -68,11 +79,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         argument.stringComponent = audioSceneName;
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
-
-        AddUnlockables();
-        
     }
-
     private void AddUnlockables()
     {
         GameObject p = GameObject.Find(PsName);
@@ -129,20 +136,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
         if(argument.stringComponent == "restart" || argument.stringComponent == "Restart")
         {
-            GameStateManager newRound = new GameStateManager();
-            if(GameStateManager.current != null)
-            {
-			    newRound = GameStateManager.current;
-            }
-
-			newRound.playedBefore = true;
-			newRound.roundsPlayed++;
-			GameStateManager.current = newRound;
-
-            SaveLoadManager.Save();
-            UnloadAllScenes("");
-            eventManager.CallEvent(CustomEvent.ResetGame);
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            OnRestart();
             return;
         }
 
@@ -158,6 +152,24 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
     }
 
+    private void OnRestart()
+    {
+        GameStateManager newRound = new GameStateManager();
+        if(GameStateManager.current != null)
+        {
+            newRound = GameStateManager.current;
+        }
+
+        newRound.playedBefore = true;
+        newRound.roundsPlayed++;
+        GameStateManager.current = newRound;
+
+        SaveLoadManager.Save();
+        UnloadAllScenes("");
+        eventManager.CallEvent(CustomEvent.ResetGame);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+    
     void UnloadAllScenes(string unloadGlobal) 
     {
         int c = SceneManager.sceneCount;
