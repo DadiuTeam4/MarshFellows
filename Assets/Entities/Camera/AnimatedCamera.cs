@@ -12,7 +12,7 @@ namespace CameraControl
 		public Vector3 fixedPosition;
 		public bool fixedCamera;
 
-		private Animation animation;
+		private new Animation animation;
 		private Vector3 CurrentCameraPos;
 
 		void Start () 

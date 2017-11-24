@@ -23,7 +23,6 @@ public class InputSystem : Singleton<InputSystem>
 	private RaycastHit?[] raycastHits = new RaycastHit?[maxNumberTouches];
 	private Dictionary<int, List<Vector3>> touchPositions = new Dictionary<int, List<Vector3>>();
 
-	private int swipeRegisterCount = 1;
 	#endregion
 
 	#region DEBUG

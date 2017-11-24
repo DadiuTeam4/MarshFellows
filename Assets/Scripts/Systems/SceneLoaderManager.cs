@@ -10,7 +10,6 @@ using Events;
 public class SceneLoaderManager : Singleton<SceneLoaderManager> 
 {
 
-    private string emptyString = "";
     // Variables to keep track of scenes to load and unload.
     List<string> scenesToUnload;
     

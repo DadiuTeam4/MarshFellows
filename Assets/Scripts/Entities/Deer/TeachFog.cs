@@ -27,7 +27,7 @@ public class TeachFog : MonoBehaviour
 	private EventDelegate eventDelegate;
 	private bool jumping;
 	private Vector3 startPosition;
-	private SkinnedMeshRenderer renderer;
+	private new SkinnedMeshRenderer renderer;
 
 	// private void Awake()
 	// {
