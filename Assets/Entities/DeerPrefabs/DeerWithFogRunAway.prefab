@@ -550,6 +550,7 @@ GameObject:
   - component: {fileID: 54233820546440810}
   - component: {fileID: 114535072160107972}
   - component: {fileID: 114506085616515122}
+  - component: {fileID: 114032901713471526}
   m_Layer: 0
   m_Name: LowIntentisyDeer
   m_TagString: Untagged
@@ -1261,7 +1262,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1911046363829532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.173, z: -2.46}
+  m_LocalPosition: {x: 0.315, y: 1.173, z: -2.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4392612913050618}
@@ -1464,8 +1465,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1016244440355470}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.223465, y: -0.20121527, z: -84.64}
+  m_LocalRotation: {x: -0, y: 0.4605534, z: -0, w: 0.887632}
+  m_LocalPosition: {x: 44.61, y: 1.15, z: -0.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4011680688968068}
@@ -1473,7 +1474,7 @@ Transform:
   - {fileID: 4651424781563582}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 54.846004, z: 0}
 --- !u!4 &4239914235781162
 Transform:
   m_ObjectHideFlags: 1
@@ -1678,7 +1679,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1628390019742566}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.44, y: 0.71, z: -0.46}
+  m_LocalPosition: {x: -5.08, y: 0.71, z: -0.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4011680688968068}
@@ -2050,7 +2051,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1629021955737650}
   m_LocalRotation: {x: -0.0039462633, y: -0.64196223, z: -0.003234723, w: 0.76671934}
-  m_LocalPosition: {x: 1.15, y: 1.43, z: -5.21}
+  m_LocalPosition: {x: 0.11, y: 1.47, z: -6.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4232394546645426}
@@ -2467,6 +2468,25 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114032901713471526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1421837010733446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523471dd9434ba044bcdaccd6f3bb965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Offset: {x: 0, y: 0, z: 0}
+  tagToLookAt: O
+  head: {fileID: 4760035152747110}
+  neckA: {fileID: 4725659069148236}
+  chest: {fileID: 4856464924070826}
+  headWeight: 1
+  neckWeight: 0.66
+  chestWeight: 0.33
 --- !u!114 &114506085616515122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2478,7 +2498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f692385f76888f14da8038abaee0a626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCastDistance: 5
+  rayCastDistance: 15
   checkPositions:
   - {fileID: 4651424781563582}
   layerMask:
@@ -2503,7 +2523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsAfterRunningBeforeDeath: 10
-  runDelay: 2
+  runDelay: 1.5
   targetPoint: {x: 100, y: 0, z: 100}
   turnRate: 10
   runSpeed: 500
