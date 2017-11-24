@@ -24,7 +24,7 @@ public class AudioManager : Singleton<AudioManager> {
 	void Start()
 	{
 		groundLayer = "Swamp";
-		AkSoundEngine.SetState ("Ambience", "MediumOpen"); 
+		AkSoundEngine.SetState ("Ambience", "Forrest"); 
 		PlaySound("Play_Ambience"); 
 	}
 
@@ -54,7 +54,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.SwipeEnded, stopEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
-		// Scene-management
+		// Scene-/Location-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.AudioTrigger, audioTriggered); 
 		// Events triggered 
@@ -169,9 +169,24 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 	}
 
-	//Scene-loader 
+	//AudioTrigger//Location 
 	void PlacementTrigger(EventArgument argument)
 	{
+		//Ambience-switches 
+		if (argument.stringComponent == "ByWater") 
+		{
+			AkSoundEngine.SetState ("Ambience", "ByWater"); 
+		}
+		if (argument.stringComponent == "BetweenForrest") 
+		{
+			AkSoundEngine.SetState ("Ambience", "BetweenForrest"); 
+		}
+		if (argument.stringComponent == "Open") 
+		{
+			AkSoundEngine.SetState ("Ambience", "MediumOpen"); 
+		}
+
+		//Scenes: 
         //Debug.Log(argument.stringComponent);
 		if (argument.stringComponent == "TittleScreen") 
 		{
