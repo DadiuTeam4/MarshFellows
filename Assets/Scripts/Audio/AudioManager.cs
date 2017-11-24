@@ -214,7 +214,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//
 		}
-		if (argument.stringComponent == "Crossroads") 
+		if (argument.stringComponent == "Crossroad") 
 		{
 			AkSoundEngine.SetState("Music", "Crossroad"); 
 		}
