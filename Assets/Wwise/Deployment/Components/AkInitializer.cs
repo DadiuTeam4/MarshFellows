@@ -143,7 +143,7 @@ public class AkInitializer : MonoBehaviour
 
 		AkPlatformInitSettings platformSettings = new AkPlatformInitSettings();
 		AkSoundEngine.GetDefaultPlatformInitSettings(platformSettings);
-		platformSettings.uLEngineDefaultPoolSize = (uint)lowerPoolSize * 1024;
+		platformSettings.uLEngineDefaultPoolSize = (uint)lowerPoolSize * 11024;
 		platformSettings.fLEngineDefaultPoolRatioThreshold = memoryCutoffThreshold;
 
 		AkMusicSettings musicSettings = new AkMusicSettings();
