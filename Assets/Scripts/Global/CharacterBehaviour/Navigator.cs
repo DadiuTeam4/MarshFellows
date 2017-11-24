@@ -20,8 +20,9 @@ public class Navigator : MonoBehaviour
     private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
 
-
     private float previousSpeed;
+
+	private GlobalConstantsManager constantsManager;
 
 	#region DEBUG
 	#if UNITY_EDITOR
@@ -31,7 +32,14 @@ public class Navigator : MonoBehaviour
 
 	private void Awake() 
 	{
+		constantsManager = GlobalConstantsManager.GetInstance();
+
 		navMeshAgent = GetComponent<NavMeshAgent>();	
+
+		navMeshAgent.speed = constantsManager.constants.speed;
+		navMeshAgent.acceleration = constantsManager.constants.acceleration;
+		navMeshAgent.height = constantsManager.constants.height;
+		navMeshAgent.radius = constantsManager.constants.radius;
 	}
 
 	private void Start()
@@ -69,8 +77,16 @@ public class Navigator : MonoBehaviour
 
 	public void SetDestination(Transform destination) 
 	{
-		currentWaypoint = destination;
-		navMeshAgent.SetDestination(destination.position);
+		if (destination == null)
+		{
+			return;
+		}
+		else
+		{
+			currentWaypoint = destination;
+			navMeshAgent.SetDestination(destination.position);
+		}
+		
 		#region DEBUG
 		#if UNITY_EDITOR
 		if (drawPath)
@@ -137,9 +153,12 @@ public class Navigator : MonoBehaviour
 	#if UNITY_EDITOR
 	IEnumerator GetPath()
 	{
-		lineRenderer.SetPosition(0, transform.position);
-		yield return new WaitForEndOfFrame();
-		DrawPath(navMeshAgent.path);
+		if (lineRenderer)
+		{
+			lineRenderer.SetPosition(0, transform.position);
+			yield return new WaitForEndOfFrame();
+			DrawPath(navMeshAgent.path);
+		}
 	}
 
 	void DrawPath(NavMeshPath path)

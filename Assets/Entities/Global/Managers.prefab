@@ -59,6 +59,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1171691533799154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4601148857637420}
+  - component: {fileID: 114933153588653578}
+  m_Layer: 0
+  m_Name: GlobalConstantsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1323427144038952
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +158,7 @@ Transform:
   - {fileID: 4128735725035954}
   - {fileID: 4692919574935902}
   - {fileID: 4906897414437300}
+  - {fileID: 4601148857637420}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -171,6 +188,19 @@ Transform:
   - {fileID: 4915761919647134}
   m_Father: {fileID: 4047596598182970}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4601148857637420
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171691533799154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4047596598182970}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4692919574935902
 Transform:
@@ -338,8 +368,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalSceneName: GlobalScene
+  audioSceneName: AudioScene
   initialSceneName: IntroLevel
-  cutsceneName: IntroLevel
+  cutsceneName: IntroCutScene
   respawnPosition: {x: 0, y: 0, z: 0}
   PsName: P
   OsName: O
@@ -371,6 +402,19 @@ MonoBehaviour:
   groundLayer: 
   sfxVolume: 100
   musicVolume: 100
+--- !u!114 &114933153588653578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171691533799154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a2cb1245a552d40a1870bcae4ebd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constants: {fileID: 11400000, guid: ef22b69f1487ef740bac02edfe9001e3, type: 2}
+  update: 0
 --- !u!124 &124270927566780450
 Behaviour:
   m_ObjectHideFlags: 1

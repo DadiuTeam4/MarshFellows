@@ -276,7 +276,6 @@ GameObject:
   - component: {fileID: 222829104506419514}
   - component: {fileID: 114837444293272330}
   - component: {fileID: 114551544358480378}
-  - component: {fileID: 114556345344630892}
   m_Layer: 0
   m_Name: Dropdown
   m_TagString: Untagged
@@ -485,7 +484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1912950161345832
 GameObject:
   m_ObjectHideFlags: 1
@@ -920,7 +919,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114556345344630892}
+      - m_Target: {fileID: 0}
         m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
@@ -933,17 +932,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114556345344630892
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1386409126419034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2409e840f0fc504a8c92f473e4cb80f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114562255727065270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -955,6 +943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131d3af1a765c0d4ab97189b68b6050d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
 --- !u!114 &114590306405171190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -966,6 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131d3af1a765c0d4ab97189b68b6050d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
 --- !u!114 &114592997767549136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1373,6 +1363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131d3af1a765c0d4ab97189b68b6050d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 0}
 --- !u!114 &114892699691426946
 MonoBehaviour:
   m_ObjectHideFlags: 1
