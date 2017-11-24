@@ -12,8 +12,7 @@ public class WaypointTrigger : MonoBehaviour
 	private Transform nextDestination;
 
 	[Tooltip("The tag that the script is looking for. Is by default O")]
-	public string tag = "O";
-	
+	new public string tag = "O";
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.tag != tag)
