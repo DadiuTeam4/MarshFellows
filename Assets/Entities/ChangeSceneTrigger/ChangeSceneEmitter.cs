@@ -18,7 +18,6 @@ public class ChangeSceneEmitter : MonoBehaviour {
     
     private string emptyString = "";
     Collider m_ObjectCollider;
-    private bool addOnSceneIndex= true;
     private bool haveBeenTriggered = false;
 
     void OnTriggerEnter(Collider other)
