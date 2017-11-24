@@ -23,4 +23,11 @@ public class GlobalConstants : ScriptableObject
 	[Header("Audio")]
 	public float sfxVolume = 100; 
 	public float musicVolume = 100; 
+
+	[Header("Procedural birds (whoah amazing)")]
+	public float flightAngle = 45;
+	public float flightAngleRandomRange = 20;
+	public float maxY = 30;
+	public AnimationCurve speedCurve;
+	public AnimationCurve angleCurve;
 }
