@@ -210,10 +210,6 @@ public class AudioManager : Singleton<AudioManager> {
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
 		}
-		if (argument.stringComponent == "Overture") 
-		{
-			//
-		}
 		if (argument.stringComponent == "Crossroad") 
 		{
 			AkSoundEngine.SetState("Music", "Crossroad"); 
@@ -226,19 +222,19 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			AkSoundEngine.SetState("Music", "P"); 
 		}
-		if (argument.stringComponent == "RitualEvent") 
+		if (argument.stringComponent == "Ritual") 
 		{
 			//
 		}
-		if (argument.stringComponent == "SeperationEvent") 
+		if (argument.stringComponent == "Separation") 
 		{
 			//
 		}
-		if (argument.stringComponent == "BearEvent") 
+		if (argument.stringComponent == "Bear") 
 		{
 			//
 		}
-		if (argument.stringComponent == "DeerEvent") 
+		if (argument.stringComponent == "Deer") 
 		{
 			//
 		}
@@ -254,11 +250,18 @@ public class AudioManager : Singleton<AudioManager> {
 	}
 
 	//Footsteps + layer
-	public void Footstep()
+	public void FootstepO()
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
 		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
 	}
+
+	public void FootstepP()
+	{
+		groundLayer = string.Concat ("", groundLayer, ""); 
+		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
+	}
+
 
 	//Play-function with stop-callback to a specific event  
 	void PlaySoundWC(string soundEventName)
