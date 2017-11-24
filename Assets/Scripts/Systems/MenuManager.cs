@@ -13,9 +13,10 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         audioManager = AudioManager.GetInstance();
-        if (Input.deviceOrientation == DeviceOrientation.Portrait)
+        Debug.Log(Input.deviceOrientation);
+        if (IspPortraitOrPortraitUpsideDown())
         {
-            portrait = true;
+            showMenuAndPauseGame();
         }
     }
 
@@ -23,16 +24,7 @@ public class MenuManager : MonoBehaviour
     {
         if (IspPortraitOrPortraitUpsideDown() && !portrait)
         {
-            portrait = true;
-            Time.timeScale = 0;
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (!transform.GetChild(i).gameObject.activeSelf && transform.GetChild(i).name != "CreditsPanel")
-                {
-                    transform.GetChild(i).gameObject.SetActive(true);
-                    audioManager.MenuFadeSoundDown();
-                }
-            }
+            showMenuAndPauseGame();
         }
         else if (IsLandscape() && portrait)
         {
@@ -50,12 +42,26 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void showMenuAndPauseGame()
+    {
+        portrait = true;
+        Time.timeScale = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (!transform.GetChild(i).gameObject.activeSelf && transform.GetChild(i).name != "CreditsPanel")
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+                audioManager.MenuFadeSoundDown();
+            }
+        }
+    }
+
     private bool IspPortraitOrPortraitUpsideDown()
     {
         return (Input.deviceOrientation == DeviceOrientation.Portrait || Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown);
     }
 
-	
+
     private bool IsLandscape()
     {
         return (Input.deviceOrientation == DeviceOrientation.LandscapeLeft || Input.deviceOrientation == DeviceOrientation.LandscapeRight);
