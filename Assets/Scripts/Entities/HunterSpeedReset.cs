@@ -1,26 +1,26 @@
-﻿// Author: Jonathan
-// Contributers:Tilemachos
-
+﻿//Author:Tilemachos
+//Co-author:
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+public class HunterSpeedReset : MonoBehaviour {
 
-public class HunterSpeedControlZone : MonoBehaviour
-{
-	public float speedZoneSpeed;
-	static public float speedAfterZone;
-	private bool speedAfterZoneSat;
-
+	public float speedAfterZone;
+	private bool speedAfterZoneSat = false;
 	private NavMeshAgent navMeshO;
 	private NavMeshAgent navMeshP;
-	
+
+
 	void OnTriggerEnter(Collider other)
 	{
+
 		
 		if (string.Compare(other.transform.name, "O") == 0 && !speedAfterZoneSat)
 		{
-			speedAfterZone = GlobalConstantsManager.GetInstance().constants.speed;
+			speedAfterZone = HunterSpeedControlZone.speedAfterZone;
+		
+			Debug.Log("SPEED AFTER : " + speedAfterZone);
 			
 			var navMeshList = FindObjectsOfType<Navigator>();
 			foreach (Navigator nav in navMeshList)
@@ -28,14 +28,14 @@ public class HunterSpeedControlZone : MonoBehaviour
 				if (string.Compare(nav.transform.name, "P") == 0)
 				{
 					navMeshO = other.gameObject.GetComponent<NavMeshAgent>();
-					speedAfterZone = navMeshO.speed;
-					navMeshO.speed = speedZoneSpeed;
+					navMeshO.speed = speedAfterZone;
 
 					navMeshP = nav.gameObject.GetComponent<NavMeshAgent>();
-					navMeshP.speed = speedZoneSpeed;
+					navMeshP.speed = speedAfterZone;
 					speedAfterZoneSat = true;
 				}
 			}			
 		}
+
 	}
 }
