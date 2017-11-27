@@ -1,20 +1,25 @@
 ﻿//Author:Tilemachos
-//Co-author: You Wu
+//Co-author: You Wu, Itai Yavin
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
 
-public class SinkableObjectType : MonoBehaviour
+public class SinkableObjectType : ObjectType
 {
-
     private Vector3 initialPosition;
-    public string typeOfSinkable = "Tree";
+    public Type objectType = Type.Tree;
     private bool hasSunk;
 
+    EventArgument argument = new EventArgument();
 
     void Start()
     {
+        SetupStringValues();
+
+        argument.gameObjectComponent = gameObject;
+        argument.stringComponent = GetTypeStringValue(objectType);
+        
         initialPosition = transform.position;
         InitStatusOfSink();
     }
@@ -59,9 +64,6 @@ public class SinkableObjectType : MonoBehaviour
     private void CallSunkEvent()
     {
         hasSunk = true;
-        EventArgument argument = new EventArgument();
-        argument.stringComponent = typeOfSinkable;
-        argument.gameObjectComponent = gameObject;
         EventManager.GetInstance().CallEvent(CustomEvent.SinkHasHappened, argument);
         enabled = false;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;

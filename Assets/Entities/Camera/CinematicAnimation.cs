@@ -33,9 +33,12 @@ public class CinematicAnimation : ScriptableObject
 	public float minFieldOfView = 45;
 	public float maxFieldOfView = 20;
 	public AnimationCurve fieldOfViewCurve;
+	[Header("Fog density")]
+	public float fogDensity = 0.07f;
 
 	public Vector3 GetPosition(float progress, Vector3 targetPosition, Transform cameraRig)
 	{
+		fogDensity = 0.01f;
 		float currentDistanceX = xDistance.Evaluate(progress);
 		float multipliedDistanceX = xDistanceMultiplier * currentDistanceX;
 		float currentDistanceY = yDistance.Evaluate(progress);

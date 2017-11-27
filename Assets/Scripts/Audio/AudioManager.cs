@@ -8,24 +8,29 @@ using Events;
 
 public class AudioManager : Singleton<AudioManager> {
 
+	private GlobalConstantsManager constantsManager;
 	private EventManager eventManager;
 	private Dictionary<string, bool> soundsBeingPlayed = new Dictionary<string, bool>();
 	private uint eventID; 
 	public string groundLayer;
-	public float sfxVolume = 100; 
-	public float musicVolume = 100; 
+	public float sfxVolume; 
+	public float musicVolume; 
 	private float swipePower; 
 
 	void Awake()
 	{
+		constantsManager = GlobalConstantsManager.GetInstance();
+		sfxVolume = constantsManager.constants.sfxVolume; 
+		musicVolume = constantsManager.constants.musicVolume;
+
 		eventManager = EventManager.GetInstance();
 	}
 
 	void Start()
 	{
-		//If Scene is this...
 		groundLayer = "Swamp";
-		PlaySound("Play_GG_Ambience_Open_1"); 
+		AkSoundEngine.SetState ("Ambience", "Forrest"); 
+		PlaySound("Play_Ambience"); 
 	}
 
 	//SFX
@@ -45,7 +50,7 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		EventDelegate postEvent = Poster; 
 		EventDelegate stopEvent = Stopper;
-		EventDelegate changeScene = NewScene; 
+		EventDelegate audioTriggered = PlacementTrigger; 
 		EventDelegate somethingSunk = SunkAction;
 		EventDelegate somethingFall = FallAction; 
 		EventDelegate foreshadow = ForeshadowPost; 
@@ -54,10 +59,9 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.SwipeEnded, stopEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
-		// Scene-management
+		// Scene-/Location-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
-		eventManager.AddListener (CustomEvent.LoadScene, postEvent); 
-		eventManager.AddListener (CustomEvent.LoadScene, changeScene);
+		eventManager.AddListener (CustomEvent.AudioTrigger, audioTriggered); 
 		// Events triggered 
 		eventManager.AddListener (CustomEvent.SinkHasHappened, somethingSunk);
 		eventManager.AddListener (CustomEvent.FallHasHappend, somethingFall); 
@@ -81,11 +85,6 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
-		//Apple 
-		if (argument.eventComponent == CustomEvent.AppleFall) 
-		{
-			PlaySoundWC ("Play_GG_SD_AppleDrop"); 
-		}	
 	}
 
 	//Event stopper 
@@ -105,10 +104,9 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 	}
 
+	//Sinked objects 
 	void SunkAction(EventArgument argument)
 	{
-		//argument.gameObjectComponent;
-
 		if(argument.stringComponent == "Tree")
 		{
 			PlaySoundWCOtherScript ("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
@@ -117,15 +115,16 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			PlaySoundWCOtherScript("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
 		}
-		else if(argument.stringComponent == "SomethingElse")
+		else
 		{
 			//Play_GG_SD_Sink_PH Play_GG_SD_Mud_Sink
 		}
 	}
 
+		//Fallen objects
 		void FallAction(EventArgument argument)
 		{
-				if(argument.stringComponent == "Tree")
+			if(argument.stringComponent == "Tree")
 			{
 			PlaySoundWCOtherScript ("Play_GG_SD_Tree_Fall", argument.gameObjectComponent); 
 			}
@@ -133,12 +132,13 @@ public class AudioManager : Singleton<AudioManager> {
 			{
 			PlaySoundWCOtherScript("Play_GG_SD_Stone_Fall", argument.gameObjectComponent); 
 			}
-			else if(argument.stringComponent == "SomethingElse")
+			else
 			{
 				//Play_GG_SD_Sink_PH
 			}
 		}
 		
+	//Foreshadowing
 	void ForeshadowPost(EventArgument argument)
 	{
 		//Travel of P 
@@ -158,96 +158,110 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Scena3")
 			{
-				PlaySoundWC ("Play_FSD_3"); 
+				PlaySoundWC ("Play_GG_FSD_3"); 
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
 			//crossroad 
 			}
+			if(argument.stringComponent == "Missout1")
+			{
+			PlaySoundWC ("Play_GG_FSD_Choir"); 
+			}
+			if(argument.stringComponent == "Missout2")
+			{
+			PlaySoundWC ("Play_GG_FSD_Shaman_Drum"); 
+			}
 	}
 
-	//Scene-loader 
-	void NewScene(EventArgument argument)
+	//AudioTrigger//Location 
+	void PlacementTrigger(EventArgument argument)
 	{
-		if (argument.stringComponent == "TittleScreen" && argument.intComponent == -1) 
+		//Ambience-switches 
+		if (argument.stringComponent == "ByWater") 
 		{
-			//Do this
-			//print("CurrentSceneIs"+argument.stringComponent + argument.intComponent);
+			AkSoundEngine.SetState ("Ambience", "ByWater"); 
 		}
-		if (argument.stringComponent == "IntroCutScene" && argument.intComponent == -1) 
+		if (argument.stringComponent == "BetweenForrest") 
+		{
+			AkSoundEngine.SetState ("Ambience", "BetweenForrest"); 
+		}
+		if (argument.stringComponent == "Open") 
+		{
+			AkSoundEngine.SetState ("Ambience", "MediumOpen"); 
+		}
+
+		//Scenes: 
+        //Debug.Log(argument.stringComponent);
+		if (argument.stringComponent == "TittleScreen") 
+		{
+			//
+		}
+		if (argument.stringComponent == "IntroCutScene") 
 		{
 			//Do this 
 		}
-		if (argument.stringComponent == "IntroCutscene" && argument.intComponent == -1) 
+		if (argument.stringComponent == "IntroCutscene") 
 		{
 			AkSoundEngine.SetState("Music", "IntroCutscene"); 
 		}
-		if (argument.stringComponent == "IntroLevel" && argument.intComponent == -1) 
+		if (argument.stringComponent == "IntroLevel") 
 		{
-			//Do this
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
 		}
-		if (argument.stringComponent == "Overture" && argument.intComponent == -1) 
+		if (argument.stringComponent == "Crossroad") 
 		{
-			//PlaySoundWC("Play_Overture"); 
-			//print ("OVERTURE"); 
-		}
-		if (argument.stringComponent == "Crossroads" && argument.intComponent == -1) 
-		{
-			//Give udtryk, om at der skal træffes et valg (eventuelt relativ stilhed)  
 			AkSoundEngine.SetState("Music", "Crossroad"); 
-			//print ("Crossroad is current"); 
 		}
-		if (argument.stringComponent == "LiO1" && argument.intComponent == -1) 
+		if (argument.stringComponent == "LiO1") 
 		{
 			AkSoundEngine.SetState("Music", "O"); 
 		}
-		if (argument.stringComponent == "LiP1" && argument.intComponent == -1) 
+		if (argument.stringComponent == "LiP1") 
 		{
 			AkSoundEngine.SetState("Music", "P"); 
 		}
-		if (argument.stringComponent == "RitualEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "Ritual") 
 		{
-			//Mere spacey musik 
-			//PlaySoundWC("Play_GG_SD_FSD_Shaman");
-			//PlaySoundWC("Play_GG_FSD_2"); 
-
+			//
 		}
-		if (argument.stringComponent == "SeperationEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "Separation") 
 		{
-			//Do this
-			//AkSoundEngine.SetState("Music", "SC1A"); 
-
-			//Musik, der udtrykker seperation/ensomhed/etc
+			//
 		}
-		if (argument.stringComponent == "BearEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "Bear") 
 		{
-			//Do this
-			//PlaySoundWC("Play_GG_SD_FSD_Bear");
+			//
 		}
-		if (argument.stringComponent == "DeerEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "Deer") 
 		{
-			//Do this
+			//
 		}
-		if (argument.stringComponent == "BeachEvent" && argument.intComponent == -1) 
+		if (argument.stringComponent == "BeachEvent") 
 		{
-			//Do this
-			//End music 
+			//
 		}
 		if (argument.stringComponent == "Restart") 
 		{
-			//Do this
-			//Restart 
+			//Restart
 			StopSound ("Stop_All"); 
 		}
 	}
 
-	public void Footstep()
+	//Footsteps + layer
+	public void FootstepO()
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
 		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
 	}
+
+	public void FootstepP()
+	{
+		groundLayer = string.Concat ("", groundLayer, ""); 
+		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
+	}
+
 
 	//Play-function with stop-callback to a specific event  
 	void PlaySoundWC(string soundEventName)
@@ -281,7 +295,6 @@ public class AudioManager : Singleton<AudioManager> {
 		soundName = string.Concat ("", soundName, ""); 
 		eventID = AkSoundEngine.PostEvent (soundName, thisthisthis); 
 	}
-
 		
 	//Play-function without stop-callback 
 	void PlaySound(string soundName)

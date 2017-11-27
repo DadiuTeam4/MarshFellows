@@ -10,12 +10,12 @@ using Events;
 public class SceneLoaderManager : Singleton<SceneLoaderManager> 
 {
 
-    private string emptyString = "";
     // Variables to keep track of scenes to load and unload.
     List<string> scenesToUnload;
     
     EventManager eventManager;
     public string globalSceneName = "GlobalScene";  
+    public string audioSceneName = "AudioScene";
     public string initialSceneName = "IntroLevel";
     public string cutsceneName = "IntroCutScene";
     public Vector3 respawnPosition;
@@ -26,16 +26,27 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     public int offsetForCreatingFog = -55;
     void Start()
     {
+        AddListenerForLoadingScene();        
+
+
+        LoadInitialLevels();
+
+
+        AddUnlockables();
         
-        scenesToUnload = new List<string>();
-        
+    }
+
+    private void AddListenerForLoadingScene()
+    {
         eventManager = EventManager.GetInstance();
 
     	EventDelegate sceneLoader = SceneLoader;
 
 		eventManager.AddListener(CustomEvent.LoadScene, sceneLoader);
+    }
 
-
+    private void LoadInitialLevels()
+    {
         EventArgument argument = new EventArgument(); 
 
         //load different level if it is a replay
@@ -62,11 +73,12 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         //loading first scene
         argument.intComponent = 1;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
-        Debug.Log(argument.stringComponent);
-        AddUnlockables();
-        
-    }
 
+
+        argument.stringComponent = audioSceneName;
+        argument.intComponent = 1;
+        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+    }
     private void AddUnlockables()
     {
         GameObject p = GameObject.Find(PsName);
@@ -123,20 +135,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
         if(argument.stringComponent == "restart" || argument.stringComponent == "Restart")
         {
-            GameStateManager newRound = new GameStateManager();
-            ChangeSceneEmitter.sceneIndex = 1;
-            if(GameStateManager.current != null)
-            {
-			    newRound = GameStateManager.current;
-            }
-
-			newRound.playedBefore = true;
-			newRound.roundsPlayed++;
-			GameStateManager.current = newRound;
-
-            SaveLoadManager.Save();
-            UnloadAllScenes("");
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+            OnRestart();
             return;
         }
 
@@ -152,10 +151,29 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
     }
 
+    private void OnRestart()
+    {
+        GameStateManager newRound = new GameStateManager();
+        if(GameStateManager.current != null)
+        {
+            newRound = GameStateManager.current;
+        }
+
+        newRound.playedBefore = true;
+        newRound.roundsPlayed++;
+        GameStateManager.current = newRound;
+
+        SaveLoadManager.Save();
+        UnloadAllScenes("");
+        eventManager.CallEvent(CustomEvent.ResetGame);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+    }
+    
     void UnloadAllScenes(string unloadGlobal) 
     {
         int c = SceneManager.sceneCount;
-        for (int i = 0; i < c; i++) 
+        //Unload last scene is not supported
+        for (int i = 0; i < c - 1; i++) 
         {
             Scene scene = SceneManager.GetSceneAt (i);  
             if(scene.name != unloadGlobal)

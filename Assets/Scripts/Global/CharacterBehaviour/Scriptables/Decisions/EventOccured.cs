@@ -17,11 +17,10 @@ public class EventOccured : Decision
 	{
 		eventOccured = controller.CheckEventOccured(eventName);
 
-		if (!eventOccured)
+        if (!eventOccured)
 		{
 			return false;
 		}
-
         controller.SetLatestEventArguments(controller.eventArguments[eventName]);
 
         if (eventName == CustomEvent.HiddenByFog && !controller.latestEventArgument.boolComponent)

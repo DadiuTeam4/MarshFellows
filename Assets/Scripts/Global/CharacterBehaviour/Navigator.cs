@@ -20,8 +20,10 @@ public class Navigator : MonoBehaviour
     private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
 
-
     private float previousSpeed;
+    private Animator animator;
+
+	private GlobalConstantsManager constantsManager;
 
 	#region DEBUG
 	#if UNITY_EDITOR
@@ -31,7 +33,16 @@ public class Navigator : MonoBehaviour
 
 	private void Awake() 
 	{
+		constantsManager = GlobalConstantsManager.GetInstance();
+
 		navMeshAgent = GetComponent<NavMeshAgent>();	
+
+		navMeshAgent.speed = constantsManager.constants.speed;
+		navMeshAgent.acceleration = constantsManager.constants.acceleration;
+		navMeshAgent.height = constantsManager.constants.height;
+		navMeshAgent.radius = constantsManager.constants.radius;
+
+        animator = GetComponentInChildren<Animator>();
 	}
 
 	private void Start()
@@ -69,8 +80,16 @@ public class Navigator : MonoBehaviour
 
 	public void SetDestination(Transform destination) 
 	{
-		currentWaypoint = destination;
-		navMeshAgent.SetDestination(destination.position);
+		if (destination == null)
+		{
+			return;
+		}
+		else
+		{
+			currentWaypoint = destination;
+			navMeshAgent.SetDestination(destination.position);
+		}
+		
 		#region DEBUG
 		#if UNITY_EDITOR
 		if (drawPath)
@@ -88,11 +107,13 @@ public class Navigator : MonoBehaviour
 
 	public float GetSpeed()
 	{
-		return navMeshAgent.velocity.magnitude;
+		return navMeshAgent.speed;
 	}
 
     public void SetSpeed(float speed)
     {
+        float t = (speed - 1) / 3;
+        animator.SetFloat("speed", Mathf.Lerp(1, 2, t));
         previousSpeed = navMeshAgent.speed;
         navMeshAgent.speed = speed;
     }
@@ -106,6 +127,7 @@ public class Navigator : MonoBehaviour
 	{
 		if (!navMeshAgent.isStopped)
 		{
+            animator.SetFloat("speed", 0);
 			navMeshAgent.isStopped = true;
 		}
 	}
@@ -114,7 +136,8 @@ public class Navigator : MonoBehaviour
 	{
 		if (navMeshAgent.isStopped)
 		{
-			navMeshAgent.isStopped = false;
+            SetSpeed(navMeshAgent.speed); //To set animation to correct value.
+            navMeshAgent.isStopped = false;
 		}
 	}
 
@@ -137,9 +160,12 @@ public class Navigator : MonoBehaviour
 	#if UNITY_EDITOR
 	IEnumerator GetPath()
 	{
-		lineRenderer.SetPosition(0, transform.position);
-		yield return new WaitForEndOfFrame();
-		DrawPath(navMeshAgent.path);
+		if (lineRenderer)
+		{
+			lineRenderer.SetPosition(0, transform.position);
+			yield return new WaitForEndOfFrame();
+			DrawPath(navMeshAgent.path);
+		}
 	}
 
 	void DrawPath(NavMeshPath path)

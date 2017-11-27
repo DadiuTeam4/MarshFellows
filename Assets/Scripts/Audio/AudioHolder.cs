@@ -15,10 +15,16 @@ public class AudioHolder : MonoBehaviour {
 		audioManager = AudioManager.GetInstance(); 	
 	}
 
-	void FS()
+	void FSO()
 	{
 		audioManager.PlaySoundOtherScript("Play_FS", gameObject);
 	}
+
+	void FSP()
+	{
+		audioManager.PlaySoundOtherScript("Play_FS", gameObject);
+	}
+
 
 	void DeerFS()
 	{

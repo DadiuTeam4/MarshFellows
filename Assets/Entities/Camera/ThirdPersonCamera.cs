@@ -15,16 +15,19 @@ namespace CameraControl
         public float fieldOfView = 45;
         public float xRotation = 25;
 
-        private Transform oTransform;
+        [SerializeField]
         private Transform trackedObject;
-        private Vector3 offset;
         private Vector3 startRotation;
+
+        private float fogDensity;
+        private float acceptableFogOffset = 0.01f;
 
         private void Start()
         {
+            fogDensity = GlobalConstantsManager.GetInstance().constants.fogDensity;
+
             controller = CameraStateController.GetInstance();
             InitTargets();
-            offset = transform.position - oTransform.position + (0.5f * (pTransform.position - oTransform.position));
             startRotation = transform.eulerAngles;
         }
 
@@ -37,13 +40,11 @@ namespace CameraControl
             else
             {
                 pTransform = controller.targets[0];
-                oTransform = controller.targets[1];
             }
         }
 
         protected override void UpdatePosition()
         {
-            //controller.cameraRig.localPosition = adjustableOffset;
             Quaternion rotation = Quaternion.identity;
             if (!trackedObject)
             {
@@ -66,6 +67,12 @@ namespace CameraControl
             if (controller.cameraComponent.fieldOfView != fieldOfView)
             {
                 controller.cameraComponent.fieldOfView = Mathf.Lerp(controller.cameraComponent.fieldOfView, fieldOfView, Time.deltaTime);
+            }
+
+            float renderFogDifference = Mathf.Abs(RenderSettings.fogDensity - fogDensity);
+            if(renderFogDifference > acceptableFogOffset)
+            {
+                RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDensity, Time.deltaTime);
             }
         }
 

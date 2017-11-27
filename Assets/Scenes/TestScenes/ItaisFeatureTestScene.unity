@@ -1763,8 +1763,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1455765183}
-  m_LocalRotation: {x: -0.37824127, y: -0.0030186672, z: 0.0012523598, w: -0.9257013}
-  m_LocalPosition: {x: 47.45589, y: 15.624352, z: -8.772207}
+  m_LocalRotation: {x: 0.25670713, y: -0.2432073, z: 0.06691699, w: 0.93299186}
+  m_LocalPosition: {x: 34.925995, y: 12.800893, z: -6.495098}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1803,6 +1803,7 @@ GameObject:
   - component: {fileID: 1469195209}
   - component: {fileID: 1469195208}
   - component: {fileID: 1469195207}
+  - component: {fileID: 1469195212}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -1904,6 +1905,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1469195205}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1469195212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1469195205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf0021439b2fa74f81296784e5fc7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfObject: 0
+  minimumAngularSpeed: 1
+  minimumSpeed: 1
 --- !u!1 &1520305338
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,8 +2046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17fb462c23a2a4f31927a04c7d6b0cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventManager: {fileID: 0}
-  eventID: 0
   groundLayer: 
   sfxVolume: 100
   musicVolume: 100

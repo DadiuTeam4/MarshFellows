@@ -72,21 +72,22 @@ public class FogCurtain : Swipeable
 	public override void OnSwipe(RaycastHit raycastHit, Vector3 direction)
 	{
 		float dot = Vector3.Dot(Vector3.left, direction);
-		
-		float directionMagnitude = direction.magnitude;
 
 		if (!coroutineIsRunning)
 		{
-			if (dot > 0.0f)
+			if (dot != 0)
 			{
-				glideCoroutine = GlideT(-1);
+				if (dot > 0.0f)
+				{
+					glideCoroutine = GlideT(-1);
+				}
+				else if (dot < 0.0f)
+				{
+					glideCoroutine = GlideT(1);
+				}
+				
+				StartCoroutine(glideCoroutine);
 			}
-			else if (dot < 0.0f)
-			{
-				glideCoroutine = GlideT(1);
-			}
-
-			StartCoroutine(glideCoroutine);
 		}
 	}
 

@@ -18,8 +18,6 @@ public class ChangeSceneEmitter : MonoBehaviour {
     
     private string emptyString = "";
     Collider m_ObjectCollider;
-    public static int sceneIndex = 1;
-    private bool addOnSceneIndex= true;
     private bool haveBeenTriggered = false;
 
     void OnTriggerEnter(Collider other)
@@ -93,19 +91,15 @@ public class ChangeSceneEmitter : MonoBehaviour {
                 }
 
             }
-        
-            if (addOnSceneIndex)
+
+            //Calling current scene, needed for audio. TODO: Should be in a sepate script imo.
+            EventArgument currentSceneArg = new EventArgument
             {
-                argument.stringComponent = SceneManager.GetSceneAt(sceneIndex).name;
-                argument.intComponent = -1;
-                eventManager.CallEvent(CustomEvent.LoadScene,argument);
-                sceneIndex++;
-                addOnSceneIndex = false;
-            }
-
-
-
-            Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
+                stringComponent = gameObject.scene.name
+            };
+            eventManager.CallEvent(CustomEvent.CurrentScene, currentSceneArg);
+            
+            // Instantiate(blocker, transform.position + (transform.forward*-offsetForCreatingObstacle), this.gameObject.transform.rotation);
             Destroy(this.gameObject);
 
             haveBeenTriggered = true;

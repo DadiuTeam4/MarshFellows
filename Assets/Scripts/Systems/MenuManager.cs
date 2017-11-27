@@ -1,5 +1,5 @@
 ﻿// Author: Itai Yavin
-// Contributors: Kristian Riis
+// Contributors: Kristian Riis,Tilemachos
 
 using System.Collections;
 using System.Collections.Generic;
@@ -13,9 +13,12 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         audioManager = AudioManager.GetInstance();
-        if (Input.deviceOrientation == DeviceOrientation.Portrait)
+        
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        
+        if (IspPortraitOrPortraitUpsideDown())
         {
-            portrait = true;
+            showMenuAndPauseGame();
         }
     }
 
@@ -23,19 +26,12 @@ public class MenuManager : MonoBehaviour
     {
         if (IspPortraitOrPortraitUpsideDown() && !portrait)
         {
-            portrait = true;
-            Time.timeScale = 0;
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (!transform.GetChild(i).gameObject.activeSelf && transform.GetChild(i).name != "CreditsPanel")
-                {
-                    transform.GetChild(i).gameObject.SetActive(true);
-                    audioManager.MenuFadeSoundDown();
-                }
-            }
+            showMenuAndPauseGame();
         }
         else if (IsLandscape() && portrait)
         {
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+            
             portrait = false;
             Time.timeScale = 1;
 
@@ -50,12 +46,28 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void showMenuAndPauseGame()
+    {
+        Screen.orientation = ScreenOrientation.Portrait; 
+        
+        portrait = true;
+        Time.timeScale = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (!transform.GetChild(i).gameObject.activeSelf && transform.GetChild(i).name != "CreditsPanel")
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+                audioManager.MenuFadeSoundDown();
+            }
+        }
+    }
+
     private bool IspPortraitOrPortraitUpsideDown()
     {
         return (Input.deviceOrientation == DeviceOrientation.Portrait || Input.deviceOrientation == DeviceOrientation.PortraitUpsideDown);
     }
 
-	
+
     private bool IsLandscape()
     {
         return (Input.deviceOrientation == DeviceOrientation.LandscapeLeft || Input.deviceOrientation == DeviceOrientation.LandscapeRight);

@@ -1,77 +1,65 @@
 ﻿// Author: You Wu
-// Contributors: tilemachos
+// Contributors: tilemachos, Itai Yavin
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Events;
 
-[RequireComponent(typeof(Collider))]
-public class ObjectFall : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class ObjectFall : ObjectType
 {
-    private Quaternion initialRotation;
-    private Vector3 objectSize;
-    private bool hasFall;
-    public bool checkRotation = true;
-    public bool checkPosition = true;
-    public string typeOfObject;
+    [SerializeField]
+    private Type typeOfObject;
+    
+    [Tooltip("Minimum angular speed needed before the object is counted as falling")]
+    public float minimumAngularSpeed = 1.0f;
+    [Tooltip("Minimum speed needed before the object is counted as falling")]
+    public float minimumSpeed = 1.0f;
+
+    private bool isFalling = false;
+    private bool hasFallen = false;
+
+    private new Rigidbody rigidbody;
+
+    EventManager eventManager;
+    EventArgument argument = new EventArgument();
 
     void Start()
-    {
-        initialRotation = transform.rotation;
-        hasFall = false;
-        objectSize = GetComponent<Collider>().bounds.size;
+    {   
+        eventManager = EventManager.GetInstance();
+
+        SetupStringValues();
+
+        rigidbody = GetComponent<Rigidbody>();
+
+        argument.stringComponent = GetTypeStringValue(typeOfObject);
+        argument.gameObjectComponent = gameObject;
     }
 
     void Update()
     {
-        if (!hasFall)
-        {
-            CheckIfFall();
-        }
-
+        CheckIfFalling();
     }
 
-    private void CheckIfFall()
+    private void CheckIfFalling()
     {
-        if (checkRotation)
+        float currentAngularSpeed = rigidbody.angularVelocity.magnitude;
+        float currentSpeed = rigidbody.velocity.magnitude;
+
+        if (isFalling && currentAngularSpeed <= minimumAngularSpeed && currentSpeed <= minimumSpeed)
         {
-            CheckFallByRotation();
-        }
-        if (checkPosition)
-        {
-            CheckFallByPosition();
+            isFalling = false;
+            hasFallen = true;
+            eventManager.CallEvent(CustomEvent.FallHasHappend, argument);
+            
+            return;
         }
 
-    }
-
-    private void CheckFallByRotation()
-    {
-        Quaternion currentRotation = transform.rotation;
-        if (Mathf.Abs(currentRotation.eulerAngles.x - initialRotation.eulerAngles.x) > 180)
+        if (!isFalling && (currentAngularSpeed > minimumAngularSpeed || currentSpeed > minimumSpeed))
         {
-            CallFallEvent();
-        }
-    }
-
-    private void CheckFallByPosition()
-    {
-        Vector3 currentPosition = transform.position;
-        if(transform.position.y < objectSize.y + 0.5)
-        {
-            CallFallEvent();
+            isFalling = true;
+            hasFallen = false;
+            return;
         }
     }
-
-    private void CallFallEvent()
-    {
-        hasFall = true;
-        EventManager eventManager = EventManager.GetInstance();
-        EventArgument argument = new EventArgument();
-        argument.stringComponent = typeOfObject;
-        argument.gameObjectComponent = gameObject;
-        eventManager.CallEvent(CustomEvent.FallHasHappend, argument);
-        //Stop Update
-        enabled = false;
-    }
-
 }
