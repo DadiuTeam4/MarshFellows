@@ -9,9 +9,12 @@ using System.Reflection;
 public class LayerHierarchy : EditorWindow 
 {
 	private static readonly int numLayers = 31;
+	private static bool hierarchyChanged = true;
 	private Vector2 scrollPos;
 	private bool[] showLayer;
 	private bool initialized = false;
+	private static GameObject[] gameObjectsInHierarchy;
+	private GameObject[][] gameObjectsInLayers;
 
 	[MenuItem("Window/Layer Hierarchy")]
 	static void Setup()
@@ -21,6 +24,12 @@ public class LayerHierarchy : EditorWindow
         
         window.Show();
     }
+
+	static void HierarchyChangedCallback()
+	{
+		gameObjectsInHierarchy = FindObjectsOfType<GameObject>();
+		hierarchyChanged = true;
+	}
 
 	private GameObject[] GetAllGameobjectsInLayer(GameObject[] gameObjects, int layer)
 	{
@@ -38,12 +47,19 @@ public class LayerHierarchy : EditorWindow
 		}
 		return gameObjectsInLayer.ToArray();
 	}
+
+	void OnEnable()
+	{
+		EditorApplication.hierarchyWindowChanged += HierarchyChangedCallback;
+	}
 	
 	private void OnGUI() 
 	{
 		if (!initialized)
 		{
 			showLayer = new bool[numLayers];
+			gameObjectsInLayers = new GameObject[numLayers][];
+			gameObjectsInHierarchy = FindObjectsOfType<GameObject>();
 			initialized = true;
 		}
 		// Styles
@@ -64,25 +80,36 @@ public class LayerHierarchy : EditorWindow
         button.alignment                = TextAnchor.MiddleLeft;
         button.fixedHeight              = 20;
 
-
 		GUILayout.BeginVertical(background);
 		EditorGUI.indentLevel = 0;
 		GUILayout.Label("All GameObjects by layer:", label);
 		scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
-		GameObject[] gameObjects = FindObjectsOfType<GameObject>();
+		if (gameObjectsInLayers == null)
+		{
+			gameObjectsInLayers = new GameObject[numLayers][];
+		}
+
+		if (gameObjectsInHierarchy == null)
+		{
+			gameObjectsInHierarchy = FindObjectsOfType<GameObject>();
+		}
+
 		for (int i = 0; i < numLayers; i++)
 		{
 			if (LayerMask.LayerToName(i) != "")
 			{
+				if (hierarchyChanged)
+				{
+					gameObjectsInLayers[i] = GetAllGameobjectsInLayer(gameObjectsInHierarchy, i);
+				}
 				showLayer[i] = EditorGUILayout.Foldout(showLayer[i], LayerMask.LayerToName(i));
 				EditorGUI.indentLevel = 1;
 				if (showLayer[i])
 				{
-					GameObject[] gameObjectsInLayer = GetAllGameobjectsInLayer(gameObjects, i);
-					if (gameObjectsInLayer != null)
+					if (gameObjectsInLayers[i] != null)
 					{
-						foreach (GameObject gameObject in gameObjectsInLayer)
+						foreach (GameObject gameObject in gameObjectsInLayers[i])
 						{
 							GUILayout.BeginHorizontal(background);
 							if (GUILayout.Button(gameObject.name, button))
@@ -100,5 +127,6 @@ public class LayerHierarchy : EditorWindow
 		}
 		EditorGUILayout.EndScrollView();
 		GUILayout.EndVertical();
+		hierarchyChanged = false;
 	}
 }
