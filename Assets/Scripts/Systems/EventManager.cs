@@ -42,7 +42,9 @@ namespace Events
 		FallHasHappend = 30,
 		AudioTrigger = 31,
         CurrentScene = 100,
-        BearScared = 200
+        BearScared = 200,
+		ThrowSpear,
+		SpearHit
 	}
 
 	public class EventArgument

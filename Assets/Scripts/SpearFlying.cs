@@ -8,6 +8,9 @@ using UnityEngine;
 using Events;
 public class SpearFlying : MonoBehaviour 
 {
+	[Tooltip("This is compared with the argument from the chosen event, if they arent equal, then the spear wont fly.")]
+	public string owner;
+
 	[Tooltip("This gives the spear a curve in the y direction")]
 	public AnimationCurve yCurve;
 	[Tooltip("A scalar multiplied to the yCurve so as to strengthen the curve")]
@@ -15,8 +18,10 @@ public class SpearFlying : MonoBehaviour
 	public float yCurveScalar = 1.0f;
 	[Tooltip("The event which triggers the spear flying")]
 	public CustomEvent flyOnEvent;
-	[Tooltip("Where the spear will hit")]
-	public Transform target;
+	[Tooltip("The event which is called when the spear hits its target")]
+	public CustomEvent onHitEvent;
+
+	private Transform target;
 
 	[Tooltip("How quickly the spear will reach its target destination")]
 	[Range(0.01f, 1.0f)]
@@ -39,6 +44,13 @@ public class SpearFlying : MonoBehaviour
 
 	private void SetupForSpearLerp(EventArgument argument)
 	{
+		if (!owner.Equals(argument.stringComponent))
+		{
+			return;
+		}
+
+		target = argument.gameObjectComponent.transform;
+
 		if (!spearThrown)
 		{
 			transform.parent = null;
@@ -52,17 +64,18 @@ public class SpearFlying : MonoBehaviour
 		Vector3 thrownPosition = transform.position;
 		Vector3 yOffsetPosition;
 
-		while(lerpT != 1)
+		while (lerpT != 1)
 		{
 			Debug.DrawLine(thrownPosition, target.position, Color.red, incrementRate);
 
 			transform.LookAt(target.position);
 
 			lerpT += lerpRate;
-			if(lerpT > 1)
+			if (lerpT > 1)
 			{
 				lerpT = 1;
 
+				EventManager.GetInstance().CallEvent(onHitEvent);
 				transform.parent = target;
 			}
 
