@@ -30,4 +30,6 @@ public class GlobalConstants : ScriptableObject
 	public float maxY = 30;
 	public AnimationCurve speedCurve;
 	public AnimationCurve angleCurve;
+	public int minBirds = 2;
+	public int maxBirds = 10;
 }
