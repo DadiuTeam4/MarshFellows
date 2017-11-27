@@ -29,17 +29,6 @@ public class TeachFog : MonoBehaviour
 	private Vector3 startPosition;
 	private new SkinnedMeshRenderer renderer;
 
-	// private void Awake()
-	// {
-	// 	eventDelegate += OnGameStarted;
-	// }
-
-	// private void OnEnable()
-	// {
-	// 	eventManager = EventManager.GetInstance();
-	// 	eventManager.AddListener(CustomEvent.GameStarted, eventDelegate);
-	// }
-
 	private void Start()
 	{
 		renderer = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -67,12 +56,7 @@ public class TeachFog : MonoBehaviour
 			timeElapsed += Time.deltaTime;
 			progress = speedCurve.Evaluate(timeElapsed / jumpTime);
 			float posX = Mathf.Lerp(startPosX, endPosX, progress);
-			float posY = transform.position.y;
-			if (translateYAxis)
-			{
-				posY = yCurve.Evaluate(progress);
-			}
-			transform.position = new Vector3(posX, transform.position.y, transform.position.z);
+			transform.localPosition = new Vector3(posX, transform.localPosition.y, transform.localPosition.z);
 			yield return null;
 		}
 		StartCoroutine(Cooldown());
