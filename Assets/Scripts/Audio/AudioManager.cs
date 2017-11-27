@@ -28,7 +28,8 @@ public class AudioManager : Singleton<AudioManager> {
 
 	void Start()
 	{
-		groundLayer = "Swamp";
+		//groundLayer = "FS_Forrest";
+		AkSoundEngine.SetSwitch ("FS_Forrest", groundLayer, gameObject);  
 		AkSoundEngine.SetState ("Ambience", "Forrest"); 
 		PlaySound("Play_Ambience"); 
 	}
@@ -216,7 +217,7 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.stringComponent == "Ritual") 
 		{
-			//
+			AkSoundEngine.SetState("Music", "Ritual"); 
 		}
 		if (argument.stringComponent == "Separation") 
 		{
@@ -245,13 +246,11 @@ public class AudioManager : Singleton<AudioManager> {
 	public void FootstepO()
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
-		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
 	}
 
 	public void FootstepP()
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
-		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
 	}
 
 
