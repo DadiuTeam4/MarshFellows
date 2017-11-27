@@ -214,14 +214,6 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			AkSoundEngine.SetState("Music", "Crossroad"); 
 		}
-		if (argument.stringComponent == "LiO1") 
-		{
-			AkSoundEngine.SetState("Music", "O"); 
-		}
-		if (argument.stringComponent == "LiP1") 
-		{
-			AkSoundEngine.SetState("Music", "P"); 
-		}
 		if (argument.stringComponent == "Ritual") 
 		{
 			//
@@ -238,7 +230,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//
 		}
-		if (argument.stringComponent == "BeachEvent") 
+		if (argument.stringComponent == "B") 
 		{
 			//
 		}
