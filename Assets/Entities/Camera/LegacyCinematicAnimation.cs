@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Camera/Cinematic Animation")]
-public class CinematicAnimation : ScriptableObject 
+public class LegacyCinematicAnimation : ScriptableObject 
 {
 	[Header("Position")]
 	public bool followP;

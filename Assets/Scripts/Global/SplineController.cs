@@ -1,13 +1,13 @@
+// Contributors: Mathias Dam Hedelund
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
-public enum eOrientationMode { NODE = 0, TANGENT }
 
 [AddComponentMenu("Splines/Spline Controller")]
 [RequireComponent(typeof(SplineInterpolator))]
 public class SplineController : MonoBehaviour
 {
+	public enum eOrientationMode { NODE = 0, TANGENT }
 	public GameObject SplineRoot;
 	public float Duration = 10;
 	public eOrientationMode OrientationMode = eOrientationMode.NODE;
@@ -20,29 +20,28 @@ public class SplineController : MonoBehaviour
 	SplineInterpolator mSplineInterp;
 	Transform[] mTransforms;
 
-	void OnDrawGizmos()
-	{
-		Transform[] trans = GetTransforms();
-		if (trans.Length < 2)
-			return;
+	// void OnDrawGizmos()
+	// {
+	// 	Transform[] trans = GetTransforms();
+	// 	if (trans == null || trans.Length < 2)
+	// 		return;
 
-		SplineInterpolator interp = GetComponent(typeof(SplineInterpolator)) as SplineInterpolator;
-		SetupSplineInterpolator(interp, trans);
-		interp.StartInterpolation(null, false, WrapMode);
+	// 	SplineInterpolator interp = GetComponent(typeof(SplineInterpolator)) as SplineInterpolator;
+	// 	SetupSplineInterpolator(interp, trans);
+	// 	interp.StartInterpolation(null, false, WrapMode);
 
 
-		Vector3 prevPos = trans[0].position;
-		for (int c = 1; c <= 100; c++)
-		{
-			float currTime = c * Duration / 100;
-			Vector3 currPos = interp.GetHermiteAtTime(currTime);
-			float mag = (currPos-prevPos).magnitude * 2;
-			Gizmos.color = new Color(mag, 0, 0, 1);
-			Gizmos.DrawLine(prevPos, currPos);
-			prevPos = currPos;
-		}
-	}
-
+	// 	Vector3 prevPos = trans[0].position;
+	// 	for (int c = 1; c <= 100; c++)
+	// 	{
+	// 		float currTime = c * Duration / 100;
+	// 		Vector3 currPos = interp.GetHermiteAtTime(currTime);
+	// 		float mag = (currPos-prevPos).magnitude * 2;
+	// 		Gizmos.color = new Color(mag, 0, 0, 1);
+	// 		Gizmos.DrawLine(prevPos, currPos);
+	// 		prevPos = currPos;
+	// 	}
+	// }
 
 	void Start()
 	{

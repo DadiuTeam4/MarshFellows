@@ -9,6 +9,7 @@ namespace CameraControl
 {
 	// Dependencies
 	[RequireComponent(typeof(ThirdPersonCamera))]
+	[RequireComponent(typeof(LegacyCinematicCamera))]
 	[RequireComponent(typeof(CinematicCamera))]
 	[RequireComponent(typeof(AnimatedCamera))]
 	public class CameraStateController : Singleton<CameraStateController> 
@@ -17,6 +18,7 @@ namespace CameraControl
 		private enum CameraState
 		{
 			ThirdPerson,
+			LegacyCinematic,
 			Cinematic,
 			Animated
 		}
@@ -29,6 +31,7 @@ namespace CameraControl
 		[SerializeField]
 		private CameraState currentState;
 		private ThirdPersonCamera thirdPersonCamera;
+		private LegacyCinematicCamera legacyCinematicCamera;
 		private CinematicCamera cinematicCamera;
 		private AnimatedCamera animatedCamera;
 		private EventManager eventManager;
@@ -37,6 +40,7 @@ namespace CameraControl
 		{	
 			// Get references
 			thirdPersonCamera = GetComponent<ThirdPersonCamera>();
+			legacyCinematicCamera = GetComponent<LegacyCinematicCamera>();
 			cinematicCamera = GetComponent<CinematicCamera>();
 			cameraComponent = GetComponentInChildren<Camera>();
 			animatedCamera = GetComponent<AnimatedCamera>();
@@ -96,6 +100,7 @@ namespace CameraControl
 		void UpdateState()
 		{
 			thirdPersonCamera.SetActive(currentState == CameraState.ThirdPerson);
+			legacyCinematicCamera.SetActive(currentState == CameraState.LegacyCinematic);
 			cinematicCamera.SetActive(currentState == CameraState.Cinematic);
 			animatedCamera.SetActive(currentState == CameraState.Animated);
 		}
