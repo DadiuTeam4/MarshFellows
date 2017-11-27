@@ -30,7 +30,7 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		//groundLayer = "FS_Forrest";
 		AkSoundEngine.SetSwitch ("FS_Forrest", groundLayer, gameObject);  
-		AkSoundEngine.SetState ("Ambience", "Forrest"); 
+		AkSoundEngine.SetState ("Ambience", "OpenFew"); 
 		PlaySound("Play_Ambience"); 
 	}
 
