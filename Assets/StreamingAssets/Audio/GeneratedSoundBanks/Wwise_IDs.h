@@ -62,6 +62,7 @@ namespace AK
                 static const AkUniqueID BYWATER = 1689379159U;
                 static const AkUniqueID FORREST = 760316600U;
                 static const AkUniqueID MEDIUMOPEN = 2581413256U;
+                static const AkUniqueID OPENFEW = 2015800441U;
             } // namespace STATE
         } // namespace AMBIENCE
 
