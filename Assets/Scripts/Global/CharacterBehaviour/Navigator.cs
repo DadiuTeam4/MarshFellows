@@ -21,6 +21,7 @@ public class Navigator : MonoBehaviour
 	private bool destinationReached;
 
     private float previousSpeed;
+    private Animator animator;
 
 	private GlobalConstantsManager constantsManager;
 
@@ -40,6 +41,8 @@ public class Navigator : MonoBehaviour
 		navMeshAgent.acceleration = constantsManager.constants.acceleration;
 		navMeshAgent.height = constantsManager.constants.height;
 		navMeshAgent.radius = constantsManager.constants.radius;
+
+        animator = GetComponentInChildren<Animator>();
 	}
 
 	private void Start()
@@ -104,11 +107,13 @@ public class Navigator : MonoBehaviour
 
 	public float GetSpeed()
 	{
-		return navMeshAgent.velocity.magnitude;
+		return navMeshAgent.speed;
 	}
 
     public void SetSpeed(float speed)
     {
+        float t = (speed - 1) / 3;
+        animator.SetFloat("speed", Mathf.Lerp(1, 2, t));
         previousSpeed = navMeshAgent.speed;
         navMeshAgent.speed = speed;
     }
@@ -122,6 +127,7 @@ public class Navigator : MonoBehaviour
 	{
 		if (!navMeshAgent.isStopped)
 		{
+            animator.SetFloat("speed", 0);
 			navMeshAgent.isStopped = true;
 		}
 	}
@@ -130,7 +136,8 @@ public class Navigator : MonoBehaviour
 	{
 		if (navMeshAgent.isStopped)
 		{
-			navMeshAgent.isStopped = false;
+            SetSpeed(navMeshAgent.speed); //To set animation to correct value.
+            navMeshAgent.isStopped = false;
 		}
 	}
 

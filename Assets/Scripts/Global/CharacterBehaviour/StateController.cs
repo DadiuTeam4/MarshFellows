@@ -29,7 +29,6 @@ public class StateController : MonoBehaviour
 	private EventDelegate eventOccurredCallbacks;
     private EventDelegate locationEventCallback;
 
-
     #region DEBUG
 #if UNITY_EDITOR
     public bool aiDebugging = false;
