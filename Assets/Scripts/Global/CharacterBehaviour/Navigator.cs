@@ -120,7 +120,7 @@ public class Navigator : MonoBehaviour
 
     public void SetPreviousSpeed()
     {
-        navMeshAgent.speed = previousSpeed;
+        SetSpeed(previousSpeed);
     }
 
 	public void StopMovement()
