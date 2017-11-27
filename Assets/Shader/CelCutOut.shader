@@ -2,8 +2,7 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
-		_Glossiness ("Smoothness", Range(0,1)) = 0.5
-		_Metallic ("Metallic", Range(0,1)) = 0.0
+		_Cutoff("Alpha cutoff", Range(0,1)) = 0.5
 		_UnlitSurface ("UnlitSurface", Range(0,1)) = 0.0 
 		_ShadowColor ("ShadowColor", Color) = (0.10,0.5,1,1)
 		 _BumpMap("Normal Map", 2D) = "bump" {}
