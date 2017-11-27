@@ -1,4 +1,4 @@
-﻿Shader "Custom/Cel" {
+﻿Shader "Custom/Cel Cut Out" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
@@ -9,11 +9,14 @@
 		 _BumpMap("Normal Map", 2D) = "bump" {}
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		Tags { "Queue" = "AlphaTest" "IgnoreProjector" = "True" "RenderType" = "TransparentCutout" }
 		LOD 200
+		Cull Off
 		
 		CGPROGRAM
-		#pragma surface surf CelShadingForward 
+		// Physically based Standard lighting model, and enable shadows on all light types
+		//#pragma surface surf Standard fullforwardshadows
+		#pragma surface surf CelShadingForward alphatest:_Cutoff
 		#pragma target 3.0
 		#pragma multi_compile_fog
 
@@ -36,11 +39,9 @@
 			_UnlitSurface = _UnlitSurface -1;
 			half NdotL = dot(s.Normal, lightDir);
 	 		//NdotL = 1 + clamp(floor(NdotL), _UnlitSurface, 0);
-			
 			NdotL = smoothstep(0, 0.025f, NdotL); 
 			half4 c;
 			c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten) + (1-atten) * _ShadowColor;
-			//c.rbg = 1-atten;
 			c.a = s.Alpha;
 			return c;
 		}
