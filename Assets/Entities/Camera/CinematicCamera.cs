@@ -12,7 +12,8 @@ namespace CameraControl
 		Separation,
 		Ritual,
 		Deer,
-		Bear
+		Bear,
+		Ending
 	}
 
 	public class CinematicCamera : BaseCamera 
