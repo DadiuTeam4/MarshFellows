@@ -7,18 +7,28 @@ using Events;
 
 public class FadeOutOnEnd : MonoBehaviour {
 
-     Texture2D blk;
+     public Texture2D tex;
+     private Texture2D texCopy;
+     
+     public Material fogMaterial;
      private bool fade;
      private float alph;
 
     EventManager eventManager;
 
      void Start(){
-         //make a tiny black texture
-         blk = new Texture2D (1, 1);
-         blk.SetPixel (0, 0, new Color(0,0,0,0));
-         blk.Apply ();
+         //get a fog texture from the material
+        texCopy = fogMaterial.mainTexture as Texture2D;
+        Debug.Log(texCopy.GetType() + "   "+ texCopy.format);
+       
+        tex = new Texture2D(texCopy.width, texCopy.height, TextureFormat.RGBA32, texCopy.mipmapCount > 1);
+        
+        byte[] pix = tex.GetRawTextureData();
 
+        tex.LoadRawTextureData(pix);
+
+        tex.SetPixel (0, 0, new Color(0,0,0,0));
+        tex.Apply ();
 
 		eventManager = EventManager.GetInstance();
 
@@ -28,10 +38,10 @@ public class FadeOutOnEnd : MonoBehaviour {
      }
      // put it on your screen
      void OnGUI(){
-         GUI.DrawTexture (new Rect(0, 0, Screen.width, Screen.height),blk);
+         GUI.DrawTexture (new Rect(0, 0, Screen.width, Screen.height),tex);
      }
      
-     void Update () {
+     void Update () {//play around with oppacity
          if(Input.GetKeyDown("space"))
 		 {
 			 FlipFade();
@@ -42,16 +52,16 @@ public class FadeOutOnEnd : MonoBehaviour {
              if (alph > 0) {
                  alph -= Time.deltaTime * .2f;
                  if (alph < 0) {alph = 0f;}
-                 blk.SetPixel (0, 0, new Color (0, 0, 0, alph));
-                 blk.Apply ();
+                 tex.SetPixel (0, 0, new Color (0, 0, 0, alph));
+                 tex.Apply ();
              }
          } 
          if (fade) {
              if (alph < 1) {
                  alph += Time.deltaTime * .2f;
                  if (alph > 1) {alph = 1f;}
-                 blk.SetPixel (0, 0, new Color (0, 0, 0, alph));
-                 blk.Apply ();
+                 tex.SetPixel (0, 0, new Color (0, 0, 0, alph));
+                 tex.Apply ();
              }
          }
      }
@@ -64,4 +74,5 @@ public class FadeOutOnEnd : MonoBehaviour {
 	{
 		fade=!fade;
 	}
+    
 }
