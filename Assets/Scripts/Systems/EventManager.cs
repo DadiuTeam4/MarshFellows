@@ -44,7 +44,8 @@ namespace Events
         CurrentScene = 100,
         BearScared = 200,
 		ThrowSpear,
-		SpearHit
+		SpearHit,
+		ReadyForSpear
 	}
 
 	public class EventArgument

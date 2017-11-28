@@ -81,8 +81,8 @@ namespace CameraControl
 				}
 				case (CustomEvent.BearScenarioEntered):
 				{
-					currentState = CameraState.Cinematic;
-					cinematicCamera.SetScenario(Scenario.Bear, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);
+					/*currentState = CameraState.Cinematic;
+					cinematicCamera.SetScenario(Scenario.Bear, argument.vectorArrayComponent[0], argument.vectorArrayComponent[1]);*/
 					break;
 				}
 				case (CustomEvent.ScenarioEnded):
