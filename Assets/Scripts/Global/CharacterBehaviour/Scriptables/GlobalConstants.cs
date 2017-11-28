@@ -23,4 +23,7 @@ public class GlobalConstants : ScriptableObject
 	[Header("Audio")]
 	public float sfxVolume = 100; 
 	public float musicVolume = 100; 
+	
+	[Header("Camera")]
+	public float xRotation = 25;
 }
