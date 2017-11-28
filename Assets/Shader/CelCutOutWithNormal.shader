@@ -1,7 +1,8 @@
-﻿Shader "Custom/Cel" 
+﻿Shader "Custom/Cel CutOut With Normal"
 {
 	Properties 
 	{
+		_Cutoff("Alpha cutoff", Range(0,1)) = 0.5
 		_Color 			("Color", Color) = (1,1,1,1)
 		_MainTex 		("Albedo (RGB)", 2D) = "white" {}
 		_UnlitSurface 	("UnlitSurface", Range(0,1)) = 0.75 
@@ -12,11 +13,12 @@
 	}
 	SubShader 
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags { "Queue" = "AlphaTest" "IgnoreProjector" = "True" "RenderType" = "TransparentCutout" }
 		LOD 200
+		Cull Off
 		
 		CGPROGRAM
-		#pragma surface surf CelShadingForward 
+		#pragma surface surf CelShadingForward fullforwardshadows addshadow alphatest:_Cutoff
 		#pragma target 3.0
 		#pragma multi_compile_fog
 
@@ -34,7 +36,7 @@
 		fixed4 _Color;
 		fixed _UnlitSurface;
 		fixed4 _ShadowColor;
-		
+
 		half4 LightingCelShadingForward(SurfaceOutput s, half3 lightDir, half atten) 
 		{
 			half NdotL = dot(s.Normal, lightDir);
@@ -48,6 +50,7 @@
 			return c;
 		}
 
+
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
 		// #pragma instancing_options assumeuniformscaling
@@ -57,7 +60,7 @@
 
 		void surf (Input IN, inout SurfaceOutput o) 
 		{
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex);// * _Color;
 			o.Albedo = c.rgb;
 			o.Alpha = c.a;
 			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
@@ -66,3 +69,4 @@
 	}
 	FallBack "Diffuse"
 }
+
