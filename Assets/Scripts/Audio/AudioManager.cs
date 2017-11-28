@@ -43,7 +43,6 @@ public class AudioManager : Singleton<AudioManager> {
 	void Update()
 	{
 		AkSoundEngine.SetRTPCValue ("MusicFadeVolume", fadeVolValue); 
-		Debug.Log (fadeVolValue); 
 	}
 
 	//SFX
