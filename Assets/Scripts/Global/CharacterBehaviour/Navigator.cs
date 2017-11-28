@@ -16,13 +16,13 @@ public class Navigator : MonoBehaviour
     public Transform splitWaypoint;
 	public bool autoRepath;
 	public bool drawPath;
+    public Animator animator;
 
-    private NavMeshAgent navMeshAgent;
+	private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
 
     private float previousSpeed;
-    private Animator animator;
-
+    
 	private GlobalConstantsManager constantsManager;
 
 	#region DEBUG
@@ -41,8 +41,6 @@ public class Navigator : MonoBehaviour
 		navMeshAgent.acceleration = constantsManager.constants.acceleration;
 		navMeshAgent.height = constantsManager.constants.height;
 		navMeshAgent.radius = constantsManager.constants.radius;
-
-        animator = GetComponentInChildren<Animator>();
 	}
 
 	private void Start()
@@ -127,7 +125,7 @@ public class Navigator : MonoBehaviour
 	{
 		if (!navMeshAgent.isStopped)
 		{
-            animator.SetFloat("speed", 0);
+			animator.SetFloat("speed", 0);
 			navMeshAgent.isStopped = true;
 		}
 	}

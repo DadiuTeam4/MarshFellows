@@ -1,5 +1,5 @@
 ﻿// Author: Mathias Dam Hedelund
-// Contributors: You Wu
+// Contributors: You Wu, tilemachos
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace CameraControl
         public float rotationDamping = 1;
         public bool isFollowingCenter = true;
         public float fieldOfView = 45;
-        public float xRotation = 25;
+        private float xRotation;
 
         [SerializeField]
         private Transform trackedObject;
@@ -22,9 +22,12 @@ namespace CameraControl
         private float fogDensity;
         private float acceptableFogOffset = 0.01f;
 
+
         private void Start()
         {
             fogDensity = GlobalConstantsManager.GetInstance().constants.fogDensity;
+            
+            xRotation = GlobalConstantsManager.GetInstance().constants.xRotation;
 
             controller = CameraStateController.GetInstance();
             InitTargets();
