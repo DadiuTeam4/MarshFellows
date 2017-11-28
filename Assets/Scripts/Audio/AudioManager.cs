@@ -342,7 +342,7 @@ public class AudioManager : Singleton<AudioManager> {
 
 	IEnumerator FadeIn()
 	{
-		duration = 4f * Time.deltaTime; 
+		duration = 4.5f * Time.deltaTime; 
 		while (fadeVolValue < fadeMax) {
 			fadeVolValue += duration; 
 			yield return null; 
