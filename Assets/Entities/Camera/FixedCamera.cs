@@ -6,11 +6,10 @@ using UnityEngine;
 
 namespace CameraControl
 {
-	public class AnimatedCamera : BaseCamera
+	public class FixedCamera : BaseCamera
 	{
 		
 		public Vector3 fixedPosition;
-		public bool fixedCamera;
 		private Vector3 CurrentCameraPos;
 
 		void Start () 
@@ -22,10 +21,7 @@ namespace CameraControl
 		{
 			if (active)
 			{
-				if (fixedCamera)
-				{
 					transform.localPosition = fixedPosition;
-				}
 			}
 		}
 	}
