@@ -24,7 +24,7 @@ public class HunterSpeedControlZone : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (string.Compare(other.transform.name, "O") == 0 && !speedAfterZoneSat)
+		if (string.Compare(other.transform.name, "P") == 0 && !speedAfterZoneSat)
 		{
             speedAfterZone = oNav.GetSpeed();
             oNav.SetSpeed(speedZoneSpeed);
@@ -35,7 +35,7 @@ public class HunterSpeedControlZone : MonoBehaviour
 
 	void OnTriggerExit(Collider other)
 	{
-		if (string.Compare(other.transform.name, "O") == 0)
+		if (string.Compare(other.transform.name, "P") == 0)
 		{
 			oNav.SetSpeed(speedAfterZone);
             pNav.SetSpeed(speedAfterZone);

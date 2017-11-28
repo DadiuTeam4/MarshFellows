@@ -101,6 +101,7 @@ namespace AK
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID MUSIC_VOLUME = 1006694123U;
+        static const AkUniqueID MUSICFADEVOLUME = 126405522U;
         static const AkUniqueID SFX_VOLUME = 1564184899U;
         static const AkUniqueID SIDECHAIN = 1883033791U;
         static const AkUniqueID SS_AIR_FEAR = 1351367891U;
