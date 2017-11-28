@@ -11,27 +11,20 @@ namespace CameraControl
 		
 		public Vector3 fixedPosition;
 		public bool fixedCamera;
-
-		private Animation animation;
 		private Vector3 CurrentCameraPos;
 
 		void Start () 
 		{
 			controller = CameraStateController.GetInstance();
-			animation = GetComponentInChildren<Animation>();
 		}
 		
-		void LateUpdate()
+		protected override void UpdatePosition()
 		{
-			if(active)
+			if (active)
 			{
-				if(!fixedCamera)
+				if (fixedCamera)
 				{
-					animation.Play();
-				}
-				if(fixedCamera)
-				{
-					transform.position = fixedPosition;
+					transform.localPosition = fixedPosition;
 				}
 			}
 		}

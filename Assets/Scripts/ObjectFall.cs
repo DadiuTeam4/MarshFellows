@@ -16,9 +16,6 @@ public class ObjectFall : ObjectType
     [Tooltip("Minimum speed needed before the object is counted as falling")]
     public float minimumSpeed = 1.0f;
 
-    private float previousAngularSpeed;
-    private float previousSpeed;
-    
     private bool isFalling = false;
     private bool hasFallen = false;
 
@@ -57,9 +54,6 @@ public class ObjectFall : ObjectType
             
             return;
         }
-
-        previousAngularSpeed = currentAngularSpeed;
-        previousSpeed = currentSpeed;
 
         if (!isFalling && (currentAngularSpeed > minimumAngularSpeed || currentSpeed > minimumSpeed))
         {

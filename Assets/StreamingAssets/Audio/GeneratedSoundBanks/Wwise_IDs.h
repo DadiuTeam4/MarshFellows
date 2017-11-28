@@ -21,7 +21,8 @@ namespace AK
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
-        static const AkUniqueID PLAY_FS = 2262856515U;
+        static const AkUniqueID PLAY_FS_O = 3464671677U;
+        static const AkUniqueID PLAY_FS_P = 3464671650U;
         static const AkUniqueID PLAY_GG_AMBIENCE_WATER = 3361606695U;
         static const AkUniqueID PLAY_GG_FSD_1 = 1046603870U;
         static const AkUniqueID PLAY_GG_FSD_2 = 1046603869U;
@@ -61,6 +62,7 @@ namespace AK
                 static const AkUniqueID BYWATER = 1689379159U;
                 static const AkUniqueID FORREST = 760316600U;
                 static const AkUniqueID MEDIUMOPEN = 2581413256U;
+                static const AkUniqueID OPENFEW = 2015800441U;
             } // namespace STATE
         } // namespace AMBIENCE
 
@@ -74,6 +76,7 @@ namespace AK
                 static const AkUniqueID INTRO = 1125500713U;
                 static const AkUniqueID O = 84696432U;
                 static const AkUniqueID P = 84696431U;
+                static const AkUniqueID RITUAL = 886825768U;
             } // namespace STATE
         } // namespace MUSIC
 

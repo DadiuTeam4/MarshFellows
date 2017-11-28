@@ -16,8 +16,8 @@ public class DissipatingFog : Swipeable
 	[Range(0.01f, 5.0f)]
 	public float dissipationRate = 0.1f;
 
-	private Collider collider;
-	private ParticleSystem particleSystem;
+	private new Collider collider;
+	private new ParticleSystem particleSystem;
 	private ParticleSystem.EmissionModule particleSysteEmissionModule;
 	private IEnumerator dissipate;
 
