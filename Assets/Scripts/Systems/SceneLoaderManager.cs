@@ -164,7 +164,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         GameStateManager.current = newRound;
 
         SaveLoadManager.Save();
-        UnloadAllScenes("");
+        UnloadAllScenes(globalSceneName);
         eventManager.CallEvent(CustomEvent.ResetGame);
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
@@ -173,11 +173,12 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         int c = SceneManager.sceneCount;
         //Unload last scene is not supported
-        for (int i = 0; i < c - 1; i++) 
+        for (int i = 0; i < c; i++) 
         {
             Scene scene = SceneManager.GetSceneAt (i);  
             if(scene.name != unloadGlobal)
             {
+                Debug.Log("Scene name is: " + scene.name);
                 SceneManager.UnloadSceneAsync (scene);
             }     
         }

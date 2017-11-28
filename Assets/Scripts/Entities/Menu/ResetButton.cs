@@ -20,18 +20,13 @@ public class ResetButton : MonoBehaviour
     {
         EventManager.GetInstance().CallEvent(CustomEvent.ResetGame);
         audioManager.OnMenuClick();
-        UnloadAllScenes();
-        SceneManager.LoadScene("GlobalScene");
-    }
-
-    void UnloadAllScenes()
-    {
-        int c = SceneManager.sceneCount;
-		//Unload scenes except last one
-        for (int i = 0; i < c - 1; i++)
-        {
-            Scene scene = SceneManager.GetSceneAt(i);
-            SceneManager.UnloadSceneAsync(scene);
-        }
+        
+        EventManager eventManager = EventManager.GetInstance(); 
+    
+        EventArgument argument = new EventArgument(); 
+        
+        argument.stringComponent = "restart";
+        argument.intComponent = 1;
+        eventManager.CallEvent(CustomEvent.LoadScene,argument);
     }
 }
