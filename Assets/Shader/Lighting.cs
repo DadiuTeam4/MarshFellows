@@ -7,46 +7,76 @@ using UnityEngine;
 public class Lighting : MonoBehaviour 
 {
 	
-	public Color sky;
-	public Color equator;
-	public Color ground;
+	private bool triggered;
 
-	public float changeSpeed = 0.001f;
+    [Space]
+    [Header("Reminder to scale the box collider to fit the whole area the color change is active")]
+    [Space]
 
-	public Transform start;
-	public Transform end;
-	// Use this for initialization
-	void Start () {
+	[Header("Lerp from current colors to these colors")]
+	[SerializeField]
+	private Color sky;
+	[SerializeField]
+	private Color equator;
+	[SerializeField]
+	private Color ground;
 
-	}
+	private Color skyStart;
+	private Color equatorStart;
+	private Color groundStart;
+
+	[SerializeField]
+	[Range(0,1.0f)]
+	private float changeMultiplier = 1.0f;
+
+	[Header("Positions of the start and end, should be on the path")]
+	[SerializeField]
+	private Transform start;
+	[SerializeField]
+	private Transform end;
+	private Transform hunter;
 	
-	// Update is called once per frame
-	void Update () 
+	private void LateUpdate () 
 	{
-		if(Input.GetKey(KeyCode.A))
+		if( triggered)
 		{
-			ChangeColor();
-		}	
-
+			UpdateHunterPosition(hunter);
+		}
 	}
 
-
-	void OnTriggerEnter(Collider other)
+	private void UpdateHunterPosition(Transform hunter)
 	{
-		//float distance = 
+		float distanceFromBeginningToHunters = Vector3.Distance(hunter.position, start.position);
+		float distanceFromEndToHunters = Vector3.Distance(hunter.position, end.position);
+		float progress = distanceFromBeginningToHunters / (distanceFromBeginningToHunters + distanceFromEndToHunters);
+		ChangeColor(progress * changeMultiplier);
 	}
 
-
-	void ChangeColor()
+	private void OnTriggerEnter(Collider other)
 	{
-		Color AmbSky = Color.Lerp(RenderSettings.ambientSkyColor, sky, (Mathf.PingPong(Time.time, 1)*changeSpeed));
-		Color AmbEquator = Color.Lerp(RenderSettings.ambientEquatorColor, equator, (Mathf.PingPong(Time.time, 1)*changeSpeed));
-		Color AmbGround = Color.Lerp(RenderSettings.ambientGroundColor, ground, (Mathf.PingPong(Time.time, 1)*changeSpeed));
+		if( other.name == "P")
+		{
+			hunter = other.transform;
+			triggered = true;
+			skyStart = RenderSettings.ambientSkyColor;
+			equatorStart = RenderSettings.ambientEquatorColor;
+			groundStart = RenderSettings.ambientGroundColor;
+		}
+	}
 
+	private void OnTriggerExit(Collider other)
+	{
+		if( other.name == "P")
+		{
+			Destroy(this.gameObject);	
+		}
+	}
 
-		RenderSettings.ambientSkyColor = AmbSky;
-		RenderSettings.ambientEquatorColor = AmbEquator;
-		RenderSettings.ambientGroundColor = AmbGround;
+	private void ChangeColor(float progress)
+	{
+		RenderSettings.ambientSkyColor = Color.Lerp(skyStart, sky, progress);
+		RenderSettings.ambientEquatorColor = Color.Lerp(equatorStart, equator, progress);
+		RenderSettings.ambientGroundColor = Color.Lerp(groundStart, ground, progress);
 	}
 
 }
