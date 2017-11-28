@@ -10,7 +10,7 @@ namespace CameraControl
 	// Dependencies
 	[RequireComponent(typeof(ThirdPersonCamera))]
 	[RequireComponent(typeof(CinematicCamera))]
-	[RequireComponent(typeof(AnimatedCamera))]
+	[RequireComponent(typeof(FixedCamera))]
 	public class CameraStateController : Singleton<CameraStateController> 
 	{
 		// State definition
@@ -18,19 +18,18 @@ namespace CameraControl
 		{
 			ThirdPerson,
 			Cinematic,
-			Animated
+			Fixed
 		}
 
 		// Variables
 		public Transform[] targets;
-		public Transform cameraRig;
 		[HideInInspector]
 		public Camera cameraComponent;
 		[SerializeField]
 		private CameraState currentState;
 		private ThirdPersonCamera thirdPersonCamera;
 		private CinematicCamera cinematicCamera;
-		private AnimatedCamera animatedCamera;
+		private FixedCamera fixedCamera;
 		private EventManager eventManager;
 
 		void Awake()
@@ -39,8 +38,7 @@ namespace CameraControl
 			thirdPersonCamera = GetComponent<ThirdPersonCamera>();
 			cinematicCamera = GetComponent<CinematicCamera>();
 			cameraComponent = GetComponentInChildren<Camera>();
-			animatedCamera = GetComponent<AnimatedCamera>();
-
+			fixedCamera = GetComponent<FixedCamera>();
 
 			// Add event listeners
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
@@ -97,7 +95,7 @@ namespace CameraControl
 		{
 			thirdPersonCamera.SetActive(currentState == CameraState.ThirdPerson);
 			cinematicCamera.SetActive(currentState == CameraState.Cinematic);
-			animatedCamera.SetActive(currentState == CameraState.Animated);
+			fixedCamera.SetActive(currentState == CameraState.Fixed);
 		}
 
 		public void SetTrackedObject(Transform obj)
