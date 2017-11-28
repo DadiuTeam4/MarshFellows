@@ -9,42 +9,36 @@ namespace CameraControl
 {
 	// Dependencies
 	[RequireComponent(typeof(ThirdPersonCamera))]
-	[RequireComponent(typeof(LegacyCinematicCamera))]
 	[RequireComponent(typeof(CinematicCamera))]
-	[RequireComponent(typeof(AnimatedCamera))]
+	[RequireComponent(typeof(FixedCamera))]
 	public class CameraStateController : Singleton<CameraStateController> 
 	{
 		// State definition
 		private enum CameraState
 		{
 			ThirdPerson,
-			LegacyCinematic,
 			Cinematic,
-			Animated
+			Fixed
 		}
 
 		// Variables
 		public Transform[] targets;
-		public Transform cameraRig;
 		[HideInInspector]
 		public Camera cameraComponent;
 		[SerializeField]
 		private CameraState currentState;
 		private ThirdPersonCamera thirdPersonCamera;
-		private LegacyCinematicCamera legacyCinematicCamera;
 		private CinematicCamera cinematicCamera;
-		private AnimatedCamera animatedCamera;
+		private FixedCamera fixedCamera;
 		private EventManager eventManager;
 
 		void Awake()
 		{	
 			// Get references
 			thirdPersonCamera = GetComponent<ThirdPersonCamera>();
-			legacyCinematicCamera = GetComponent<LegacyCinematicCamera>();
 			cinematicCamera = GetComponent<CinematicCamera>();
 			cameraComponent = GetComponentInChildren<Camera>();
-			animatedCamera = GetComponent<AnimatedCamera>();
-
+			fixedCamera = GetComponent<FixedCamera>();
 
 			// Add event listeners
 			EventDelegate eventDelegate = ScenarioTriggerCallback;
@@ -100,9 +94,8 @@ namespace CameraControl
 		void UpdateState()
 		{
 			thirdPersonCamera.SetActive(currentState == CameraState.ThirdPerson);
-			legacyCinematicCamera.SetActive(currentState == CameraState.LegacyCinematic);
 			cinematicCamera.SetActive(currentState == CameraState.Cinematic);
-			animatedCamera.SetActive(currentState == CameraState.Animated);
+			fixedCamera.SetActive(currentState == CameraState.Fixed);
 		}
 
 		public void SetTrackedObject(Transform obj)
