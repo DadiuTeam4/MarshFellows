@@ -29,9 +29,14 @@ namespace CameraControl
 		private bool HideOnExecute = true;
 		private SplineInterpolator mSplineInterp;
 		private Transform[] mTransforms;
+		private bool drawGizmos = true;
 
 		void OnDrawGizmos()
 		{
+			if (!drawGizmos)
+			{
+				return;
+			}
 			Transform[] trans = GetTransforms();
 			if (trans.Length < 2)
 				return;
@@ -71,7 +76,7 @@ namespace CameraControl
 			mTransforms = GetTransforms();
 
 			if (HideOnExecute)
-				DisableTransforms();
+				drawGizmos = false;
 		}
 
 		void SetupSplineInterpolator(SplineInterpolator interp, Transform[] trans)
@@ -114,15 +119,21 @@ namespace CameraControl
 		{
 			if (SplineRoot != null)
 			{
-				List<Component> components = new List<Component>(SplineRoot.GetComponentsInChildren(typeof(Transform)));
-				List<Transform> transforms = components.ConvertAll(c => (Transform)c);
+				if (!drawGizmos)
+				{
+					EnableTransforms();
+				}
+				List<Transform> transforms = new List<Transform>(SplineRoot.GetComponentsInChildren<Transform>());
 
 				transforms.Remove(SplineRoot.transform);
 				transforms.Sort(delegate(Transform a, Transform b)
 				{
 					return a.name.CompareTo(b.name);
 				});
-
+				if (!drawGizmos)
+				{
+					DisableTransforms();
+				}
 				return transforms.ToArray();
 			}
 
@@ -140,6 +151,14 @@ namespace CameraControl
 			}
 		}
 
+		void EnableTransforms()
+		{
+			if (SplineRoot != null)
+			{
+				SplineRoot.SetActiveRecursively(true);
+			}
+		}
+
 
 		/// <summary>
 		/// Starts the interpolation
@@ -149,6 +168,7 @@ namespace CameraControl
 
 			mTransforms = GetTransforms();
 			mSplineInterp = GetComponent<SplineInterpolator>();
+			DisableTransforms();
 			if (mTransforms.Length > 0)
 			{
 				SetupSplineInterpolator(mSplineInterp, mTransforms);
