@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4475208132761748}
   - component: {fileID: 114899580856298840}
-  - component: {fileID: 114313186149476864}
+  - component: {fileID: 114583979408248050}
   - component: {fileID: 114508073869146244}
   - component: {fileID: 114863853182767598}
   m_Layer: 0
@@ -120,23 +120,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1129979754975818}
   m_Enabled: 1
---- !u!114 &114313186149476864
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1231771373250040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2149aaf01ba8bc34084bef78d4747159, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scenarioAnimations:
-  - {fileID: 11400000, guid: 8e6c5f948f53196499e6c2ccbc11028a, type: 2}
-  - {fileID: 11400000, guid: e8ccd0823d9bd5449b1883f2281bf51b, type: 2}
-  - {fileID: 11400000, guid: c003ec2e8e817e04aa08c366ba1be26f, type: 2}
-  - {fileID: 11400000, guid: f0f12dfa42eebf244a2f02b373a0abab, type: 2}
-  damping: 1
 --- !u!114 &114508073869146244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +138,22 @@ MonoBehaviour:
   fieldOfView: 45
   xRotation: 25
   trackedObject: {fileID: 0}
+--- !u!114 &114583979408248050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1231771373250040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7e3d94b6b3001409854d2c1c2f4132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cinematicSplines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114752424066072750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +179,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fixedPosition: {x: 0, y: 4, z: -5}
-  fixedCamera: 1
 --- !u!114 &114899580856298840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +195,7 @@ MonoBehaviour:
   - {fileID: 0}
   cameraRig: {fileID: 0}
   cameraComponent: {fileID: 0}
-  currentState: 2
+  currentState: 3
 --- !u!114 &114979985813446960
 MonoBehaviour:
   m_ObjectHideFlags: 1

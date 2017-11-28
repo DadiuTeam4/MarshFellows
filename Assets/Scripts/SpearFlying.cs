@@ -76,6 +76,7 @@ public class SpearFlying : MonoBehaviour
 				lerpT = 1;
 
 				EventManager.GetInstance().CallEvent(onHitEvent);
+
 				transform.parent = target;
 			}
 
