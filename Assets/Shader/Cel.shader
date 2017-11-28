@@ -2,9 +2,9 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
-		_Glossiness ("Smoothness", Range(0,1)) = 0.5
-		_Metallic ("Metallic", Range(0,1)) = 0.0
 		_UnlitSurface ("UnlitSurface", Range(0,1)) = 0.0 
+		_Stepping ("Stepping", Range(0,1)) = 0.0025
+		_LightType ("Ligth Type", Range(0,1)) = 0
 		_ShadowColor ("ShadowColor", Color) = (0.10,0.5,1,1)
 		 _BumpMap("Normal Map", 2D) = "bump" {}
 	}
@@ -24,23 +24,24 @@
 			float2 uv_BumpMap;
 		};
 
-		half _Glossiness;
-		half _Metallic;
+		half _Stepping;
+		half _LightType;
 		fixed4 _Color;
 		fixed _UnlitSurface;
 		fixed4 _ShadowColor;
 		sampler2D _BumpMap;
 
-		half4 LightingCelShadingForward(SurfaceOutput s, half3 lightDir, half atten) {
-			
-			_UnlitSurface = _UnlitSurface -1;
+		half4 LightingCelShadingForward(SurfaceOutput s, half3 lightDir, half atten) 
+		{
 			half NdotL = dot(s.Normal, lightDir);
-	 		//NdotL = 1 + clamp(floor(NdotL), _UnlitSurface, 0);
+	 		half NdotL0 = clamp(floor(NdotL), _UnlitSurface, 1);
 			
-			NdotL = smoothstep(0, 0.025f, NdotL); 
+			half NdotL1 = smoothstep(0, _Stepping, NdotL) * _UnlitSurface; 
+			
+			NdotL = lerp(NdotL0, NdotL1, _LightType);
+			
 			half4 c;
 			c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten) + (1-atten) * _ShadowColor;
-			//c.rbg = 1-atten;
 			c.a = s.Alpha;
 			return c;
 		}
