@@ -71,6 +71,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.SwipeEnded, stopEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
+		eventManager.AddListener (CustomEvent.RitualDisrupted, postEvent); 
 		// Scene-/Location-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.AudioTrigger, audioTriggered); 
@@ -114,6 +115,16 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			StopSound ("Stop_All"); 
 		}
+		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
+		{
+			//Do something drastic 
+			//Do something ritualish disruptish 
+			// evt cut music og smid MGS lyd 
+			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
+
+
+		}
+
 	}
 
 	//Sinked objects 
@@ -182,7 +193,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Missout2")
 			{
-			PlaySoundWC ("Play_GG_FSD_Shaman_Drum"); 
+			PlaySoundWC ("Play_GG_FSD_Sbhaman_Drum"); 
 			}
 	}
 
@@ -253,6 +264,14 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Restart
 			StopSound ("Stop_All"); 
+		}
+
+
+		//Scenarios
+		if (argument.stringComponent == "WhisperPlay") 
+		{
+			//Restart
+			PlaySoundWC("Play_GG_SD_SHAMAN_WHISPER");  
 		}
 	}
 
