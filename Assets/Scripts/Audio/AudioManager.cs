@@ -17,6 +17,12 @@ public class AudioManager : Singleton<AudioManager> {
 	public float musicVolume; 
 	private float swipePower; 
 
+	//Fade function 
+	private float fadeVolValue = 0f;
+	private float fadeMax = 100f;
+	private float fadeMin = 0f; 
+	private float duration;  
+
 	void Awake()
 	{
 		constantsManager = GlobalConstantsManager.GetInstance();
@@ -32,6 +38,12 @@ public class AudioManager : Singleton<AudioManager> {
 		AkSoundEngine.SetSwitch ("FS_Forrest", groundLayer, gameObject);  
 		AkSoundEngine.SetState ("Ambience", "OpenFew"); 
 		PlaySound("Play_Ambience"); 
+	}
+
+	void Update()
+	{
+		AkSoundEngine.SetRTPCValue ("MusicFadeVolume", fadeVolValue); 
+		Debug.Log (fadeVolValue); 
 	}
 
 	//SFX
@@ -210,6 +222,7 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
+			StartCoroutine (FadeIn ()); 
 		}
 		if (argument.stringComponent == "Crossroad") 
 		{
@@ -226,10 +239,12 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "Bear") 
 		{
 			//
+			AkSoundEngine.SetState("Music", "P"); 
 		}
 		if (argument.stringComponent == "Deer") 
 		{
 			//
+			AkSoundEngine.SetState("Music", "O"); 
 		}
 		if (argument.stringComponent == "B") 
 		{
@@ -323,5 +338,14 @@ public class AudioManager : Singleton<AudioManager> {
 	public void OnMenuClick()
 	{
 		PlaySound("Play_GG_Menu_Click"); 
+	}
+
+	IEnumerator FadeIn()
+	{
+		duration = 4f * Time.deltaTime; 
+		while (fadeVolValue < fadeMax) {
+			fadeVolValue += duration; 
+			yield return null; 
+		}
 	}
 }
