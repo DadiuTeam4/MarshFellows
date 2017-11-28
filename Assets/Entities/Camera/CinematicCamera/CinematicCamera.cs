@@ -8,10 +8,10 @@ namespace CameraControl
 	// Scenario enum definition
 	public enum Scenario
 	{
-		Separation = 0,
-		Ritual = 1,
-		Deer = 2,
-		Bear = 3
+		Ritual = 0,
+		Separation = 1,
+		Bear = 2,
+		Deer = 3
 	}
 
 	[RequireComponent(typeof(SplineController))]
