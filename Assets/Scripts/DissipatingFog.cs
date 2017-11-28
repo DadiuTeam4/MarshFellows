@@ -8,7 +8,6 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(ParticleSystem))]
 [RequireComponent(typeof(Collider))]
-[RequireComponent(typeof(NavMeshObstacle))]
 public class DissipatingFog : Swipeable 
 {
 	[Tooltip("An attached navmesh obstacle component will only be disabled if this is true!")]
@@ -33,7 +32,10 @@ public class DissipatingFog : Swipeable
 		if (isNavmeshObstacle)
 		{
 			obstacle = GetComponent<NavMeshObstacle>();
-			obstacle.enabled = true;
+			if (obstacle)
+			{
+				obstacle.enabled = true;
+			}
 		}
 		
 		collider = GetComponent<Collider>();
@@ -49,7 +51,7 @@ public class DissipatingFog : Swipeable
 		if (collider)
 		{
 			collider.enabled = false;
-			if (isNavmeshObstacle)
+			if (isNavmeshObstacle && obstacle)
 			{
 				obstacle.enabled = false;
 			}
