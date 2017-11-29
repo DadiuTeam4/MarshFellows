@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 namespace CameraControl
 {
@@ -26,11 +27,12 @@ namespace CameraControl
         private void Start()
         {
             fogDensity = GlobalConstantsManager.GetInstance().constants.fogDensity;
-            
+
             xRotation = GlobalConstantsManager.GetInstance().constants.xRotation;
 
             controller = CameraStateController.GetInstance();
             InitTargets();
+            FollowPWhenODies();
             startRotation = transform.eulerAngles;
         }
 
@@ -44,6 +46,17 @@ namespace CameraControl
             {
                 pTransform = controller.targets[0];
             }
+        }
+
+        private void FollowPWhenODies()
+        {
+            EventManager.GetInstance().AddListener(CustomEvent.ODead, FollowP);
+        }
+
+        private void FollowP(EventArgument argument)
+        {
+            isFollowingCenter = false;
+            Debug.Log("Follow P");
         }
 
         protected override void UpdatePosition()
@@ -73,7 +86,7 @@ namespace CameraControl
             }
 
             float renderFogDifference = Mathf.Abs(RenderSettings.fogDensity - fogDensity);
-            if(renderFogDifference > acceptableFogOffset)
+            if (renderFogDifference > acceptableFogOffset)
             {
                 RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDensity, Time.deltaTime);
             }
@@ -98,7 +111,7 @@ namespace CameraControl
         }
 
         public Transform GetTrackedObject()
-		{
+        {
             return trackedObject;
         }
     }
