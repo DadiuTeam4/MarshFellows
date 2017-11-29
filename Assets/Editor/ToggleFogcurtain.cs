@@ -47,8 +47,12 @@ public class ToggleFogcurtain : EditorWindow
 			}
 			else
 			{
+				Debug.Log("Finding fog curtain...");
 				fogCurtain = GameObject.Find("StartGameFogCurtain");
-				Debug.LogError("Could not find fog curtain");
+				if (!fogCurtain)
+				{
+					Debug.LogError("Could not find fog curtain. Check that the name is set to \"StartGameFogCurtain\"");
+				}
 			}
 		}
 		GUILayout.EndVertical();
