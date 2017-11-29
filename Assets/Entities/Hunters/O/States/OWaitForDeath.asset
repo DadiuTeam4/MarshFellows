@@ -9,11 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
-  m_Name: BearAttacking
+  m_Name: OWaitForDeath
   m_EditorClassIdentifier: 
   onStateEnterActions:
-  - {fileID: 11400000, guid: 3fac6d15f9558b449bae1dc3f36ed975, type: 2}
-  - {fileID: 11400000, guid: de4e9f91852dc7045ac654fb69b03a69, type: 2}
+  - {fileID: 11400000, guid: 5232afb661bcffd4da3c5d0a5612f975, type: 2}
   actions: []
   onStateExitActions: []
-  transitions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: 0701ed97f8638ef44a9882700abb712f, type: 2}
+    returnToPreviousState: 0
+    trueState: {fileID: 11400000, guid: 93244de6d2fc3a4499e10f2dd7cbdfae, type: 2}
+    falseState: {fileID: 11400000}
