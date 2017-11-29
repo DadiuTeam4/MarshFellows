@@ -35,5 +35,9 @@ public class AudioHolder : MonoBehaviour {
 	{
 		audioManager.PlaySoundOtherScript ("Play_Bear_FS", gameObject); 
 	}
-		
+
+	void BearRoar()
+	{
+		audioManager.PlaySoundOtherScript ("Play_Bear_roar", gameObject); 
+	}
 }
