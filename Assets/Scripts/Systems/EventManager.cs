@@ -46,6 +46,8 @@ namespace Events
 		ThrowSpear,
 		SpearHit,
 		ReadyForSpear,
+		BearAttacked,
+		Investigating,
         ODead = 300
 	}
 
