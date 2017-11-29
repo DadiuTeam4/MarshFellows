@@ -52,10 +52,12 @@ public class EventListenerZone : MonoBehaviour {
         {
             currentlyHidden = args.boolComponent;
         }
-        if (huntersInZone && !currentlyHidden)
-        {
-
-            eventManager.CallEvent(CustomEvent.ScenarioInteracted);
+        if (huntersInZone && !currentlyHidden) {
+            EventArgument callArgs = new EventArgument
+            {
+                stringComponent = "Ritual"
+            };
+            eventManager.CallEvent(CustomEvent.ScenarioInteracted, callArgs);
         }
     }
 }
