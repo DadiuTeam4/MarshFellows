@@ -9,12 +9,17 @@ namespace CameraControl
 {
     public class ThirdPersonCamera : BaseCamera
     {
+        [Header("Position")]
         public Vector3 adjustableOffset;
+        [Header("Rotation")]
+        public float pitch;
+        [Header("Damping")]
         public float positionDamping = 1;
         public float rotationDamping = 1;
+        [Header("Tracking")]
         public bool isFollowingCenter = true;
-        private float fieldOfView = 38;
-        private float xRotation;
+        [Header("Field of View")]
+        public float fieldOfView = 38;
 
         [SerializeField]
         private Transform trackedObject;
@@ -28,8 +33,6 @@ namespace CameraControl
         {
             constants = GlobalConstantsManager.GetInstance().constants;
             fogDensity = constants.fogDensity;
-            xRotation = constants.xRotation;
-            fieldOfView = constants.fieldOfView;
 
             controller = CameraStateController.GetInstance();
             InitTargets();
@@ -69,7 +72,7 @@ namespace CameraControl
                 float currentAngle = transform.eulerAngles.y;
                 float desiredAngle = pTransform.eulerAngles.y;
                 float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
-                rotation = Quaternion.Euler(xRotation, angle, startRotation.z);
+                rotation = Quaternion.Euler(pitch, angle, startRotation.z);
             }
             else
             {
