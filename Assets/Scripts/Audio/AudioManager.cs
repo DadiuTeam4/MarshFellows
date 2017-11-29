@@ -106,7 +106,7 @@ public class AudioManager : Singleton<AudioManager> {
 			AkSoundEngine.SetState ("ShamanDrum", "Disrupt"); 
 			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
 		}
-		if (argument.eventComponent == CustomEvent.ScenarioInteracted) 
+		if (argument.eventComponent == CustomEvent.ScenarioInteracted && argument.stringComponent == "Ritual") 
 		{
 			AkSoundEngine.SetState("Music", "RitualFlight"); 
 		}
