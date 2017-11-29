@@ -13,7 +13,7 @@ namespace CameraControl
         public float positionDamping = 1;
         public float rotationDamping = 1;
         public bool isFollowingCenter = true;
-        public float fieldOfView = 45;
+        private float fieldOfView = 38;
         private float xRotation;
 
         [SerializeField]
@@ -22,18 +22,20 @@ namespace CameraControl
 
         private float fogDensity;
         private float acceptableFogOffset = 0.01f;
-
+        private GlobalConstants constants;
 
         private void Start()
         {
-            fogDensity = GlobalConstantsManager.GetInstance().constants.fogDensity;
-
-            xRotation = GlobalConstantsManager.GetInstance().constants.xRotation;
+            constants = GlobalConstantsManager.GetInstance().constants;
+            fogDensity = constants.fogDensity;
+            xRotation = constants.xRotation;
+            fieldOfView = constants.fieldOfView;
 
             controller = CameraStateController.GetInstance();
             InitTargets();
             FollowPWhenODies();
             startRotation = transform.eulerAngles;
+            
         }
 
         private void InitTargets()
