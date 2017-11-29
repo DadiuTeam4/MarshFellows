@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class ToggleFogcurtain : EditorWindow 
+public class ElementToggle : EditorWindow 
 {
 	private GameObject fogCurtain;
+	private Canvas[] uiElements;
 	private bool initialized;
 
-	[MenuItem("Window/Fog Curtain Toggle Button")]
+	[MenuItem("Window/Element Toggling")]
 	static void Setup() 
 	{
-		ToggleFogcurtain window = (ToggleFogcurtain) EditorWindow.GetWindow(typeof(ToggleFogcurtain), false, "Fog toggle");
+		ElementToggle window = (ElementToggle) EditorWindow.GetWindow(typeof(ElementToggle), false, "Element Toggle");
 		window.minSize = new Vector2(10, 10);
         
         window.Show();
@@ -24,6 +25,7 @@ public class ToggleFogcurtain : EditorWindow
 		if (!initialized)
 		{
 			fogCurtain = GameObject.Find("StartGameFogCurtain");
+			uiElements = FindObjectsOfType<Canvas>();
 			initialized = true;
 		}
 
@@ -39,11 +41,11 @@ public class ToggleFogcurtain : EditorWindow
         button.fixedHeight              = 20;
 
 		GUILayout.BeginVertical(background);
-		if (GUILayout.Button("Toggle fog curtain", button))
+		if (GUILayout.Button("Toggle start fog curtain", button))
 		{
 			if (fogCurtain)
 			{
-				fogCurtain.SetActive(!fogCurtain.active);
+				fogCurtain.SetActive(!fogCurtain.activeInHierarchy);
 			}
 			else
 			{
@@ -52,6 +54,26 @@ public class ToggleFogcurtain : EditorWindow
 				if (!fogCurtain)
 				{
 					Debug.LogError("Could not find fog curtain. Check that the name is set to \"StartGameFogCurtain\"");
+				}
+			}
+		}
+
+		if (GUILayout.Button("Toggle all UI elements"))
+		{
+			if (uiElements != null && uiElements.Length != 0)
+			{
+				foreach (Canvas canvas in uiElements)
+				{
+					canvas.gameObject.SetActive(!canvas.gameObject.activeInHierarchy);
+				}
+			}
+			else 
+			{
+				Debug.Log("Finding UI elements...");
+				uiElements = FindObjectsOfType<Canvas>();
+				if (uiElements == null)
+				{
+					Debug.LogError("Could not find UI elements");
 				}
 			}
 		}
