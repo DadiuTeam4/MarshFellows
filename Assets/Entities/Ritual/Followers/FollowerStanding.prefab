@@ -95,6 +95,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4314782779591932}
+  - component: {fileID: 114567052596451630}
   m_Layer: 2
   m_Name: FollowerStanding
   m_TagString: Untagged
@@ -741,6 +742,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4324313849550598}
   - component: {fileID: 95120057442385896}
+  - component: {fileID: 114434360321990070}
   m_Layer: 2
   m_Name: hunter_placeholder
   m_TagString: Untagged
@@ -1394,14 +1396,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1056643717392348}
-  m_LocalRotation: {x: -0, y: 0.91667646, z: -0, w: 0.39963037}
-  m_LocalPosition: {x: -5.24, y: -2.59, z: 3.92}
+  m_LocalRotation: {x: -0, y: 0.2962116, z: -0, w: 0.95512235}
+  m_LocalPosition: {x: -5.3646626, y: -3.2, z: 0.16372883}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4324313849550598}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 132.89, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 34.460003, z: 0}
 --- !u!4 &4316386942948024
 Transform:
   m_ObjectHideFlags: 1
@@ -2175,6 +2177,34 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114434360321990070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1640282765871572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81f98756e2ecd9448834dc51eccf8ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetY: 0
+  lookAtWeight: 0
+  headWeight: 0
+  bodyWeight: 0
+  clampWeight: 0
+  lookPos: {fileID: 0}
+--- !u!114 &114567052596451630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056643717392348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d23fb1c75a4574ab3ed643875df64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137458377089018552
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
