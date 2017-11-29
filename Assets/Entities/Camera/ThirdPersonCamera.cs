@@ -3,17 +3,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 namespace CameraControl
 {
     public class ThirdPersonCamera : BaseCamera
     {
+        [Header("Position")]
         public Vector3 adjustableOffset;
+        [Header("Rotation")]
+        public float pitch;
+        [Header("Damping")]
         public float positionDamping = 1;
         public float rotationDamping = 1;
+        [Header("Tracking")]
         public bool isFollowingCenter = true;
-        public float fieldOfView = 45;
-        private float xRotation;
+        [Header("Field of View")]
+        public float fieldOfView = 38;
 
         [SerializeField]
         private Transform trackedObject;
@@ -21,17 +27,18 @@ namespace CameraControl
 
         private float fogDensity;
         private float acceptableFogOffset = 0.01f;
-
+        private GlobalConstants constants;
 
         private void Start()
         {
-            fogDensity = GlobalConstantsManager.GetInstance().constants.fogDensity;
-            
-            xRotation = GlobalConstantsManager.GetInstance().constants.xRotation;
+            constants = GlobalConstantsManager.GetInstance().constants;
+            fogDensity = constants.fogDensity;
 
             controller = CameraStateController.GetInstance();
             InitTargets();
+            FollowPWhenODies();
             startRotation = transform.eulerAngles;
+            
         }
 
         private void InitTargets()
@@ -46,6 +53,17 @@ namespace CameraControl
             }
         }
 
+        private void FollowPWhenODies()
+        {
+            EventManager.GetInstance().AddListener(CustomEvent.ODead, FollowP);
+        }
+
+        private void FollowP(EventArgument argument)
+        {
+            isFollowingCenter = false;
+            Debug.Log("Follow P");
+        }
+
         protected override void UpdatePosition()
         {
             Quaternion rotation = Quaternion.identity;
@@ -54,7 +72,7 @@ namespace CameraControl
                 float currentAngle = transform.eulerAngles.y;
                 float desiredAngle = pTransform.eulerAngles.y;
                 float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
-                rotation = Quaternion.Euler(xRotation, angle, startRotation.z);
+                rotation = Quaternion.Euler(pitch, angle, startRotation.z);
             }
             else
             {
@@ -73,7 +91,7 @@ namespace CameraControl
             }
 
             float renderFogDifference = Mathf.Abs(RenderSettings.fogDensity - fogDensity);
-            if(renderFogDifference > acceptableFogOffset)
+            if (renderFogDifference > acceptableFogOffset)
             {
                 RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDensity, Time.deltaTime);
             }
@@ -98,7 +116,7 @@ namespace CameraControl
         }
 
         public Transform GetTrackedObject()
-		{
+        {
             return trackedObject;
         }
     }

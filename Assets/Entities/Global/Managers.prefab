@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4601148857637420}
-  - component: {fileID: 114933153588653578}
+  - component: {fileID: 114761830711438942}
   m_Layer: 0
   m_Name: GlobalConstantsManager
   m_TagString: Untagged
@@ -320,9 +320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testingCamera: {fileID: 20606248474637422}
-  header: Handles all touch input and accelerometer input. All objects inheriting
-    from the Holdable, Swipable and Shakable classes are called accordingly from this
-    class.
+  header: Handles all touch input. All objects inheriting from the Holdable and Swipable
+    are called accordingly from this class.
 --- !u!114 &114299958895375472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -356,6 +355,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e923543f77556dc4284dbb0453752003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114761830711438942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171691533799154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a2cb1245a552d40a1870bcae4ebd08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  constants:
+    speed: 1.3
+    acceleration: 8
+    radius: 0.5
+    height: 2
+    on: 1
+    fogDensity: 0.07
+    fogColor: {r: 0.9882353, g: 0.9882353, b: 0.9882353, a: 1}
+    fogMode: 3
+    sfxVolume: 100
+    musicVolume: 100
+    xRotation: 25
+    fieldOfView: 38
+  update: 0
 --- !u!114 &114796889684330942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -400,21 +424,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundLayer: 
-  sfxVolume: 100
-  musicVolume: 100
---- !u!114 &114933153588653578
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171691533799154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2a2cb1245a552d40a1870bcae4ebd08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  constants: {fileID: 11400000, guid: ef22b69f1487ef740bac02edfe9001e3, type: 2}
-  update: 0
+  sfxVolume: 0
+  musicVolume: 0
 --- !u!124 &124270927566780450
 Behaviour:
   m_ObjectHideFlags: 1

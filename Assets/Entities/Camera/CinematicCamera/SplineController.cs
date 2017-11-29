@@ -38,7 +38,7 @@ namespace CameraControl
 				return;
 			}
 			Transform[] trans = GetTransforms();
-			if (trans.Length < 2)
+			if (trans == null || trans.Length < 2)
 				return;
 
 			SplineInterpolator interp = GetComponent<SplineInterpolator>();

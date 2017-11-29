@@ -37,6 +37,7 @@ public class AudioManager : Singleton<AudioManager> {
 		//groundLayer = "FS_Forrest";
 		AkSoundEngine.SetSwitch ("FS_Forrest", groundLayer, gameObject);  
 		AkSoundEngine.SetState ("Ambience", "OpenFew"); 
+		AkSoundEngine.SetState ("ShamanDrum", "Normal"); 
 		PlaySound("Play_Ambience"); 
 	}
 
@@ -71,6 +72,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.SwipeEnded, stopEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
+		eventManager.AddListener (CustomEvent.RitualDisrupted, postEvent); 
 		// Scene-/Location-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.AudioTrigger, audioTriggered); 
@@ -96,6 +98,11 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.eventComponent == CustomEvent.HoldBegin) 
 		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
+		}
+		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
+		{
+			AkSoundEngine.SetState ("ShamanDrum", "Disrupt"); 
+			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
 		}
 	}
 
@@ -182,7 +189,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Missout2")
 			{
-			PlaySoundWC ("Play_GG_FSD_Shaman_Drum"); 
+			PlaySoundWC ("Play_GG_FSD_Sbhaman_Drum"); 
 			}
 	}
 
@@ -253,6 +260,14 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//Restart
 			StopSound ("Stop_All"); 
+		}
+
+
+		//Scenarios
+		if (argument.stringComponent == "WhisperPlay") 
+		{
+			//Restart
+			PlaySoundWC("Play_GG_SD_SHAMAN_WHISPER");  
 		}
 	}
 
