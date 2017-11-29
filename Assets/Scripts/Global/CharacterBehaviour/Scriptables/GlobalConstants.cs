@@ -21,7 +21,7 @@ public class GlobalConstants
 	public FogMode fogMode = FogMode.ExponentialSquared;
 
 	[Header("Audio")]
-	public float sFXVolume = 100; 
+	public float sfxVolume = 100; 
 	public float musicVolume = 100; 
 	
 	[Header("Third Person Camera")]
