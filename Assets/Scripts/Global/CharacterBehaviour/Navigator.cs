@@ -56,10 +56,10 @@ public class Navigator : MonoBehaviour
 
     public void SetSplitPath()
 	{
-        SetDestination(splitWaypoint.transform);
-	}
+        navMeshAgent.SetDestination(splitWaypoint.position);
+    }
 
-	public void Move(Vector3 direction)
+    public void Move(Vector3 direction)
 	{
 		navMeshAgent.Move(direction * navMeshAgent.speed * Time.deltaTime);
 	}
