@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Events;
 
 namespace CameraControl
 {
@@ -12,7 +13,7 @@ namespace CameraControl
         public float positionDamping = 1;
         public float rotationDamping = 1;
         public bool isFollowingCenter = true;
-        public float fieldOfView = 45;
+        private float fieldOfView = 38;
         private float xRotation;
 
         [SerializeField]
@@ -21,17 +22,20 @@ namespace CameraControl
 
         private float fogDensity;
         private float acceptableFogOffset = 0.01f;
-
+        private GlobalConstants constants;
 
         private void Start()
         {
-            fogDensity = GlobalConstantsManager.GetInstance().constants.fogDensity;
-            
-            xRotation = GlobalConstantsManager.GetInstance().constants.xRotation;
+            constants = GlobalConstantsManager.GetInstance().constants;
+            fogDensity = constants.fogDensity;
+            xRotation = constants.xRotation;
+            fieldOfView = constants.fieldOfView;
 
             controller = CameraStateController.GetInstance();
             InitTargets();
+            FollowPWhenODies();
             startRotation = transform.eulerAngles;
+            
         }
 
         private void InitTargets()
@@ -44,6 +48,17 @@ namespace CameraControl
             {
                 pTransform = controller.targets[0];
             }
+        }
+
+        private void FollowPWhenODies()
+        {
+            EventManager.GetInstance().AddListener(CustomEvent.ODead, FollowP);
+        }
+
+        private void FollowP(EventArgument argument)
+        {
+            isFollowingCenter = false;
+            Debug.Log("Follow P");
         }
 
         protected override void UpdatePosition()
@@ -73,7 +88,7 @@ namespace CameraControl
             }
 
             float renderFogDifference = Mathf.Abs(RenderSettings.fogDensity - fogDensity);
-            if(renderFogDifference > acceptableFogOffset)
+            if (renderFogDifference > acceptableFogOffset)
             {
                 RenderSettings.fogDensity = Mathf.Lerp(RenderSettings.fogDensity, fogDensity, Time.deltaTime);
             }
@@ -98,7 +113,7 @@ namespace CameraControl
         }
 
         public Transform GetTrackedObject()
-		{
+        {
             return trackedObject;
         }
     }
