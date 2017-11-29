@@ -50,6 +50,14 @@ public class SinkableGround : Holdable
 	[Tooltip("Which event is called, as an extra event")]
 	public CustomEvent extraEvent;
 
+	[Tooltip("The particle system effects when hit the ground")]
+	public ParticleSystem particleSys;
+
+	[Tooltip("The particle emitted offset position from hit point")]
+	public Vector3 particleSystemOffset = new Vector3(0f, 1f, 0f);
+	
+	[Tooltip("The amount of emitted particles")]
+	public int emitAmount = 100;
 	private MeshCollider meshCollider;
 	private MeshFilter meshFilter;
 	private Mesh mesh;
@@ -103,6 +111,16 @@ public class SinkableGround : Holdable
 	public override void OnTouchHold(RaycastHit hit) 
 	{
 		SinkGround(hit);
+		EmitParticle(hit.point);
+	}
+
+	private void EmitParticle(Vector3 hitPos)
+	{
+		if(particleSys)
+		{
+			particleSys.transform.position = hitPos + particleSystemOffset;
+			particleSys.Emit(emitAmount);
+		}
 	}
 	
 	public override void OnTouchReleased() 
