@@ -36,8 +36,20 @@ public class AudioHolder : MonoBehaviour {
 		audioManager.PlaySoundOtherScript ("Play_Bear_FS", gameObject); 
 	}
 
-	void BearRoar()
+	void BearRoarTrans()
 	{
-		audioManager.PlaySoundOtherScript ("Play_Bear_roar", gameObject); 
+		audioManager.PlaySoundOtherScript ("Play_GG_SD_Bear_roar_loud_1", gameObject); 
 	}
+
+	void BearBreath()
+	{
+		audioManager.PlaySoundOtherScript ("Play_GG_SD_Bear_breath", gameObject); 
+	}
+
+	void Transformation()
+	{
+		audioManager.PlaySoundOtherScript ("Play_GG_SD_ManToBear_1", gameObject); 
+	}
+
+
 }
