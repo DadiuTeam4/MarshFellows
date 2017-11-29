@@ -98,6 +98,10 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
+		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
+		{
+			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
+		}
 	}
 
 	//Event stopper 
@@ -115,16 +119,6 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			StopSound ("Stop_All"); 
 		}
-		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
-		{
-			//Do something drastic 
-			//Do something ritualish disruptish 
-			// evt cut music og smid MGS lyd 
-			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
-
-
-		}
-
 	}
 
 	//Sinked objects 
