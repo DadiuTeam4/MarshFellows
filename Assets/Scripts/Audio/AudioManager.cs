@@ -37,6 +37,7 @@ public class AudioManager : Singleton<AudioManager> {
 		//groundLayer = "FS_Forrest";
 		AkSoundEngine.SetSwitch ("FS_Forrest", groundLayer, gameObject);  
 		AkSoundEngine.SetState ("Ambience", "OpenFew"); 
+		AkSoundEngine.SetState ("ShamanDrum", "Normal"); 
 		PlaySound("Play_Ambience"); 
 	}
 
@@ -100,6 +101,7 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
 		{
+			AkSoundEngine.SetState ("ShamanDrum", "Disrupt"); 
 			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
 		}
 	}
