@@ -10,19 +10,17 @@ using Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Navigator : MonoBehaviour 
 {
-	[HideInInspector] public Transform currentWaypoint; 
-
 	public Transform waypoint;
     public Transform splitWaypoint;
 	public bool autoRepath;
 	public bool drawPath;
+    public Animator animator;
 
-    private NavMeshAgent navMeshAgent;
+	private NavMeshAgent navMeshAgent;
 	private bool destinationReached;
 
     private float previousSpeed;
-    private Animator animator;
-
+    
 	private GlobalConstantsManager constantsManager;
 
 	#region DEBUG
@@ -41,8 +39,6 @@ public class Navigator : MonoBehaviour
 		navMeshAgent.acceleration = constantsManager.constants.acceleration;
 		navMeshAgent.height = constantsManager.constants.height;
 		navMeshAgent.radius = constantsManager.constants.radius;
-
-        animator = GetComponentInChildren<Animator>();
 	}
 
 	private void Start()
@@ -86,7 +82,7 @@ public class Navigator : MonoBehaviour
 		}
 		else
 		{
-			currentWaypoint = destination;
+			waypoint = destination;
 			navMeshAgent.SetDestination(destination.position);
 		}
 		
@@ -102,7 +98,7 @@ public class Navigator : MonoBehaviour
 
 	public Transform GetDestination()
 	{
-		return currentWaypoint;
+		return waypoint;
 	}
 
 	public float GetSpeed()
@@ -120,14 +116,14 @@ public class Navigator : MonoBehaviour
 
     public void SetPreviousSpeed()
     {
-        navMeshAgent.speed = previousSpeed;
+        SetSpeed(previousSpeed);
     }
 
 	public void StopMovement()
 	{
 		if (!navMeshAgent.isStopped)
 		{
-            animator.SetFloat("speed", 0);
+			animator.SetFloat("speed", 0);
 			navMeshAgent.isStopped = true;
 		}
 	}

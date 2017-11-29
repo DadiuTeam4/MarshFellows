@@ -17,6 +17,12 @@ public class AudioManager : Singleton<AudioManager> {
 	public float musicVolume; 
 	private float swipePower; 
 
+	//Fade function 
+	private float fadeVolValue = 0f;
+	private float fadeMax = 100f;
+	private float fadeMin = 0f; 
+	private float duration;  
+
 	void Awake()
 	{
 		constantsManager = GlobalConstantsManager.GetInstance();
@@ -28,9 +34,15 @@ public class AudioManager : Singleton<AudioManager> {
 
 	void Start()
 	{
-		groundLayer = "Swamp";
-		AkSoundEngine.SetState ("Ambience", "Forrest"); 
+		//groundLayer = "FS_Forrest";
+		AkSoundEngine.SetSwitch ("FS_Forrest", groundLayer, gameObject);  
+		AkSoundEngine.SetState ("Ambience", "OpenFew"); 
 		PlaySound("Play_Ambience"); 
+	}
+
+	void Update()
+	{
+		AkSoundEngine.SetRTPCValue ("MusicFadeVolume", fadeVolValue); 
 	}
 
 	//SFX
@@ -59,6 +71,7 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.SwipeEnded, stopEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
+		eventManager.AddListener (CustomEvent.RitualDisrupted, postEvent); 
 		// Scene-/Location-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.AudioTrigger, audioTriggered); 
@@ -102,6 +115,16 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			StopSound ("Stop_All"); 
 		}
+		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
+		{
+			//Do something drastic 
+			//Do something ritualish disruptish 
+			// evt cut music og smid MGS lyd 
+			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
+
+
+		}
+
 	}
 
 	//Sinked objects 
@@ -170,7 +193,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Missout2")
 			{
-			PlaySoundWC ("Play_GG_FSD_Shaman_Drum"); 
+			PlaySoundWC ("Play_GG_FSD_Sbhaman_Drum"); 
 			}
 	}
 
@@ -209,22 +232,15 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
+			StartCoroutine (FadeIn ()); 
 		}
 		if (argument.stringComponent == "Crossroad") 
 		{
 			AkSoundEngine.SetState("Music", "Crossroad"); 
 		}
-		if (argument.stringComponent == "LiO1") 
-		{
-			AkSoundEngine.SetState("Music", "O"); 
-		}
-		if (argument.stringComponent == "LiP1") 
-		{
-			AkSoundEngine.SetState("Music", "P"); 
-		}
 		if (argument.stringComponent == "Ritual") 
 		{
-			//
+			AkSoundEngine.SetState("Music", "Ritual"); 
 		}
 		if (argument.stringComponent == "Separation") 
 		{
@@ -233,12 +249,14 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.stringComponent == "Bear") 
 		{
 			//
+			AkSoundEngine.SetState("Music", "P"); 
 		}
 		if (argument.stringComponent == "Deer") 
 		{
 			//
+			AkSoundEngine.SetState("Music", "O"); 
 		}
-		if (argument.stringComponent == "BeachEvent") 
+		if (argument.stringComponent == "B") 
 		{
 			//
 		}
@@ -247,19 +265,25 @@ public class AudioManager : Singleton<AudioManager> {
 			//Restart
 			StopSound ("Stop_All"); 
 		}
+
+
+		//Scenarios
+		if (argument.stringComponent == "WhisperPlay") 
+		{
+			//Restart
+			PlaySoundWC("Play_GG_SD_SHAMAN_WHISPER");  
+		}
 	}
 
 	//Footsteps + layer
 	public void FootstepO()
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
-		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
 	}
 
 	public void FootstepP()
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
-		AkSoundEngine.SetSwitch ("FS", groundLayer, gameObject);  
 	}
 
 
@@ -332,5 +356,14 @@ public class AudioManager : Singleton<AudioManager> {
 	public void OnMenuClick()
 	{
 		PlaySound("Play_GG_Menu_Click"); 
+	}
+
+	IEnumerator FadeIn()
+	{
+		duration = 4.5f * Time.deltaTime; 
+		while (fadeVolValue < fadeMax) {
+			fadeVolValue += duration; 
+			yield return null; 
+		}
 	}
 }

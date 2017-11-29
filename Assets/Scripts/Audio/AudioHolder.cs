@@ -14,15 +14,15 @@ public class AudioHolder : MonoBehaviour {
 	{
 		audioManager = AudioManager.GetInstance(); 	
 	}
-
+		
 	void FSO()
 	{
-		audioManager.PlaySoundOtherScript("Play_FS", gameObject);
+		audioManager.PlaySoundOtherScript("Play_FS_O", gameObject);
 	}
 
 	void FSP()
 	{
-		audioManager.PlaySoundOtherScript("Play_FS", gameObject);
+		audioManager.PlaySoundOtherScript("Play_FS_P", gameObject);
 	}
 
 
@@ -35,4 +35,5 @@ public class AudioHolder : MonoBehaviour {
 	{
 		audioManager.PlaySoundOtherScript ("Play_Bear_FS", gameObject); 
 	}
+		
 }

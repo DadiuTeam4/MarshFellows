@@ -5,8 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GlobalConstants/New Settings Script")]
-public class GlobalConstants : ScriptableObject
+[System.Serializable]
+public class GlobalConstants
 {
 	[Header("Hunter")]
 	public float speed = 1.4f;
@@ -23,4 +23,8 @@ public class GlobalConstants : ScriptableObject
 	[Header("Audio")]
 	public float sfxVolume = 100; 
 	public float musicVolume = 100; 
+	
+	[Header("Third Person Camera")]
+	public float xRotation = 25;
+	public float fieldOfView = 38;
 }

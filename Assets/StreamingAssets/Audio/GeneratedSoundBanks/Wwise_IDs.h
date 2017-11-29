@@ -21,7 +21,8 @@ namespace AK
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
-        static const AkUniqueID PLAY_FS = 2262856515U;
+        static const AkUniqueID PLAY_FS_O = 3464671677U;
+        static const AkUniqueID PLAY_FS_P = 3464671650U;
         static const AkUniqueID PLAY_GG_AMBIENCE_WATER = 3361606695U;
         static const AkUniqueID PLAY_GG_FSD_1 = 1046603870U;
         static const AkUniqueID PLAY_GG_FSD_2 = 1046603869U;
@@ -30,10 +31,12 @@ namespace AK
         static const AkUniqueID PLAY_GG_FSD_CHOIR = 4018210138U;
         static const AkUniqueID PLAY_GG_FSD_SHAMAN_DRUM = 2322861418U;
         static const AkUniqueID PLAY_GG_MENU_CLICK = 3668079463U;
+        static const AkUniqueID PLAY_GG_SD_BEAR_BREATH = 259826084U;
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
         static const AkUniqueID PLAY_GG_SD_CHOIR = 53999030U;
         static const AkUniqueID PLAY_GG_SD_MUD_SINK = 1993353133U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
+        static const AkUniqueID PLAY_GG_SD_SHAMAN_WHISPER = 298936984U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
         static const AkUniqueID PLAY_GG_SD_SINK_1 = 316087560U;
         static const AkUniqueID PLAY_GG_SD_SINK_PH = 4053997955U;
@@ -44,6 +47,7 @@ namespace AK
         static const AkUniqueID PLAY_MUSIC_01 = 3709355747U;
         static const AkUniqueID RESUME_MUSIC = 2940177080U;
         static const AkUniqueID STOP_ALL = 452547817U;
+        static const AkUniqueID STOP_GG_SD_SHAMAN_WHISPER = 4129492602U;
         static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
         static const AkUniqueID STOP_GG_SD_WIND = 104387825U;
         static const AkUniqueID UNMUTEALL = 3340787584U;
@@ -61,6 +65,7 @@ namespace AK
                 static const AkUniqueID BYWATER = 1689379159U;
                 static const AkUniqueID FORREST = 760316600U;
                 static const AkUniqueID MEDIUMOPEN = 2581413256U;
+                static const AkUniqueID OPENFEW = 2015800441U;
             } // namespace STATE
         } // namespace AMBIENCE
 
@@ -74,6 +79,8 @@ namespace AK
                 static const AkUniqueID INTRO = 1125500713U;
                 static const AkUniqueID O = 84696432U;
                 static const AkUniqueID P = 84696431U;
+                static const AkUniqueID RITUAL = 886825768U;
+                static const AkUniqueID RITUALDISRUPT = 1036160627U;
             } // namespace STATE
         } // namespace MUSIC
 
@@ -98,6 +105,7 @@ namespace AK
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID MUSIC_VOLUME = 1006694123U;
+        static const AkUniqueID MUSICFADEVOLUME = 126405522U;
         static const AkUniqueID SFX_VOLUME = 1564184899U;
         static const AkUniqueID SIDECHAIN = 1883033791U;
         static const AkUniqueID SS_AIR_FEAR = 1351367891U;
