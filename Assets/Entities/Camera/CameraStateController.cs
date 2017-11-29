@@ -59,6 +59,12 @@ namespace CameraControl
 		{
 			switch (argument.eventComponent)
 			{
+				case (CustomEvent.GameStarted):
+				{
+					currentState = CameraState.Cinematic;
+					cinematicCamera.SetScenario(Scenario.Start);
+					break;
+				}
 				case (CustomEvent.SeparationScenarioEntered):
 				{
 					currentState = CameraState.Cinematic;

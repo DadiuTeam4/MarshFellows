@@ -11,7 +11,8 @@ namespace CameraControl
 		Ritual = 0,
 		Separation = 1,
 		Bear = 2,
-		Deer = 3
+		Deer = 3,
+		Start = 4
 	}
 
 	[RequireComponent(typeof(SplineController))]
@@ -33,6 +34,11 @@ namespace CameraControl
 			{
 				Debug.LogError("No Cinematic Splines set in the Cinematic Camera component of the CameraController");
 			}
+		}
+
+		public void SetScenario(Scenario scenario)
+		{
+			SetScenario(scenario, new Vector3(), new Vector3());
 		}
 
 		public void SetScenario(Scenario scenario, Vector3 scenarioStartPosition, Vector3 scenarioEndPosition)

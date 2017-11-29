@@ -9,7 +9,7 @@ namespace CameraControl
 	public class FixedCamera : BaseCamera
 	{
 		
-		public Vector3 fixedPosition;
+		public Transform fixedTransform;
 		private Vector3 CurrentCameraPos;
 
 		void Start () 
@@ -21,7 +21,14 @@ namespace CameraControl
 		{
 			if (active)
 			{
-					transform.localPosition = fixedPosition;
+				if (fixedTransform)
+				{
+					transform.position = fixedTransform.position;
+				}
+				else
+				{
+					Debug.LogError("Husk nu at sætte startpositionen på cameracontrolleren.");
+				}
 			}
 		}
 	}

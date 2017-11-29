@@ -48,7 +48,7 @@ namespace Events
 		ReadyForSpear,
 		BearAttacked,
 		Investigating,
-        ODead = 300
+        ODead = 300,
 	}
 
 	public class EventArgument
