@@ -17,8 +17,10 @@ namespace AK
         static const AkUniqueID MENU_FADEVOLUMEUP = 2472021264U;
         static const AkUniqueID MUTEALL = 2308878679U;
         static const AkUniqueID PAUSE_MUSIC = 2735935537U;
+        static const AkUniqueID PLAY__RITUAL_GG_SD_SHAMANDRUM_DISRUPT_1 = 2678333816U;
         static const AkUniqueID PLAY_AMBIENCE = 278617630U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
+        static const AkUniqueID PLAY_BEAR_ROAR = 2645963019U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
         static const AkUniqueID PLAY_FS_O = 3464671677U;
@@ -35,6 +37,8 @@ namespace AK
         static const AkUniqueID PLAY_GG_SD_BONFIRE_1 = 564891350U;
         static const AkUniqueID PLAY_GG_SD_CHOIR = 53999030U;
         static const AkUniqueID PLAY_GG_SD_MUD_SINK = 1993353133U;
+        static const AkUniqueID PLAY_GG_SD_O_P_BREATH = 747614050U;
+        static const AkUniqueID PLAY_GG_SD_O_P_BREATH_2 = 2118605929U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_WHISPER = 298936984U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
@@ -47,6 +51,7 @@ namespace AK
         static const AkUniqueID PLAY_MUSIC_01 = 3709355747U;
         static const AkUniqueID RESUME_MUSIC = 2940177080U;
         static const AkUniqueID STOP_ALL = 452547817U;
+        static const AkUniqueID STOP_GG_SD_SHAMAN_DRUM_1 = 2719439088U;
         static const AkUniqueID STOP_GG_SD_SHAMAN_WHISPER = 4129492602U;
         static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
         static const AkUniqueID STOP_GG_SD_WIND = 104387825U;
@@ -83,6 +88,17 @@ namespace AK
                 static const AkUniqueID RITUALDISRUPT = 1036160627U;
             } // namespace STATE
         } // namespace MUSIC
+
+        namespace SHAMANDRUM
+        {
+            static const AkUniqueID GROUP = 2987155883U;
+
+            namespace STATE
+            {
+                static const AkUniqueID DISRUPT = 2381213832U;
+                static const AkUniqueID NORMAL = 1160234136U;
+            } // namespace STATE
+        } // namespace SHAMANDRUM
 
     } // namespace STATES
 

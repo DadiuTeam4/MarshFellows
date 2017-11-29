@@ -24,8 +24,7 @@ public class WaypointTrigger : MonoBehaviour
 	
 		if (agent)
 		{
-			agent.waypoint = nextDestination;
-			agent.SetDestination();
+			agent.SetDestination(nextDestination);
 		}
 	}
 }
