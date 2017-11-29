@@ -44,6 +44,11 @@ public class BirdGenerator : Singleton<BirdGenerator>
 
 	private void GenerateFlocks()
 	{
+		if (spawnPoints.Length == 0)
+		{
+			return;
+		}
+
 		int numFlocks = Random.Range(minNumFlocks, maxNumFlocks);
 		flocks = new Flock[numFlocks];
 		for (int i = 0; i < numFlocks; i++)
