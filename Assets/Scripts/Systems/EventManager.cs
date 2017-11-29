@@ -49,6 +49,7 @@ namespace Events
 		BearAttacked,
 		Investigating,
         ODead = 300,
+        CameraDeerSpirit = 301
 	}
 
 	public class EventArgument
