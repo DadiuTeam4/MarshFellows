@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿// Author: Mathias Dam Hedelund
+// Contributors: Itai Yavin
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +13,7 @@ public class Flock : MonoBehaviour
 	private void Start()
 	{
 		birdGenerator = BirdGenerator.GetInstance();
+		SpawnBirds();
 	}
 
 	public void SpawnBirds()
@@ -38,7 +41,7 @@ public class Flock : MonoBehaviour
 				* zDirection;
 
 			// Spawn bird
-			birds[i] = Instantiate(birdGenerator.birdPrefab, new Vector3(x, y, z), Quaternion.identity);
+			birds[i] = Instantiate(birdGenerator.birdPrefab, new Vector3(x, y, z), Quaternion.identity, transform).GetComponent<Bird>();
 		}
 	}
 

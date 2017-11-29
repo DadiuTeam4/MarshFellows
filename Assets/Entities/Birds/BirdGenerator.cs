@@ -1,5 +1,5 @@
 ﻿// Author: Mathias Dam Hedelund
-// Contributors: 
+// Contributors: Itai Yavin
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +7,14 @@ using UnityEngine;
 public class BirdGenerator : Singleton<BirdGenerator>
 {
 	[Header("Flocks")]
-	public Flock flockPrefab;
+	public GameObject flockPrefab;
 	public int minNumFlocks;
 	public int maxNumFlocks;
 	public int minDistanceBetweenFlocks;
 	public int minBirdsPerFlock = 2;
 	public int maxBirdsPerFlock = 10;
+	public float minTriggerRadius = 5;
+	public float maxTriggerRaduis = 15;
 	[Space(5)]
 	
 	public Transform[] spawnPoints;
@@ -20,12 +22,14 @@ public class BirdGenerator : Singleton<BirdGenerator>
 	public float maxDistanceFromSpawn;
 
 	[Header("Individual birds")]
-	public Bird birdPrefab;
+	public GameObject birdPrefab;
 	public float flightAngle = 45f;
 	public float flightAngleRandomRange = 20f;
 	public float maxY = 30f;
 	public AnimationCurve speedCurve;
 	public AnimationCurve angleCurve;
+	public float minSpeedScalar = 5;
+	public float maxSpeedScalar = 10;
 	[Space(5)]
 	
 	public float minDistanceFromFlockCenter = 5f;
@@ -52,16 +56,8 @@ public class BirdGenerator : Singleton<BirdGenerator>
 			float y = spawnPoints[spawnPoint].position.y;
 			float z = spawnPoints[spawnPoint].position.z+Random.Range(minDistanceFromSpawn, maxDistanceFromSpawn) * zDirection;
 		
-			flocks[i] = Instantiate(flockPrefab, new Vector3(x, y, z), Quaternion.identity);
-		}
-		InitializeFlocks();
-	}
-
-	private void InitializeFlocks()
-	{
-		foreach (Flock flock in flocks)
-		{
-			flock.SpawnBirds();
+			flocks[i] = Instantiate(flockPrefab, new Vector3(x, y, z), Quaternion.identity, transform).GetComponent<Flock>();
+			flocks[i].GetComponent<SphereCollider>().radius = Random.Range(minTriggerRadius, maxTriggerRaduis);
 		}
 	}
 }
