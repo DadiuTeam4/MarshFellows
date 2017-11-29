@@ -24,6 +24,7 @@ public class GlobalConstants : ScriptableObject
 	public float sfxVolume = 100; 
 	public float musicVolume = 100; 
 	
-	[Header("Camera")]
+	[Header("Third Person Camera")]
 	public float xRotation = 25;
+	public float fieldOfView = 38;
 }
