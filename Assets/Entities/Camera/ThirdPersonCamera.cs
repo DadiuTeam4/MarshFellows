@@ -29,6 +29,8 @@ namespace CameraControl
         private float acceptableFogOffset = 0.01f;
         private GlobalConstants constants;
 
+        private float startTime;
+
         private void Start()
         {
             constants = GlobalConstantsManager.GetInstance().constants;
@@ -38,6 +40,7 @@ namespace CameraControl
             InitTargets();
             FollowPWhenODies();
             startRotation = transform.eulerAngles;
+            startTime = Time.time;
             
         }
 
@@ -84,7 +87,16 @@ namespace CameraControl
 
             Vector3 position = Vector3.Lerp(transform.position, GetDesiredPosition(transform.eulerAngles.y), Time.deltaTime * positionDamping);
 
-            transform.position = position;
+            float edgePosition = 3f;
+            float totalDistance = edgePosition * 2;
+            float speed = 1.0f;
+            float distCovered = (Time.time - startTime) * speed;
+            float fracJourney = distCovered / totalDistance;
+
+            Vector3 mumblePosition = Vector3.Lerp(new Vector3(position.x, + edgePosition, position.z),
+                                                    new Vector3(position.x, - edgePosition, position.z), fracJourney);
+
+            transform.position = mumblePosition;
             if (controller.cameraComponent.fieldOfView != fieldOfView)
             {
                 controller.cameraComponent.fieldOfView = Mathf.Lerp(controller.cameraComponent.fieldOfView, fieldOfView, Time.deltaTime);
