@@ -23,6 +23,9 @@ public class AudioManager : Singleton<AudioManager> {
 	private float fadeMin = 0f; 
 	private float duration;  
 
+	//Ritual 
+	private bool isDisrupted = false; 
+
 	void Awake()
 	{
 		constantsManager = GlobalConstantsManager.GetInstance();
@@ -39,6 +42,7 @@ public class AudioManager : Singleton<AudioManager> {
 		AkSoundEngine.SetState ("Ambience", "OpenFew"); 
 		AkSoundEngine.SetState ("ShamanDrum", "Normal"); 
 		PlaySound("Play_Ambience"); 
+		isDisrupted = false; 
 	}
 
 	void Update()
@@ -103,8 +107,13 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
 		{
-			AkSoundEngine.SetState ("ShamanDrum", "Disrupt"); 
-			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
+			if (!isDisrupted) 
+			{
+				AkSoundEngine.SetState ("ShamanDrum", "Disrupt"); 
+				AkSoundEngine.SetState ("Music", "RitualDisrupt"); 
+				PlaySound ("Play_GG_SD_Shaman_Disrupt"); 
+				isDisrupted = true; 
+			}
 		}
 		if (argument.eventComponent == CustomEvent.ScenarioInteracted && argument.stringComponent == "Ritual") 
 		{
