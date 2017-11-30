@@ -2454,7 +2454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNavmeshObstacle: 0
   dissipationSpeed: 0.01
-  dissipationRate: 1
+  dissipationRate: 5
 --- !u!137 &137655344888496974
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2645,8 +2645,8 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1091313458317546}
   serializedVersion: 5
-  lengthInSec: 5
-  simulationSpeed: 1
+  lengthInSec: 1
+  simulationSpeed: 0.1
   looping: 1
   prewarm: 0
   playOnAwake: 1
@@ -2697,14 +2697,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1020893207
+  randomSeed: 519823762
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0.25
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -2787,7 +2787,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.478}
+      maxColor: {r: 1, g: 0.88317096, b: 0.6517241, a: 0.522}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2849,7 +2849,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: 5.7
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3146,9 +3146,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 1.33, z: 0}
-    m_Rotation: {x: 0, y: -0.51, z: 0}
-    m_Scale: {x: 5.0035677, y: 2.9930139, z: 0.98742014}
+    m_Position: {x: 0, y: 1.11, z: 0}
+    m_Rotation: {x: 0, y: 0.42, z: 0}
+    m_Scale: {x: 3.2809014, y: 2.9930139, z: 0.98742014}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -3257,7 +3257,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 36.6
       minScalar: 10
       maxCurve:
         serializedVersion: 2
