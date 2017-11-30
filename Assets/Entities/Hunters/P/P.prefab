@@ -573,6 +573,7 @@ GameObject:
   - component: {fileID: 195802228508807610}
   - component: {fileID: 65107624860075686}
   - component: {fileID: 120113104351959588}
+  - component: {fileID: 114069758442379146}
   m_Layer: 0
   m_Name: P
   m_TagString: P
@@ -5556,6 +5557,20 @@ MonoBehaviour:
   autoRepath: 1
   drawPath: 0
   animator: {fileID: 95600819600453398}
+--- !u!114 &114069758442379146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225806898146870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511f175a44c3d9d4990fe028e2730b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seperationDistance: 3
+  reunitedDistance: 2
+  catchingIncresedSpeed: 1
 --- !u!114 &114204365345620270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6019,7 +6034,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1.3
+  m_Speed: 1.4
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
