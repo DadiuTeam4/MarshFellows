@@ -18,7 +18,7 @@ public class AudioManager : Singleton<AudioManager> {
 	private float swipePower; 
 
 	//Fade function 
-	private float fadeVolValue = 0f;
+	private float fadeVolValue = 50f;
 	private float fadeMax = 100f;
 	private float fadeMin = 0f; 
 	private float duration;  
@@ -37,6 +37,7 @@ public class AudioManager : Singleton<AudioManager> {
 		//groundLayer = "FS_Forrest";
 		AkSoundEngine.SetSwitch ("FS_Forrest", groundLayer, gameObject);  
 		AkSoundEngine.SetState ("Ambience", "OpenFew"); 
+		AkSoundEngine.SetState ("ShamanDrum", "Normal"); 
 		PlaySound("Play_Ambience"); 
 	}
 
@@ -71,7 +72,9 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.SwipeEnded, stopEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
+		//Ritual
 		eventManager.AddListener (CustomEvent.RitualDisrupted, postEvent); 
+		eventManager.AddListener (CustomEvent.ScenarioInteracted, postEvent); 
 		// Scene-/Location-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.AudioTrigger, audioTriggered); 
@@ -98,6 +101,15 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			PlaySoundWC ("Play_GG_SD_Sink_1");
 		}
+		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
+		{
+			AkSoundEngine.SetState ("ShamanDrum", "Disrupt"); 
+			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
+		}
+		if (argument.eventComponent == CustomEvent.ScenarioInteracted && argument.stringComponent == "Ritual") 
+		{
+			AkSoundEngine.SetState("Music", "RitualFlight"); 
+		}
 	}
 
 	//Event stopper 
@@ -115,16 +127,6 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			StopSound ("Stop_All"); 
 		}
-		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
-		{
-			//Do something drastic 
-			//Do something ritualish disruptish 
-			// evt cut music og smid MGS lyd 
-			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
-
-
-		}
-
 	}
 
 	//Sinked objects 
@@ -220,9 +222,10 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//
 		}
-		if (argument.stringComponent == "IntroCutScene") 
+		if (argument.stringComponent == "IntroStinger") 
 		{
 			//Do this 
+			PlaySound("Play_StingerIntro"); 
 		}
 		if (argument.stringComponent == "IntroCutscene") 
 		{

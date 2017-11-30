@@ -10,8 +10,6 @@ using Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Navigator : MonoBehaviour 
 {
-	[HideInInspector] public Transform currentWaypoint; 
-
 	public Transform waypoint;
     public Transform splitWaypoint;
 	public bool autoRepath;
@@ -58,10 +56,10 @@ public class Navigator : MonoBehaviour
 
     public void SetSplitPath()
 	{
-        SetDestination(splitWaypoint.transform);
-	}
+        navMeshAgent.SetDestination(splitWaypoint.position);
+    }
 
-	public void Move(Vector3 direction)
+    public void Move(Vector3 direction)
 	{
 		navMeshAgent.Move(direction * navMeshAgent.speed * Time.deltaTime);
 	}
@@ -84,7 +82,7 @@ public class Navigator : MonoBehaviour
 		}
 		else
 		{
-			currentWaypoint = destination;
+			waypoint = destination;
 			navMeshAgent.SetDestination(destination.position);
 		}
 		
@@ -100,7 +98,7 @@ public class Navigator : MonoBehaviour
 
 	public Transform GetDestination()
 	{
-		return currentWaypoint;
+		return waypoint;
 	}
 
 	public float GetSpeed()
