@@ -24,8 +24,7 @@ public class DeerScenerio : MonoBehaviour
 
 	bool kill;
 
-	[SerializeField]
-	private Transform targetPoint;
+	public Transform targetPoint;
 	[SerializeField]
  	float accuracy = 10.0f;
 	[SerializeField]
@@ -39,7 +38,9 @@ public class DeerScenerio : MonoBehaviour
     private bool inScenario;
 
     public float secondsBeforeRunAway = 3;
+    private float timeElapsed = 0;
 
+    private bool done;
     EventManager eventManager;
 
 	void Start () {
@@ -59,19 +60,29 @@ public class DeerScenerio : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
+        if (run)
+        {
+            timeElapsed += Time.deltaTime;
+        }
+
+        if (timeElapsed > secondsBeforeRunAway && !done)
+        {
+            Vector3 relativePos = targetPoint.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            Vector3 v3Force = runSpeed * (targetPoint.position - transform.position).normalized;
+            rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
+            rb.rotation *= Quaternion.Euler(0, -90, 0);
+            rb.AddForce(v3Force);
+            anim.SetFloat("deerSpeed", 2);
+            done = true;
+        }
     }
 
     private IEnumerator RunAway()
     {
         yield return new WaitForSeconds(secondsBeforeRunAway);
         run = true;
-        Vector3 relativePos = targetPoint.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        Vector3 v3Force = runSpeed * (targetPoint.position - transform.position).normalized;
-        rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
-        rb.rotation *= Quaternion.Euler(0, -90, 0);
-        rb.AddForce(v3Force);
-        anim.SetFloat("deerSpeed", 2);
+
     }
 
 	public void HiddenTest(EventArgument argument)
@@ -89,6 +100,10 @@ public class DeerScenerio : MonoBehaviour
     public void SetInScenario(EventArgument argument)
     {
         inScenario = true;
+        eventManager.CallEvent(CustomEvent.BroadcastObjectLocation, new EventArgument
+        {
+            gameObjectComponent = gameObject
+        });
     }
 
     public void Scared (EventArgument argument)
