@@ -25,7 +25,6 @@ public class AudioHolder : MonoBehaviour {
 		audioManager.PlaySoundOtherScript("Play_FS_P", gameObject);
 	}
 
-
 	void DeerFS()
 	{
 		audioManager.PlaySoundOtherScript ("Play_Deer_FS", gameObject); 
@@ -36,6 +35,11 @@ public class AudioHolder : MonoBehaviour {
 		audioManager.PlaySoundOtherScript ("Play_Bear_FS", gameObject); 
 	}
 
+	void BearFSlight()
+	{
+		audioManager.PlaySoundOtherScript ("Play_Bear_FS_Light", gameObject); 
+	}
+		
 	void BearRoarTrans()
 	{
 		audioManager.PlaySoundOtherScript ("Play_GG_SD_Bear_roar_loud_1", gameObject); 
@@ -46,10 +50,13 @@ public class AudioHolder : MonoBehaviour {
 		audioManager.PlaySoundOtherScript ("Play_GG_SD_Bear_breath", gameObject); 
 	}
 
+	void BearLightRoar()
+	{
+		audioManager.PlaySoundOtherScript ("Play_Bear_SD_LightRoar", gameObject); 
+	}
+
 	void Transformation()
 	{
 		audioManager.PlaySoundOtherScript ("Play_GG_SD_ManToBear_1", gameObject); 
 	}
-
-
 }
