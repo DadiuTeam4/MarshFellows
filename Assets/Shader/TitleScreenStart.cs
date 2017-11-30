@@ -59,9 +59,11 @@ public class TitleScreenStart : MonoBehaviour
 		if(firstPlay && timer > delay)
 		{
 			fogDeer.SetActive(true);
-			tF.enabled = true;
-			firstPlay = false;
-
+			if (tF) 
+			{	
+				tF.enabled = true;
+				firstPlay = false;
+			}
 			FogCurtain.GetComponent<FogCurtain>().enabled = true;
 			
 
