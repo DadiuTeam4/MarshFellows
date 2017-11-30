@@ -14,12 +14,12 @@ public class HunterSpeedControlZone : MonoBehaviour
 
     private Navigator oNav;
     private Navigator pNav;
-    private CatchUp oCatchUp;
+    private CatchUp pCatchUp;
 
     void Start()
     {
         oNav = GameObject.FindGameObjectWithTag("O").GetComponent<Navigator>();
-        oCatchUp = GameObject.FindGameObjectWithTag("O").GetComponent<CatchUp>();
+        pCatchUp = GameObject.FindGameObjectWithTag("P").GetComponent<CatchUp>();
         pNav = GameObject.FindGameObjectWithTag("P").GetComponent<Navigator>();
         speedAfterZone = GlobalConstantsManager.GetInstance().constants.speed;
     }
@@ -29,15 +29,15 @@ public class HunterSpeedControlZone : MonoBehaviour
         if (string.Compare(other.transform.name, "P") == 0 && !speedAfterZoneSat)
         {
             speedAfterZone = oNav.GetSpeed();
-            SetOZoneSpeedBasedOnIfCatching();
+            SetPZoneSpeedBasedOnIfCatching();
             pNav.SetSpeed(speedZoneSpeed);
             speedAfterZoneSat = true;
         }
     }
 
-    private void SetOZoneSpeedBasedOnIfCatching()
+    private void SetPZoneSpeedBasedOnIfCatching()
     {
-        if (oCatchUp.IsCathing())
+        if (pCatchUp.IsCathing())
         {
             oNav.SetSpeed(speedZoneSpeed + GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed);
         }
@@ -51,14 +51,14 @@ public class HunterSpeedControlZone : MonoBehaviour
     {
         if (string.Compare(other.transform.name, "P") == 0)
         {
-            SetOAfterZoneSpeedBasedOnIfCatching();
+            SetPAfterZoneSpeedBasedOnIfCatching();
             pNav.SetSpeed(speedAfterZone);
         }
     }
 
-    private void SetOAfterZoneSpeedBasedOnIfCatching()
+    private void SetPAfterZoneSpeedBasedOnIfCatching()
     {
-        if (oCatchUp.IsCathing())
+        if (pCatchUp.IsCathing())
         {
             oNav.SetSpeed(speedAfterZone + GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed);
         }
