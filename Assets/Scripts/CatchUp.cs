@@ -9,21 +9,24 @@ using UnityEngine.AI;
 public class CatchUp : MonoBehaviour
 {
 
-    private Navigator oNav;
-    private Transform pTransform;
+    private Navigator pNav;
+    private Transform oTransform;
     private bool isCatching;
-    public int seperationDistance = 6;
+    public float seperationDistance = 3;
+    public float reunitedDistance = 2;
+    public float catchingIncresedSpeed = 1;
 
     void Start()
     {
-        oNav = GetComponent<Navigator>();
+        pNav = GetComponent<Navigator>();
+        oTransform = GameObject.FindGameObjectWithTag("O").GetComponent<Transform>();
         isCatching = false;
         CheckNotNull();
     }
 
     private void CheckNotNull()
     {
-        if (!pTransform)
+        if (!oTransform)
         {
             Debug.LogError("Need P Transfrom to Catch Up!");
         }
@@ -52,9 +55,9 @@ public class CatchUp : MonoBehaviour
     {
         if (isCatching)
         {
-            if (!CheckIfSeperated())
+            if (CheckIfReunited())
             {
-                isCatching = true;
+                isCatching = false;
                 BackToNomalSpeed();
             }
         }
@@ -62,17 +65,29 @@ public class CatchUp : MonoBehaviour
 
     private void SetCatchingSpeed()
     {
-        oNav.SetSpeed(oNav.GetSpeed() * 2);
+        Debug.Log("Catching!");
+        pNav.SetSpeed(pNav.GetSpeed() + catchingIncresedSpeed);
     }
 
     private void BackToNomalSpeed()
     {
-        oNav.SetSpeed(oNav.GetSpeed() * 0.5f);
+        Debug.Log("Back to Normal Speed");
+        pNav.SetSpeed(pNav.GetSpeed() - catchingIncresedSpeed);
     }
 
     private bool CheckIfSeperated()
     {
-        float currentDistance = Vector3.Distance(transform.position, pTransform.position);
-        return currentDistance > seperationDistance;
+        return GetCurrentDistance() > seperationDistance;
     }
+
+    private bool CheckIfReunited()
+    {
+        return GetCurrentDistance() < reunitedDistance;
+    }
+
+    private float GetCurrentDistance()
+    {
+        return Vector3.Distance(transform.position, oTransform.position);
+    }
+
 }
