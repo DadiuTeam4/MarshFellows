@@ -20,7 +20,9 @@ namespace AK
         static const AkUniqueID PLAY__RITUAL_GG_SD_SHAMANDRUM_DISRUPT_1 = 2678333816U;
         static const AkUniqueID PLAY_AMBIENCE = 278617630U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
+        static const AkUniqueID PLAY_BEAR_FS_LIGHT = 4228021675U;
         static const AkUniqueID PLAY_BEAR_ROAR = 2645963019U;
+        static const AkUniqueID PLAY_BEAR_SD_LIGHTROAR = 3795598479U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
         static const AkUniqueID PLAY_FS_O = 3464671677U;
