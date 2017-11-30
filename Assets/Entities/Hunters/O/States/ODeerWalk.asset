@@ -11,8 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 910d43ba6d0939c449ed54040f689257, type: 3}
   m_Name: ODeerWalk
   m_EditorClassIdentifier: 
+  onStateEnterActions:
+  - {fileID: 11400000, guid: 9aa7f4dd0e81f7c45883ded557db6941, type: 2}
   actions:
   - {fileID: 11400000, guid: a3bd0d6fe07a66348ad62ccfd545f767, type: 2}
+  onStateExitActions:
+  - {fileID: 11400000, guid: 9aa7f4dd0e81f7c45883ded557db6941, type: 2}
   transitions:
   - decision: {fileID: 11400000, guid: 589a8cbf7ddeef846b97bb857f0349b7, type: 2}
     returnToPreviousState: 0
