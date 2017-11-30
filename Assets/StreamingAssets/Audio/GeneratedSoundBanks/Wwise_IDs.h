@@ -44,6 +44,7 @@ namespace AK
         static const AkUniqueID PLAY_GG_SD_MUD_SINK = 1993353133U;
         static const AkUniqueID PLAY_GG_SD_O_P_BREATH = 747614050U;
         static const AkUniqueID PLAY_GG_SD_O_P_BREATH_2 = 2118605929U;
+        static const AkUniqueID PLAY_GG_SD_SHAMAN_DISRUPT = 441924297U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_WHISPER = 298936984U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
