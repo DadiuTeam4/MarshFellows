@@ -22,6 +22,7 @@ public class InputSystem : Singleton<InputSystem>
 	private Holdable[] heldThisFrame = new Holdable[maxNumberTouches];
 	private RaycastHit?[] raycastHits = new RaycastHit?[maxNumberTouches];
 	private Dictionary<int, List<Vector3>> touchPositions = new Dictionary<int, List<Vector3>>();
+	private ParticleSpawner particleSpawner;
 
 	#endregion
 
@@ -35,6 +36,7 @@ public class InputSystem : Singleton<InputSystem>
 
 	private void Start()
 	{
+		particleSpawner = ParticleSpawner.GetInstance();
 		// Initialize touch positions
 		for (int i = 0; i < maxNumberTouches; i++)
 		{
@@ -132,18 +134,25 @@ public class InputSystem : Singleton<InputSystem>
 	{
 		if (CastRayFromTouch(touch))
 		{
+			// Check if non-interactable (ground, water etc.)
+			if (raycastHits[touch.fingerId].Value.collider.gameObject.CompareTag("Non-interactable"))
+			{
+				print("Hit non-interactable");
+				RaycastHit hit = raycastHits[touch.fingerId].Value;
+				particleSpawner.Burst(hit.point, hit.collider.gameObject.GetComponent<Renderer>().material);
+				return;
+			}
 			// Check if the touch hit a holdable
 			Holdable holdable = GetHoldable(raycastHits[touch.fingerId].Value);
-			if (holdable) {
-				EventManager.GetInstance ().CallEvent (CustomEvent.HoldBegin);
-
-				holdable.OnTouchBegin (raycastHits [touch.fingerId].Value);
-				heldThisFrame [touch.fingerId] = holdable;
-
-			} else 
+			if (holdable) 
 			{
-				CheckSwipe (touch);
-			}
+				EventManager.GetInstance().CallEvent (CustomEvent.HoldBegin);
+
+				holdable.OnTouchBegin(raycastHits [touch.fingerId].Value);
+				heldThisFrame[touch.fingerId] = holdable;
+				return;
+			} 
+			CheckSwipe(touch);
 		}
 	}
 

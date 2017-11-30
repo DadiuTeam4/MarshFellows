@@ -20,7 +20,10 @@ namespace AK
         static const AkUniqueID PLAY__RITUAL_GG_SD_SHAMANDRUM_DISRUPT_1 = 2678333816U;
         static const AkUniqueID PLAY_AMBIENCE = 278617630U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
+        static const AkUniqueID PLAY_BEAR_FS_LIGHT = 4228021675U;
+        static const AkUniqueID PLAY_BEAR_FS_STOMP = 3503358120U;
         static const AkUniqueID PLAY_BEAR_ROAR = 2645963019U;
+        static const AkUniqueID PLAY_BEAR_SD_LIGHTROAR = 3795598479U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FALLTREE = 513156325U;
         static const AkUniqueID PLAY_FS_O = 3464671677U;
@@ -41,6 +44,7 @@ namespace AK
         static const AkUniqueID PLAY_GG_SD_MUD_SINK = 1993353133U;
         static const AkUniqueID PLAY_GG_SD_O_P_BREATH = 747614050U;
         static const AkUniqueID PLAY_GG_SD_O_P_BREATH_2 = 2118605929U;
+        static const AkUniqueID PLAY_GG_SD_SHAMAN_DISRUPT = 441924297U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_WHISPER = 298936984U;
         static const AkUniqueID PLAY_GG_SD_SHAMANTRANSFORMATION = 459538816U;
