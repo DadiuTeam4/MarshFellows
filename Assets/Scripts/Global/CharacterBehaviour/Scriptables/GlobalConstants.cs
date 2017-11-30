@@ -10,6 +10,7 @@ public class GlobalConstants
 {
 	[Header("Hunter")]
 	public float speed = 1.4f;
+	public float catchingIncresedSpeed = 1f;
 	public float acceleration = 8;
 	public float radius = 0.5f;
 	public float height = 2.0f;

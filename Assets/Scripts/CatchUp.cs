@@ -14,7 +14,6 @@ public class CatchUp : MonoBehaviour
     private bool isCatching;
     public float seperationDistance = 3;
     public float reunitedDistance = 2;
-    public float catchingIncresedSpeed = 1;
 
     void Start()
     {
@@ -66,13 +65,13 @@ public class CatchUp : MonoBehaviour
     private void SetCatchingSpeed()
     {
         Debug.Log("Catching!");
-        pNav.SetSpeed(pNav.GetSpeed() + catchingIncresedSpeed);
+        pNav.SetSpeed(pNav.GetSpeed() + GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed);
     }
 
     private void BackToNomalSpeed()
     {
         Debug.Log("Back to Normal Speed");
-        pNav.SetSpeed(pNav.GetSpeed() - catchingIncresedSpeed);
+        pNav.SetSpeed(pNav.GetSpeed() - GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed);
     }
 
     private bool CheckIfSeperated()
@@ -88,6 +87,11 @@ public class CatchUp : MonoBehaviour
     private float GetCurrentDistance()
     {
         return Vector3.Distance(transform.position, oTransform.position);
+    }
+
+    public bool IsCathing()
+    {
+        return isCatching;
     }
 
 }
