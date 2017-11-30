@@ -15,6 +15,8 @@ public class HunterSpeedControlZone : MonoBehaviour
     private Navigator oNav;
     private Navigator pNav;
     private CatchUp pCatchUp;
+	private float catchingIncresedSpeed;
+	
 
     void Start()
     {
@@ -22,6 +24,7 @@ public class HunterSpeedControlZone : MonoBehaviour
         pCatchUp = GameObject.FindGameObjectWithTag("P").GetComponent<CatchUp>();
         pNav = GameObject.FindGameObjectWithTag("P").GetComponent<Navigator>();
         speedAfterZone = GlobalConstantsManager.GetInstance().constants.speed;
+		catchingIncresedSpeed = GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed;
     }
 
     void OnTriggerEnter(Collider other)
@@ -30,7 +33,7 @@ public class HunterSpeedControlZone : MonoBehaviour
         {
             speedAfterZone = oNav.GetSpeed();
             SetPZoneSpeedBasedOnIfCatching();
-            pNav.SetSpeed(speedZoneSpeed);
+            oNav.SetSpeed(speedZoneSpeed);
             speedAfterZoneSat = true;
         }
     }
@@ -39,11 +42,11 @@ public class HunterSpeedControlZone : MonoBehaviour
     {
         if (pCatchUp.IsCathing())
         {
-            oNav.SetSpeed(speedZoneSpeed + GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed);
+            pNav.SetSpeed(speedZoneSpeed + catchingIncresedSpeed);
         }
         else
         {
-            oNav.SetSpeed(speedZoneSpeed);
+            pNav.SetSpeed(speedZoneSpeed);
         }
     }
 
@@ -52,7 +55,7 @@ public class HunterSpeedControlZone : MonoBehaviour
         if (string.Compare(other.transform.name, "P") == 0)
         {
             SetPAfterZoneSpeedBasedOnIfCatching();
-            pNav.SetSpeed(speedAfterZone);
+            oNav.SetSpeed(speedAfterZone);
         }
     }
 
@@ -60,11 +63,11 @@ public class HunterSpeedControlZone : MonoBehaviour
     {
         if (pCatchUp.IsCathing())
         {
-            oNav.SetSpeed(speedAfterZone + GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed);
+            pNav.SetSpeed(speedAfterZone + catchingIncresedSpeed);
         }
         else
         {
-            oNav.SetSpeed(speedAfterZone);
+            pNav.SetSpeed(speedAfterZone);
         }
     }
 
