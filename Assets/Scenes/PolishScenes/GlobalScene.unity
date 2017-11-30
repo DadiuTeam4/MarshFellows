@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.9882353, g: 0.9882353, b: 0.9882353, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.07
@@ -206,6 +206,42 @@ Prefab:
       propertyPath: P
       value: 
       objectReference: {fileID: 1394298869}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 133.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639200980918582, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -49.46
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5fad28cb4a76f344e89176778cb75ea4, type: 2}
   m_IsPrefabParent: 0
@@ -421,7 +457,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.33333334
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 860f9c71b26eed24c8be1c8d7bd5348a, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: ae4defbf73af8014f8014670b78c7b33, type: 2}
 --- !u!4 &538044522
 Transform:
   m_ObjectHideFlags: 0
@@ -1629,6 +1665,16 @@ Prefab:
     - target: {fileID: 1091244984204396, guid: 67d67abca5fb8344ba0632b3c65ded95, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761830711438942, guid: 67d67abca5fb8344ba0632b3c65ded95,
+        type: 2}
+      propertyPath: constants.fogDensity
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761830711438942, guid: 67d67abca5fb8344ba0632b3c65ded95,
+        type: 2}
+      propertyPath: constants.fogMode
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67d67abca5fb8344ba0632b3c65ded95, type: 2}

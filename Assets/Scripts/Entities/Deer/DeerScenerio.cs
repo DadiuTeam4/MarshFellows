@@ -1,5 +1,5 @@
 ﻿// Author: Peter Jæger
-// Contributors:
+// Contributors: Emil
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +11,6 @@ public class DeerScenerio : MonoBehaviour
 	private EventDelegate hidden;
 	private EventDelegate groundEvent;
 	private EventDelegate  kills;
-	private EventDelegate swipeEvent;
 
 	public GameObject deer;
 	public GameObject deadDeer;
@@ -26,7 +25,7 @@ public class DeerScenerio : MonoBehaviour
 	bool kill;
 
 	[SerializeField]
-	private GameObject targetPoint;
+	private Transform targetPoint;
 	[SerializeField]
  	float accuracy = 10.0f;
 	[SerializeField]
@@ -36,80 +35,76 @@ public class DeerScenerio : MonoBehaviour
 	private float runSpeed = 100.0f;
 
 	Vector3 scarePoint;
-	
+
+    private bool inScenario;
+
+    public float secondsBeforeRunAway = 3;
+
+    EventManager eventManager;
+
 	void Start () {
-		anim = GetComponentInChildren<Animator>();
+        eventManager = EventManager.GetInstance();
+        anim = GetComponentInChildren<Animator>();
 		rb = GetComponent<Rigidbody>();
 
 		hidden = HiddenTest;
 		groundEvent = Scared;
 		kills = Killed;
-		swipeEvent = Swipe;
-		EventManager.GetInstance().AddListener(CustomEvent.HiddenByFog, hidden);
-		EventManager.GetInstance().AddListener(CustomEvent.SinkGround, groundEvent);
-		EventManager.GetInstance().AddListener(CustomEvent.DeerKilledEvent, kills);
-		EventManager.GetInstance().AddListener(CustomEvent.Swipe, swipeEvent);
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if(found && !kill && !run){
-			anim.SetTrigger(reactHash);
-		}
+		eventManager.AddListener(CustomEvent.HiddenByFog, hidden);
+		eventManager.AddListener(CustomEvent.SinkGround, groundEvent);
+		eventManager.AddListener(CustomEvent.SpearHit, kills);
+        eventManager.AddListener(CustomEvent.DeerScenarioEntered, SetInScenario);
+    }
 
-		if (run && !kill)
-		{
-			Vector3 relativePos = targetPoint.transform.position - transform.position;
-			Quaternion rotation = Quaternion.LookRotation(relativePos);
-			Vector3 v3Force = runSpeed * transform.forward;
-			rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
-			rb.AddForce(v3Force);
-			anim.SetFloat("deerSpeed", rb.velocity.magnitude);
-		}
 
-		if(kill || Input.GetKeyDown(KeyCode.K))
-		{
-			kill = true;
-			deadDeer.SetActive(true);
-			deer.SetActive(false);
-		}
+    // Update is called once per frame
+    void Update () {
+    }
 
-	}
+    private IEnumerator RunAway()
+    {
+        yield return new WaitForSeconds(secondsBeforeRunAway);
+        run = true;
+        Vector3 relativePos = targetPoint.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos);
+        Vector3 v3Force = runSpeed * (targetPoint.position - transform.position).normalized;
+        rb.rotation = Quaternion.RotateTowards(transform.rotation, rotation, turnRate);
+        rb.rotation *= Quaternion.Euler(0, -90, 0);
+        rb.AddForce(v3Force);
+        anim.SetFloat("deerSpeed", 2);
+    }
 
 	public void HiddenTest(EventArgument argument)
 	{
 		if (argument.gameObjectComponent == this.gameObject)
 		{
 			found = !argument.boolComponent;
+            if (found)
+            {
+                Scared(new EventArgument());
+            }
 		}
 	}
 
-	public void Scared (EventArgument argument)
+    public void SetInScenario(EventArgument argument)
+    {
+        inScenario = true;
+    }
+
+    public void Scared (EventArgument argument)
 	{
-		
-
-		scarePoint = argument.vectorComponent;
-		scarePoint = scarePoint + argument.gameObjectComponent.transform.position;
-		float dist = (scarePoint - transform.position).magnitude;
-		if (dist < accuracy)
-		{
-			run = true;
-		}
-	}
+		if (!inScenario || kill)
+        {
+            return;
+        }
+        anim.SetTrigger(reactHash);
+        StartCoroutine(RunAway());
+        eventManager.CallEvent(CustomEvent.ScenarioInteracted);
+    }
 
 	public void Killed (EventArgument argument)
 	{
-		kill = true;
-	}
+        kill = true;
+    }
 
-	public void Swipe (EventArgument argument)
-	{
-		scarePoint = argument.raycastComponent.point;
-		float dist = (scarePoint - transform.position).magnitude;
-		if (dist < accuracy && found)
-		{
-			run = true;
-		}
-	}
 }
