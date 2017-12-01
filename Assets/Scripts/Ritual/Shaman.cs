@@ -40,6 +40,7 @@ public class Shaman : MonoBehaviour {
         timeElapsed += Time.deltaTime;
         if (!disrupted && timeElapsed > transformAfterSec)
         {
+            eventManager.RemoveListener(CustomEvent.RitualDisrupted, shamanDelegate);
             animator.SetBool("shamanTransform", true);
         }
     }
@@ -60,6 +61,6 @@ public class Shaman : MonoBehaviour {
     void Disrupted(EventArgument args)
     {
         disrupted = true;
-        GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+        //GetComponentInChildren<MeshRenderer>().material.color = Color.red;
     }
 }

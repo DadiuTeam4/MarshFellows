@@ -14,12 +14,14 @@ public class CatchUp : MonoBehaviour
     private bool isCatching;
     public float seperationDistance = 3;
     public float reunitedDistance = 2;
+    private float catchingIncresedSpeed;
 
     void Start()
     {
         pNav = GetComponent<Navigator>();
         oTransform = GameObject.FindGameObjectWithTag("O").GetComponent<Transform>();
         isCatching = false;
+        catchingIncresedSpeed = GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed;
         CheckNotNull();
     }
 
@@ -27,7 +29,7 @@ public class CatchUp : MonoBehaviour
     {
         if (!oTransform)
         {
-            Debug.LogError("Need P Transfrom to Catch Up!");
+            Debug.LogError("Cannot Find O Transform!");
         }
     }
 
@@ -64,14 +66,12 @@ public class CatchUp : MonoBehaviour
 
     private void SetCatchingSpeed()
     {
-        Debug.Log("Catching!");
-        pNav.SetSpeed(pNav.GetSpeed() + GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed);
+        pNav.SetSpeed(pNav.GetSpeed() + catchingIncresedSpeed);
     }
 
     private void BackToNomalSpeed()
     {
-        Debug.Log("Back to Normal Speed");
-        pNav.SetSpeed(pNav.GetSpeed() - GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed);
+        pNav.SetSpeed(pNav.GetSpeed() - catchingIncresedSpeed);
     }
 
     private bool CheckIfSeperated()
