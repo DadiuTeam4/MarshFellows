@@ -7,18 +7,20 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    private bool portrait;
+    public bool portrait;
     public AudioManager audioManager;
 
     void Start()
     {
         audioManager = AudioManager.GetInstance();
-        
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-        
+
         if (IspPortraitOrPortraitUpsideDown())
         {
             showMenuAndPauseGame();
+        }
+        else
+        {
+            portrait = false;
         }
     }
 
@@ -28,28 +30,14 @@ public class MenuManager : MonoBehaviour
         {
             showMenuAndPauseGame();
         }
-        else if (IsLandscape() && portrait)
+        else if (IsLandscape())
         {
-            Screen.orientation = ScreenOrientation.LandscapeLeft;
-            
-            portrait = false;
-            Time.timeScale = 1;
-
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (transform.GetChild(i).gameObject.activeSelf)
-                {
-                    transform.GetChild(i).gameObject.SetActive(false);
-                    audioManager.MenuFadeSoundUp();
-                }
-            }
+            ResumeGameAndDisableMenu();
         }
     }
 
     private void showMenuAndPauseGame()
     {
-        Screen.orientation = ScreenOrientation.Portrait; 
-        
         portrait = true;
         Time.timeScale = 0;
         for (int i = 0; i < transform.childCount; i++)
@@ -58,6 +46,21 @@ public class MenuManager : MonoBehaviour
             {
                 transform.GetChild(i).gameObject.SetActive(true);
                 audioManager.MenuFadeSoundDown();
+            }
+        }
+    }
+
+    private void ResumeGameAndDisableMenu()
+    {
+        portrait = false;
+        Time.timeScale = 1;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+                audioManager.MenuFadeSoundUp();
             }
         }
     }
