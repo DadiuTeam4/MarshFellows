@@ -7,7 +7,7 @@ using UnityEngine;
 public class BackToMenu : MonoBehaviour
 {
 	public Transform menuPanel;
-    public AudioManager audioManager;
+    private AudioManager audioManager;
 
     void Start()
     {
