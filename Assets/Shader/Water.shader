@@ -1,38 +1,58 @@
-﻿Shader "Custom/Water" {
-	Properties {
-		_Color ("Color", Color) = (1,1,1,1)
-		_MainTex ("Albedo (RGB)", 2D) = "white" {}
-		_Glossiness ("Smoothness", Range(0,1)) = 0.5
-		_Metallic ("Metallic", Range(0,1)) = 0.0
-		_InvFadeParemeter ("Auto blend parameter (Edge, Shore, Distance scale)", Vector) = (0.2750813 ,0.08562102, 0.09414239, 0.48031)
+﻿Shader "Custom/Cel Water" 
+{
+	Properties 
+	{
+		_Color 			("Color", Color) = (1,1,1,1)
+		_MainTex 		("Albedo (RGB)", 2D) = "white" {}
+		_MaskTex		("Mask", 2D) = "white"{}
+		_leafMask 		("Leaf Mask", 2D) = "white"{}
+		_ScaleOffset	("Scale offset", Vector) = (1,1,0,0)
+		_UnlitSurface 	("UnlitSurface", Range(0,1)) = 0.75 
+		_Stepping 		("Stepping", Range(0,1)) = 0.0025
+		_LightType 		("Ligth Type", Range(0,1)) = 1
+		_ShadowColor 	("ShadowColor", Color) = (0.10,0.5,1,1)
+
+		
 	}
-	SubShader {
-		Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+	SubShader 
+	{
+		Tags {"Queue"="Transparent" "RenderType"="Transparent" }
 		LOD 200
-		Blend SrcAlpha OneMinusSrcAlpha	// use alpha blending
-		ZWrite Off 						// don't write to depth buffer in order not to occlude other objects
-		Cull Off
-
+		Blend One One
+		
 		CGPROGRAM
-		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows
-		#include "UnityCG.cginc"
-
-		// Use shader model 3.0 target, to get nicer looking lighting
+		#pragma surface surf CelShadingForward alpha
 		#pragma target 3.0
+		#pragma multi_compile_fog
 
 		sampler2D _MainTex;
-		sampler2D_float _CameraDepthTexture;
+		sampler2D _MaskTex;
+		sampler2D _leafMask;
 
-		struct Input {
+		struct Input 
+		{
 			float2 uv_MainTex;
-			float4 screenPos;
 		};
 
-		uniform float4 _InvFadeParemeter;
-		half _Glossiness;
-		half _Metallic;
+		half _Stepping;
+		half _LightType;
 		fixed4 _Color;
+		fixed _UnlitSurface;
+		fixed4 _ShadowColor;
+		fixed4 _ScaleOffset;
+		
+		half4 LightingCelShadingForward(SurfaceOutput s, half3 lightDir, half atten) 
+		{
+			half NdotL = dot(s.Normal, lightDir);
+	 		half NdotL0 = clamp(floor(NdotL), _UnlitSurface, 1);
+			half NdotL1 = smoothstep(0, _Stepping, NdotL) * _UnlitSurface; 
+			NdotL = lerp(NdotL0, NdotL1, _LightType);
+			
+			half4 c;
+			c.rgb = s.Albedo * _LightColor0.rgb * (NdotL * atten) + (1-atten) * _ShadowColor;
+			c.a = s.Alpha;
+			return c;
+		}
 
 		// Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
 		// See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
@@ -41,18 +61,14 @@
 			// put more per-instance properties here
 		UNITY_INSTANCING_CBUFFER_END
 
-		void surf (Input IN, inout SurfaceOutputStandard o) {
-			
-			half4 edgeBlendFactors = half4(1.0, 0.0, 0.0, 0.0);
-			half depth = SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(IN.screenPos));
-			depth = LinearEyeDepth(depth);
-			edgeBlendFactors = saturate(_InvFadeParemeter * (depth-IN.screenPos.w));
-
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-			o.Albedo = c.rgb;
-			o.Metallic = _Metallic;
-			o.Smoothness = _Glossiness;
-			o.Alpha = edgeBlendFactors.x;
+		void surf (Input IN, inout SurfaceOutput o) 
+		{
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw);
+			fixed4 mask = tex2D(_MaskTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw);
+			mask = 1-mask.a +  tex2D (_leafMask, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw) +0.25;
+			c = (1-mask)*_Color + c;
+			o.Albedo = c;
+			o.Alpha = mask + mask *_Color.a;
 		}
 		ENDCG
 	}
