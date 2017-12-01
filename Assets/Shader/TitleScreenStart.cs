@@ -48,7 +48,10 @@ public class TitleScreenStart : MonoBehaviour
 		if(firstPlay)
 		{
 			fogDeer.SetActive(false);
-			tF.enabled = false;
+			if (tF) 
+			{
+				tF.enabled = false;
+			}
 		}
 
 		timer = 0.0f;
