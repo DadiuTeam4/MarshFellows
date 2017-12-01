@@ -11,14 +11,14 @@ public class TitleScreenStart : MonoBehaviour
 {
 	//public string CutsceneScene = "IntroCutScene"; 
 	public bool firstPlay;
-	public GameObject fogDeer;
+	//public GameObject fogDeer;
 	TeachFog tF;
 	public float delay;
 	float timer;
 	EventManager eventManager;
 	private EventDelegate eventDelegate;
 
-	public GameObject FogCurtain;
+	//public GameObject FogCurtain;
 
 	private NavMeshAgent navMeshO;
 	private NavMeshAgent navMeshP;
@@ -32,8 +32,8 @@ public class TitleScreenStart : MonoBehaviour
 		eventManager = EventManager.GetInstance();
 		eventManager.AddListener(CustomEvent.ResetGame, Restarted);
 		eventManager.AddListener(CustomEvent.HiddenByFog, HiddenTest);
-		FogCurtain.GetComponent<FogCurtain>().enabled = false;
-		tF = fogDeer.GetComponentInChildren<TeachFog>();
+		//FogCurtain.GetComponent<FogCurtain>().enabled = false;
+		//tF = fogDeer.GetComponentInChildren<TeachFog>();
 
 		firstPlay = true; //GameStateManager.current.playedBefore;
 		
@@ -47,8 +47,8 @@ public class TitleScreenStart : MonoBehaviour
 
 		if(firstPlay)
 		{
-			fogDeer.SetActive(false);
-			tF.enabled = false;
+			//fogDeer.SetActive(false);
+			//tF.enabled = false;
 		}
 
 		timer = 0.0f;
@@ -58,13 +58,13 @@ public class TitleScreenStart : MonoBehaviour
 	void Update () {
 		if(firstPlay && timer > delay)
 		{
-			fogDeer.SetActive(true);
+			//fogDeer.SetActive(true);
 			if (tF) 
 			{	
 				tF.enabled = true;
 				firstPlay = false;
 			}
-			FogCurtain.GetComponent<FogCurtain>().enabled = true;
+			//FogCurtain.GetComponent<FogCurtain>().enabled = true;
 			
 
 		}
