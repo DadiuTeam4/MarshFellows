@@ -70,8 +70,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1227296746345868}
-  m_LocalRotation: {x: -0, y: 0.9824967, z: -0, w: 0.18628004}
-  m_LocalPosition: {x: 1.3234539, y: 1.198, z: -114.04588}
+  m_LocalRotation: {x: -0.0027377435, y: -0.08424576, z: 0.006379015, w: 0.99642086}
+  m_LocalPosition: {x: 242.69, y: 3.36, z: -51.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4699320824717098}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNavmeshObstacle: 0
   dissipationSpeed: 0.01
-  dissipationRate: 5
+  dissipationRate: 30
 --- !u!198 &198961754586915356
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -212,14 +212,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 668520502
+  randomSeed: -847126916
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.15
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -608,7 +608,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 75
+    maxNumParticles: 100
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -772,7 +772,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 120
+      scalar: 500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1131,8 +1131,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 21781
-        atime2: 41441
+        atime1: 26021
+        atime2: 32189
         atime3: 65535
         atime4: 65535
         atime5: 65535
@@ -3474,7 +3474,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -368953751
+  randomSeed: -1843147767
   InitialModule:
     serializedVersion: 3
     enabled: 1

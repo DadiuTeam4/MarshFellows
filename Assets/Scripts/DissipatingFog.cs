@@ -18,7 +18,7 @@ public class DissipatingFog : Swipeable
 	public float dissipationSpeed = 0.1f;
 
 	[Tooltip("How much the emissionrate is diminished per tick")]
-	[Range(0.01f, 5.0f)]
+	[Range(0.01f, 30.0f)]
 	public float dissipationRate = 0.1f;
 
 	private new Collider collider;
