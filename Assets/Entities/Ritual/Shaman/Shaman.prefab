@@ -6252,7 +6252,7 @@ Animator:
   m_GameObject: {fileID: 1509139069725116}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9cb8cc3aa1834cc47bddc1dcd12678ee, type: 3}
-  m_Controller: {fileID: 9100000, guid: dd5ed51845fda4f489180ba2b34d9701, type: 2}
+  m_Controller: {fileID: 9100000, guid: ae93d3569551ba04ab213912cd5fddf8, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -6391,10 +6391,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e4dcd98f8a8c04f89730be31146e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transformOnEvent: 4
+  secondsBeforeFade: 1.5
   modelFadeRate: 0.1
-  modelFadeIncrement: 5.1
-  model1: {fileID: 1255247437553560}
-  model2: {fileID: 1509139069725116}
+  modelFadeIncrement: 20
+  fadeOutModel: {fileID: 1255247437553560}
+  fadeInModel: {fileID: 1509139069725116}
+  fadeOutModelMaterials: []
+  fadeInModelMaterials: []
+  fadeInAnimationName: shamanBearTransform
+  fadeOutAnimationName: shamanTransform
+  runFadeInAnimationAfterXSeconds: 2.1
+  runFadeOutAnimationAfterXSeconds: 0
 --- !u!137 &137057562040090820
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
