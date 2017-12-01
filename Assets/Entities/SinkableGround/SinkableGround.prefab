@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4391696502395542}
+  - component: {fileID: 114185714661727094}
   - component: {fileID: 33484862771764524}
   - component: {fileID: 23060603152995176}
   - component: {fileID: 65705717439090010}
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1480272107485858}
   m_LocalRotation: {x: -0, y: 0.29046097, z: -0, w: 0.9568868}
-  m_LocalPosition: {x: 151.33844, y: 0.00000015731455, z: -55.6363}
+  m_LocalPosition: {x: 135.1958, y: 1.0228016, z: 13.200729}
   m_LocalScale: {x: 0.807557, y: 1.3404924, z: 0.9689242}
   m_Children:
   - {fileID: 4368338215624784}
@@ -140,6 +141,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.15, y: 0.3, z: 8.11}
   m_Center: {x: 0, y: 0.51, z: 0}
+--- !u!114 &114185714661727094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480272107485858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c316d93c3624b7940a29d99f6113cf0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 0
 --- !u!114 &114289755837127502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,7 +240,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2100816031
+  randomSeed: -1298307180
   InitialModule:
     serializedVersion: 3
     enabled: 1
