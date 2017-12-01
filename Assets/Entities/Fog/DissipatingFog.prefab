@@ -57,7 +57,6 @@ GameObject:
   - component: {fileID: 114022326008295772}
   - component: {fileID: 198961754586915356}
   - component: {fileID: 199264946452382946}
-  - component: {fileID: 208443485232770774}
   m_Layer: 9
   m_Name: FogCollider
   m_TagString: FogCurtain
@@ -151,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1399f143e47484895a4dbde277d406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNavmeshObstacle: 1
+  isNavmeshObstacle: 0
   dissipationSpeed: 0.01
   dissipationRate: 30
 --- !u!198 &198961754586915356
@@ -213,7 +212,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1835513753
+  randomSeed: 1806965366
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3475,7 +3474,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 61870591
+  randomSeed: -1599846079
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6796,19 +6795,4 @@ NavMeshObstacle:
   m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1.45, z: 0}
-  m_TimeToStationary: 0.5
---- !u!208 &208443485232770774
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1666097948512376}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 3.933, y: 2.805, z: 3.7310002}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.238, y: 0.994, z: 0}
   m_TimeToStationary: 0.5
