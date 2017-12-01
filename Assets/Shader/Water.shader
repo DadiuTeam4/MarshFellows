@@ -18,7 +18,7 @@
 	{
 		Tags {"Queue"="Transparent" "RenderType"="Transparent" }
 		LOD 200
-		Blend One One
+		Blend One OneMinusSrcAlpha
 		
 		CGPROGRAM
 		#pragma surface surf CelShadingForward alpha
@@ -63,9 +63,9 @@
 
 		void surf (Input IN, inout SurfaceOutput o) 
 		{
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw);
-			fixed4 mask = tex2D(_MaskTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw);
-			mask = 1-mask.a +  tex2D (_leafMask, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw) +0.25;
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time.zw * 0.0025);
+			fixed4 mask = tex2D(_MaskTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time.zw * 0.0025);
+			mask = 1-mask.a +  tex2D (_leafMask, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time.zw * 0.0025) + 0.25;
 			c = (1-mask)*_Color + c;
 			o.Albedo = c;
 			o.Alpha = mask + mask *_Color.a;
