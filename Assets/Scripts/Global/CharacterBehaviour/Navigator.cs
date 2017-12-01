@@ -30,14 +30,7 @@ public class Navigator : MonoBehaviour
 
     private void Awake()
     {
-        constantsManager = GlobalConstantsManager.GetInstance();
-
         navMeshAgent = GetComponent<NavMeshAgent>();
-
-        navMeshAgent.speed = constantsManager.constants.speed;
-        navMeshAgent.acceleration = constantsManager.constants.acceleration;
-        navMeshAgent.height = constantsManager.constants.height;
-        navMeshAgent.radius = constantsManager.constants.radius;
     }
 
     private void Start()
@@ -47,6 +40,13 @@ public class Navigator : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
 #endif
         #endregion
+
+        constantsManager = GlobalConstantsManager.GetInstance();
+
+        navMeshAgent.speed = constantsManager.constants.speed;
+        navMeshAgent.acceleration = constantsManager.constants.acceleration;
+        navMeshAgent.height = constantsManager.constants.height;
+        navMeshAgent.radius = constantsManager.constants.radius;
 
         navMeshAgent.autoRepath = autoRepath;
         SetDestination();
@@ -121,15 +121,13 @@ public class Navigator : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        float t = (speed - 1) / 3;
         if (hasSpeedParameter)
         {
-            animator.SetFloat(speedParameter, Mathf.Lerp(1, 2, t));
+            animator.SetFloat(speedParameter, speed);
         }
         previousSpeed = navMeshAgent.speed;
         navMeshAgent.speed = speed;
     }
-
     public static bool HasParameter(string paramName, Animator animator)
     {
         foreach (AnimatorControllerParameter param in animator.parameters)
