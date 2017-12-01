@@ -10,7 +10,7 @@ public class SetDestinationTrigger : MonoBehaviour
 {
 	public string target;
 	public Transform newDestination;
-	public CustomEvent onEventToggle;
+	public CustomEvent onEventToggleOff;
 	public bool on;
 
 	public bool setOther = false;
@@ -22,12 +22,12 @@ public class SetDestinationTrigger : MonoBehaviour
 	{
 		toggle = Toggle;
 
-		EventManager.GetInstance().AddListener(onEventToggle, toggle);
+		EventManager.GetInstance().AddListener(onEventToggleOff, toggle);
 	}
 
 	private void Toggle(EventArgument argument)
 	{
-		on = !on;
+		on = false;
 	}
 
 	void OnTriggerEnter(Collider other)
