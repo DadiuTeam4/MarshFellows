@@ -25,6 +25,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2118605929	Play_GG_SD_O_P_Breath_2			\Default Work Unit\Play_GG_SD_O_P_Breath_2	
 	2308878679	MuteAll			\Default Work Unit\MENU\Volume\MuteAll	
 	2322861418	Play_GG_FSD_Shaman_Drum			\Default Work Unit\Play_GG_FSD_Shaman_Drum	
+	2345288829	Pause_Music_01			\Default Work Unit\Music\Pause_Music_01	
 	2382212594	Play_StingerIntro			\Default Work Unit\Play_StingerIntro	
 	2472021264	Menu_FadeVolumeUp			\Default Work Unit\MENU\Menu_FadeVolumeUp	
 	2645963019	Play_Bear_roar			\Default Work Unit\Play_Bear_roar	
@@ -33,6 +34,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2735935537	Pause_Music			\Default Work Unit\Music\Pause_Music	
 	2940177080	Resume_Music			\Default Work Unit\Music\Resume_Music	
 	3148331554	Stop_GG_SD_Sink_1			\Default Work Unit\Mechanic\Stop_GG_SD_Sink_1	
+	3249548110	Resume_Music_01			\Default Work Unit\Music\Resume_Music_01	
 	3340787584	UnmuteAll			\Default Work Unit\MENU\Volume\UnmuteAll	
 	3361606695	Play_GG_Ambience_water			\Default Work Unit\Play_GG_Ambience_water	
 	3464671650	Play_FS_P			\Default Work Unit\O&P\Play_FS_P	
@@ -71,6 +73,7 @@ State	ID	Name	State Group			Notes
 	84696432	O	Music			
 	748895195	None	Music			
 	886825768	Ritual	Music			
+	930422310	RitualSurvived	Music			
 	1036160627	RitualDisrupt	Music			
 	1125500713	Intro	Music			
 	1370620202	RitualFlight	Music			
@@ -92,8 +95,9 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	108382682	FS_Wet_2	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\FS_Wet_2_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\O&P\FSP\FS_Forrest_1\FS_Wet_2		24146
 	113505718	GG_Wind_2_3	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_Wind_2_3_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mechanic\GG_SD_Wind\GG_Wind_2_3		33773
 	155891920	GG_Ambience_BetweenForrest	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_Ambience_BetweenForrest_AD29F36A.wem		\Interactive Music Hierarchy\Default Work Unit\Ambience\Ambience_BetweenForrest\GG_Ambience_BetweenForrest\GG_Ambience_BetweenForrest		550969
+	158961251	(RITUAL)GG_MUSIC_Ritual_survived	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\(RITUAL)GG_MUSIC_Ritual_survived_AD29F36A.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Scenario\RitualSurvived\(RITUAL)GG_MUSIC_Ritual_survived\(RITUAL)GG_MUSIC_Ritual_survived		496815
 	164112001	GG_SD_Tree_Fall	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Tree_Fall_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Tree_fall\GG_SD_Tree_Fall		14643
-	181429664	GG_SD_Shaman_Disrupt	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Shaman_Disrupt_E0FA462D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Animals\GG_SD_Shaman_Disrupt		38641
+	181429664	GG_SD_Shaman_Disrupt	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Shaman_Disrupt_49ADFE8C.wem		\Actor-Mixer Hierarchy\Default Work Unit\Animals\GG_SD_Shaman_Disrupt		38641
 	193475188	FS_Wet_7	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\FS_Wet_7_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\O&P\FSP\FS_Forrest_1\FS_Wet_7		24332
 	208079335	FS_Wet_10	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\FS_Wet_10_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\O&P\FSP\FS_Forrest_1\FS_Wet_10		24616
 	214843226	GG_SD_Transform	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Transform_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Animals\GG_SD_Transform		42637
@@ -106,6 +110,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	268090995	GG_SD_Bear_roar_3	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Bear_roar_3_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Animals\Bear_roar\GG_SD_Bear_roar_3		65894
 	286417238	CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_02_FAR	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_02_FAR_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\O&P\ClothesP\CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_02_FAR		6436
 	286657261	CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_04_FAR	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_04_FAR_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\O&P\ClothesP\CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_04_FAR		5981
+	293285979	(RITUAL)GG_MUSIC_Ritual_Disrupt_1	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\(RITUAL)GG_MUSIC_Ritual_Disrupt_1_AD29F36A.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Scenario\RitualFlight\(RITUAL)GG_MUSIC_Ritual_Disrupt_1\(RITUAL)GG_MUSIC_Ritual_Disrupt_1		170460
 	297640554	GG_SD_Bear_LightRoar_1	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Bear_LightRoar_1_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Animals\Bear_SD_LightRoar\GG_SD_Bear_LightRoar_1		32696
 	301233152	GG_Wind_2_4	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_Wind_2_4_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mechanic\GG_SD_Wind\GG_Wind_2_4		33900
 	303400707	GG_Wind_2_1	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_Wind_2_1_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Mechanic\GG_SD_Wind\GG_Wind_2_1		33584
@@ -124,6 +129,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	398073671	GG_SD_Bonfire_2	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Bonfire_2_AD29F36A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Bonfire\GG_SD_Bonfire_2		283983
 	406268129	GG_FS_Bear_3	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_FS_Bear_3_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Animals\Bear_FS_Heavy\GG_FS_Bear_3		14387
 	409003578	GG_SD_Sink_PH	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\MudBubble_AP1.1097_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\GG_SD_Sink_PH		12914
+	409900419	(INTRO)Stinger	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\(INTRO)Stinger_AD29F36A.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Scenario\RitualSurvived\(RITUAL)GG_MUSIC_Ritual_survived_1\(INTRO)Stinger		144305
 	411153647	(INTRO)Delay_hard_2delt_5	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\(INTRO)Delay_hard_2delt_5_AD29F36A.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Introo\Intro\Intro\(INTRO)Delay_hard_2delt_5		1098582
 	422980634	GG_SD_Stone_Fall	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Stone_Fall_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environment\Stone_fall\GG_SD_Stone_Fall		8318
 	430453530	(RITUAL)GG_SD_SHAMANDRUM_Disrupt_3	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\(RITUAL)GG_SD_SHAMANDRUM_Disrupt_3_AD29F36A.wem		\Interactive Music Hierarchy\Default Work Unit\ShamanDrum\ShamanDrumDisrupt\(RITUAL)GG_SD_SHAMANDRUM_Disrupt_1\(RITUAL)GG_SD_SHAMANDRUM_Disrupt_3		116874
@@ -173,7 +179,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	827728885	GG_FSD_Choir	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Choir_5EAEC835.wem		\Actor-Mixer Hierarchy\Default Work Unit\Foreshadowing\GG_FSD_Choir		28788
 	829513574	GG_FS_SWAMP_WET_1_7	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_FS_SWAMP_WET_1_7_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\O&P\FSP\FS_Swamp\GG_FS_SWAMP_WET_1_7		25449
 	833957249	LEATHER_SHOE_ASPHALT_EXT_2_12	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\LEATHER_SHOE_ASPHALT_EXT_2_12_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\O&P\FSP\FS_Ice\LEATHER_SHOE_ASPHALT_EXT_2_12		6892
-	854191964	(RITUAL)Fleeing_1	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\(RITUAL)Fleeing_1_AD29F36A.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Scenario\RitualFlight\(RITUAL)Fleeing_1\(RITUAL)Fleeing_1		209211
 	854311196	GG_FS_SWAMP_WET_1_2	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_FS_SWAMP_WET_1_2_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\O&P\FSP\FS_Swamp\GG_FS_SWAMP_WET_1_2		24591
 	858551950	(CR)Delay_hard_CR_1	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\(CR)Delay_hard_CR_1_AD29F36A.wem		\Interactive Music Hierarchy\Default Work Unit\Music\Introo\Crossroad\GG_SD_CR_Stinger_1\(CR)Delay_hard_CR_1		417857
 	869867955	GG_SD_Bear_roar_4	Y:\Desktop\DADIU\GraduationGame\MarshFellows\GraduationGameWWise\GraduationGameWWise\.cache\Windows\SFX\GG_SD_Bear_roar_4_F7D0E330.wem		\Actor-Mixer Hierarchy\Default Work Unit\Animals\Bear_roar\GG_SD_Bear_roar_4		68682
