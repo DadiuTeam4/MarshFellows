@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 114861771211430218}
   - component: {fileID: 198658719742247566}
   - component: {fileID: 199959123022448568}
+  - component: {fileID: 114060959130320236}
   m_Layer: 0
   m_Name: ParticleSpawner
   m_TagString: Untagged
@@ -160,7 +161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1648878539642930
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +371,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bb58bbf7dc28ae498a4b9f0e10cada1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114060959130320236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304389385820988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c316d93c3624b7940a29d99f6113cf0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 1
 --- !u!114 &114184318858594624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -609,7 +622,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1412654165
+  randomSeed: -900824438
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -761,7 +774,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
