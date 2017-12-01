@@ -71,12 +71,12 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
 
         //loading first scene
-        argument.intComponent = 1;
+        argument.intComponent = 100;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
 
 
         argument.stringComponent = audioSceneName;
-        argument.intComponent = 1;
+        argument.intComponent = 100;
         eventManager.CallEvent(CustomEvent.LoadScene,argument);
     }
     private void AddUnlockables()
@@ -125,11 +125,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         if(argument.intComponent == 0)
         {
-            Scene unloadScene = SceneManager.GetSceneByName(argument.stringComponent);
-            if (unloadScene.isLoaded)
-            {
-                SceneManager.UnloadSceneAsync(argument.stringComponent);
-            }            
+            AsyncLoadOfScenes(argument.stringComponent);
             return;
         }
 
@@ -139,16 +135,45 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             return;
         }
 
+        if(argument.intComponent == 100)
+        {
+            SyncLoadOfScenes(argument.stringComponent);
+            return;
+        }
+
         if(argument.intComponent > 0)
         {
             //if you sent a new scene to load
-            Scene scene = SceneManager.GetSceneByName(argument.stringComponent);
-            if (!scene.isLoaded)
-            {
-                SceneManager.LoadSceneAsync(argument.stringComponent, LoadSceneMode.Additive);
-            }
+            AsyncLoadOfScenes(argument.stringComponent);
 
         }
+    }
+
+    void SyncLoadOfScenes(string nameOfScene)
+    {
+        Scene scene = SceneManager.GetSceneByName(nameOfScene);
+        if (!scene.isLoaded)
+        {
+            SceneManager.LoadScene(nameOfScene, LoadSceneMode.Additive);
+        }
+    }
+
+    void AsyncLoadOfScenes(string nameOfScene)
+    {
+        Scene scene = SceneManager.GetSceneByName(nameOfScene);
+        if (!scene.isLoaded)
+        {
+            SceneManager.LoadSceneAsync(nameOfScene, LoadSceneMode.Additive);
+        }
+    }
+
+    void AsyncUnloadOfScenes(string nameOfScene)
+    {
+        Scene unloadScene = SceneManager.GetSceneByName(nameOfScene);
+        if (unloadScene.isLoaded)
+        {
+            SceneManager.UnloadSceneAsync(nameOfScene);
+        }       
     }
 
     private void OnRestart()
