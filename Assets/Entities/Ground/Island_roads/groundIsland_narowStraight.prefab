@@ -19,9 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4298145552625690}
-  m_Layer: 0
+  - component: {fileID: 64767217062352802}
+  m_Layer: 16
   m_Name: groundIsland_narowStraight
-  m_TagString: Untagged
+  m_TagString: Non-interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +37,7 @@ GameObject:
   - component: {fileID: 4284617421898040}
   - component: {fileID: 33352640800710584}
   - component: {fileID: 23102623089015648}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: NarrowStraight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,14 +63,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1173352587822348}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.06128469, z: -0, w: 0.99812037}
+  m_LocalPosition: {x: 211.90341, y: 0.14, z: -83.18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4284617421898040}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -7.0270004, z: 0}
 --- !u!23 &23102623089015648
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -108,4 +109,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1899599287304688}
+  m_Mesh: {fileID: 4300000, guid: 57ad72c386b8b7844948259c64541d3d, type: 3}
+--- !u!64 &64767217062352802
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1173352587822348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 57ad72c386b8b7844948259c64541d3d, type: 3}
