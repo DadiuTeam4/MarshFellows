@@ -121,15 +121,13 @@ public class Navigator : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        float t = (speed - 1) / 3;
         if (hasSpeedParameter)
         {
-            animator.SetFloat(speedParameter, Mathf.Lerp(1, 2, t));
+            animator.SetFloat(speedParameter, speed);
         }
         previousSpeed = navMeshAgent.speed;
         navMeshAgent.speed = speed;
     }
-
     public static bool HasParameter(string paramName, Animator animator)
     {
         foreach (AnimatorControllerParameter param in animator.parameters)
