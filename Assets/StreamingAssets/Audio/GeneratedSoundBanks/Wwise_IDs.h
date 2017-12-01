@@ -93,6 +93,8 @@ namespace AK
             namespace STATE
             {
                 static const AkUniqueID CROSSROAD = 1606235185U;
+                static const AkUniqueID DEER = 1976939193U;
+                static const AkUniqueID DEERINTRO = 2224417149U;
                 static const AkUniqueID INTRO = 1125500713U;
                 static const AkUniqueID O = 84696432U;
                 static const AkUniqueID P = 84696431U;
