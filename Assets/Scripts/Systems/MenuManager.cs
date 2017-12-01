@@ -7,18 +7,20 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    private bool portrait;
+    public bool portrait;
     public AudioManager audioManager;
 
     void Start()
     {
         audioManager = AudioManager.GetInstance();
         
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-        
         if (IspPortraitOrPortraitUpsideDown())
         {
             showMenuAndPauseGame();
+        }
+        else
+        {
+            portrait = false;
         }
     }
 
@@ -28,10 +30,8 @@ public class MenuManager : MonoBehaviour
         {
             showMenuAndPauseGame();
         }
-        else if (IsLandscape() && portrait)
+        else if (IsLandscape())
         {
-            Screen.orientation = ScreenOrientation.LandscapeLeft;
-            
             portrait = false;
             Time.timeScale = 1;
 
@@ -48,8 +48,6 @@ public class MenuManager : MonoBehaviour
 
     private void showMenuAndPauseGame()
     {
-        Screen.orientation = ScreenOrientation.Portrait; 
-        
         portrait = true;
         Time.timeScale = 0;
         for (int i = 0; i < transform.childCount; i++)
