@@ -12,10 +12,13 @@ public class LockObject : Editor
 	{
 		LockableObject obj = target as LockableObject;
 		obj.locked = EditorGUILayout.Toggle("Locked", obj.locked);
-		//obj.gameObject.hideFlags = obj.locked ? HideFlags.NotEditable : HideFlags.None;
 		if (!obj.locked)
 		{
-			obj.gameObject.hideFlags = HideFlags.None;			
+			obj.gameObject.hideFlags = HideFlags.None;
+			foreach (Transform child in obj.gameObject.transform)
+			{
+				child.gameObject.hideFlags = HideFlags.None;
+			}
 		}
 		else
 		{
