@@ -123,7 +123,7 @@ public class Navigator : MonoBehaviour
     {
         if (hasSpeedParameter)
         {
-            animator.SetFloat(speedParameter, speed);
+            animator.SetFloat(speedParameter, speed < 2 ? speed : 2);
         }
         previousSpeed = navMeshAgent.speed;
         navMeshAgent.speed = speed;
