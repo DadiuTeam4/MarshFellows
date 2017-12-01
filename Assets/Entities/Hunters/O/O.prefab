@@ -2064,6 +2064,7 @@ GameObject:
   - component: {fileID: 95368817748949932}
   - component: {fileID: 114493448823777154}
   - component: {fileID: 114347533058622256}
+  - component: {fileID: 114237791690643476}
   m_Layer: 0
   m_Name: hunter_fqi01
   m_TagString: Untagged
@@ -2560,7 +2561,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532482240352406}
-  m_LocalRotation: {x: 0.11208118, y: -0.19219112, z: 0.5935361, w: 0.7734439}
+  m_LocalRotation: {x: 0.11208116, y: -0.1921911, z: 0.593536, w: 0.77344376}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2822,8 +2823,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1382409028041390}
-  m_LocalRotation: {x: -0, y: 0.940791, z: -0, w: 0.3389871}
-  m_LocalPosition: {x: 29.59188, y: 1.32, z: -118.82854}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.85, y: 0, z: 1.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4318484391501336}
@@ -5557,6 +5558,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114237791690643476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1792167732928412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7dd0497f5a567f47a3b2752795538ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 65536
 --- !u!114 &114347533058622256
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5598,7 +5613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_positionOffsetData:
-    positionOffset: {x: 0, y: 0, z: 0}
+    positionOffset: {x: -0.01753211, y: 0, z: 0.077394605}
     KeepMe: 0
   isEnvironmentAware: 1
   isStaticObject: 1
