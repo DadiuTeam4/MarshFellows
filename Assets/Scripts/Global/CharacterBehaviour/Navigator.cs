@@ -30,14 +30,7 @@ public class Navigator : MonoBehaviour
 
     private void Awake()
     {
-        constantsManager = GlobalConstantsManager.GetInstance();
-
         navMeshAgent = GetComponent<NavMeshAgent>();
-
-        navMeshAgent.speed = constantsManager.constants.speed;
-        navMeshAgent.acceleration = constantsManager.constants.acceleration;
-        navMeshAgent.height = constantsManager.constants.height;
-        navMeshAgent.radius = constantsManager.constants.radius;
     }
 
     private void Start()
@@ -47,6 +40,13 @@ public class Navigator : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
 #endif
         #endregion
+
+        constantsManager = GlobalConstantsManager.GetInstance();
+
+        navMeshAgent.speed = constantsManager.constants.speed;
+        navMeshAgent.acceleration = constantsManager.constants.acceleration;
+        navMeshAgent.height = constantsManager.constants.height;
+        navMeshAgent.radius = constantsManager.constants.radius;
 
         navMeshAgent.autoRepath = autoRepath;
         SetDestination();
