@@ -17,6 +17,7 @@ namespace AK
         static const AkUniqueID MENU_FADEVOLUMEUP = 2472021264U;
         static const AkUniqueID MUTEALL = 2308878679U;
         static const AkUniqueID PAUSE_MUSIC = 2735935537U;
+        static const AkUniqueID PAUSE_MUSIC_01 = 2345288829U;
         static const AkUniqueID PLAY__RITUAL_GG_SD_SHAMANDRUM_DISRUPT_1 = 2678333816U;
         static const AkUniqueID PLAY_AMBIENCE = 278617630U;
         static const AkUniqueID PLAY_BEAR_FS = 1832895494U;
@@ -58,6 +59,7 @@ namespace AK
         static const AkUniqueID PLAY_MUSIC_01 = 3709355747U;
         static const AkUniqueID PLAY_STINGERINTRO = 2382212594U;
         static const AkUniqueID RESUME_MUSIC = 2940177080U;
+        static const AkUniqueID RESUME_MUSIC_01 = 3249548110U;
         static const AkUniqueID STOP_ALL = 452547817U;
         static const AkUniqueID STOP_GG_SD_SHAMAN_DRUM_1 = 2719439088U;
         static const AkUniqueID STOP_GG_SD_SHAMAN_WHISPER = 4129492602U;
@@ -95,6 +97,7 @@ namespace AK
                 static const AkUniqueID RITUAL = 886825768U;
                 static const AkUniqueID RITUALDISRUPT = 1036160627U;
                 static const AkUniqueID RITUALFLIGHT = 1370620202U;
+                static const AkUniqueID RITUALSURVIVED = 930422310U;
             } // namespace STATE
         } // namespace MUSIC
 
