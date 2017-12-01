@@ -15,7 +15,8 @@ namespace CameraControl
         public float pitch;
         [Header("Damping")]
         public float positionDamping = 1;
-        public float rotationDamping = 1;
+        public float rotationDampingY = 1;
+        public float rotationDampingX = 1;
         [Header("Tracking")]
         public bool isFollowingCenter = true;
         [Header("Field of View")]
@@ -77,16 +78,21 @@ namespace CameraControl
             Quaternion rotation = Quaternion.identity;
             if (!trackedObject)
             {
-                float currentAngle = transform.eulerAngles.y;
-                float desiredAngle = pTransform.eulerAngles.y;
-                float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * rotationDamping);
-                rotation = Quaternion.Euler(pitch, angle, startRotation.z);
+                float currentAngleY = transform.eulerAngles.y;
+                float desiredAngleY = pTransform.eulerAngles.y;
+                float angleY = Mathf.LerpAngle(currentAngleY, desiredAngleY, Time.deltaTime * rotationDampingY);
+                
+                float currentAngleX = transform.eulerAngles.x;
+                float angleX = Mathf.LerpAngle(currentAngleX, pitch, Time.deltaTime * rotationDampingX);
+
+                rotation = Quaternion.Euler(angleX, angleY, startRotation.z);
+                
             }
             else
             {
                 Vector3 direction = trackedObject.position - transform.position;
                 Quaternion desiredRotation = Quaternion.LookRotation(direction);
-                rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * rotationDamping);
+                rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * rotationDampingY);
             }
             // Wobly camera
             float oscilate = Mathf.Abs((Mathf.Sin(Time.time)/wobbleSpeed));
