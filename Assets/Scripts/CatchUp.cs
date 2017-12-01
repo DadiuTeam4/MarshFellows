@@ -29,7 +29,7 @@ public class CatchUp : MonoBehaviour
     {
         if (!oTransform)
         {
-            Debug.LogError("Need P Transfrom to Catch Up!");
+            Debug.LogError("Cannot Find O Transform!");
         }
     }
 
