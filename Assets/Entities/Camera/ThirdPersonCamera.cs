@@ -21,6 +21,11 @@ namespace CameraControl
         [Header("Field of View")]
         public float fieldOfView = 38;
 
+        [Header("Wobly camera")]
+        public float edgePosition = 5.0f;
+        public int wobbleSpeed = 3;
+
+        [Header("Focus object")]
         [SerializeField]
         private Transform trackedObject;
         private Vector3 startRotation;
@@ -83,20 +88,18 @@ namespace CameraControl
                 Quaternion desiredRotation = Quaternion.LookRotation(direction);
                 rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * rotationDamping);
             }
+            // Wobly camera
+            float oscilate = Mathf.Abs((Mathf.Sin(Time.time)/wobbleSpeed));
+
+            Vector3 mumblePosition = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y-(edgePosition/1000), transform.position.z),
+                                                  new Vector3(transform.position.x, transform.position.y+(edgePosition/1000), transform.position.z), oscilate);
+
             transform.rotation = rotation;
 
-            Vector3 position = Vector3.Lerp(transform.position, GetDesiredPosition(transform.eulerAngles.y), Time.deltaTime * positionDamping);
+            Vector3 position = Vector3.Lerp(mumblePosition, GetDesiredPosition(transform.eulerAngles.y), Time.deltaTime * positionDamping);
 
-            float edgePosition = 3f;
-            float totalDistance = edgePosition * 2;
-            float speed = 1.0f;
-            float distCovered = (Time.time - startTime) * speed;
-            float fracJourney = distCovered / totalDistance;
-
-            Vector3 mumblePosition = Vector3.Lerp(new Vector3(position.x, + edgePosition, position.z),
-                                                    new Vector3(position.x, - edgePosition, position.z), fracJourney);
-
-            transform.position = mumblePosition;
+            transform.position = position;
+            
             if (controller.cameraComponent.fieldOfView != fieldOfView)
             {
                 controller.cameraComponent.fieldOfView = Mathf.Lerp(controller.cameraComponent.fieldOfView, fieldOfView, Time.deltaTime);
