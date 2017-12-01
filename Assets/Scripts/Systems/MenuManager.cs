@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         audioManager = AudioManager.GetInstance();
-        
+
         if (IspPortraitOrPortraitUpsideDown())
         {
             showMenuAndPauseGame();
@@ -32,17 +32,7 @@ public class MenuManager : MonoBehaviour
         }
         else if (IsLandscape())
         {
-            portrait = false;
-            Time.timeScale = 1;
-
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (transform.GetChild(i).gameObject.activeSelf)
-                {
-                    transform.GetChild(i).gameObject.SetActive(false);
-                    audioManager.MenuFadeSoundUp();
-                }
-            }
+            ResumeGameAndDisableMenu();
         }
     }
 
@@ -56,6 +46,21 @@ public class MenuManager : MonoBehaviour
             {
                 transform.GetChild(i).gameObject.SetActive(true);
                 audioManager.MenuFadeSoundDown();
+            }
+        }
+    }
+
+    private void ResumeGameAndDisableMenu()
+    {
+        portrait = false;
+        Time.timeScale = 1;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+                audioManager.MenuFadeSoundUp();
             }
         }
     }
