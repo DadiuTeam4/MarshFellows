@@ -258,9 +258,13 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			AkSoundEngine.SetState("Music", "Ritual"); 
 		}
-		if (argument.stringComponent == "Separation") 
+		if (argument.stringComponent == "DeerIntro") 
 		{
-			//
+			AkSoundEngine.SetState("Music", "DeerIntro"); 
+		}
+		if (argument.stringComponent == "DeerIntro") 
+		{
+			AkSoundEngine.SetState("Music", "Deer"); 
 		}
 		if (argument.stringComponent == "Bear") 
 		{
