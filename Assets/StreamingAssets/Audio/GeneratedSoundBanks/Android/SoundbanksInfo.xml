@@ -24,7 +24,9 @@
 				<Event Id="854919495" Name="Menu_FadeVolumeDown" ObjectPath="\Events\Default Work Unit\MENU\Menu_FadeVolumeDown" MaxAttenuation="0.000000"/>
 				<Event Id="2472021264" Name="Menu_FadeVolumeUp" ObjectPath="\Events\Default Work Unit\MENU\Menu_FadeVolumeUp" MaxAttenuation="0.000000"/>
 				<Event Id="2308878679" Name="MuteAll" ObjectPath="\Events\Default Work Unit\MENU\Volume\MuteAll" MaxAttenuation="0.000000"/>
+				<Event Id="1212368320" Name="Pause_Ambience" ObjectPath="\Events\Default Work Unit\Pause_Ambience" MaxAttenuation="0.000000"/>
 				<Event Id="2735935537" Name="Pause_Music" ObjectPath="\Events\Default Work Unit\Music\Pause_Music" MaxAttenuation="0.000000"/>
+				<Event Id="2345288829" Name="Pause_Music_01" ObjectPath="\Events\Default Work Unit\Music\Pause_Music_01" MaxAttenuation="0.000000"/>
 				<Event Id="2678333816" Name="Play__RITUAL_GG_SD_SHAMANDRUM_Disrupt_1" ObjectPath="\Events\Default Work Unit\Scenarios\Play__RITUAL_GG_SD_SHAMANDRUM_Disrupt_1" MaxAttenuation="100.000000"/>
 				<Event Id="278617630" Name="Play_Ambience" ObjectPath="\Events\Default Work Unit\Environment\Play_Ambience"/>
 				<Event Id="1832895494" Name="Play_Bear_FS" ObjectPath="\Events\Default Work Unit\Animals\Play_Bear_FS" MaxAttenuation="100.000000"/>
@@ -65,7 +67,9 @@
 				<Event Id="1419803467" Name="Play_ImpactEarthRock" ObjectPath="\Events\Default Work Unit\Environment\Play_ImpactEarthRock" MaxAttenuation="100.000000"/>
 				<Event Id="3709355747" Name="Play_Music_01" ObjectPath="\Events\Default Work Unit\Music\Play_Music_01"/>
 				<Event Id="2382212594" Name="Play_StingerIntro" ObjectPath="\Events\Default Work Unit\Play_StingerIntro"/>
+				<Event Id="2740843843" Name="Resume_Ambience" ObjectPath="\Events\Default Work Unit\Resume_Ambience" MaxAttenuation="0.000000"/>
 				<Event Id="2940177080" Name="Resume_Music" ObjectPath="\Events\Default Work Unit\Music\Resume_Music" MaxAttenuation="0.000000"/>
+				<Event Id="3249548110" Name="Resume_Music_01" ObjectPath="\Events\Default Work Unit\Music\Resume_Music_01" MaxAttenuation="0.000000"/>
 				<Event Id="452547817" Name="Stop_All" ObjectPath="\Events\Default Work Unit\Stop_All" MaxAttenuation="0.000000"/>
 				<Event Id="2719439088" Name="Stop_GG_SD_Shaman_Drum_1" ObjectPath="\Events\Default Work Unit\Scenarios\Stop_GG_SD_Shaman_Drum_1" MaxAttenuation="0.000000"/>
 				<Event Id="4129492602" Name="Stop_GG_SD_SHAMAN_WHISPER" ObjectPath="\Events\Default Work Unit\Stop_GG_SD_SHAMAN_WHISPER" MaxAttenuation="0.000000"/>
@@ -89,6 +93,10 @@
 				<File Id="77432509" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_12.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_12_F7D0E330.wem</Path>
+				</File>
+				<File Id="81095728" Language="SFX">
+					<ShortName>GG_FS_Deer_4.wav</ShortName>
+					<Path>SFX/GG_FS_Deer_4_F7D0E330.wem</Path>
 				</File>
 				<File Id="91488008" Language="SFX">
 					<ShortName>FS_Wet_15.wav</ShortName>
@@ -114,13 +122,17 @@
 					<ShortName>GG_Ambience_BetweenForrest.wav</ShortName>
 					<Path>SFX/GG_Ambience_BetweenForrest_AD29F36A.wem</Path>
 				</File>
+				<File Id="158961251" Language="SFX">
+					<ShortName>(RITUAL)GG_MUSIC_Ritual_survived.wav</ShortName>
+					<Path>SFX/(RITUAL)GG_MUSIC_Ritual_survived_AD29F36A.wem</Path>
+				</File>
 				<File Id="164112001" Language="SFX">
 					<ShortName>GG_SD_Tree_Fall.wav</ShortName>
 					<Path>SFX/GG_SD_Tree_Fall_F7D0E330.wem</Path>
 				</File>
 				<File Id="181429664" Language="SFX">
 					<ShortName>GG_SD_Shaman_Disrupt.wav</ShortName>
-					<Path>SFX/GG_SD_Shaman_Disrupt_E0FA462D.wem</Path>
+					<Path>SFX/GG_SD_Shaman_Disrupt_49ADFE8C.wem</Path>
 				</File>
 				<File Id="193475188" Language="SFX">
 					<ShortName>FS_Wet_7.wav</ShortName>
@@ -133,6 +145,10 @@
 				<File Id="214843226" Language="SFX">
 					<ShortName>GG_SD_Transform.wav</ShortName>
 					<Path>SFX/GG_SD_Transform_F7D0E330.wem</Path>
+				</File>
+				<File Id="215910844" Language="SFX">
+					<ShortName>GG_FS_Deer_6.wav</ShortName>
+					<Path>SFX/GG_FS_Deer_6_F7D0E330.wem</Path>
 				</File>
 				<File Id="225536318" Language="SFX">
 					<ShortName>(DEER)GG_MUSIC_Evolve_1.wav</ShortName>
@@ -165,6 +181,10 @@
 				<File Id="286657261" Language="SFX">
 					<ShortName>CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_04_FAR.wav</ShortName>
 					<Path>SFX/CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_04_FAR_F7D0E330.wem</Path>
+				</File>
+				<File Id="293285979" Language="SFX">
+					<ShortName>(RITUAL)GG_MUSIC_Ritual_Disrupt_1.wav</ShortName>
+					<Path>SFX/(RITUAL)GG_MUSIC_Ritual_Disrupt_1_AD29F36A.wem</Path>
 				</File>
 				<File Id="297640554" Language="SFX">
 					<ShortName>GG_SD_Bear_LightRoar_1.wav</ShortName>
@@ -237,6 +257,10 @@
 				<File Id="409003578" Language="SFX">
 					<ShortName>MudBubble_AP1.1097.wav</ShortName>
 					<Path>SFX/MudBubble_AP1.1097_F7D0E330.wem</Path>
+				</File>
+				<File Id="409900419" Language="SFX">
+					<ShortName>(INTRO)Stinger.wav</ShortName>
+					<Path>SFX/(INTRO)Stinger_AD29F36A.wem</Path>
 				</File>
 				<File Id="411153647" Language="SFX">
 					<ShortName>(INTRO)Delay_hard_2delt_5.wav</ShortName>
@@ -346,6 +370,10 @@
 					<ShortName>CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_03_FAR.wav</ShortName>
 					<Path>SFX/CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_03_FAR_F7D0E330.wem</Path>
 				</File>
+				<File Id="615369698" Language="SFX">
+					<ShortName>GG_FS_Deer_2.wav</ShortName>
+					<Path>SFX/GG_FS_Deer_2_F7D0E330.wem</Path>
+				</File>
 				<File Id="667337525" Language="SFX">
 					<ShortName>BodyFallTree_BW.60474.wav</ShortName>
 					<Path>SFX/BodyFallTree_BW.60474_69B8050C.wem</Path>
@@ -369,10 +397,6 @@
 				<File Id="696819364" Language="SFX">
 					<ShortName>GG_SD_Bear_roar_2.wav</ShortName>
 					<Path>SFX/GG_SD_Bear_roar_2_F7D0E330.wem</Path>
-				</File>
-				<File Id="702831813" Language="SFX">
-					<ShortName>LeapordFootstep_S08AN.165.wav</ShortName>
-					<Path>SFX/LeapordFootstep_S08AN.165_FF2D3DC1.wem</Path>
 				</File>
 				<File Id="708141939" Language="SFX">
 					<ShortName>FS_Wet_4.wav</ShortName>
@@ -414,6 +438,10 @@
 					<ShortName>GG_SD_Stone_3.wav</ShortName>
 					<Path>SFX/GG_SD_Stone_3_F7D0E330.wem</Path>
 				</File>
+				<File Id="812869842" Language="SFX">
+					<ShortName>GG_FS_Deer_3.wav</ShortName>
+					<Path>SFX/GG_FS_Deer_3_F7D0E330.wem</Path>
+				</File>
 				<File Id="813405328" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_4.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_4_F7D0E330.wem</Path>
@@ -430,10 +458,6 @@
 					<ShortName>LEATHER_SHOE_ASPHALT_EXT_2_12.wav</ShortName>
 					<Path>SFX/LEATHER_SHOE_ASPHALT_EXT_2_12_F7D0E330.wem</Path>
 				</File>
-				<File Id="854191964" Language="SFX">
-					<ShortName>(RITUAL)Fleeing_1.wav</ShortName>
-					<Path>SFX/(RITUAL)Fleeing_1_AD29F36A.wem</Path>
-				</File>
 				<File Id="854311196" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_2.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_2_F7D0E330.wem</Path>
@@ -449,6 +473,10 @@
 				<File Id="870863303" Language="SFX">
 					<ShortName>FS_Wet_5.wav</ShortName>
 					<Path>SFX/FS_Wet_5_F7D0E330.wem</Path>
+				</File>
+				<File Id="872846724" Language="SFX">
+					<ShortName>GG_FS_Deer_1.wav</ShortName>
+					<Path>SFX/GG_FS_Deer_1_F7D0E330.wem</Path>
 				</File>
 				<File Id="907780066" Language="SFX">
 					<ShortName>CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_05_FAR.wav</ShortName>
@@ -493,6 +521,10 @@
 				<File Id="1011062853" Language="SFX">
 					<ShortName>ImpactEarthRock_S08IM.293.wav</ShortName>
 					<Path>SFX/ImpactEarthRock_S08IM.293_EB81EE36.wem</Path>
+				</File>
+				<File Id="1028509926" Language="SFX">
+					<ShortName>GG_FS_Deer_5.wav</ShortName>
+					<Path>SFX/GG_FS_Deer_5_F7D0E330.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

@@ -246,6 +246,10 @@ public class AudioManager : Singleton<AudioManager> {
 			PlaySound("Play_Music_01"); 
 			StartCoroutine (FadeIn ()); 
 		}
+		if (argument.stringComponent == "RitualSurvived") 
+		{
+			AkSoundEngine.SetState("Music", "RitualSurvived"); 
+		}
 		if (argument.stringComponent == "Crossroad") 
 		{
 			AkSoundEngine.SetState("Music", "Crossroad"); 
@@ -360,10 +364,14 @@ public class AudioManager : Singleton<AudioManager> {
 	public void MenuFadeSoundDown()
 	{
 		PlaySound ("Menu_FadeVolumeDown"); 	
+		PlaySound ("Pause_Music_01"); 
+		PlaySound ("Pause_Ambience"); 
 	}
 	public void MenuFadeSoundUp()
 	{
-		PlaySound ("Menu_FadeVolumeUp"); 	
+		PlaySound ("Menu_FadeVolumeUp"); 
+		PlaySound ("Resume_Music_01"); 
+		PlaySound ("Resume_Ambience"); 
 	}
 	public void OnMenuClick()
 	{

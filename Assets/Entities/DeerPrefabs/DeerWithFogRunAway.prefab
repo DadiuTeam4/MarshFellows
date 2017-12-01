@@ -1313,7 +1313,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1492013562377638}
   m_LocalRotation: {x: -0, y: -0.048901215, z: -0, w: 0.9988036}
-  m_LocalPosition: {x: -0.936, y: -0.001, z: -1.146}
+  m_LocalPosition: {x: -0.936, y: 0.75, z: -1.146}
   m_LocalScale: {x: 0.66844136, y: 0.66844136, z: 0.66844136}
   m_Children:
   - {fileID: 4350452667768724}
@@ -2484,7 +2484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNavmeshObstacle: 0
   dissipationSpeed: 0.01
-  dissipationRate: 5
+  dissipationRate: 30
 --- !u!137 &137655344888496974
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2727,7 +2727,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 2109723026
+  randomSeed: -1315986789
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5938,7 +5938,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1492013562377638}
   serializedVersion: 5
   lengthInSec: 5
-  simulationSpeed: 0.05
+  simulationSpeed: 0.9
   looping: 1
   prewarm: 1
   playOnAwake: 1
@@ -5989,14 +5989,14 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 204783005
+  randomSeed: 271569624
   InitialModule:
     serializedVersion: 3
     enabled: 1
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.8
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -6385,7 +6385,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 75
+    maxNumParticles: 150
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -6438,9 +6438,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0, z: -2.42}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 5.0035677, y: 3.8436153, z: 0.98742014}
+    m_Scale: {x: 5.0035677, y: 3.8436153, z: 5.16}
     placementMode: 0
     m_Mesh: {fileID: 0}
     m_MeshRenderer: {fileID: 0}
@@ -6549,7 +6549,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 120
+      scalar: 150
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -6642,15 +6642,15 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.48220962
+          value: 1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         - serializedVersion: 2
           time: 1
           value: 1
-          inSlope: 1
-          outSlope: 1
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -6908,8 +6908,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 21781
-        atime2: 41441
+        atime1: 26021
+        atime2: 32189
         atime3: 65535
         atime4: 65535
         atime5: 65535
