@@ -63,8 +63,6 @@ public class ModelCrossFade : MonoBehaviour
 
 		playFadeInAfterWait = WaitToPlayAnimation(fadeInAnimator, fadeInAnimationName, runFadeInAnimationAfterXSeconds);
 		playFadeOutAfterWait = WaitToPlayAnimation(fadeOutAnimator, fadeOutAnimationName, runFadeOutAnimationAfterXSeconds);
-
-		EventManager.GetInstance().CallEvent(CustomEvent.AppleFall);
 	}
 	
 	private List<Material> GetMaterialsFromRendererArray(Renderer[] renderer)
@@ -122,13 +120,13 @@ public class ModelCrossFade : MonoBehaviour
 			}
 			else
 			{
-				modelMaterials[i].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-				modelMaterials[i].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-				modelMaterials[i].SetInt("_ZWrite", 0);
-				modelMaterials[i].DisableKeyword("_ALPHATEST_ON");
-				modelMaterials[i].EnableKeyword("_ALPHABLEND_ON");
-				modelMaterials[i].DisableKeyword("_ALPHAPREMULTIPLY_ON");
-				modelMaterials[i].renderQueue = 3000;
+				modelMaterials[i].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+				modelMaterials[i].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+				modelMaterials[i].SetInt("_ZWrite", 1);
+				modelMaterials[i].DisableKeyword("_ALPHATEST_OFF");
+				modelMaterials[i].EnableKeyword("_ALPHABLEND_OFF");
+				modelMaterials[i].DisableKeyword("_ALPHAPREMULTIPLY_OFF");
+				modelMaterials[i].renderQueue = 1000;
 			}
 		}
 	}
