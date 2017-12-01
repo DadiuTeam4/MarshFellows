@@ -16,6 +16,7 @@ namespace AK
         static const AkUniqueID MENU_FADEVOLUMEDOWN = 854919495U;
         static const AkUniqueID MENU_FADEVOLUMEUP = 2472021264U;
         static const AkUniqueID MUTEALL = 2308878679U;
+        static const AkUniqueID PAUSE_AMBIENCE = 1212368320U;
         static const AkUniqueID PAUSE_MUSIC = 2735935537U;
         static const AkUniqueID PAUSE_MUSIC_01 = 2345288829U;
         static const AkUniqueID PLAY__RITUAL_GG_SD_SHAMANDRUM_DISRUPT_1 = 2678333816U;
@@ -58,6 +59,7 @@ namespace AK
         static const AkUniqueID PLAY_IMPACTEARTHROCK = 1419803467U;
         static const AkUniqueID PLAY_MUSIC_01 = 3709355747U;
         static const AkUniqueID PLAY_STINGERINTRO = 2382212594U;
+        static const AkUniqueID RESUME_AMBIENCE = 2740843843U;
         static const AkUniqueID RESUME_MUSIC = 2940177080U;
         static const AkUniqueID RESUME_MUSIC_01 = 3249548110U;
         static const AkUniqueID STOP_ALL = 452547817U;

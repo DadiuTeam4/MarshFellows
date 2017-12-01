@@ -365,11 +365,13 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		PlaySound ("Menu_FadeVolumeDown"); 	
 		PlaySound ("Pause_Music_01"); 
+		PlaySound ("Pause_Ambience"); 
 	}
 	public void MenuFadeSoundUp()
 	{
 		PlaySound ("Menu_FadeVolumeUp"); 
 		PlaySound ("Resume_Music_01"); 
+		PlaySound ("Resume_Ambience"); 
 	}
 	public void OnMenuClick()
 	{
