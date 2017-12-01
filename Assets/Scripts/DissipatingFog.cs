@@ -14,17 +14,22 @@ public class DissipatingFog : Swipeable
 	public bool isNavmeshObstacle = false;
 
 	[Tooltip("How quickly the fog dissipates")]
-	[Range(0.01f, 1.0f)]
+	[Range(0.001f, 1.0f)]
 	public float dissipationSpeed = 0.1f;
 
 	[Tooltip("How much the emissionrate is diminished per tick")]
-	[Range(0.01f, 5.0f)]
+	[Range(0.01f, 30.0f)]
 	public float dissipationRate = 0.1f;
 
 	private new Collider collider;
 	private new ParticleSystem particleSystem;
 	private ParticleSystem.EmissionModule particleSysteEmissionModule;
+
+	private ParticleSystem childParticleSystem;
+	private ParticleSystem.EmissionModule childParticleSysteEmissionModule;
+
 	private IEnumerator dissipate;
+	private IEnumerator dissipateChild;
 	private NavMeshObstacle obstacle;
 
 	void Start()
@@ -41,8 +46,14 @@ public class DissipatingFog : Swipeable
 		collider = GetComponent<Collider>();
 		particleSystem = GetComponent<ParticleSystem>();
 		particleSysteEmissionModule = particleSystem.emission;
-		
-		dissipate = Dissipate();
+
+		if (transform.childCount > 0)
+		{
+			childParticleSystem = transform.GetChild(0).GetComponent<ParticleSystem>();
+			childParticleSysteEmissionModule = childParticleSystem.emission;
+			dissipateChild = Dissipate(childParticleSysteEmissionModule);
+		}
+		dissipate = Dissipate(particleSysteEmissionModule);
 	}
 
 
@@ -58,15 +69,21 @@ public class DissipatingFog : Swipeable
 		}
 
 		StartCoroutine(dissipate);
+
+		if (childParticleSystem)
+		{
+			StartCoroutine(dissipateChild);
+		}
 	}
 
-	private IEnumerator Dissipate()
+	private IEnumerator Dissipate(ParticleSystem.EmissionModule module)
 	{
-		float currentRate = particleSysteEmissionModule.rateOverTime.constant;
-		while (particleSysteEmissionModule.rateOverTime.constant > 0)
+		float currentRate = module.rateOverTime.constant;
+
+		while (module.rateOverTime.constant > 0)
 		{
 			currentRate -= dissipationRate;
-			particleSysteEmissionModule.rateOverTime = currentRate;
+			module.rateOverTime = currentRate;
 
 			yield return new WaitForSeconds(dissipationSpeed);
 		}

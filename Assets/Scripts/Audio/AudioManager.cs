@@ -18,10 +18,13 @@ public class AudioManager : Singleton<AudioManager> {
 	private float swipePower; 
 
 	//Fade function 
-	private float fadeVolValue = 0f;
+	private float fadeVolValue = 50f;
 	private float fadeMax = 100f;
 	private float fadeMin = 0f; 
 	private float duration;  
+
+	//Ritual 
+	private bool isDisrupted = false; 
 
 	void Awake()
 	{
@@ -39,6 +42,7 @@ public class AudioManager : Singleton<AudioManager> {
 		AkSoundEngine.SetState ("Ambience", "OpenFew"); 
 		AkSoundEngine.SetState ("ShamanDrum", "Normal"); 
 		PlaySound("Play_Ambience"); 
+		isDisrupted = false; 
 	}
 
 	void Update()
@@ -72,7 +76,9 @@ public class AudioManager : Singleton<AudioManager> {
 		eventManager.AddListener (CustomEvent.HoldBegin, postEvent); 
 		eventManager.AddListener (CustomEvent.SwipeEnded, stopEvent); 
 		eventManager.AddListener (CustomEvent.HoldEnd, stopEvent); 
+		//Ritual
 		eventManager.AddListener (CustomEvent.RitualDisrupted, postEvent); 
+		eventManager.AddListener (CustomEvent.ScenarioInteracted, postEvent); 
 		// Scene-/Location-management
 		eventManager.AddListener (CustomEvent.ResetGame, stopEvent); 
 		eventManager.AddListener (CustomEvent.AudioTrigger, audioTriggered); 
@@ -101,8 +107,17 @@ public class AudioManager : Singleton<AudioManager> {
 		}
 		if (argument.eventComponent == CustomEvent.RitualDisrupted) 
 		{
-			AkSoundEngine.SetState ("ShamanDrum", "Disrupt"); 
-			AkSoundEngine.SetState("Music", "RitualDisrupt"); 
+			if (!isDisrupted) 
+			{
+				AkSoundEngine.SetState ("ShamanDrum", "Disrupt"); 
+				AkSoundEngine.SetState ("Music", "RitualDisrupt"); 
+				PlaySound ("Play_GG_SD_Shaman_Disrupt"); 
+				isDisrupted = true; 
+			}
+		}
+		if (argument.eventComponent == CustomEvent.ScenarioInteracted && argument.stringComponent == "Ritual") 
+		{
+			AkSoundEngine.SetState("Music", "RitualFlight"); 
 		}
 	}
 
@@ -216,9 +231,10 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			//
 		}
-		if (argument.stringComponent == "IntroCutScene") 
+		if (argument.stringComponent == "IntroStinger") 
 		{
 			//Do this 
+			PlaySound("Play_StingerIntro"); 
 		}
 		if (argument.stringComponent == "IntroCutscene") 
 		{
@@ -229,6 +245,10 @@ public class AudioManager : Singleton<AudioManager> {
 			AkSoundEngine.SetState("Music", "Intro"); 
 			PlaySound("Play_Music_01"); 
 			StartCoroutine (FadeIn ()); 
+		}
+		if (argument.stringComponent == "RitualSurvived") 
+		{
+			AkSoundEngine.SetState("Music", "RitualSurvived"); 
 		}
 		if (argument.stringComponent == "Crossroad") 
 		{
@@ -344,10 +364,14 @@ public class AudioManager : Singleton<AudioManager> {
 	public void MenuFadeSoundDown()
 	{
 		PlaySound ("Menu_FadeVolumeDown"); 	
+		PlaySound ("Pause_Music_01"); 
+		PlaySound ("Pause_Ambience"); 
 	}
 	public void MenuFadeSoundUp()
 	{
-		PlaySound ("Menu_FadeVolumeUp"); 	
+		PlaySound ("Menu_FadeVolumeUp"); 
+		PlaySound ("Resume_Music_01"); 
+		PlaySound ("Resume_Ambience"); 
 	}
 	public void OnMenuClick()
 	{
