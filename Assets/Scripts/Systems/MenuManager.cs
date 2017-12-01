@@ -42,7 +42,8 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 0;
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (!transform.GetChild(i).gameObject.activeSelf && transform.GetChild(i).name != "CreditsPanel")
+            string childName = transform.GetChild(i).name;
+            if (!transform.GetChild(i).gameObject.activeSelf && childName != "CreditsPanel" && childName != "AudioPanel")
             {
                 transform.GetChild(i).gameObject.SetActive(true);
                 audioManager.MenuFadeSoundDown();
