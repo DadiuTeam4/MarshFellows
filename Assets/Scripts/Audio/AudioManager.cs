@@ -225,15 +225,16 @@ public class AudioManager : Singleton<AudioManager> {
 			AkSoundEngine.SetState ("Ambience", "MediumOpen"); 
 		}
 
-		//Scenes: 
-        //Debug.Log(argument.stringComponent);
+		//Music triggers        
+		//Debug.Log(argument.stringComponent);
+
+		//Intro
 		if (argument.stringComponent == "TittleScreen") 
 		{
 			//
 		}
 		if (argument.stringComponent == "IntroStinger") 
 		{
-			//Do this 
 			PlaySound("Play_StingerIntro"); 
 		}
 		if (argument.stringComponent == "IntroCutscene") 
@@ -246,52 +247,55 @@ public class AudioManager : Singleton<AudioManager> {
 			PlaySound("Play_Music_01"); 
 			StartCoroutine (FadeIn ()); 
 		}
+
+		//Ritual Scenario
 		if (argument.stringComponent == "RitualSurvived") 
 		{
 			AkSoundEngine.SetState("Music", "RitualSurvived"); 
-		}
-		if (argument.stringComponent == "Crossroad") 
-		{
-			AkSoundEngine.SetState("Music", "Crossroad"); 
 		}
 		if (argument.stringComponent == "Ritual") 
 		{
 			AkSoundEngine.SetState("Music", "Ritual"); 
 		}
+		if (argument.stringComponent == "WhisperPlay") 
+		{
+			//Restart
+			PlaySoundWC("Play_GG_SD_SHAMAN_WHISPER");  
+		}
+
+		//Crossroad
+		if (argument.stringComponent == "Crossroad") 
+		{
+			AkSoundEngine.SetState("Music", "Crossroad"); 
+		}
+			
+		//Deer Scenario
 		if (argument.stringComponent == "DeerIntro") 
 		{
 			AkSoundEngine.SetState("Music", "DeerIntro"); 
 		}
-		if (argument.stringComponent == "DeerIntro") 
+		if (argument.stringComponent == "Deer") 
 		{
+			//
 			AkSoundEngine.SetState("Music", "Deer"); 
 		}
+
+		//Bear Scenario 
 		if (argument.stringComponent == "Bear") 
 		{
 			//
 			AkSoundEngine.SetState("Music", "P"); 
 		}
-		if (argument.stringComponent == "Deer") 
-		{
-			//
-			AkSoundEngine.SetState("Music", "O"); 
-		}
 		if (argument.stringComponent == "B") 
 		{
 			//
 		}
+
+		//Restart
 		if (argument.stringComponent == "Restart") 
 		{
 			//Restart
 			StopSound ("Stop_All"); 
-		}
-
-
-		//Scenarios
-		if (argument.stringComponent == "WhisperPlay") 
-		{
-			//Restart
-			PlaySoundWC("Play_GG_SD_SHAMAN_WHISPER");  
 		}
 	}
 
