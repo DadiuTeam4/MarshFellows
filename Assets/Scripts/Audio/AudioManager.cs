@@ -190,22 +190,22 @@ public class AudioManager : Singleton<AudioManager> {
 			{
 				PlaySoundWC("Play_GG_FSD_1");
 			}
-			if(argument.stringComponent == "Scena3")
-			{
-				PlaySoundWC ("Play_GG_FSD_3"); 
-			}
-			if(argument.stringComponent == "Crossroad")
-			{
-			//crossroad 
-			}
-			if(argument.stringComponent == "Missout1")
-			{
-			PlaySoundWC ("Play_GG_FSD_Choir"); 
-			}
-			if(argument.stringComponent == "Missout2")
-			{
-			PlaySoundWC ("Play_GG_FSD_Sbhaman_Drum"); 
-			}
+//			if(argument.stringComponent == "Scena3")
+//			{
+//				PlaySoundWC ("Play_GG_FSD_3"); 
+//			}
+//			if(argument.stringComponent == "Crossroad")
+//			{
+//			//crossroad 
+//			}
+//			if(argument.stringComponent == "Missout1")
+//			{
+//			PlaySoundWC ("Play_GG_FSD_Choir"); 
+//			}
+//			if(argument.stringComponent == "Missout2")
+//			{
+//			PlaySoundWC ("Play_GG_FSD_Sbhaman_Drum"); 
+//			}
 	}
 
 	//AudioTrigger//Location 
