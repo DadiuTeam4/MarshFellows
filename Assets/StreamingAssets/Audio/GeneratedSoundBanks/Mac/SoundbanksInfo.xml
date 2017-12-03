@@ -42,7 +42,7 @@
 				<Event Id="1046603870" Name="Play_GG_FSD_1" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_1"/>
 				<Event Id="1046603869" Name="Play_GG_FSD_2" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_2"/>
 				<Event Id="1046603868" Name="Play_GG_FSD_3" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_3" MaxAttenuation="100.000000"/>
-				<Event Id="1855550475" Name="Play_GG_FSD_4_1" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_4_1"/>
+				<Event Id="1855550475" Name="Play_GG_FSD_4_1" ObjectPath="\Events\Default Work Unit\FSD\Play_GG_FSD_4_1" MaxAttenuation="100.000000"/>
 				<Event Id="4018210138" Name="Play_GG_FSD_Choir" ObjectPath="\Events\Default Work Unit\Play_GG_FSD_Choir"/>
 				<Event Id="2322861418" Name="Play_GG_FSD_Shaman_Drum" ObjectPath="\Events\Default Work Unit\Play_GG_FSD_Shaman_Drum"/>
 				<Event Id="3668079463" Name="Play_GG_Menu_Click" ObjectPath="\Events\Default Work Unit\MENU\Play_GG_Menu_Click"/>
@@ -82,6 +82,10 @@
 					<ShortName>FS_Wet_9.wav</ShortName>
 					<Path>SFX/FS_Wet_9_F7D0E330.wem</Path>
 				</File>
+				<File Id="33508128" Language="SFX">
+					<ShortName>GG_FSD_Ritual.wav</ShortName>
+					<Path>SFX/GG_FSD_Ritual_F7D0E330.wem</Path>
+				</File>
 				<File Id="54927336" Language="SFX">
 					<ShortName>FS_Wet_3.wav</ShortName>
 					<Path>SFX/FS_Wet_3_F7D0E330.wem</Path>
@@ -93,6 +97,10 @@
 				<File Id="77432509" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_12.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_12_F7D0E330.wem</Path>
+				</File>
+				<File Id="79068078" Language="SFX">
+					<ShortName>GG_FSD_Deer.wav</ShortName>
+					<Path>SFX/GG_FSD_Deer_F7D0E330.wem</Path>
 				</File>
 				<File Id="81095728" Language="SFX">
 					<ShortName>GG_FS_Deer_4.wav</ShortName>
@@ -110,13 +118,9 @@
 					<ShortName>GG_FS_SWAMP_WET_1_6.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_6_F7D0E330.wem</Path>
 				</File>
-				<File Id="108382682" Language="SFX">
-					<ShortName>FS_Wet_2.wav</ShortName>
-					<Path>SFX/FS_Wet_2_F7D0E330.wem</Path>
-				</File>
 				<File Id="113505718" Language="SFX">
 					<ShortName>GG_Wind_2_3.wav</ShortName>
-					<Path>SFX/GG_Wind_2_3_F7D0E330.wem</Path>
+					<Path>SFX/GG_Wind_2_3_9ECA8AE7.wem</Path>
 				</File>
 				<File Id="145219020" Language="SFX">
 					<ShortName>(RITUAL)GG_MUSIC_Ritual_survived_4.wav</ShortName>
@@ -129,10 +133,6 @@
 				<File Id="158961251" Language="SFX">
 					<ShortName>(RITUAL)GG_MUSIC_Ritual_survived.wav</ShortName>
 					<Path>SFX/(RITUAL)GG_MUSIC_Ritual_survived_AD29F36A.wem</Path>
-				</File>
-				<File Id="164112001" Language="SFX">
-					<ShortName>GG_SD_Tree_Fall.wav</ShortName>
-					<Path>SFX/GG_SD_Tree_Fall_F7D0E330.wem</Path>
 				</File>
 				<File Id="181429664" Language="SFX">
 					<ShortName>GG_SD_Shaman_Disrupt.wav</ShortName>
@@ -154,10 +154,6 @@
 					<ShortName>GG_FS_Deer_6.wav</ShortName>
 					<Path>SFX/GG_FS_Deer_6_F7D0E330.wem</Path>
 				</File>
-				<File Id="218666957" Language="SFX">
-					<ShortName>GG_DEER_ETHERIC.wav</ShortName>
-					<Path>SFX/GG_DEER_ETHERIC_AD29F36A.wem</Path>
-				</File>
 				<File Id="225536318" Language="SFX">
 					<ShortName>(DEER)GG_MUSIC_Evolve_1.wav</ShortName>
 					<Path>SFX/(DEER)GG_MUSIC_Evolve_1_AD29F36A.wem</Path>
@@ -169,6 +165,10 @@
 				<File Id="235849205" Language="SFX">
 					<ShortName>GG_FS_Bear_2.wav</ShortName>
 					<Path>SFX/GG_FS_Bear_2_F7D0E330.wem</Path>
+				</File>
+				<File Id="242965408" Language="SFX">
+					<ShortName>GG_SD_StoneFall_3.wav</ShortName>
+					<Path>SFX/GG_SD_StoneFall_3_F7D0E330.wem</Path>
 				</File>
 				<File Id="248803150" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_3.wav</ShortName>
@@ -196,19 +196,15 @@
 				</File>
 				<File Id="301233152" Language="SFX">
 					<ShortName>GG_Wind_2_4.wav</ShortName>
-					<Path>SFX/GG_Wind_2_4_F7D0E330.wem</Path>
+					<Path>SFX/GG_Wind_2_4_DB1A4F28.wem</Path>
 				</File>
 				<File Id="303400707" Language="SFX">
 					<ShortName>GG_Wind_2_1.wav</ShortName>
-					<Path>SFX/GG_Wind_2_1_F7D0E330.wem</Path>
+					<Path>SFX/GG_Wind_2_1_D2CD5CDD.wem</Path>
 				</File>
 				<File Id="306108445" Language="SFX">
 					<ShortName>GG_Sinkmechanic_2_1.wav</ShortName>
 					<Path>SFX/GG_Sinkmechanic_2_1_8ED41377.wem</Path>
-				</File>
-				<File Id="318921051" Language="SFX">
-					<ShortName>GG_DEER_ETHERIC_Intro.wav</ShortName>
-					<Path>SFX/GG_DEER_ETHERIC_Intro_AD29F36A.wem</Path>
 				</File>
 				<File Id="319384612" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_1.wav</ShortName>
@@ -274,10 +270,6 @@
 					<ShortName>(INTRO)Delay_hard_2delt_5.wav</ShortName>
 					<Path>SFX/(INTRO)Delay_hard_2delt_5_AD29F36A.wem</Path>
 				</File>
-				<File Id="422980634" Language="SFX">
-					<ShortName>GG_SD_Stone_Fall.wav</ShortName>
-					<Path>SFX/GG_SD_Stone_Fall_F7D0E330.wem</Path>
-				</File>
 				<File Id="430453530" Language="SFX">
 					<ShortName>(RITUAL)GG_SD_SHAMANDRUM_Disrupt_3.wav</ShortName>
 					<Path>SFX/(RITUAL)GG_SD_SHAMANDRUM_Disrupt_3_AD29F36A.wem</Path>
@@ -294,21 +286,17 @@
 					<ShortName>(RITUAL)GG_SHAMANDRUM_5.wav</ShortName>
 					<Path>SFX/(RITUAL)GG_SHAMANDRUM_5_AD29F36A.wem</Path>
 				</File>
-				<File Id="445007785" Language="SFX">
-					<ShortName>GG_SD_Stone_2.wav</ShortName>
-					<Path>SFX/GG_SD_Stone_2_F7D0E330.wem</Path>
-				</File>
 				<File Id="453826780" Language="SFX">
 					<ShortName>GG_SD_Bear_roar_1.wav</ShortName>
 					<Path>SFX/GG_SD_Bear_roar_1_515A791F.wem</Path>
 				</File>
-				<File Id="468950800" Language="SFX">
-					<ShortName>GG_FSD_4_1.wav</ShortName>
-					<Path>SFX/GG_FSD_4_1_F7D0E330.wem</Path>
-				</File>
 				<File Id="487492339" Language="SFX">
 					<ShortName>GG_Sinkmechanic_2_3.wav</ShortName>
 					<Path>SFX/GG_Sinkmechanic_2_3_8AC1CD2E.wem</Path>
+				</File>
+				<File Id="499059061" Language="SFX">
+					<ShortName>GG_FSD_Bear_1.wav</ShortName>
+					<Path>SFX/GG_FSD_Bear_1_F7D0E330.wem</Path>
 				</File>
 				<File Id="506333836" Language="SFX">
 					<ShortName>(RITUAL)GG_MUSIC_Ritual_Disrupt.wav</ShortName>
@@ -342,10 +330,6 @@
 					<ShortName>MudBubblesObjectSink_SFXB.995.wav</ShortName>
 					<Path>SFX/MudBubblesObjectSink_SFXB.995_F7D0E330.wem</Path>
 				</File>
-				<File Id="535746681" Language="SFX">
-					<ShortName>GG_FSD_2_1.wav</ShortName>
-					<Path>SFX/GG_FSD_2_1_F7D0E330.wem</Path>
-				</File>
 				<File Id="541555690" Language="SFX">
 					<ShortName>GG_FS_SWAMP_WET_1_5.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_5_F7D0E330.wem</Path>
@@ -353,14 +337,6 @@
 				<File Id="548293930" Language="SFX">
 					<ShortName>GG_Ambience_water.wav</ShortName>
 					<Path>SFX/GG_Ambience_water_AD29F36A.wem</Path>
-				</File>
-				<File Id="553327035" Language="SFX">
-					<ShortName>GG_SD_Stone_1.wav</ShortName>
-					<Path>SFX/GG_SD_Stone_1_F7D0E330.wem</Path>
-				</File>
-				<File Id="557800051" Language="SFX">
-					<ShortName>BirdSandpiper_S08AN.33.wav</ShortName>
-					<Path>SFX/BirdSandpiper_S08AN.33_F7D0E330.wem</Path>
 				</File>
 				<File Id="573238602" Language="SFX">
 					<ShortName>GG_SD_Bonfire_3.wav</ShortName>
@@ -422,6 +398,10 @@
 					<ShortName>GG_FS_SWAMP_WET_1_14.wav</ShortName>
 					<Path>SFX/GG_FS_SWAMP_WET_1_14_F7D0E330.wem</Path>
 				</File>
+				<File Id="746004325" Language="SFX">
+					<ShortName>GG_SD_StoneFall_2.wav</ShortName>
+					<Path>SFX/GG_SD_StoneFall_2_F7D0E330.wem</Path>
+				</File>
 				<File Id="746974954" Language="SFX">
 					<ShortName>GG_FS_Bear_1.wav</ShortName>
 					<Path>SFX/GG_FS_Bear_1_F7D0E330.wem</Path>
@@ -442,9 +422,13 @@
 					<ShortName>(RITUAL)GG_SD_SHAMANDRUM_1.wav</ShortName>
 					<Path>SFX/(RITUAL)GG_SD_SHAMANDRUM_1_AD29F36A.wem</Path>
 				</File>
-				<File Id="801676729" Language="SFX">
-					<ShortName>GG_SD_Stone_3.wav</ShortName>
-					<Path>SFX/GG_SD_Stone_3_F7D0E330.wem</Path>
+				<File Id="796152626" Language="SFX">
+					<ShortName>GG_DEER_ETHERIC_Intro_2.wav</ShortName>
+					<Path>SFX/GG_DEER_ETHERIC_Intro_2_AD29F36A.wem</Path>
+				</File>
+				<File Id="796444439" Language="SFX">
+					<ShortName>GG_SD_StoneFall_1.wav</ShortName>
+					<Path>SFX/GG_SD_StoneFall_1_F7D0E330.wem</Path>
 				</File>
 				<File Id="812869842" Language="SFX">
 					<ShortName>GG_FS_Deer_3.wav</ShortName>
@@ -486,6 +470,10 @@
 					<ShortName>GG_FS_Deer_1.wav</ShortName>
 					<Path>SFX/GG_FS_Deer_1_F7D0E330.wem</Path>
 				</File>
+				<File Id="877595080" Language="SFX">
+					<ShortName>GG_DEER_ETHERIC_1.wav</ShortName>
+					<Path>SFX/GG_DEER_ETHERIC_1_AD29F36A.wem</Path>
+				</File>
 				<File Id="907780066" Language="SFX">
 					<ShortName>CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_05_FAR.wav</ShortName>
 					<Path>SFX/CLOTHES_FABRIC_PANTS_MOVING_SINGLE_MOTIONS_FAST_WALKING_RUNNING_WINGS_05_FAR_F7D0E330.wem</Path>
@@ -500,7 +488,7 @@
 				</File>
 				<File Id="956386414" Language="SFX">
 					<ShortName>GG_Wind_2_2.wav</ShortName>
-					<Path>SFX/GG_Wind_2_2_F7D0E330.wem</Path>
+					<Path>SFX/GG_Wind_2_2_CF0CDE48.wem</Path>
 				</File>
 				<File Id="956883407" Language="SFX">
 					<ShortName>GG_Ambience_MediumOpenField.wav</ShortName>
