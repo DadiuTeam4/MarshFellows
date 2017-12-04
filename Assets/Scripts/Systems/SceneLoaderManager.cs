@@ -71,13 +71,16 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         }
 
         //loading first scene
-        argument.intComponent = 100;
-        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        //argument.intComponent = 100;
+        //eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        SyncLoadOfScenes(argument.stringComponent);
 
 
-        argument.stringComponent = audioSceneName;
-        argument.intComponent = 100;
-        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        //argument.stringComponent = audioSceneName;
+        //argument.intComponent = 100;
+        //eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        SyncLoadOfScenes(audioSceneName);
+        
     }
     private void AddUnlockables()
     {
