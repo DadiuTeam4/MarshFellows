@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Events;
 
+[RequireComponent(typeof(MeshCollider))]
 public class SinkableGround : Holdable 
 {
 	[Header("Updating")]
@@ -75,7 +76,8 @@ public class SinkableGround : Holdable
 	private EventArgument argument = new EventArgument();
 	
 	void Start () {
-		meshCollider = transform.GetChild(0).GetComponent<MeshCollider>();
+		//meshCollider = transform.GetChild(0).GetComponent<MeshCollider>();
+		meshCollider = GetComponent<MeshCollider>();
 		meshFilter = GetComponent<MeshFilter>();
 
 		mesh = meshFilter.mesh;
