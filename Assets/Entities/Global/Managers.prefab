@@ -420,32 +420,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flockPrefab: {fileID: 1469617024375632, guid: 7af93beed10c71c46bed14eda3a729ca,
     type: 2}
-  minNumFlocks: 0
-  maxNumFlocks: 0
+  minNumFlocks: 2
+  maxNumFlocks: 10
   minDistanceBetweenFlocks: 0
   minBirdsPerFlock: 2
   maxBirdsPerFlock: 10
   minTriggerRadius: 5
   maxTriggerRaduis: 15
-  spawnPoints: []
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   minDistanceFromSpawn: 0
-  maxDistanceFromSpawn: 0
+  maxDistanceFromSpawn: 10
   birdPrefab: {fileID: 1884557618065168, guid: 2e18f9d3abdd9ae4fa8cfd97a74c6daf, type: 2}
   flightAngle: 45
   flightAngleRandomRange: 20
   maxY: 30
   speedCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   angleCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   minSpeedScalar: 5
   maxSpeedScalar: 10
   minDistanceFromFlockCenter: 5
@@ -478,7 +516,7 @@ MonoBehaviour:
     acceleration: 1.5
     radius: 0.5
     height: 2
-    on: 1
+    on: 0
     fogDensity: 0.06
     fogColor: {r: 0.9882353, g: 0.9882353, b: 0.9882353, a: 1}
     fogMode: 3
