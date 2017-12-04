@@ -59,10 +59,10 @@
 
 		void surf (Input IN, inout SurfaceOutput o) 
 		{
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex + _Speed.xy + _Time.xx) * _Color;
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex + _Speed.xy * _Time.xx) * _Color;
 			o.Albedo = c.rgb;
 			o.Alpha = c.a;
-			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap + _Speed.xy));
+			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap + _Speed.xy * _Time.xx));
 		}
 		ENDCG
 	}
