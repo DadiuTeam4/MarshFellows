@@ -4,34 +4,30 @@
 	{
 		_Color 			("Color", Color) = (1,1,1,1)
 		_MainTex 		("Albedo (RGB)", 2D) = "white" {}
-		_MaskTex		("Mask", 2D) = "white"{}
-		_leafMask 		("Leaf Mask", 2D) = "white"{}
-		_ScaleOffset	("Scale offset", Vector) = (1,1,0,0)
 		_UnlitSurface 	("UnlitSurface", Range(0,1)) = 0.75 
 		_Stepping 		("Stepping", Range(0,1)) = 0.0025
 		_LightType 		("Ligth Type", Range(0,1)) = 1
 		_ShadowColor 	("ShadowColor", Color) = (0.10,0.5,1,1)
-
-		
+		_BumpMap		("Normal Map", 2D) = "bump" {}
+		_Speed 			("Water Speed", Vector) = (0,0,0,0)
 	}
 	SubShader 
 	{
-		Tags {"Queue"="Transparent" "RenderType"="Transparent" }
+		Tags { "RenderType"="Opaque" }
 		LOD 200
-		Blend One OneMinusSrcAlpha
 		
 		CGPROGRAM
-		#pragma surface surf CelShadingForward alpha
+		#pragma surface surf CelShadingForward 
 		#pragma target 3.0
 		#pragma multi_compile_fog
 
 		sampler2D _MainTex;
-		sampler2D _MaskTex;
-		sampler2D _leafMask;
+		sampler2D _BumpMap;
 
 		struct Input 
 		{
 			float2 uv_MainTex;
+			float2 uv_BumpMap;
 		};
 
 		half _Stepping;
@@ -39,7 +35,7 @@
 		fixed4 _Color;
 		fixed _UnlitSurface;
 		fixed4 _ShadowColor;
-		fixed4 _ScaleOffset;
+		fixed4 _Speed;
 		
 		half4 LightingCelShadingForward(SurfaceOutput s, half3 lightDir, half atten) 
 		{
@@ -63,12 +59,10 @@
 
 		void surf (Input IN, inout SurfaceOutput o) 
 		{
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time.zw * 0.0025);
-			fixed4 mask = tex2D(_MaskTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time.zw * 0.0025);
-			mask = 1-mask.a +  tex2D (_leafMask, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time.zw * 0.0025) + 0.25;
-			c = (1-mask)*_Color + c;
-			o.Albedo = c;
-			o.Alpha = mask + mask *_Color.a;
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex + _Speed.xy + _Time.xx) * _Color;
+			o.Albedo = c.rgb;
+			o.Alpha = c.a;
+			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap + _Speed.xy));
 		}
 		ENDCG
 	}
