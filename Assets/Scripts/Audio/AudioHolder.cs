@@ -64,4 +64,14 @@ public class AudioHolder : MonoBehaviour {
 	{
 		audioManager.PlaySoundOtherScript ("Play_GG_SD_ManToBear_1", gameObject); 
 	}
+
+	void ThrowSpear()
+	{
+		audioManager.PlaySoundOtherScript ("Play_GG_SD_JavelinWoosh", gameObject); 
+	}
+
+	void BowShoot()
+	{
+		audioManager.PlaySoundOtherScript ("Play_Bowpullshoot", gameObject); 
+	}
 }
