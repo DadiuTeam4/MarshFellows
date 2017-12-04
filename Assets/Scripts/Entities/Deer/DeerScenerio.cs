@@ -6,34 +6,34 @@ using UnityEngine;
 using Events;
 
 
-public class DeerScenerio : MonoBehaviour 
+public class DeerScenerio : MonoBehaviour
 {
-	private EventDelegate hidden;
-	private EventDelegate groundEvent;
-	private EventDelegate  kills;
+    private EventDelegate hidden;
+    private EventDelegate groundEvent;
+    private EventDelegate kills;
 
-	public GameObject deer;
-	public GameObject deadDeer;
+    public GameObject deer;
+    public GameObject deadDeer;
 
-	Animator anim;
-	Rigidbody rb;
-	float currentTime;
-	int reactHash = Animator.StringToHash("deerReact");
-	private bool found; 
-	private bool run;
+    Animator anim;
+    Rigidbody rb;
+    float currentTime;
+    int reactHash = Animator.StringToHash("deerReact");
+    private bool found;
+    private bool run;
 
-	bool kill;
+    bool dead;
 
-	public Transform targetPoint;
-	[SerializeField]
- 	float accuracy = 10.0f;
-	[SerializeField]
-	private float turnRate = 10.0f;
+    public Transform targetPoint;
+    [SerializeField]
+    float accuracy = 10.0f;
+    [SerializeField]
+    private float turnRate = 10.0f;
 
-	[SerializeField]
-	private float runSpeed = 100.0f;
+    [SerializeField]
+    private float runSpeed = 100.0f;
 
-	Vector3 scarePoint;
+    Vector3 scarePoint;
 
     private bool inScenario;
 
@@ -43,23 +43,25 @@ public class DeerScenerio : MonoBehaviour
     private bool done;
     EventManager eventManager;
 
-	void Start () {
+    void Start()
+    {
         eventManager = EventManager.GetInstance();
         anim = GetComponentInChildren<Animator>();
-		rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
 
-		hidden = HiddenTest;
-		groundEvent = Scared;
-		kills = Killed;
-		eventManager.AddListener(CustomEvent.HiddenByFog, hidden);
-		eventManager.AddListener(CustomEvent.SinkGround, groundEvent);
-		eventManager.AddListener(CustomEvent.SpearHit, kills);
+        hidden = HiddenTest;
+        groundEvent = Scared;
+        kills = Killed;
+        eventManager.AddListener(CustomEvent.HiddenByFog, hidden);
+        eventManager.AddListener(CustomEvent.SinkGround, groundEvent);
+        eventManager.AddListener(CustomEvent.SpearHit, kills);
         eventManager.AddListener(CustomEvent.DeerScenarioEntered, SetInScenario);
     }
 
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         if (run)
         {
             timeElapsed += Time.deltaTime;
@@ -85,17 +87,17 @@ public class DeerScenerio : MonoBehaviour
 
     }
 
-	public void HiddenTest(EventArgument argument)
-	{
-		if (argument.gameObjectComponent == this.gameObject)
-		{
-			found = !argument.boolComponent;
+    public void HiddenTest(EventArgument argument)
+    {
+        if (argument.gameObjectComponent == this.gameObject)
+        {
+            found = !argument.boolComponent;
             if (found)
             {
                 Scared(new EventArgument());
             }
-		}
-	}
+        }
+    }
 
     public void SetInScenario(EventArgument argument)
     {
@@ -106,9 +108,9 @@ public class DeerScenerio : MonoBehaviour
         });
     }
 
-    public void Scared (EventArgument argument)
-	{
-		if (!inScenario || kill)
+    public void Scared(EventArgument argument)
+    {
+        if (!inScenario || dead)
         {
             return;
         }
@@ -117,9 +119,10 @@ public class DeerScenerio : MonoBehaviour
         eventManager.CallEvent(CustomEvent.ScenarioInteracted);
     }
 
-	public void Killed (EventArgument argument)
-	{
-        kill = true;
+    public void Killed(EventArgument argument)
+    {
+        dead = true;
+        anim.SetBool("deerDie", true);
+        Debug.Log("Dead");
     }
-
 }
