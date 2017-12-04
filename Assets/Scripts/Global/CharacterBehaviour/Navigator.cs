@@ -18,7 +18,7 @@ public class Navigator : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private bool destinationReached;
     private float previousSpeed;
-    private string speedParameter;
+    private string speedParameter = "speed";
     private bool hasSpeedParameter;
     private GlobalConstantsManager constantsManager;
 
@@ -50,20 +50,7 @@ public class Navigator : MonoBehaviour
 
         navMeshAgent.autoRepath = autoRepath;
         SetDestination();
-        speedParameter = "speed";
-        CheckIfHasSpeedParameter();
-    }
-
-    private void CheckIfHasSpeedParameter()
-    {
-        if (HasParameter(speedParameter, animator))
-        {
-            hasSpeedParameter = true;
-        }
-        else
-        {
-            hasSpeedParameter = false;
-        }
+        hasSpeedParameter = HasParameter(speedParameter, animator);
     }
 
     private void Update()

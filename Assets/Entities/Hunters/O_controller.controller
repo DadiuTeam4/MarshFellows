@@ -10,28 +10,28 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: speed
     m_Type: 1
-    m_DefaultFloat: 1
+    m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: sneak
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: die
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: shoot
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -53,6 +53,12 @@ AnimatorController:
     - serializedVersion: 2
       m_State: {fileID: 1102536078815240690}
       m_Motion: {fileID: 206467102509653102}
+    - serializedVersion: 2
+      m_State: {fileID: 1102843805279102676}
+      m_Motion: {fileID: 7400000, guid: ceefdf5fff6ecbb42abe2d2c0e671cc0, type: 3}
+    - serializedVersion: 2
+      m_State: {fileID: 1102150302600906794}
+      m_Motion: {fileID: 7400000, guid: ceefdf5fff6ecbb42abe2d2c0e671cc0, type: 3}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0
@@ -98,7 +104,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 4bd173e8598d2f24ca99d658ef061647, type: 3}
+    m_Motion: {fileID: 7400000, guid: ceefdf5fff6ecbb42abe2d2c0e671cc0, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -106,16 +112,16 @@ BlendTree:
     m_DirectBlendParameter: speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: d6a695a8b2613324cbc2dcd7fb697443, type: 3}
-    m_Threshold: 0.33333334
+    m_Motion: {fileID: 7400000, guid: ceefdf5fff6ecbb42abe2d2c0e671cc0, type: 3}
+    m_Threshold: 1
     m_Position: {x: 0, y: 1}
-    m_TimeScale: 0.5
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: c369f10b7bae80f499236b3aba4ec1ed, type: 3}
-    m_Threshold: 0.6666667
+    m_Motion: {fileID: 7400000, guid: ceefdf5fff6ecbb42abe2d2c0e671cc0, type: 3}
+    m_Threshold: 2
     m_Position: {x: 0, y: 2}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -124,10 +130,10 @@ BlendTree:
   m_BlendParameter: direction
   m_BlendParameterY: speed
   m_MinThreshold: 0
-  m_MaxThreshold: 0.6666667
-  m_UseAutomaticThresholds: 1
+  m_MaxThreshold: 2
+  m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
-  m_BlendType: 2
+  m_BlendType: 0
 --- !u!206 &206723944814051618
 BlendTree:
   m_ObjectHideFlags: 1
@@ -531,8 +537,8 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 8462505ad14253a4ca13b077238426df, type: 3}
   m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
+  m_SpeedParameter: speed
+  m_MirrorParameter: sneak
   m_CycleOffsetParameter: 
 --- !u!1107 &1107165760700109790
 AnimatorStateMachine:
