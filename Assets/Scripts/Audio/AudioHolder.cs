@@ -74,5 +74,4 @@ public class AudioHolder : MonoBehaviour {
 	{
 		audioManager.PlaySoundOtherScript ("Play_Bowpullshoot", gameObject); 
 	}
-
 }
