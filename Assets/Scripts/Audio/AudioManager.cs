@@ -143,11 +143,11 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		if(argument.stringComponent == "Tree")
 		{
-			PlaySoundWCOtherScript ("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
+			//PlaySoundWCOtherScript ("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
 		}
 		else if(argument.stringComponent == "Rock")
 		{
-			PlaySoundWCOtherScript("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
+			//PlaySoundWCOtherScript("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
 		}
 	}
 
