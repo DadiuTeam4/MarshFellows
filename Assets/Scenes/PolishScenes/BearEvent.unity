@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.9882353, g: 0.9882353, b: 0.9882353, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.06
@@ -4371,8 +4371,13 @@ Prefab:
     m_Modifications:
     - target: {fileID: 114133603148255638, guid: 02a3f574945ed9341b329817cc410729,
         type: 2}
+      propertyPath: nextUnloads.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133603148255638, guid: 02a3f574945ed9341b329817cc410729,
+        type: 2}
       propertyPath: scenesToLoad.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4488848140390148, guid: 02a3f574945ed9341b329817cc410729, type: 2}
       propertyPath: m_LocalPosition.x
@@ -4408,7 +4413,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1733419057572794, guid: 02a3f574945ed9341b329817cc410729, type: 2}
       propertyPath: m_Name
-      value: ChangeSceneTrigger (1)
+      value: ChangeSceneTriggerLiO2
       objectReference: {fileID: 0}
     - target: {fileID: 4488848140390148, guid: 02a3f574945ed9341b329817cc410729, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -4455,7 +4460,12 @@ Prefab:
     - target: {fileID: 114133603148255638, guid: 02a3f574945ed9341b329817cc410729,
         type: 2}
       propertyPath: scenesToLoad.Array.data[1]
-      value: DeerEvent
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133603148255638, guid: 02a3f574945ed9341b329817cc410729,
+        type: 2}
+      propertyPath: nextUnloads.Array.data[0]
+      value: Crossroads
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54571109231489920, guid: 02a3f574945ed9341b329817cc410729, type: 2}
