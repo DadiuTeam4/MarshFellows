@@ -72,7 +72,7 @@ public class AudioHolder : MonoBehaviour {
 
 	void BowShoot()
 	{
-		audioManager.PlaySoundOtherScript ("Play_GG_SD_JavelinWoosh", gameObject); 
+		audioManager.PlaySoundOtherScript ("Play_Bowpullshoot", gameObject); 
 	}
 
 }
