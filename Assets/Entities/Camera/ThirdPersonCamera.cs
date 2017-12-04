@@ -97,7 +97,7 @@ namespace CameraControl
             // Wobly camera
             float oscilate = Mathf.Abs((Mathf.Sin(Time.time)/wobbleSpeed));
 
-            Vector3 mumblePosition = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y-(edgePosition/1000), transform.position.z),
+            Vector3 mumblePosition = Vector3.Lerp(new Vector3(transform.position.x, transform.position.y, transform.position.z),
                                                   new Vector3(transform.position.x, transform.position.y+(edgePosition/1000), transform.position.z), oscilate);
 
             transform.rotation = rotation;
