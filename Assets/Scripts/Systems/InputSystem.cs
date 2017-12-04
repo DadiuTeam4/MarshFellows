@@ -137,9 +137,8 @@ public class InputSystem : Singleton<InputSystem>
 			// Check if non-interactable (ground, water etc.)
 			if (raycastHits[touch.fingerId].Value.collider.gameObject.CompareTag("Non-interactable"))
 			{
-				print("Hit non-interactable");
 				RaycastHit hit = raycastHits[touch.fingerId].Value;
-				particleSpawner.Burst(hit.point, hit.collider.gameObject.GetComponent<Renderer>().material);
+				particleSpawner.Burst(hit.point);
 				return;
 			}
 			// Check if the touch hit a holdable
