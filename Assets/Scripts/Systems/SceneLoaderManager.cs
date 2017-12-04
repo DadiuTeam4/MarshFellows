@@ -94,7 +94,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         if(argument.intComponent == 0)
         {
-            AsyncLoadOfScenes(argument.stringComponent);
+            AsyncUnloadOfScenes(argument.stringComponent);
             return;
         }
 
