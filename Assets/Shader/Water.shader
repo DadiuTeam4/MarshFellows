@@ -60,7 +60,7 @@
 
 		void surf (Input IN, inout SurfaceOutput o) 
 		{
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time * _Speed);
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time * _Speed) * _Color;
 			o.Albedo = c.rgb;
 		}
 		ENDCG
