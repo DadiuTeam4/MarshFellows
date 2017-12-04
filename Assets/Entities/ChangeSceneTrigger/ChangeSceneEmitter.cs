@@ -6,7 +6,6 @@ using UnityEngine;
 using Events;
 using UnityEngine.SceneManagement;
 
-//0 for sending current scene , 1 for sending next in order to load, 2 for sending another one
 public class ChangeSceneEmitter : MonoBehaviour {
 
     public GameObject blocker;
