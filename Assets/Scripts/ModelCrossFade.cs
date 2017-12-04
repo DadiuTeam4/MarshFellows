@@ -112,7 +112,7 @@ public class ModelCrossFade : MonoBehaviour
 			{
 				modelMaterials[i].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
 				modelMaterials[i].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-				modelMaterials[i].SetInt("_ZWrite", 0);
+				modelMaterials[i].SetInt("_ZWrite", 1);
 				modelMaterials[i].DisableKeyword("_ALPHATEST_ON");
 				modelMaterials[i].EnableKeyword("_ALPHABLEND_ON");
 				modelMaterials[i].DisableKeyword("_ALPHAPREMULTIPLY_ON");
