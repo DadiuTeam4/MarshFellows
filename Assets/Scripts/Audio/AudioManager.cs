@@ -149,10 +149,6 @@ public class AudioManager : Singleton<AudioManager> {
 		{
 			PlaySoundWCOtherScript("Play_GG_SD_Mud_Sink", argument.gameObjectComponent); 
 		}
-		else
-		{
-			//Play_GG_SD_Sink_PH Play_GG_SD_Mud_Sink
-		}
 	}
 
 		//Fallen objects
@@ -165,10 +161,6 @@ public class AudioManager : Singleton<AudioManager> {
 			else if(argument.stringComponent == "Rock")
 			{
 			PlaySoundWCOtherScript("Play_GG_SD_Stone_Fall", argument.gameObjectComponent); 
-			}
-			else
-			{
-				//Play_GG_SD_Sink_PH
 			}
 		}
 		
@@ -309,7 +301,6 @@ public class AudioManager : Singleton<AudioManager> {
 	{
 		groundLayer = string.Concat ("", groundLayer, ""); 
 	}
-
 
 	//Play-function with stop-callback to a specific event  
 	void PlaySoundWC(string soundEventName)
