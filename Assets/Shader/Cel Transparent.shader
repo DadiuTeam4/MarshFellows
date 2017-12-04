@@ -1,33 +1,38 @@
-﻿Shader "Custom/Cel Water" 
+﻿Shader "Custom/Cel Transparent" 
 {
 	Properties 
 	{
 		_Color 			("Color", Color) = (1,1,1,1)
 		_MainTex 		("Albedo (RGB)", 2D) = "white" {}
-		_ScaleOffset	("Scale offset", Vector) = (1,1,0,0)
 		_UnlitSurface 	("UnlitSurface", Range(0,1)) = 0.75 
 		_Stepping 		("Stepping", Range(0,1)) = 0.0025
 		_LightType 		("Ligth Type", Range(0,1)) = 1
 		_ShadowColor 	("ShadowColor", Color) = (0.10,0.5,1,1)
-		_Speed			("Water Speed", Vector) = (0,0,0,0)
-
-		
+		_BumpMap		("Normal Map", 2D) = "bump" {}
 	}
 	SubShader 
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags {"Queue"="Transparent" "RenderType"="Transparent" }
 		LOD 200
+
+		ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
 		
 		CGPROGRAM
-		#pragma surface surf CelShadingForward 
+		#pragma surface surf CelShadingForward alpha
 		#pragma target 3.0
 		#pragma multi_compile_fog
 
+		 #include "UnityCG.cginc"
+
 		sampler2D _MainTex;
+		sampler2D _BumpMap;
 
 		struct Input 
 		{
 			float2 uv_MainTex;
+			float2 uv_BumpMap;
+			float customAlpha;
 		};
 
 		half _Stepping;
@@ -35,9 +40,10 @@
 		fixed4 _Color;
 		fixed _UnlitSurface;
 		fixed4 _ShadowColor;
-		fixed4 _ScaleOffset;
-		fixed4 _Speed;
+		fixed _TransOffset;
+		fixed _Transsion;
 
+		
 		half4 LightingCelShadingForward(SurfaceOutput s, half3 lightDir, half atten) 
 		{
 			half NdotL = dot(s.Normal, lightDir);
@@ -60,8 +66,10 @@
 
 		void surf (Input IN, inout SurfaceOutput o) 
 		{
-			fixed4 c = tex2D (_MainTex, IN.uv_MainTex * _ScaleOffset.xy + _ScaleOffset.zw + _Time * _Speed);
+			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;
+			o.Alpha = _Color.a;
+			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
 		}
 		ENDCG
 	}
