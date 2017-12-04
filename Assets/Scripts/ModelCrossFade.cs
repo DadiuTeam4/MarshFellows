@@ -30,8 +30,8 @@ public class ModelCrossFade : MonoBehaviour
 	private Renderer[] fadeOutModelRenderers;
 	private Renderer[] fadeInModelRenderers;
 	
-	public List<Material> fadeOutModelMaterials;
-	public List<Material> fadeInModelMaterials;
+	private List<Material> fadeOutModelMaterials;
+	private List<Material> fadeInModelMaterials;
 	[Space(5)]
 
 	[Header("Animation")]
