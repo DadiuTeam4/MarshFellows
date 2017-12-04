@@ -27,7 +27,8 @@ public class IkHandler : MonoBehaviour {
     public float bodyWeight;
     public float clampWeight;
 
-    public Transform lookPos;
+    private Transform lookPos;
+    public Transform defaultLookPos;
 
 	void Start ()
     {
@@ -63,10 +64,11 @@ public class IkHandler : MonoBehaviour {
 
     public void LookForward()
     {
-        clampWeight = 0;
-        lookAtWeight = 0;
-        headWeight = 0;
-        bodyWeight = 0.0f;
+        lookPos = defaultLookPos;
+        lookAtWeight = 1;
+        headWeight = 1;
+        bodyWeight = 0.3f;
+        clampWeight = 0.5f;
     }
 
     public void LookAtTarget(Transform other)

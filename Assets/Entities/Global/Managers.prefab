@@ -154,7 +154,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4692919574935902}
   - component: {fileID: 114856044578812490}
-  - component: {fileID: 114440018611188682}
   m_Layer: 0
   m_Name: SaveLoadManager
   m_TagString: Untagged
@@ -408,17 +407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8c6c3f7c650f8469505d5cca58b45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114440018611188682
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1541283322473422}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a1ce3ba81440b4bb516974d9fe9ac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114686451299747692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -487,7 +475,7 @@ MonoBehaviour:
   constants:
     speed: 1.3
     catchingIncresedSpeed: 1
-    acceleration: 8
+    acceleration: 1.5
     radius: 0.5
     height: 2
     on: 1
@@ -513,13 +501,9 @@ MonoBehaviour:
   globalSceneName: GlobalScene
   audioSceneName: AudioScene
   initialSceneName: IntroLevel
-  cutsceneName: IntroCutScene
-  respawnPosition: {x: 0, y: 0, z: 0}
   PsName: P
   OsName: O
   cameraAndPOname: OPandCamera
-  fogOnRestart: {fileID: 0}
-  offsetForCreatingFog: -55
 --- !u!114 &114856044578812490
 MonoBehaviour:
   m_ObjectHideFlags: 1
