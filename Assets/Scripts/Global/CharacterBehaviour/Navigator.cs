@@ -60,7 +60,12 @@ public class Navigator : MonoBehaviour
             return;
         }
         float currentSpeed = navMeshAgent.velocity.magnitude;
-        animator.SetFloat(speedParameter, Mathf.Lerp(1, 2, (currentSpeed - 1)/2));
+        
+        if (hasSpeedParameter)
+        {
+            animator.SetFloat(speedParameter, Mathf.Lerp(1, 2, (currentSpeed - 1) / 2));
+        }
+
     }
 
     public void SetSplitPath()
