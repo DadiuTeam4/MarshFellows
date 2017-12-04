@@ -17,20 +17,16 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     public string globalSceneName = "GlobalScene";  
     public string audioSceneName = "AudioScene";
     public string initialSceneName = "IntroLevel";
-    public string cutsceneName = "IntroCutScene";
-    public Vector3 respawnPosition;
     public string PsName = "P";
     public string OsName = "O";
     public string cameraAndPOname = "OPandCamera";
-    public GameObject fogOnRestart;
-    public int offsetForCreatingFog = -55;
+    void Awake()
+    {
+        LoadInitialLevels();
+    }
     void Start()
     {
         AddListenerForLoadingScene();        
-
-
-        LoadInitialLevels();
-
 
         AddUnlockables();
         
@@ -47,37 +43,10 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
     private void LoadInitialLevels()
     {
-        EventArgument argument = new EventArgument(); 
+        SyncLoadOfScenes(initialSceneName);
 
-        //load different level if it is a replay
-        if(GameStateManager.current != null && GameStateManager.current.playedBefore)
-        {
-            argument.stringComponent =  initialSceneName;
-            GameObject cpo = GameObject.Find(cameraAndPOname);// I really wanted to name it C-3PO
-            if(respawnPosition != null && respawnPosition.magnitude != 0.0f && cpo != null)
-            {
-                cpo.transform.position = respawnPosition;
-                Debug.Log("move");
-            }
-            if(fogOnRestart != null && cpo != null)
-            {
-                Instantiate(fogOnRestart, new Vector3(cpo.transform.position.x,cpo.transform.position.y,cpo.transform.position.z+offsetForCreatingFog), cpo.transform.rotation);
-            }  
-        }
-        else
-        {
-            argument.stringComponent = initialSceneName;
-
-        }
-
-        //loading first scene
-        argument.intComponent = 100;
-        eventManager.CallEvent(CustomEvent.LoadScene,argument);
-
-
-        argument.stringComponent = audioSceneName;
-        argument.intComponent = 100;
-        eventManager.CallEvent(CustomEvent.LoadScene,argument);
+        SyncLoadOfScenes(audioSceneName);
+        
     }
     private void AddUnlockables()
     {
@@ -189,22 +158,20 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
         GameStateManager.current = newRound;
 
         SaveLoadManager.Save();
-        UnloadAllScenes("");
+        UnloadAllScenes();
         eventManager.CallEvent(CustomEvent.ResetGame);
-        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(globalSceneName);
     }
     
-    void UnloadAllScenes(string unloadGlobal) 
+    void UnloadAllScenes() 
     {
+        
         int c = SceneManager.sceneCount;
         //Unload last scene is not supported
         for (int i = 0; i < c - 1; i++) 
         {
             Scene scene = SceneManager.GetSceneAt (i);  
-            if(scene.name != unloadGlobal)
-            {
-                SceneManager.UnloadSceneAsync (scene);
-            }     
+            SceneManager.UnloadSceneAsync (scene);
         }
     }
 
