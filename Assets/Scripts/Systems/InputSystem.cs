@@ -17,6 +17,9 @@ public class InputSystem : Singleton<InputSystem>
 	#region TOUCH_INPUT
 	public static List<Vector3> swipeDirections;
 
+	[Tooltip("How far raycasts are casted.")]
+	public float raycastDistance = 75;
+
 	private static readonly int maxNumberTouches = 20;
 	private Holdable[] heldLastFrame = new Holdable[maxNumberTouches];
 	private Holdable[] heldThisFrame = new Holdable[maxNumberTouches];
@@ -213,7 +216,7 @@ public class InputSystem : Singleton<InputSystem>
 	{
 		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(touch.position);
-		if (Physics.Raycast(ray, out hit)) 
+		if (Physics.Raycast(ray, out hit, raycastDistance)) 
 		{
 			raycastHits[touch.fingerId] = hit;
 			return true;
@@ -380,7 +383,7 @@ public class InputSystem : Singleton<InputSystem>
 	{
 		RaycastHit hit;
 		Ray ray = Camera.main.ScreenPointToRay(pos);
-		if (Physics.Raycast(ray, out hit))
+		if (Physics.Raycast(ray, out hit, raycastDistance))
 		{
 			raycastHits[0] = hit;
 			return true;
