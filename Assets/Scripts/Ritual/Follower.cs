@@ -11,7 +11,6 @@ public class Follower : MonoBehaviour {
     private Animator animator;
     private GameObject O;
 
-    // Use this for initialization
     void Start () {
         eventManager = EventManager.GetInstance();
         ikHandler = GetComponentInChildren<IkHandler>();
@@ -22,7 +21,6 @@ public class Follower : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
     void LookAtHunters(EventArgument args)
     {
         if (args.stringComponent != "Ritual")
