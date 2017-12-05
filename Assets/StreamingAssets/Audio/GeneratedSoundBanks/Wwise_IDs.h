@@ -37,9 +37,11 @@ namespace AK
         static const AkUniqueID PLAY_GG_MENU_CLICK = 3668079463U;
         static const AkUniqueID PLAY_GG_SD_BEAR_BREATH = 259826084U;
         static const AkUniqueID PLAY_GG_SD_BEAR_ROAR_LOUD_1 = 3792659941U;
+        static const AkUniqueID PLAY_GG_SD_DEER_APPROACH = 3658763068U;
         static const AkUniqueID PLAY_GG_SD_JAVELINWOOSH = 1287903522U;
         static const AkUniqueID PLAY_GG_SD_MANTOBEAR_1 = 345619206U;
         static const AkUniqueID PLAY_GG_SD_O_P_BREATH_2 = 2118605929U;
+        static const AkUniqueID PLAY_GG_SD_REVEALED = 3858195133U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DISRUPT = 441924297U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DRUM_1 = 3932030894U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_WHISPER = 298936984U;
