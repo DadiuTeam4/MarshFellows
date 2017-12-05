@@ -9,7 +9,7 @@ public class DefaultLookPos : MonoBehaviour {
 	private int round = 0;
 	private bool firstRoundFlag =true;
 	private float nextActionTime = 0.0f;
-	public int valueToDivide = 800;
+	public int valueToDivide = 750;
 	private float initialY;
 	public string name;
 
