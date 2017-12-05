@@ -40,27 +40,6 @@ public class IkHandler : MonoBehaviour {
         lFrot = leftFoot.rotation;
         rFrot = rightFoot.rotation;
 	}
-	
-	void Update ()
-    {
-
-        RaycastHit leftHit;
-        RaycastHit rightHit;
-
-        Vector3 lpos = leftFoot.TransformPoint(Vector3.zero);
-        Vector3 rpos = rightFoot.TransformPoint(Vector3.zero);
-
-        if (Physics.Raycast(lpos, -Vector3.up, out leftHit, 1))
-        {
-            lFpos = leftHit.point;
-            lFrot = Quaternion.FromToRotation(transform.up, leftHit.normal) * transform.rotation;
-        }
-        if (Physics.Raycast(rpos, -Vector3.up, out rightHit, 1))
-        {
-            rFpos = rightHit.point;
-            rFrot = Quaternion.FromToRotation(transform.up, rightHit.normal) * transform.rotation;
-        }
-    }
 
     public void LookForward()
     {
@@ -88,22 +67,5 @@ public class IkHandler : MonoBehaviour {
             anim.SetLookAtPosition(lookPos.position);
         } 
         anim.SetLookAtWeight(lookAtWeight, bodyWeight,headWeight, 0, clampWeight);
-
-        //lFWeight = anim.GetFloat("LFoot");
-        //rFWeight = anim.GetFloat("RFoot");
-        lFWeight = 0;
-        rFWeight = 0;
-
-        anim.SetIKPositionWeight(AvatarIKGoal.LeftFoot, lFWeight);
-        anim.SetIKPositionWeight(AvatarIKGoal.RightFoot, rFWeight);    
-        anim.SetIKPosition(AvatarIKGoal.LeftFoot, lFpos + new Vector3(0,offsetY,0));
-        anim.SetIKPosition(AvatarIKGoal.RightFoot, rFpos + new Vector3(0, offsetY, 0));
-
-        anim.SetIKRotationWeight(AvatarIKGoal.LeftFoot, lFWeight);
-        anim.SetIKRotationWeight(AvatarIKGoal.RightFoot, rFWeight);
-        anim.SetIKRotation(AvatarIKGoal.LeftFoot, lFrot);
-        anim.SetIKRotation(AvatarIKGoal.RightFoot, rFrot);
     }
-
-
 }
