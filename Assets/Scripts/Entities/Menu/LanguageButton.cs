@@ -19,6 +19,8 @@ public class LanguageButton : MonoBehaviour
     public Sprite exitSpriteDanish;
     public Sprite languageSpriteEnglish;
     public Sprite languageSpriteDanish;
+    public Sprite creditsSpriteEnglish;
+    public Sprite creditsSpriteDanish;
 
     public Sprite audiOTextSpriteEnglish;
     public Sprite audiOTextSpriteDanish;
@@ -32,6 +34,7 @@ public class LanguageButton : MonoBehaviour
     private Image restartImage;
     private Image exitImage;
     private Image languageImage;
+    private Image creditsImage;
     public Image audioTextImage;
     public Image sfxImage;
     public Image musicImage;
@@ -49,6 +52,7 @@ public class LanguageButton : MonoBehaviour
         audioImage = GameObject.Find("Audio").GetComponent<Image>();
         restartImage = GameObject.Find("ResetButton").GetComponent<Image>();
         exitImage = GameObject.Find("Exit").GetComponent<Image>();
+        creditsImage = GameObject.Find("Credits").GetComponent<Image>();
         languageImage = GetComponent<Image>();
     }
 
@@ -71,6 +75,7 @@ public class LanguageButton : MonoBehaviour
             languageImage.sprite = languageSpriteEnglish;
             sfxImage.sprite = sfxSpriteDanish;
             musicImage.sprite = musicDanish;
+            creditsImage.sprite = creditsSpriteDanish;
         }
         else
         {
@@ -82,6 +87,7 @@ public class LanguageButton : MonoBehaviour
             audioTextImage.sprite = audiOTextSpriteEnglish;
             sfxImage.sprite = sfxSpriteEnglish;
             musicImage.sprite = musicEnglish;
+            creditsImage.sprite = creditsSpriteEnglish;
         }
     }
 
