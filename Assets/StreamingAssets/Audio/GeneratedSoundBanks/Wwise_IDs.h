@@ -26,6 +26,7 @@ namespace AK
         static const AkUniqueID PLAY_BEAR_FS_STOMP = 3503358120U;
         static const AkUniqueID PLAY_BEAR_ROAR = 2645963019U;
         static const AkUniqueID PLAY_BEAR_SD_LIGHTROAR = 3795598479U;
+        static const AkUniqueID PLAY_BOWPULLSHOOT = 1720731780U;
         static const AkUniqueID PLAY_DEER_FS = 675749344U;
         static const AkUniqueID PLAY_FS_O = 3464671677U;
         static const AkUniqueID PLAY_FS_P = 3464671650U;
@@ -36,6 +37,7 @@ namespace AK
         static const AkUniqueID PLAY_GG_MENU_CLICK = 3668079463U;
         static const AkUniqueID PLAY_GG_SD_BEAR_BREATH = 259826084U;
         static const AkUniqueID PLAY_GG_SD_BEAR_ROAR_LOUD_1 = 3792659941U;
+        static const AkUniqueID PLAY_GG_SD_JAVELINWOOSH = 1287903522U;
         static const AkUniqueID PLAY_GG_SD_MANTOBEAR_1 = 345619206U;
         static const AkUniqueID PLAY_GG_SD_O_P_BREATH_2 = 2118605929U;
         static const AkUniqueID PLAY_GG_SD_SHAMAN_DISRUPT = 441924297U;

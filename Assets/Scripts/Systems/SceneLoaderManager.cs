@@ -94,7 +94,7 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
     {
         if(argument.intComponent == 0)
         {
-            AsyncLoadOfScenes(argument.stringComponent);
+            AsyncUnloadOfScenes(argument.stringComponent);
             return;
         }
 
@@ -129,11 +129,17 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
 
     void AsyncLoadOfScenes(string nameOfScene)
     {
+        StartCoroutine(LoadSceneAsync(nameOfScene));
+    }
+
+    IEnumerator LoadSceneAsync(string nameOfScene)
+    {
         Scene scene = SceneManager.GetSceneByName(nameOfScene);
         if (!scene.isLoaded)
         {
             SceneManager.LoadSceneAsync(nameOfScene, LoadSceneMode.Additive);
         }
+        yield return null;
     }
 
     void AsyncUnloadOfScenes(string nameOfScene)

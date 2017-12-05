@@ -18,7 +18,7 @@ public class Navigator : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private bool destinationReached;
     private float previousSpeed;
-    private string speedParameter;
+    private string speedParameter = "speed";
     private bool hasSpeedParameter;
     private GlobalConstantsManager constantsManager;
 
@@ -50,22 +50,23 @@ public class Navigator : MonoBehaviour
 
         navMeshAgent.autoRepath = autoRepath;
         SetDestination();
-        speedParameter = "speed";
-        CheckIfHasSpeedParameter();
+        hasSpeedParameter = HasParameter(speedParameter, animator);
     }
 
-    private void CheckIfHasSpeedParameter()
+    private void Update()
     {
-        if (HasParameter(speedParameter, animator))
+        if (navMeshAgent.isStopped)
         {
-            hasSpeedParameter = true;
+            return;
         }
-        else
+        float currentSpeed = navMeshAgent.velocity.magnitude;
+        
+        if (hasSpeedParameter)
         {
-            hasSpeedParameter = false;
+            animator.SetFloat(speedParameter, Mathf.Lerp(1, 2, (currentSpeed - 1) / 2));
         }
-    }
 
+    }
 
     public void SetSplitPath()
     {
@@ -123,7 +124,7 @@ public class Navigator : MonoBehaviour
     {
         if (hasSpeedParameter)
         {
-            animator.SetFloat(speedParameter, speed < 2 ? speed : 2);
+            //animator.SetFloat(speedParameter, speed < 2 ? speed : 2);
         }
         previousSpeed = navMeshAgent.speed;
         navMeshAgent.speed = speed;
@@ -159,7 +160,6 @@ public class Navigator : MonoBehaviour
     {
         if (navMeshAgent.isStopped)
         {
-            SetSpeed(navMeshAgent.speed); //To set animation to correct value.
             navMeshAgent.isStopped = false;
         }
     }

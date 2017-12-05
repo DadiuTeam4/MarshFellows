@@ -10,7 +10,7 @@
 		_ShadowColor 	("ShadowColor", Color) = (0.10,0.5,1,1)
 		_BumpMap		("Normal Map", 2D) = "bump" {}
 		_TransOffset	("Transparent Offset", Range(-4,4)) = 0
-		_Transsion 		("Transsion multipler", Range(1,4)) = 1
+		_Transsion 		("Transsion multipler", Range(0.01,4)) = 1
 	}
 	SubShader 
 	{
@@ -77,6 +77,7 @@
 			o.Albedo = c.rgb;
 			o.Alpha = IN.customAlpha;
 			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
+			//o.Emission = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 		}
 		ENDCG
 	}
