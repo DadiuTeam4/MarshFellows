@@ -31,7 +31,6 @@ public class HunterSpeedControlZone : MonoBehaviour
     {
         if (string.Compare(other.transform.name, "P") == 0 && !speedAfterZoneSat)
         {
-            speedAfterZone = oNav.GetSpeed();
             SetPZoneSpeedBasedOnIfCatching();
             oNav.SetSpeed(speedZoneSpeed);
             speedAfterZoneSat = true;
