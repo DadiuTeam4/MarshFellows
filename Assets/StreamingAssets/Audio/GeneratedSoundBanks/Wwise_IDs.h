@@ -61,6 +61,7 @@ namespace AK
         static const AkUniqueID STOP_GG_SD_SHAMAN_WHISPER = 4129492602U;
         static const AkUniqueID STOP_GG_SD_SINK_1 = 3148331554U;
         static const AkUniqueID STOP_GG_SD_WIND = 104387825U;
+        static const AkUniqueID STOP_MUSIC = 2837384057U;
         static const AkUniqueID UNMUTEALL = 3340787584U;
     } // namespace EVENTS
 
