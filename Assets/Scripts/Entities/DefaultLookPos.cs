@@ -10,7 +10,7 @@ public class DefaultLookPos : MonoBehaviour {
 	private float nextActionTime = 0.0f;
 	public int valueToDivide = 750;
 	private float initialY;
-	public string name;
+	public new string name;
 
 	void Start()
 	{
@@ -18,11 +18,12 @@ public class DefaultLookPos : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		nextActionTime += Time.deltaTime;
 		
 		//2*Pi i.e. full circle
-		if(nextActionTime > 2* 3.14f)
+		if(nextActionTime > 2* Mathf.PI)
 		{
 			round++;
 			nextActionTime = 0.0f;
@@ -55,7 +56,5 @@ public class DefaultLookPos : MonoBehaviour {
 				}
 			}
 		}
-
-		
 	}
 }

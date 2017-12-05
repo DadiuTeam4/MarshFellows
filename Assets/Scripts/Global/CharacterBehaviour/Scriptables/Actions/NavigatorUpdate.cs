@@ -13,7 +13,7 @@ public class NavigatorUpdate : Action
     {
         if (setPreviousSpeed)
         {
-            controller.navigator.SetPreviousSpeed();
+            controller.navigator.SetSpeed(GlobalConstantsManager.GetInstance().constants.speed);
         } else
         {
             controller.navigator.SetSpeed(speed);
