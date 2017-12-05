@@ -10,6 +10,10 @@ public class EventListenerZone : MonoBehaviour {
     public bool huntersInZone = false;
     public bool currentlyHidden = true;
 
+    private  EventArgument callArgs = new EventArgument
+    {
+        stringComponent = "Ritual"
+    };
 
     private EventManager eventManager;
     private EventDelegate eventDelegate;
@@ -31,8 +35,7 @@ public class EventListenerZone : MonoBehaviour {
         huntersInZone = true;
         if (huntersInZone && !currentlyHidden)
         {
-
-            eventManager.CallEvent(CustomEvent.ScenarioInteracted);
+            eventManager.CallEvent(CustomEvent.ScenarioInteracted, callArgs);
         }
     }
 
@@ -53,10 +56,7 @@ public class EventListenerZone : MonoBehaviour {
             currentlyHidden = args.boolComponent;
         }
         if (huntersInZone && !currentlyHidden) {
-            EventArgument callArgs = new EventArgument
-            {
-                stringComponent = "Ritual"
-            };
+
             eventManager.CallEvent(CustomEvent.ScenarioInteracted, callArgs);
         }
     }
