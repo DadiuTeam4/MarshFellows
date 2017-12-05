@@ -156,7 +156,7 @@ public class ModelCrossFade : MonoBehaviour
 		}
 		else if (newScale.x > 1.0f)
 		{
-			newScale = new Vector3(1.0f, 1.0f);
+			newScale = new Vector3(1.0f, 1.0f, 1.0f);
 		}
 
 		scaledObject.transform.localScale = newScale;
