@@ -7,7 +7,6 @@ using UnityEngine;
 public class DefaultLookPos : MonoBehaviour {
 
 	private int round = 0;
-	private bool firstRoundFlag =true;
 	private float nextActionTime = 0.0f;
 	public int valueToDivide = 750;
 	private float initialY;
@@ -20,42 +19,39 @@ public class DefaultLookPos : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(Time.time > 3.0f && firstRoundFlag)
+		nextActionTime += Time.deltaTime;
+		
+		//2*Pi i.e. full circle
+		if(nextActionTime > 2* 3.14f)
 		{
 			round++;
-			nextActionTime += Time.time;
-			firstRoundFlag =false;
-		}
-		if(Time.time - nextActionTime > 3.0f && nextActionTime - nextActionTime < 3.5f)
-		{
-			round++;
-			nextActionTime += Time.time;
+			nextActionTime = 0.0f;
 		}
 		if(name == "P")
 		{
 			if(round%2 == 0)
 			{
-				transform.localPosition = new Vector3(Mathf.Sin(Time.time), Mathf.Abs(Mathf.Sin(Time.time))/valueToDivide + transform.localPosition.y, transform.localPosition.z);		
+				transform.localPosition = new Vector3(Mathf.Sin(nextActionTime), Mathf.Abs(Mathf.Sin(nextActionTime))/valueToDivide + transform.localPosition.y, transform.localPosition.z);		
 			}
 			else
 			{
-				if( transform.localPosition.y - Mathf.Abs(Mathf.Sin(Time.time)) > initialY)
+				if( transform.localPosition.y - Mathf.Abs(Mathf.Sin(nextActionTime)) > initialY)
 				{
-					transform.localPosition = new Vector3(Mathf.Sin(Time.time), transform.localPosition.y - Mathf.Abs(Mathf.Sin(Time.time))/valueToDivide, transform.localPosition.z);		
+					transform.localPosition = new Vector3(Mathf.Sin(nextActionTime), transform.localPosition.y - Mathf.Abs(Mathf.Sin(nextActionTime))/valueToDivide, transform.localPosition.z);		
 				}
 			}
 		}
 		else
 		{
-			if(round%2 == 0)
+			if(round%2 == 1)
 			{
-				transform.localPosition = new Vector3(Mathf.Sin(Time.time), transform.localPosition.y - Mathf.Abs(Mathf.Sin(Time.time)/valueToDivide), transform.localPosition.z);		
+				transform.localPosition = new Vector3(Mathf.Cos(nextActionTime), transform.localPosition.y - Mathf.Abs(Mathf.Cos(Time.deltaTime)/valueToDivide), transform.localPosition.z);		
 			}
 			else
 			{
-				if( transform.localPosition.y + Mathf.Abs(Mathf.Sin(Time.time)) < initialY)
+				if( transform.localPosition.y + Mathf.Abs(Mathf.Cos(nextActionTime)) < initialY)
 				{
-					transform.localPosition = new Vector3(Mathf.Sin(Time.time), transform.localPosition.y + Mathf.Abs(Mathf.Sin(Time.time)), transform.localPosition.z);		
+					transform.localPosition = new Vector3(Mathf.Cos(nextActionTime), transform.localPosition.y + Mathf.Abs(Mathf.Cos(nextActionTime)), transform.localPosition.z);		
 				}
 			}
 		}
