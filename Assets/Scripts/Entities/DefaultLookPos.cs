@@ -9,8 +9,9 @@ public class DefaultLookPos : MonoBehaviour {
 	private int round = 0;
 	private bool firstRoundFlag =true;
 	private float nextActionTime = 0.0f;
-	private int valueToDivide = 500;
+	public int valueToDivide = 800;
 	private float initialY;
+	public string name;
 
 	void Start()
 	{
@@ -30,7 +31,7 @@ public class DefaultLookPos : MonoBehaviour {
 			round++;
 			nextActionTime += Time.time;
 		}
-		if(gameObject.name == "P")
+		if(name == "P")
 		{
 			if(round%2 == 0)
 			{
