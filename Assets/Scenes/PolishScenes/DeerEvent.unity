@@ -11527,6 +11527,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 198817811442652170, guid: c08326403fb275a468da2faedde43844,
+        type: 2}
+      propertyPath: randomSeed
+      value: -1957501731
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54946908246409676, guid: c08326403fb275a468da2faedde43844, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c08326403fb275a468da2faedde43844, type: 2}
@@ -11536,6 +11541,23 @@ Transform:
   m_PrefabParentObject: {fileID: 4232394546645426, guid: c08326403fb275a468da2faedde43844,
     type: 2}
   m_PrefabInternal: {fileID: 1226590789}
+--- !u!1 &1226590791 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1492013562377638, guid: c08326403fb275a468da2faedde43844,
+    type: 2}
+  m_PrefabInternal: {fileID: 1226590789}
+--- !u!114 &1226590792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226590791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c316d93c3624b7940a29d99f6113cf0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 0
 --- !u!1001 &1244986336
 Prefab:
   m_ObjectHideFlags: 0
@@ -19461,22 +19483,22 @@ Prefab:
     - target: {fileID: 198961754586915356, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: randomSeed
-      value: -151638898
+      value: -1957501731
       objectReference: {fileID: 0}
     - target: {fileID: 198961754586915356, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: ShapeModule.m_Scale.x
-      value: 14.95
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 198961754586915356, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: ShapeModule.m_Scale.y
-      value: 7.01
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 198961754586915356, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: ShapeModule.m_Scale.z
-      value: 6.8
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 65207419335764962, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
@@ -19491,7 +19513,7 @@ Prefab:
     - target: {fileID: 65207419335764962, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: m_Center.z
-      value: 4.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4216951945074376, guid: a3ba3253075d4c04198d8a16f7668473, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -19508,12 +19530,12 @@ Prefab:
     - target: {fileID: 198961754586915356, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: InitialModule.maxNumParticles
-      value: 100
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 198961754586915356, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4699320824717098, guid: a3ba3253075d4c04198d8a16f7668473, type: 2}
       propertyPath: m_LocalRotation.x
@@ -19566,7 +19588,7 @@ Prefab:
     - target: {fileID: 65207419335764962, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: m_Center.y
-      value: 0.96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1227296746345868, guid: a3ba3253075d4c04198d8a16f7668473, type: 2}
       propertyPath: m_IsActive
@@ -19587,7 +19609,7 @@ Prefab:
     - target: {fileID: 198961754586915356, guid: a3ba3253075d4c04198d8a16f7668473,
         type: 2}
       propertyPath: ShapeModule.radius.value
-      value: 0.31280208
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 54332575297055496, guid: a3ba3253075d4c04198d8a16f7668473, type: 2}
