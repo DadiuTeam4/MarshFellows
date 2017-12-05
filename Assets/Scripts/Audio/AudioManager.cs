@@ -118,6 +118,7 @@ public class AudioManager : Singleton<AudioManager> {
 		if (argument.eventComponent == CustomEvent.ScenarioInteracted && argument.stringComponent == "Ritual") 
 		{
 			AkSoundEngine.SetState("Music", "RitualFlight"); 
+			PlaySoundWC ("Play_GG_SD_Revealed"); 
 		}
 	}
 
@@ -176,6 +177,10 @@ public class AudioManager : Singleton<AudioManager> {
 			{
 				PlaySoundWC("Play_GG_FSD_4_1");
 			}
+			if(argument.stringComponent == "Crossroad")
+			{
+				PlaySoundWC ("Play_GG_SD_DEER_Approach"); 
+			}
 			
 		//Travel of O 
 			if(argument.stringComponent == "Scena1")
@@ -186,10 +191,7 @@ public class AudioManager : Singleton<AudioManager> {
 //			{
 //				PlaySoundWC ("Play_GG_FSD_3"); 
 //			}
-//			if(argument.stringComponent == "Crossroad")
-//			{
-//			//crossroad 
-//			}
+
 //			if(argument.stringComponent == "Missout1")
 //			{
 //			PlaySoundWC ("Play_GG_FSD_Choir"); 
