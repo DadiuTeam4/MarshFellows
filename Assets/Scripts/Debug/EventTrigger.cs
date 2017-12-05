@@ -37,6 +37,7 @@ public class EventTrigger : MonoBehaviour
         }
         if (Input.GetKeyDown("i"))
         {
+            argument.stringComponent = "Ritual";
             eventManager.CallEvent(CustomEvent.ScenarioInteracted, argument);
         }
 

@@ -17,7 +17,7 @@ public class BirdGenerator : Singleton<BirdGenerator>
 	public float maxTriggerRaduis = 15;
 	[Space(5)]
 	
-	public Transform[] spawnPoints;
+	public List<Transform> spawnPoints = new List<Transform>();
 	public float minDistanceFromSpawn;
 	public float maxDistanceFromSpawn;
 
@@ -44,7 +44,7 @@ public class BirdGenerator : Singleton<BirdGenerator>
 
 	private void GenerateFlocks()
 	{
-		if (spawnPoints.Length == 0)
+		if (spawnPoints.Count == 0)
 		{
 			return;
 		}
@@ -53,7 +53,12 @@ public class BirdGenerator : Singleton<BirdGenerator>
 		flocks = new Flock[numFlocks];
 		for (int i = 0; i < numFlocks; i++)
 		{
-			int spawnPoint = Random.Range(0, spawnPoints.Length);
+			if (spawnPoints.Count == 0)
+			{
+				return;
+			}
+
+			int spawnPoint = Random.Range(0, spawnPoints.Count);
 			float xDirection = Random.Range(0.0f, 1.0f) * 2f - 1f;
 			float zDirection = Random.Range(0.0f, 1.0f) * 2f - 1f;
 
@@ -63,6 +68,8 @@ public class BirdGenerator : Singleton<BirdGenerator>
 		
 			flocks[i] = Instantiate(flockPrefab, new Vector3(x, y, z), Quaternion.identity, transform).GetComponent<Flock>();
 			flocks[i].GetComponent<SphereCollider>().radius = Random.Range(minTriggerRadius, maxTriggerRaduis);
+		
+			spawnPoints.RemoveAt(spawnPoint);
 		}
 	}
 }

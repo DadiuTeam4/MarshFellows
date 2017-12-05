@@ -104,12 +104,6 @@ public class SceneLoaderManager : Singleton<SceneLoaderManager>
             return;
         }
 
-        if(argument.intComponent == 100)
-        {
-            SyncLoadOfScenes(argument.stringComponent);
-            return;
-        }
-
         if(argument.intComponent > 0)
         {
             //if you sent a new scene to load
