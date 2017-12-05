@@ -956,8 +956,8 @@ MonoBehaviour:
   minDistanceBetweenFlocks: 0
   minBirdsPerFlock: 2
   maxBirdsPerFlock: 10
-  minTriggerRadius: 5
-  maxTriggerRaduis: 15
+  minTriggerRadius: 10
+  maxTriggerRaduis: 20
   spawnPoints:
   - {fileID: 4994307172232476}
   - {fileID: 4935143531421950}
@@ -1017,8 +1017,8 @@ MonoBehaviour:
     m_RotationOrder: 0
   minSpeedScalar: 1
   maxSpeedScalar: 2
-  minDistanceFromFlockCenter: 5
-  maxDistanceFromFlockCenter: 10
+  minDistanceFromFlockCenter: 0
+  maxDistanceFromFlockCenter: 7
 --- !u!114 &114752026515844318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1175,7 +1175,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -861945963
+  randomSeed: -2099391571
   InitialModule:
     serializedVersion: 3
     enabled: 1
