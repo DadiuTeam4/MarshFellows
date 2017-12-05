@@ -179,6 +179,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
+				AkSoundEngine.PostEvent ("Stop_Music", gameObject); 
 				PlaySoundWC("Play_GG_SD_DEER_Approach"); 
 			}
 			
