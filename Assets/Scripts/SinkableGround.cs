@@ -212,7 +212,7 @@ public class SinkableGround : Holdable
 			if (verticeObstacles[nearestPoints[0].GetFirst()] == null)
 			{
 				verticeObstacles[nearestPoints[0].GetFirst()] = new Obstacle(obstaclePosition, obstacleRadius);
-				verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform.GetChild(0));
+				verticeObstacles[nearestPoints[0].GetFirst()].obstacle.transform.SetParent(transform);
 			}
 		}
 	}

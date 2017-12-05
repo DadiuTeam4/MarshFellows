@@ -21,8 +21,7 @@ public class ModelCrossFade : MonoBehaviour
 	public float modelFadeRate = 0.1f;
 	
 	[Tooltip("How much the alpha will be changed each interval.")]
-	[Range(1.0f, 25.0f)]
-	public float modelFadeIncrement = 5.0f;
+	public float modelFadeIncrement = 0.1f;
 
 	public GameObject fadeOutModel;
 	public GameObject fadeInModel;
@@ -30,8 +29,8 @@ public class ModelCrossFade : MonoBehaviour
 	private Renderer[] fadeOutModelRenderers;
 	private Renderer[] fadeInModelRenderers;
 	
-	public List<Material> fadeOutModelMaterials;
-	public List<Material> fadeInModelMaterials;
+	private List<Material> fadeOutModelMaterials;
+	private List<Material> fadeInModelMaterials;
 	[Space(5)]
 
 	[Header("Animation")]
@@ -112,7 +111,7 @@ public class ModelCrossFade : MonoBehaviour
 			{
 				modelMaterials[i].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
 				modelMaterials[i].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-				modelMaterials[i].SetInt("_ZWrite", 0);
+				modelMaterials[i].SetInt("_ZWrite", 1);
 				modelMaterials[i].DisableKeyword("_ALPHATEST_ON");
 				modelMaterials[i].EnableKeyword("_ALPHABLEND_ON");
 				modelMaterials[i].DisableKeyword("_ALPHAPREMULTIPLY_ON");
@@ -145,19 +144,43 @@ public class ModelCrossFade : MonoBehaviour
 		animator.SetBool(animation, true);
 	}
 
+	private void ScaleModel(GameObject scaledObject, int scaleScalar)
+	{
+		Vector3 newScale = new Vector3(scaledObject.transform.localScale.x + (modelFadeIncrement * scaleScalar),
+										scaledObject.transform.localScale.y + (modelFadeIncrement * scaleScalar),
+										scaledObject.transform.localScale.z + (modelFadeIncrement * scaleScalar)); 
+
+		if(newScale.x < 0.01f)
+		{
+			newScale = new Vector3(0.01f, 0.01f, 0.01f);
+		}
+		else if (newScale.x > 1.0f)
+		{
+			newScale = new Vector3(1.0f, 1.0f, 1.0f);
+		}
+
+		scaledObject.transform.localScale = newScale;
+	}
+
 	private IEnumerator CrossFade()
 	{
 		yield return new WaitForSeconds(secondsBeforeFade);
 		
-		SetRenderModeOnModel(fadeOutModelMaterials, 2);
+		/*SetRenderModeOnModel(fadeOutModelMaterials, 2);
 
 		int fadeOutModelScalar = (fadeOutModelMaterials[0].color.a < 0.5) ? 1 : -1;
-		int fadeInModelScalar = (fadeInModelMaterials[0].color.a < 0.5) ? 1 : -1;
+		int fadeInModelScalar = (fadeInModelMaterials[0].color.a < 0.5) ? 1 : -1;*/
 
-		while (fadeOutModelMaterials[0].color.a > 0 || fadeInModelMaterials[0].color.a < 1)
+		int fadeOutModelScalar = -1;
+		int fadeInModelScalar = 1;
+
+		while (fadeOutModel.transform.localScale.x > 0.01f || fadeInModel.transform.localScale.y < 1.0f)//fadeOutModelMaterials[0].color.a > 0 || fadeInModelMaterials[0].color.a < 1)
 		{
-			FadeMaterials(fadeOutModelMaterials, fadeOutModelScalar);
-			FadeMaterials(fadeInModelMaterials, fadeInModelScalar);
+			/*FadeMaterials(fadeOutModelMaterials, fadeOutModelScalar);
+			FadeMaterials(fadeInModelMaterials, fadeInModelScalar);*/
+
+			ScaleModel(fadeOutModel, fadeOutModelScalar);
+			ScaleModel(fadeInModel, fadeInModelScalar);
 
 			yield return new WaitForSeconds(modelFadeRate);
 		}
