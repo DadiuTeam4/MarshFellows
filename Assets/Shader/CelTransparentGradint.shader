@@ -77,6 +77,7 @@
 			o.Albedo = c.rgb;
 			o.Alpha = IN.customAlpha;
 			o.Normal = UnpackNormal (tex2D (_BumpMap, IN.uv_BumpMap));
+			//o.Emission = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 		}
 		ENDCG
 	}

@@ -31,7 +31,11 @@ public class SpearFlying : MonoBehaviour
 	[Range(0.01f, 1.0f)]
 	public float incrementRate = 0.01f;
 
-	private float lerpT = 0;
+    [Tooltip("Delay before throwing spear, in seconds. Match with shoot animation")]
+    [Range(0.00f, 3.0f)]
+    public float throwDelay = 0.8f;
+
+    private float lerpT = 0;
 	private EventDelegate spearLerp;
 
 	private bool spearThrown = false;
@@ -53,7 +57,6 @@ public class SpearFlying : MonoBehaviour
 
 		if (!spearThrown)
 		{
-			transform.parent = null;
 
 			StartCoroutine("SpearLerp");
 		}
@@ -61,7 +64,9 @@ public class SpearFlying : MonoBehaviour
 
 	private IEnumerator SpearLerp()
 	{
-		Vector3 thrownPosition = transform.position;
+        yield return new WaitForSeconds(throwDelay);
+        transform.parent = null;
+        Vector3 thrownPosition = transform.position;
 		Vector3 yOffsetPosition;
 
 		while (lerpT != 1)
