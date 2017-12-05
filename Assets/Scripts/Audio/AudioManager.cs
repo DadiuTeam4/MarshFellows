@@ -179,7 +179,7 @@ public class AudioManager : Singleton<AudioManager> {
 			}
 			if(argument.stringComponent == "Crossroad")
 			{
-				PlaySoundWC ("Play_GG_SD_DEER_Approach"); 
+				PlaySoundWC("Play_GG_SD_DEER_Approach"); 
 			}
 			
 		//Travel of O 
