@@ -75,8 +75,8 @@ public class SinkableGround : Holdable
 
 	private EventArgument argument = new EventArgument();
 	
-	void Start () {
-		//meshCollider = transform.GetChild(0).GetComponent<MeshCollider>();
+	void Start () 
+	{
 		meshCollider = GetComponent<MeshCollider>();
 		meshFilter = GetComponent<MeshFilter>();
 
@@ -235,7 +235,7 @@ public class SinkableGround : Holdable
 			{
 				foreach (Pair<int, float> pair in nearestPoints)
 				{
-					currentVertices[pair.GetFirst()].y -= sinkSpeed * ((radius - pair.GetSecond()) / radius);
+					currentVertices[pair.GetFirst()].y -= sinkSpeed * ((radius - pair.GetSecond()) / radius) * Time.deltaTime;
 					verticeTimes[pair.GetFirst()] = Time.time + riseDelay;	
 
 					verticesWaiting = true;
@@ -260,9 +260,9 @@ public class SinkableGround : Holdable
 
 				if (Time.time > verticeTimes[i])
 				{
-					if (currentVertices[i].y + riseSpeed < originalVerticePositions[i].y)
+					if (currentVertices[i].y + riseSpeed * Time.deltaTime < originalVerticePositions[i].y)
 					{
-						currentVertices[i].y += riseSpeed;
+						currentVertices[i].y += riseSpeed * Time.deltaTime;
 					}
 					else
 					{
