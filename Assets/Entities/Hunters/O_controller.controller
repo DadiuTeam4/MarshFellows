@@ -10,28 +10,28 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: speed
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: sneak
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: die
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: shoot
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -55,10 +55,13 @@ AnimatorController:
       m_Motion: {fileID: 206467102509653102}
     - serializedVersion: 2
       m_State: {fileID: 1102843805279102676}
-      m_Motion: {fileID: 7400000, guid: ceefdf5fff6ecbb42abe2d2c0e671cc0, type: 3}
+      m_Motion: {fileID: 7400000, guid: 8462505ad14253a4ca13b077238426df, type: 3}
     - serializedVersion: 2
       m_State: {fileID: 1102150302600906794}
       m_Motion: {fileID: 7400000, guid: ceefdf5fff6ecbb42abe2d2c0e671cc0, type: 3}
+    - serializedVersion: 2
+      m_State: {fileID: 1102514686762167652}
+      m_Motion: {fileID: 7400000, guid: 3570b580087f5ff4fa1edac1b546a6ff, type: 3}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0
@@ -127,7 +130,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: speed
     m_Mirror: 0
-  m_BlendParameter: direction
+  m_BlendParameter: speed
   m_BlendParameterY: speed
   m_MinThreshold: 0
   m_MaxThreshold: 2
