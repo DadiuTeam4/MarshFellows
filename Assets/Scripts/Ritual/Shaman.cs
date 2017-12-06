@@ -25,25 +25,11 @@ public class Shaman : MonoBehaviour {
         eventManager = EventManager.GetInstance();
         shamanDelegate = Disrupted;
         locationDelegate = BroadCastLocation;
-        eventManager.AddListener(CustomEvent.RitualDisrupted, shamanDelegate);
-        eventManager.AddListener(CustomEvent.RitualScenarioEntered, SetInScenario);
+        //eventManager.AddListener(CustomEvent.RitualDisrupted, shamanDelegate);
+        //eventManager.AddListener(CustomEvent.RitualScenarioEntered, SetInScenario);
         eventManager.AddListener(eventToBroadcastOn, BroadCastLocation);
     }
 
-    private void Update()
-    {
-        if (!inScenario)
-        {
-            return;
-        }
-
-        timeElapsed += Time.deltaTime;
-        if (!disrupted && timeElapsed > transformAfterSec)
-        {
-            eventManager.RemoveListener(CustomEvent.RitualDisrupted, shamanDelegate);
-            animator.SetBool("shamanTransform", true);
-        }
-    }
 
     void SetInScenario(EventArgument args)
     {
