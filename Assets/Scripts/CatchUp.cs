@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Events;
 
 [RequireComponent(typeof(Navigator))]
 public class CatchUp : MonoBehaviour
@@ -15,6 +16,8 @@ public class CatchUp : MonoBehaviour
     public float seperationDistance = 3;
     public float reunitedDistance = 2;
     private float catchingIncresedSpeed;
+    public bool oDead = false;
+    private bool oAlreadyDead;
 
     void Start()
     {
@@ -23,6 +26,12 @@ public class CatchUp : MonoBehaviour
         isCatching = false;
         catchingIncresedSpeed = GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed;
         CheckNotNull();
+        EventManager.GetInstance().AddListener(CustomEvent.ODead, ODead);
+    }
+
+    private void ODead(EventArgument args)
+    {
+        oDead = true;
     }
 
     private void CheckNotNull()
@@ -36,12 +45,22 @@ public class CatchUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         CheckIfNeedCatching();
         CheckIfNeedStopCatching();
     }
 
     private void CheckIfNeedCatching()
     {
+        if (oDead)
+        {
+            if (!oAlreadyDead)
+            {
+                oAlreadyDead = true;
+                BackToNomalSpeed();
+            }
+            return;
+        }
         if (!isCatching)
         {
             if (CheckIfSeperated())
@@ -71,7 +90,7 @@ public class CatchUp : MonoBehaviour
 
     private void BackToNomalSpeed()
     {
-        pNav.SetSpeed(pNav.GetSpeed() - catchingIncresedSpeed);
+        pNav.SetSpeed(GlobalConstantsManager.GetInstance().constants.speed);
     }
 
     private bool CheckIfSeperated()
