@@ -11,6 +11,25 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1023966721009560}
   m_IsPrefabParent: 1
+--- !u!1 &1023209871222804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4465795871283586}
+  - component: {fileID: 114316104328220222}
+  - component: {fileID: 114643884770994628}
+  - component: {fileID: 114410512492342580}
+  - component: {fileID: 114546143962064192}
+  m_Layer: 0
+  m_Name: WwiseObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1023966721009560
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +439,7 @@ Transform:
   - {fileID: 4601148857637420}
   - {fileID: 4971467097785066}
   - {fileID: 4495123629650032}
+  - {fileID: 4465795871283586}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -502,6 +522,19 @@ Transform:
   - {fileID: 4915761919647134}
   m_Father: {fileID: 4047596598182970}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4465795871283586
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023209871222804}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4047596598182970}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4495123629650032
 Transform:
@@ -831,6 +864,7 @@ MonoBehaviour:
   testingCamera: {fileID: 20606248474637422}
   header: Handles all touch input. All objects inheriting from the Holdable and Swipable
     are called accordingly from this class.
+  raycastDistance: 75
 --- !u!114 &114299958895375472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -842,6 +876,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8c6c3f7c650f8469505d5cca58b45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114316104328220222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023209871222804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45da3205aa01a4726a08dddee4dbf608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114410512492342580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023209871222804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83d80a617f564a2b923f996fb5429c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44
+  useOtherObject: 0
+  valueGuid: 9ae1a3d38e2d4341b1be0a0d537d33c2
+  bankName: Soundbank1
+  loadAsynchronous: 0
+  decodeBank: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 
+--- !u!114 &114546143962064192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023209871222804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12297a04afd12744aa7f0bc1f8182c7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114643884770994628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023209871222804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207d08540b7af4159b875ab9895dc70f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basePath: Audio\GeneratedSoundBanks
+  language: English(US)
+  defaultPoolSize: 4096
+  lowerPoolSize: 2048
+  streamingPoolSize: 1024
+  preparePoolSize: 0
+  memoryCutoffThreshold: 0.95
+  monitorPoolSize: 128
+  monitorQueuePoolSize: 64
+  callbackManagerBufferSize: 4
+  engineLogging: 1
 --- !u!114 &114686451299747692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -860,8 +957,8 @@ MonoBehaviour:
   minDistanceBetweenFlocks: 0
   minBirdsPerFlock: 2
   maxBirdsPerFlock: 10
-  minTriggerRadius: 5
-  maxTriggerRaduis: 15
+  minTriggerRadius: 15
+  maxTriggerRaduis: 20
   spawnPoints:
   - {fileID: 4994307172232476}
   - {fileID: 4935143531421950}
@@ -921,8 +1018,8 @@ MonoBehaviour:
     m_RotationOrder: 0
   minSpeedScalar: 1
   maxSpeedScalar: 2
-  minDistanceFromFlockCenter: 5
-  maxDistanceFromFlockCenter: 10
+  minDistanceFromFlockCenter: 0
+  maxDistanceFromFlockCenter: 7
 --- !u!114 &114752026515844318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -951,8 +1048,8 @@ MonoBehaviour:
     acceleration: 1.5
     radius: 0.5
     height: 2
-    on: 0
-    fogDensity: 0.06
+    on: 1
+    fogDensity: 0.07
     fogColor: {r: 0.9882353, g: 0.9882353, b: 0.9882353, a: 1}
     fogMode: 3
     sfxVolume: 100
@@ -1079,7 +1176,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 10477183
+  randomSeed: -2099391571
   InitialModule:
     serializedVersion: 3
     enabled: 1
