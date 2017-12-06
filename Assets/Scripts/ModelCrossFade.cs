@@ -46,6 +46,8 @@ public class ModelCrossFade : MonoBehaviour
 	private IEnumerator playFadeInAfterWait;
 	private IEnumerator playFadeOutAfterWait;
 
+	public GameObject shamanFog;
+
 	void Start () 
 	{
 		beginTransformation = BeginTransformation;
@@ -135,6 +137,13 @@ public class ModelCrossFade : MonoBehaviour
 		StartCoroutine("CrossFade");
 		StartCoroutine(playFadeInAfterWait);
 		StartCoroutine(playFadeOutAfterWait);
+		ShamanFogTransformation();
+	}
+
+	private void ShamanFogTransformation()
+	{
+		shamanFog.SetActive(true);
+		shamanFog.GetComponent<ShamanFog>().OnShamanTransformation();
 	}
 
 	private IEnumerator WaitToPlayAnimation(Animator animator, string animation, float secondsToWait)
