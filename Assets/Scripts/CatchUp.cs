@@ -26,7 +26,7 @@ public class CatchUp : MonoBehaviour
         isCatching = false;
         catchingIncresedSpeed = GlobalConstantsManager.GetInstance().constants.catchingIncresedSpeed;
         CheckNotNull();
-        EventManager.GetInstance().AddListener(CustomEvent.ODead, ODead);
+        EventManager.GetInstance().AddListener(CustomEvent.Investigating, ODead);
     }
 
     private void ODead(EventArgument args)
@@ -52,15 +52,7 @@ public class CatchUp : MonoBehaviour
 
     private void CheckIfNeedCatching()
     {
-        if (oDead)
-        {
-            if (!oAlreadyDead)
-            {
-                oAlreadyDead = true;
-                BackToNomalSpeed();
-            }
-            return;
-        }
+
         if (!isCatching)
         {
             if (CheckIfSeperated())
@@ -73,7 +65,7 @@ public class CatchUp : MonoBehaviour
 
     private void CheckIfNeedStopCatching()
     {
-        if (isCatching)
+        if (isCatching && !oDead)
         {
             if (CheckIfReunited())
             {
