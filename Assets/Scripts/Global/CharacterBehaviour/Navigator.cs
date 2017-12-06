@@ -78,6 +78,11 @@ public class Navigator : MonoBehaviour
         navMeshAgent.Move(direction * navMeshAgent.speed * Time.deltaTime);
     }
 
+    public Transform GetSplitWaypoint()
+    {
+        return splitWaypoint;
+    }
+
     public void SetDestination()
     {
         SetDestination(waypoint);

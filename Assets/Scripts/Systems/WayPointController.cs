@@ -11,12 +11,14 @@ public class WayPointController : MonoBehaviour {
     public Transform oSeparationSplit;
     public Transform oBearSplit;
     public Transform oDeerSplit;
+    public Transform oDeerKilledWaypoint;
 
     public Navigator P;
     public Transform pSeparationSplit;
     public Transform pSeparationSplit2;
     public Transform pBearSplit;
     public Transform pDeerSplit;
+    public Transform pDeerKilledWaypoint;
 
     private EventManager eventManager;
     private EventDelegate separationScenario;
@@ -59,6 +61,14 @@ public class WayPointController : MonoBehaviour {
     {
         O.SetSplitWaypoint(oDeerSplit);
         P.SetSplitWaypoint(pDeerSplit);
+        eventManager.AddListener(CustomEvent.SpearHit, SetDeerDeadWaypoint);
+        eventManager.RemoveListener(CustomEvent.LocationReached, separationScenario2);
+    }
+
+    void SetDeerDeadWaypoint(EventArgument args)
+    {
+        O.SetSplitWaypoint(oDeerKilledWaypoint);
+        P.SetSplitWaypoint(pDeerKilledWaypoint);
         eventManager.RemoveListener(CustomEvent.LocationReached, separationScenario2);
     }
 }

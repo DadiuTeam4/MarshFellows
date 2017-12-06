@@ -10,10 +10,15 @@ public class CallEvent : Action
 {
 
     public CustomEvent callEvent;
+    public string stringArgument = "";
 
     public override void Act(StateController controller)
     {
-        EventManager.GetInstance().CallEvent(callEvent);
+        EventManager.GetInstance().CallEvent(callEvent, new EventArgument
+        {
+            stringComponent = stringArgument,
+            intComponent = 1
+        });
     }
 
     private void ReactToEvent(StateController controller)

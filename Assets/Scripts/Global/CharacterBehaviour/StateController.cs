@@ -200,7 +200,8 @@ public class StateController : MonoBehaviour
 		debugInfo += ("State time elapsed:\t" + stateTimeElapsed + "\n");
 		debugInfo += ("Current state:\t" + currentState + "\n");
 		debugInfo += ("Current waypoint:\t" + navigator.GetDestination() + "\n");
-		debugInfo += ("\nTriggered events:\n");
+        debugInfo += ("Current splitwaypoint:\t" + navigator.GetSplitWaypoint() + "\n");
+        debugInfo += ("\nTriggered events:\n");
 		foreach (CustomEvent eventName in System.Enum.GetValues(typeof(CustomEvent)))
 		{
             if (triggeredEvents[eventName])
