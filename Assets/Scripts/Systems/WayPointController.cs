@@ -61,7 +61,7 @@ public class WayPointController : MonoBehaviour {
     {
         O.SetSplitWaypoint(oDeerSplit);
         P.SetSplitWaypoint(pDeerSplit);
-        eventManager.AddListener(CustomEvent.SpearHit, SetDeerDeadWaypoint);
+        eventManager.AddListener(CustomEvent.ThrowSpear, SetDeerDeadWaypoint);
         eventManager.RemoveListener(CustomEvent.LocationReached, separationScenario2);
     }
 
