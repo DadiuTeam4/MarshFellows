@@ -39,7 +39,7 @@ public class HunterSpeedControlZone : MonoBehaviour
 
     private void SetPZoneSpeedBasedOnIfCatching()
     {
-        if (pCatchUp.IsCathing())
+        if (pCatchUp.IsCathing() && !pCatchUp.oDead)
         {
             pNav.SetSpeed(speedZoneSpeed + catchingIncresedSpeed);
         }
@@ -60,7 +60,7 @@ public class HunterSpeedControlZone : MonoBehaviour
 
     private void SetPAfterZoneSpeedBasedOnIfCatching()
     {
-        if (pCatchUp.IsCathing())
+        if (pCatchUp.IsCathing() && !pCatchUp.oDead)
         {
             pNav.SetSpeed(speedAfterZone + catchingIncresedSpeed);
         }

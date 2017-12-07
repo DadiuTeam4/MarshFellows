@@ -18,7 +18,7 @@ public class InputSystem : Singleton<InputSystem>
 	public static List<Vector3> swipeDirections;
 
 	[Tooltip("How far raycasts are casted.")]
-	public float raycastDistance = 75;
+	public float raycastDistance = 35;
 
 	private static readonly int maxNumberTouches = 20;
 	private Holdable[] heldLastFrame = new Holdable[maxNumberTouches];

@@ -42,6 +42,7 @@ public class DeerScenerio : MonoBehaviour
 
     private bool done;
     EventManager eventManager;
+    private bool canReact = true;
 
     void Start()
     {
@@ -56,19 +57,21 @@ public class DeerScenerio : MonoBehaviour
         eventManager.AddListener(CustomEvent.SinkGround, groundEvent);
         eventManager.AddListener(CustomEvent.SpearHit, kills);
         eventManager.AddListener(CustomEvent.DeerScenarioEntered, SetInScenario);
+        eventManager.AddListener(CustomEvent.DeerShouldDie, SetCanReact);
     }
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (run)
+        if (run && canReact)
         {
             timeElapsed += Time.deltaTime;
         }
 
         if (timeElapsed > secondsBeforeRunAway && !done)
         {
+            eventManager.CallEvent(CustomEvent.DeerFleeing);
             Vector3 relativePos = targetPoint.position - transform.position;
             Quaternion rotation = Quaternion.LookRotation(relativePos);
             Vector3 v3Force = runSpeed * (targetPoint.position - transform.position).normalized;
@@ -99,6 +102,11 @@ public class DeerScenerio : MonoBehaviour
         }
     }
 
+    public void SetCanReact(EventArgument argument)
+    {
+        canReact = false;
+    }
+
     public void SetInScenario(EventArgument argument)
     {
         inScenario = true;
@@ -123,6 +131,5 @@ public class DeerScenerio : MonoBehaviour
     {
         dead = true;
         anim.SetBool("deerDie", true);
-        Debug.Log("Dead");
     }
 }

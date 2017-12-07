@@ -6027,7 +6027,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   eventManager: {fileID: 0}
   lookAtTarget: {fileID: 0}
-  aiDebugging: 0
+  aiDebugging: 1
   debugInfo: 
 --- !u!114 &114271151368446882
 MonoBehaviour:
@@ -6077,12 +6077,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81f98756e2ecd9448834dc51eccf8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetY: 0
-  lookAtWeight: 0
-  headWeight: 0
-  bodyWeight: 0
-  clampWeight: 0
-  defaultLookPos: {fileID: 4259623257873466}
+  owner: P
+  yCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.0015716553
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.48954448
+      value: 0.98959386
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0.0015716553
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  yCurveScalar: 0.7
+  flyOnEvent: 201
+  onHitEvent: 202
+  lerpRate: 0.025
+  incrementRate: 0.01
+  throwDelay: 0.8
 --- !u!120 &120113104351959588
 LineRenderer:
   m_ObjectHideFlags: 1

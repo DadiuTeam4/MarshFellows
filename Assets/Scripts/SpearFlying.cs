@@ -75,7 +75,7 @@ public class SpearFlying : MonoBehaviour
 
 			transform.LookAt(target.position);
 
-			lerpT += lerpRate;
+			lerpT += lerpRate * Time.deltaTime * 60.0f;
 			if (lerpT > 1)
 			{
 				lerpT = 1;
