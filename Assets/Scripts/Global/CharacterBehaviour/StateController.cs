@@ -46,7 +46,7 @@ public class StateController : MonoBehaviour
 	private void Start()
 	{
         eventManager = EventManager.GetInstance();
-        triggeredEvents = new Dictionary<CustomEvent, bool>();
+        triggeredEvents = new Dictionary<CustomEvent, bool>(new MyEnumComparer());
 		eventArguments = new Dictionary<CustomEvent, EventArgument>();
         foreach (CustomEvent e in System.Enum.GetValues(typeof(CustomEvent)))
         {
@@ -66,11 +66,6 @@ public class StateController : MonoBehaviour
 	{
         bool eventOccured;
         triggeredEvents.TryGetValue(eventName, out eventOccured);
-
-        //if(eventOccured)
-        //{
-        //    Debug.Log("Checking " + eventName + " to be true, in current state: " + currentState);
-        //}
 
 		triggeredEvents[eventName] = false;
 		return eventOccured;
@@ -193,9 +188,23 @@ public class StateController : MonoBehaviour
 		latestEventArgument = eventArgument;
 	}
 
-	#region DEBUG
-	#if UNITY_EDITOR
-	private void UpdateDebugInfo()
+    public struct MyEnumComparer : IEqualityComparer<CustomEvent>
+    {
+        public bool Equals(CustomEvent x, CustomEvent y)
+        {
+            return x == y;
+        }
+
+        public int GetHashCode(CustomEvent obj)
+        {
+            // you need to do some thinking here,
+            return (int)obj;
+        }
+    }
+
+    #region DEBUG
+#if UNITY_EDITOR
+    private void UpdateDebugInfo()
 	{
 		debugInfo += ("State time elapsed:\t" + stateTimeElapsed + "\n");
 		debugInfo += ("Current state:\t" + currentState + "\n");

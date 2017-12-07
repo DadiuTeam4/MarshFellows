@@ -178,7 +178,6 @@ public class SinkableGround : Holdable
 		pointHit = transform.InverseTransformPoint(pointHit);
 
 		mesh = meshFilter.mesh;
-		currentVertices = mesh.vertices;
 		Vector3[] normals = mesh.normals;
 
 		float distance;
@@ -226,7 +225,6 @@ public class SinkableGround : Holdable
 
 		if (Time.frameCount % updateRate == 0)
 		{
-			currentVertices = mesh.vertices;
 			if (nearestPoints.Count == 0)
             { 
 				return;

@@ -26,14 +26,15 @@ public class InputSystem : Singleton<InputSystem>
 	private RaycastHit?[] raycastHits = new RaycastHit?[maxNumberTouches];
 	private Dictionary<int, List<Vector3>> touchPositions = new Dictionary<int, List<Vector3>>();
 	private ParticleSpawner particleSpawner;
+    Touch[] touchList = new Touch[maxNumberTouches];
 
-	#endregion
+    #endregion
 
-	#region DEBUG
-	#if UNITY_EDITOR
-	// MOUSE DEBUGGING
-	// NOT COMPILED IN BUILDS
-	bool mouseDownLastFrame;
+    #region DEBUG
+#if UNITY_EDITOR
+    // MOUSE DEBUGGING
+    // NOT COMPILED IN BUILDS
+    bool mouseDownLastFrame;
 	#endif
 	#endregion
 
@@ -63,8 +64,9 @@ public class InputSystem : Singleton<InputSystem>
 		swipeDirections.Clear();
 		// Resolve all touches
 		Touch[] touches = GetTouches();
-		foreach (Touch touch in touches) 
-		{
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Touch touch = touches[i];
 			switch (touch.phase) 
 			{
 				case (TouchPhase.Began):
@@ -103,7 +105,7 @@ public class InputSystem : Singleton<InputSystem>
 		#if UNITY_EDITOR
 		// MOUSE DEBUGGING
 		// NOT COMPILED IN BUILDS
-		if (touches.Length == 0)
+		if (Input.touchCount == 0)
 		{
 			if (Input.GetMouseButton(0)) 
 			{
@@ -125,12 +127,12 @@ public class InputSystem : Singleton<InputSystem>
 
 	private Touch[] GetTouches() 
 	{
-		Touch[] touches = new Touch[Input.touchCount];
-		for (int i = 0; i < Input.touchCount; i++) 
+        //touchList = new Touch[Input.touchCount];
+        for (int i = 0; i < Input.touchCount; i++) 
 		{
-			touches[i] = Input.GetTouch(i);
+			touchList[i] = Input.GetTouch(i);
 		}
-		return touches;
+		return touchList;
 	}
 
 	private void TouchBegan(Touch touch) 
