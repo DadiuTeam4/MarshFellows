@@ -1375,6 +1375,7 @@ GameObject:
   - component: {fileID: 4411298098562286}
   - component: {fileID: 33191050791908634}
   - component: {fileID: 23054201692177946}
+  - component: {fileID: 114713341669424750}
   m_Layer: 0
   m_Name: spear_GEO
   m_TagString: Untagged
@@ -3654,7 +3655,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855733315701042}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9930673, y: 1.6000001, z: 2}
+  m_LocalPosition: {x: 0, y: 1.6000001, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4866763693857002}
@@ -5614,7 +5615,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1225806898146870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 219.60944, y: -4.866173, z: -86.03422}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4866763693857002}
@@ -5731,7 +5732,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1351905813173908}
-  m_LocalRotation: {x: 0.3352934, y: 0.6225579, z: 0.3352934, w: 0.6225579}
+  m_LocalRotation: {x: 0.33529344, y: 0.62255794, z: 0.33529344, w: 0.62255794}
   m_LocalPosition: {x: -0.000009222939, y: 0.17498282, z: 0.05094822}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6009,6 +6010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seperationDistance: 3
   reunitedDistance: 2
+  oDead: 0
 --- !u!114 &114246764904318602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6052,6 +6054,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82874cec116ab1d469e85a1401458a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114713341669424750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439366638953122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3083e87bfb2861c40b2f3b2698186774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: P
+  yCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.002053388
+      value: 0.010451459
+      inSlope: 0.21696414
+      outSlope: 0.21696414
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.4989356
+      value: 0.9997388
+      inSlope: -0.029355288
+      outSlope: -0.029355288
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.9979248
+      value: -0.0104522705
+      inSlope: -0.19615391
+      outSlope: -0.19615391
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  yCurveScalar: 0.7
+  flyOnEvent: 201
+  onHitEvent: 202
+  lerpRate: 0.025
+  incrementRate: 0.01
+  throwDelay: 0.8
 --- !u!114 &114813485160818472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6077,37 +6121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81f98756e2ecd9448834dc51eccf8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: P
-  yCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0.0015716553
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 0.48954448
-      value: 0.98959386
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0.0015716553
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  yCurveScalar: 0.7
-  flyOnEvent: 201
-  onHitEvent: 202
-  lerpRate: 0.025
-  incrementRate: 0.01
-  throwDelay: 0.8
+  offsetY: 0
+  lookAtWeight: 0
+  headWeight: 0
+  bodyWeight: 0
+  clampWeight: 0
+  defaultLookPos: {fileID: 4259623257873466}
 --- !u!120 &120113104351959588
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -6615,7 +6634,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 41742409
+  randomSeed: -1129043900
   InitialModule:
     serializedVersion: 3
     enabled: 1
