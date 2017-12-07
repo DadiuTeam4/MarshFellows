@@ -29,10 +29,6 @@ namespace CameraControl
 			{
 				currentSplineController = cinematicSplines[0].splineController;
 			}
-			else 
-			{
-				Debug.LogError("No Cinematic Splines set in the Cinematic Camera component of the CameraController");
-			}
 		}
 
 		public void SetScenario(Scenario scenario, Vector3 scenarioStartPosition, Vector3 scenarioEndPosition)

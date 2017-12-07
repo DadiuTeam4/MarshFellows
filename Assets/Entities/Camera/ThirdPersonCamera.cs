@@ -54,7 +54,7 @@ namespace CameraControl
         {
             if (controller.targets[0] == null || controller.targets[1] == null)
             {
-                Debug.LogError("At least one of targets in Cam Controller is null!");
+                
             }
             else
             {
@@ -70,7 +70,6 @@ namespace CameraControl
         private void FollowP(EventArgument argument)
         {
             isFollowingCenter = false;
-            Debug.Log("Follow P");
         }
 
         protected override void UpdatePosition()
