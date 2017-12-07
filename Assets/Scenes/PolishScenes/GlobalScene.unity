@@ -16,7 +16,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
   m_Fog: 1
-  m_FogColor: {r: 0.9882353, g: 0.9882353, b: 0.9882353, a: 1}
+  m_FogColor: {r: 0.9843137, g: 0.9764706, b: 0.8784314, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.07
   m_LinearFogStart: 4.7
@@ -27,7 +27,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 024006cfc9c48f84fb770e74093e3904, type: 2}
   m_HaloStrength: 0
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.33333334
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: d9a49ea2206056c40a5c1210ca692d43, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a0b2421ddac2a2a4888ca04d0fc02de7, type: 2}
 --- !u!4 &538044522
 Transform:
   m_ObjectHideFlags: 0
@@ -923,8 +923,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.97281945, b: 0.7689655, a: 1}
-  m_Intensity: 0.67
+  m_Color: {r: 1, g: 0.972549, b: 0.75686276, a: 1}
+  m_Intensity: 0.9
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1030,6 +1030,26 @@ Prefab:
     - target: {fileID: 114761830711438942, guid: 67d67abca5fb8344ba0632b3c65ded95,
         type: 2}
       propertyPath: update
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761830711438942, guid: 67d67abca5fb8344ba0632b3c65ded95,
+        type: 2}
+      propertyPath: constants.fogColor.r
+      value: 0.9843137
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761830711438942, guid: 67d67abca5fb8344ba0632b3c65ded95,
+        type: 2}
+      propertyPath: constants.fogColor.g
+      value: 0.9764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761830711438942, guid: 67d67abca5fb8344ba0632b3c65ded95,
+        type: 2}
+      propertyPath: constants.fogColor.b
+      value: 0.8784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 114761830711438942, guid: 67d67abca5fb8344ba0632b3c65ded95,
+        type: 2}
+      propertyPath: constants.fogColor.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1163,6 +1183,11 @@ Prefab:
         type: 2}
       propertyPath: rotationDampingX
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 20408635539384440, guid: 7aed97fb63335044cbc89f51ddd8a65b,
+        type: 2}
+      propertyPath: m_ClearFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7aed97fb63335044cbc89f51ddd8a65b, type: 2}
