@@ -10,11 +10,12 @@ using UnityEngine;
 public class ModelYTranslator : MonoBehaviour {
 
     public LayerMask mask;
-	
-	void FixedUpdate () {
-        RaycastHit hit;
+    RaycastHit hit;
+    Ray ray = new Ray(new Vector3(), -Vector3.up);
+
+    void FixedUpdate () {
         Vector3 pos = transform.position;
-        Ray ray = new Ray(new Vector3(pos.x, 10, pos.z), -Vector3.up);
+        ray.origin = new Vector3(pos.x, 10, pos.z);
 
         if (Physics.Raycast(ray, out hit, 100, mask))
         {

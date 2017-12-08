@@ -23,7 +23,6 @@ public class ForeshadowTriggerZone : MonoBehaviour
 			EventArgument argument = new EventArgument();
 
 			argument.stringComponent = soundToPlay.ToString();
-			Debug.Log (argument.stringComponent);
 			eventManager.CallEvent(CustomEvent.ForeshadowEventTriggered,
 									argument);
 

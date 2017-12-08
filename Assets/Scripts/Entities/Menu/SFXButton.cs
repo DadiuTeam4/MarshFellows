@@ -18,7 +18,6 @@ public class SFXButton : MonoBehaviour
 
 	public void OpenSFXManager()
 	{
-		Debug.Log("Push my buttons!");
 		audioManager.OnMenuClick (); 
 	}
 }

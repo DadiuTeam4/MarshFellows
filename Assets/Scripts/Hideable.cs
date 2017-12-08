@@ -27,8 +27,9 @@ public class Hideable : MonoBehaviour
 	public bool extraEventIfSameAsHiddenBool = false;
 	public CustomEvent extraCall;
 
+    private RaycastHit hit;
 
-	private EventArgument argument = new EventArgument();
+    private EventArgument argument = new EventArgument();
 
 	void Start()
 	{
@@ -47,9 +48,7 @@ public class Hideable : MonoBehaviour
 	}
 
 	private void Setup()
-	{
-		RaycastHit hit;
-		
+	{		
 		for (int i = 0; i < checkPositions.Length; i++)
 		{
 			Ray ray = new Ray(transform.position, checkPositions[i].position - transform.position);
@@ -99,7 +98,6 @@ public class Hideable : MonoBehaviour
 
 	private void CheckIfHidden()
 	{
-		RaycastHit hit;
 		
 		for (int i = 0; i < checkPositions.Length; i++)
 		{
@@ -107,17 +105,11 @@ public class Hideable : MonoBehaviour
 
 			if (Physics.Raycast(ray, out hit, rayCastDistance, layerMask))
 			{
-                if (drawDebugRays)
-                {
-                    Debug.DrawLine(transform.position, hit.point, Color.green);
-                }
+              
                 TriggerEvent(true, i);
 				continue;
 			}
-            if (drawDebugRays)
-            {
-                Debug.DrawLine(transform.position, checkPositions[i].position, Color.red);
-            }
+           
             TriggerEvent(false, i);
 		}
 	}
