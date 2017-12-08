@@ -3,22 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Behaviour/Actions/NavigationUpdate")]
-public class NavigatorUpdate : Action
+namespace CharacterBehaviour
 {
-    public bool setPreviousSpeed;
-    public float speed;
-
-    public override void Act(StateController controller)
+    [CreateAssetMenu(menuName = "Character Behaviour/Actions/NavigationUpdate")]
+    public class NavigatorUpdate : Action
     {
-        if (setPreviousSpeed)
+        public bool setPreviousSpeed;
+        public float speed;
+
+        public override void Act(StateController controller)
         {
-            controller.navigator.SetSpeed(GlobalConstantsManager.GetInstance().constants.speed);
-        } else
-        {
-            controller.navigator.SetSpeed(speed);
+            if (setPreviousSpeed)
+            {
+                controller.navigator.SetSpeed(GlobalConstantsManager.GetInstance().constants.speed);
+            } else
+            {
+                controller.navigator.SetSpeed(speed);
+            }
+
         }
 
     }
-
 }

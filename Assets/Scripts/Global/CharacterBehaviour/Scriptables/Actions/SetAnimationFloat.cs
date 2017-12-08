@@ -3,17 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Behaviour/Actions/AnimationFloat")]
-public class SetAnimationFloat : Action
+namespace CharacterBehaviour
 {
-
-    public string floatName;
-    public float value;
-
-    public override void Act(StateController controller)
+    [CreateAssetMenu(menuName = "Character Behaviour/Actions/AnimationFloat")]
+    public class SetAnimationFloat : Action
     {
-        controller.SetAnimatorFloat(floatName, value);
+
+        public string floatName;
+        public float value;
+
+        public override void Act(StateController controller)
+        {
+            controller.SetAnimatorFloat(floatName, value);
+        }
+
     }
-
 }
-

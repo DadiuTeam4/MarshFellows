@@ -5,23 +5,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using Events;
 
-[CreateAssetMenu(menuName = "Character Behaviour/Actions/CallEventWithFoundGameObject")]
-public class CallEventWithFoundGameObject : Action
+namespace CharacterBehaviour
 {
-    public CustomEvent callEvent;
-    public string targetTag;
-    public string owner;
-
-    private EventArgument argument = new EventArgument();
-
-    public override void Act(StateController controller)
+    [CreateAssetMenu(menuName = "Character Behaviour/Actions/CallEventWithFoundGameObject")]
+    public class CallEventWithFoundGameObject : Action
     {
-        argument.gameObjectComponent = GameObject.FindGameObjectWithTag(targetTag);
-        argument.stringComponent = owner;
+        public CustomEvent callEvent;
+        public string targetTag;
+        public string owner;
 
-        if (argument.gameObjectComponent)
+        private EventArgument argument = new EventArgument();
+
+        public override void Act(StateController controller)
         {
-            EventManager.GetInstance().CallEvent(callEvent, argument);
+            argument.gameObjectComponent = GameObject.FindGameObjectWithTag(targetTag);
+            argument.stringComponent = owner;
+
+            if (argument.gameObjectComponent)
+            {
+                EventManager.GetInstance().CallEvent(callEvent, argument);
+            }
         }
     }
 }

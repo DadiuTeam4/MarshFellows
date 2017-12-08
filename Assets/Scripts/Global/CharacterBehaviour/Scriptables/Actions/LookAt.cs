@@ -4,20 +4,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (menuName = "Character Behaviour/Actions/LookAt")]
-public class LookAt : Action
+namespace CharacterBehaviour
 {
-
-    public bool lookForward;
-
-	public override void Act(StateController controller)
-	{
-		ReactToEvent(controller);
-	}
-
-	private void ReactToEvent(StateController controller) 
+	[CreateAssetMenu (menuName = "Character Behaviour/Actions/LookAt")]
+	public class LookAt : Action
 	{
 
-		controller.LookAt(lookForward);
+		public bool lookForward;
+
+		public override void Act(StateController controller)
+		{
+			ReactToEvent(controller);
+		}
+
+		private void ReactToEvent(StateController controller) 
+		{
+
+			controller.LookAt(lookForward);
+		}
 	}
 }

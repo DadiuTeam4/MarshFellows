@@ -4,28 +4,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Behaviour/Actions/Walk")]
-public class Walk : Action
+namespace CharacterBehaviour
 {
-
-    public bool changePath;
-
-    public override void Act(StateController controller)
+    [CreateAssetMenu(menuName = "Character Behaviour/Actions/Walk")]
+    public class Walk : Action
     {
-        WalkTowards(controller);
-    }
 
-    private void WalkTowards(StateController controller)
-    {
-        controller.navigator.ResumeMovement();
+        public bool changePath;
 
-        if (!changePath)
+        public override void Act(StateController controller)
         {
-            controller.navigator.SetDestination();
-        } else
-        {
-            controller.navigator.SetSplitPath();
+            WalkTowards(controller);
         }
 
+        private void WalkTowards(StateController controller)
+        {
+            controller.navigator.ResumeMovement();
+
+            if (!changePath)
+            {
+                controller.navigator.SetDestination();
+            } else
+            {
+                controller.navigator.SetSplitPath();
+            }
+
+        }
     }
 }

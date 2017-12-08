@@ -5,19 +5,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Walk))]
-public class DynamicWalkFields : Editor 
+namespace CharacterBehaviour
 {
-	/* public override void OnInspectorGUI()
+	[CustomEditor(typeof(Walk))]
+	public class DynamicWalkFields : Editor 
 	{
-		serializedObject.Update();
-		Walk walk = target as Walk;
-		walk.walkToWaypoint = GUILayout.Toggle(walk.walkToWaypoint, "Walk to waypoint");
-		walk.walkInDirection = GUILayout.Toggle(walk.walkInDirection, "Walk in direction");
-
-		if (walk.walkInDirection)
+		/* public override void OnInspectorGUI()
 		{
-			walk.direction = EditorGUILayout.Vector3Field("Direction in world space", walk.direction);
-		}
-	} */
+			serializedObject.Update();
+			Walk walk = target as Walk;
+			walk.walkToWaypoint = GUILayout.Toggle(walk.walkToWaypoint, "Walk to waypoint");
+			walk.walkInDirection = GUILayout.Toggle(walk.walkInDirection, "Walk in direction");
+
+			if (walk.walkInDirection)
+			{
+				walk.direction = EditorGUILayout.Vector3Field("Direction in world space", walk.direction);
+			}
+		} */
+	}
 }

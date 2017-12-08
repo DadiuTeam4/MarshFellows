@@ -5,18 +5,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Behaviour/Actions/Wait")]
-public class Wait : Action 
+namespace CharacterBehaviour
 {
-
-    public override void Act(StateController controller)
-    {
-		StopMovement(controller);
-    }
-
-	private void StopMovement(StateController controller)
+	[CreateAssetMenu(menuName = "Character Behaviour/Actions/Wait")]
+	public class Wait : Action 
 	{
-		controller.navigator.StopMovement();
-	}
 
+		public override void Act(StateController controller)
+		{
+			StopMovement(controller);
+		}
+
+		private void StopMovement(StateController controller)
+		{
+			controller.navigator.StopMovement();
+		}
+
+	}
 }
